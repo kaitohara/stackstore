@@ -26,7 +26,5 @@ router.get('/secret-stash', ensureAuthenticated, function(req, res) {
         'https://my.vetmatrixbase.com/clients/12679/images/cats-animals-grass-kittens--800x960.jpg',
         'http://www.dailymobile.net/wp-content/uploads/2014/10/lollipops.jpg'
     ];
-    console.log('hi')
     res.send(_.shuffle(theStash));
-
 });
