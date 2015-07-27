@@ -62,7 +62,7 @@ router.put('/:id', function(req, res, next) {
 // delete one album
 router.delete('/:id', function(req, res, next) {
     Album.findByIdAndRemove(req.params.id).exec()
-    .then(function(album) {
+    .then(function() {
         res.status(204).end();
     })
     .then(null, next);

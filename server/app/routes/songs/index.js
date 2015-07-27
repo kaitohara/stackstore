@@ -62,7 +62,7 @@ router.put('/:id', function(req, res, next) {
 // delete one song
 router.delete('/:id', function(req, res, next) {
     Song.findByIdAndRemove(req.params.id).exec()
-    .then(function(song) {
+    .then(function() {
         res.status(204).end();
     })
     .then(null, next);
