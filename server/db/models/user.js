@@ -4,7 +4,10 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
     email: {
-        type: String
+        type: String,
+        unique: true,
+        // emails should have a @ symbol
+        validate: /.+@.+/
     },
     password: {
         type: String
@@ -23,6 +26,16 @@ var schema = new mongoose.Schema({
     },
     google: {
         id: String
+    },
+    purchased: {
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}]
+    },
+    cart: {
+        type: {type: mongoose.Schema.Types.ObjectId, ref: 'Order'}
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 
