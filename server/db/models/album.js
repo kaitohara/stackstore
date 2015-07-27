@@ -21,7 +21,8 @@ var schema = new mongoose.Schema({
 		required: true
 	},
 	artist: {
-		type: {type: mongoose.Schema.Types.ObjectId, ref: 'Artist'},
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'Artist', 
 		required: true
 	},
 	downloads: {

@@ -31,7 +31,8 @@ var schema = new mongoose.Schema({
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}]
     },
     cart: {
-        type: {type: mongoose.Schema.Types.ObjectId, ref: 'Order'}
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Order'
     },
     isAdmin: {
         type: Boolean,

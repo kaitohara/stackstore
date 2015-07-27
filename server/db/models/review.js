@@ -12,7 +12,8 @@ var schema = new mongoose.Schema({
 		minlength: 50,
 	},
 	author: {
-		type: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'User', 
 		required: true
 	},
 	rating: {

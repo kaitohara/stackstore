@@ -20,7 +20,8 @@ var schema = new mongoose.Schema({
 		default: 1000
 	},
 	album: {
-		type: {type: mongoose.Schema.Types.ObjectId, ref: 'Album'}
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: 'Album'
 	},
 	reviews: {
 		type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
