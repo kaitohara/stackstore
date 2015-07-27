@@ -20,7 +20,7 @@ var schema = new mongoose.Schema({
 	},
 	orderStatus: {
 		// created, processing, cancelled, or completed
-       type: String, enum: ['created', 'processing', 'cancelled', 'completed'],
+       type: String, enum: ['created', 'processing', 'cancelled', 'completed']
 	}
 });
 
