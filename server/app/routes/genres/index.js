@@ -32,4 +32,4 @@ router.get('/:genre', function (req, res){
 // the registered routes!
 router.use(function (req, res) {
     res.status(404).end();
-});
+}); 
