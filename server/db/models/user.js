@@ -36,7 +36,7 @@ var schema = new mongoose.Schema({
     },
     cart: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order',
+        ref: 'Order'
     },
     isAdmin: {
         type: Boolean,
@@ -61,6 +61,12 @@ schema.pre('save', function(next) {
     if (this.isModified('password')) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
+    }
+    var user = this
+    if (!this.cart) {
+        Order.create().then(function(newOrder) {
+            user.cart = newOrder._id
+        })
     }
     next();
 });
