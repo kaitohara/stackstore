@@ -3,7 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 
-var ensureAuthenticated = function (req, res, next) {
+var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
         next();
     } else {
@@ -11,7 +11,7 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-router.get('/secret-stash', ensureAuthenticated, function (req, res) {
+router.get('/secret-stash', ensureAuthenticated, function(req, res) {
 
     var theStash = [
         'http://ep.yimg.com/ay/candy-crate/bulk-candy-store-2.gif',
@@ -26,7 +26,5 @@ router.get('/secret-stash', ensureAuthenticated, function (req, res) {
         'https://my.vetmatrixbase.com/clients/12679/images/cats-animals-grass-kittens--800x960.jpg',
         'http://www.dailymobile.net/wp-content/uploads/2014/10/lollipops.jpg'
     ];
-
     res.send(_.shuffle(theStash));
-
 });

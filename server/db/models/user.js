@@ -1,6 +1,7 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var Order = mongoose.model('Order')
 
 var schema = new mongoose.Schema({
     email: {
@@ -27,12 +28,15 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     },
-    purchased: {
-        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}]
+    pastOrderList: {
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Order'
+        }]
     },
     cart: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Order'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Order',
     },
     isAdmin: {
         type: Boolean,
@@ -42,33 +46,48 @@ var schema = new mongoose.Schema({
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
-var generateSalt = function () {
+var generateSalt = function() {
     return crypto.randomBytes(16).toString('base64');
 };
 
-var encryptPassword = function (plainText, salt) {
+var encryptPassword = function(plainText, salt) {
     var hash = crypto.createHash('sha1');
     hash.update(plainText);
     hash.update(salt);
     return hash.digest('hex');
 };
 
-schema.pre('save', function (next) {
-
+schema.pre('save', function(next) {
     if (this.isModified('password')) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
-
     next();
-
 });
 
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
 
-schema.method('correctPassword', function (candidatePassword) {
+schema.method('correctPassword', function(candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
+
+schema.method.setAdmin = function(isAdmin) {
+    this.isAdmin = isAdmin
+}
+
+schema.method.finishCurrentOrder = function(newOrderStatus) {
+    var user = this
+    Order.findById(user.cart).exec().then(function(cart) {
+        cart.orderStatus = newOrderStatus
+        cart.date.finished = Date.now()
+        cart.save().then(function(cart) {
+            user.pastOrderList.push(user.cart)
+            Order.create().then(function(cart) {
+                user.cart = cart._id
+            });
+        })
+    })
+}
 
 mongoose.model('User', schema);
