@@ -5,8 +5,8 @@ module.exports = router;
 router.use('/members', require('./members'));
 router.use('/users', require('./users'))
 router.use('/artists', require('./artists'))
-
-
+router.use('/songs', require('./songs'));
+router.use('/albums', require('./albums'));
 router.use('/genre', require('./genre'));
 
 // Make sure this is after all of
