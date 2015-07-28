@@ -24,14 +24,16 @@ var _ = require('lodash');
 var async = require('async');
 var connectToDb = require('./server/db');
 
-var User = Promise.promisifyAll(mongoose.model('User'));
-var Artist = Promise.promisifyAll(mongoose.model('Artist'));
-var Review = Promise.promisifyAll(mongoose.model('Review'));
-var Genre = Promise.promisifyAll(mongoose.model('Genre'));
-var Song = Promise.promisifyAll(mongoose.model('Song'));
-var Album = Promise.promisifyAll(mongoose.model('Album'));
-var Order = Promise.promisifyAll(mongoose.model('Order'));
+// load in models
+var User = mongoose.model('User');
+var Artist = mongoose.model('Artist');
+var Review = mongoose.model('Review');
+var Genre = mongoose.model('Genre');
+var Song = mongoose.model('Song');
+var Album = mongoose.model('Album');
+var Order = mongoose.model('Order');
 
+// constants for generation
 var numArtists = 20;
 var numSongs = 100;
 var numReviews = 150;
@@ -253,12 +255,18 @@ users.forEach(function(user, idx) {
 });
 console.log('-finished assigning orders-');
 
+console.log('-assign albums to songs-');
+songs.forEach(function(song, idx) {
+    var alb = albums.filter(function(album) {
+        return album.songs.indexOf(song._id) > -1;
+    })[0];
+    song.album = alb;
+});
+console.log('-finished assigning albums-');
+
 
 var all = users.concat(artists, reviews, genres, songs, albums, orders);
 var models = [User, Artist, Review, Genre, Song, Album, Order];
-
-// console.log('all', all);
-
 
 console.log('-removing-');
 async.each(models,
