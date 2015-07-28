@@ -26,7 +26,10 @@ var schema = new mongoose.Schema({
  		quantity: Number
  	}],
 	date: {
-		created: {type: Date, default: Date.now},
+		created: {
+			type: Date, 
+			default: Date.now
+		},
 		// finished = cancelled OR completed
 		finished: Date
 	},
@@ -35,7 +38,9 @@ var schema = new mongoose.Schema({
 	},
 	orderStatus: {
 		// created, processing, cancelled, or completed
-       type: String, enum: ['created', 'processing', 'cancelled', 'completed'],
+       type: String, 
+       enum: ['created', 'processing', 'cancelled', 'completed'],
+       required: true
 	}
 });
 
