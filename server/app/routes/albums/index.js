@@ -42,11 +42,23 @@ function getById (req, res, next) {
         next(e);
     });
 }
-
-// get one album (by its id)
 router.get('/:id', getById, function(req, res) {
-    res.json(req.album);
-});
+    res.json(req.album)
+})
+// get one album (by its id)
+
+////test for multiple
+// router.get('/:id', function(req, res) {
+//     console.log('iddddd', req.params.id.split())
+//     Album.find({
+//         '_id': { $in: req.params.id.split()}
+//         }).exec()
+//     .then(function(album){
+//         console.log('resultttt',album)
+//         res.json(album)
+//     })
+//     // res.json(req.album);
+// });
 
 // update one album (and return it to frontend)
 router.put('/:id', function(req, res, next) {

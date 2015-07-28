@@ -1,8 +1,12 @@
 Album page
 
 <h1>{{album.title}}</h1>
-<h3>Artist {{album.artist}}</h3>
+<img src="{{album.photo}}">
+<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
 <h3>Year {{album.year}}</h3>
 <h3>Price ${{album.price}}</h3>
 <h3>Downloads {{album.downloads}}</h3>
-<h3>Review {{album.reviews}}</h3>
+<h3>Review:</h3>
+<p>{{review.title}}</p>
+<p>{{review.rating}}/5</p>
+<p>{{review.content}}</p>
