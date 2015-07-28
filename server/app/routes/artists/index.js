@@ -6,7 +6,14 @@ var mongoose = require('mongoose');
 var Artist = mongoose.model('Artist');
 
 router.get('/', function(req, res) {
-    Artist.find().exec()
+
+    // allows for search parameters
+    var query = {};
+    if (req.query) {
+        query = req.query;
+    }
+
+    Artist.find(query).exec()
         .then(function(artists) {
             res.json(artists);
         })
@@ -47,7 +54,7 @@ router.put('/:id', function(req, res) {
 })
 
 router.delete('/:id', function(req, res) {
-    req.book.remove().then(function() {
+    req.artist.remove().then(function() {
         res.status(204).end()
     })
 })
