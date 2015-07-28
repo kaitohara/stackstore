@@ -164,7 +164,7 @@ describe('Orders Route', function () {
 	});
 	
 	it('returns all orders', function(done) {
-		agent.get('/api/order')
+		agent.get('/api/orders')
 			.expect(200)
 			.end(function(err, res) {
 				if (err) return done(err);
@@ -178,7 +178,7 @@ describe('Orders Route', function () {
 	});
 
 	it('creates a new order', function(done) {
-		agent.post('/api/order')
+		agent.post('/api/orders')
 			.send({
 				songs: [],
 				albums: [],
@@ -194,7 +194,7 @@ describe('Orders Route', function () {
 	});
 
 	it('returns one order', function(done) {
-		agent.get('/api/order/' + order2._id)
+		agent.get('/api/orders/' + order2._id)
 			.expect(200)
 			.end(function(err, res) {
 				if (err) return done(err);
@@ -205,13 +205,13 @@ describe('Orders Route', function () {
 
 	it('GET one that doesn\'t exist', function (done) {
 		agent
-			.get('/api/order/123abcnotamongoid')
+			.get('/api/orders/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
 	it('updates a order', function(done) {
-		agent.put('/api/order/' + order._id)
+		agent.put('/api/orders/' + order._id)
 			.expect(200)
 			.send({
 				totalPrice: 555
@@ -225,14 +225,14 @@ describe('Orders Route', function () {
 
 	it('PUT one that doesn\'t exist', function (done) {
 		agent
-			.put('/api/order/123abcnotamongoid')
+			.put('/api/orders/123abcnotamongoid')
 			.send({totalPrice: 2})
 			.expect(404)
 			.end(done);
 	});
 
 	it('deletes a order', function(done) {
-		agent.delete('/api/order/' + order._id)
+		agent.delete('/api/orders/' + order._id)
 			.expect(204)
 			.end(function(err, res) {
 				if (err) return done(err);
@@ -245,7 +245,7 @@ describe('Orders Route', function () {
 
 	it('DELETE one that doesn\'t exist', function (done) {
 		agent
-			.delete('/api/order/123abcnotamongoid')
+			.delete('/api/orders/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});

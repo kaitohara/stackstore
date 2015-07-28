@@ -13,12 +13,8 @@ var app = require('../../../server/app');
 
 var agent = supertest.agent(app);
 
-var Album = mongoose.model('Album');
-var Song = mongoose.model('Song');
 var Review = mongoose.model('Review');
 var User = mongoose.model('User');
-var Genre = mongoose.model('Genre');
-var Artist = mongoose.model('Artist');
 
 describe('Reviews Route', function () {
 
@@ -73,9 +69,10 @@ describe('Reviews Route', function () {
 	});
 
 	it('returns all reviews', function(done) {
-		agent.get('/api/review')
+		agent.get('/api/reviews')
 			.expect(200)
 			.end(function(err, res) {
+				console.log(res.body);
 				if (err) return done(err);
 				expect(res.body).to.be.instanceof(Array);
 				expect(res.body.length).to.equal(2);
@@ -86,7 +83,7 @@ describe('Reviews Route', function () {
 	});
 
 	it('creates a new review', function(done) {
-		agent.post('/api/review')
+		agent.post('/api/reviews')
 			.send({
 				title: 'new review',
 				content: 'new text that still needs to be 50 characters and this should be long enough',
@@ -102,7 +99,7 @@ describe('Reviews Route', function () {
 	});
 
 	it('returns one review', function(done) {
-		agent.get('/api/review/' + review._id)
+		agent.get('/api/reviews/' + review._id)
 			.expect(200)
 			.end(function(err, res) {
 				if (err) return done(err);
@@ -113,13 +110,13 @@ describe('Reviews Route', function () {
 
 	it('GET one that doesn\'t exist', function (done) {
 		agent
-			.get('/api/review/123abcnotamongoid')
+			.get('/api/reviews/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
 	it('updates a review', function(done) {
-		agent.put('/api/review/' + review._id)
+		agent.put('/api/reviews/' + review._id)
 			.expect(200)
 			.send({
 				title: 'updated review'
@@ -136,14 +133,14 @@ describe('Reviews Route', function () {
 
 	it('PUT one that doesn\'t exist', function (done) {
 		agent
-			.put('/api/review/123abcnotamongoid')
+			.put('/api/reviews/123abcnotamongoid')
 			.send({title: 'this won\'t work'})
 			.expect(404)
 			.end(done);
 	});
 
 	it('deletes a review', function(done) {
-		agent.delete('/api/review/' + review2._id)
+		agent.delete('/api/reviews/' + review2._id)
 			.expect(204)
 			.end(function(err, res) {
 				if (err) return done(err);
@@ -156,7 +153,7 @@ describe('Reviews Route', function () {
 
 	it('DELETE one that doesn\'t exist', function (done) {
 		agent
-			.delete('/api/review/123abcnotamongoid')
+			.delete('/api/reviews/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
@@ -164,7 +161,7 @@ describe('Reviews Route', function () {
 	it('GET with query string filter', function (done) {
 		agent
 		// in query strings %20 means a single whitespace character
-			.get('/api/review?title=test%20review')
+			.get('/api/reviews?title=test%20review')
 			.expect(200)
 			.end(function (err, res) {
 				if (err) return done(err);

@@ -3,10 +3,10 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 
-var order = mongoose.model('Order');
+var Order = mongoose.model('Order');
 
 router.get('/', function(req, res, next){
-    order.find().exec()
+    Order.find().exec()
         .then(function(orderItems){
             res.json(orderItems);
         })
@@ -14,7 +14,7 @@ router.get('/', function(req, res, next){
 });
 
 router.param('orderId', function(req, res, next, orderId){
-    order.findById(orderId)
+    Order.findById(orderId)
         .exec()
         .then(function(orderItem){
             if(!orderItem) throw new Error();
@@ -54,7 +54,7 @@ router.delete('/:orderId', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-    order
+    Order
         .create(req.body)
         .then(function(orderItem){
             if(!orderItem) throw new Error();
