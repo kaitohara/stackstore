@@ -5,6 +5,16 @@ var mongoose = require('mongoose');
 
 var order = mongoose.model('Order');
 
+router.get('/', function(req, res, next){
+    order.find().exec()
+        .then(function(orderItems){
+            res.json(orderItems);
+        })
+        .then(null, function(err){
+            next(err);
+        });
+});
+
 router.param('orderId', function(req, res, next, orderId){
     order.findById(orderId)
         .exec()
@@ -25,16 +35,6 @@ router.param('orderId', function(req, res, next, orderId){
 router.get('/:orderId', function(req, res){
     res.json(req.orderItem);
 });
-
-router.get('/', function(req, res, next){
-    order.find().exec()
-        .then(function(orderItems){
-            res.json(orderItems);
-        })
-        .then(null, function(err){
-            next(err);
-        })
-})
 
 router.put('/:orderId', function(req, res, next){
     for (var key in req.body) {
@@ -66,4 +66,3 @@ router.post('/', function(req, res, next){
 });
 
 module.exports = router;
-
