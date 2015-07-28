@@ -38,10 +38,8 @@ function getById (req, res, next) {
         next();
     })
     .then(null, function(e) {
-        // cast error was thrown in the express assessment when given
-        //  invalid id - might be problem here too (delete this if not)
-        if (e.name === 'CastError') res.status(404).end();
-        else next(e);
+        e.status = 404;
+        next(e);
     });
 }
 
@@ -52,11 +50,20 @@ router.get('/:id', getById, function(req, res) {
 
 // update one song (and return it to frontend)
 router.put('/:id', function(req, res, next) {
-    Song.findByIdAndUpdate(req.params.id, req.body).exec()
+    Song.findById(req.params.id).exec()
     .then(function(song) {
-        res.json(song);
+        for (var key in req.body) {
+            song[key] = req.body[key];
+        }
+        song.save(function(e) {
+            if (e) return next(e);
+            res.json(song);
+        });
     })
-    .then(null, next);
+    .then(null, function(e) {
+        e.status = 404;
+        next(e);
+    });
 });
 
 // delete one song
@@ -65,7 +72,10 @@ router.delete('/:id', function(req, res, next) {
     .then(function() {
         res.status(204).end();
     })
-    .then(null, next);
+    .then(null, function(e) {
+        e.status = 404;
+        next(e);
+    });
 });
 
 module.exports = router;
