@@ -17,9 +17,7 @@ router.get('/', function(req, res, next){
         .then(function(reviewItems){
             res.json(reviewItems);
         })
-        .then(null, function(err){
-            next(err);
-        });
+        .then(null, next);
 });
 
 router.param('reviewId', function(req, res, next, reviewId){
@@ -51,9 +49,11 @@ router.put('/:reviewId', function(req, res, next){
 });
 
 router.delete('/:reviewId', function(req, res, next){
-    req.reviewItem.remove().then(function() {
-        res.status(204).end();
-    });
+    req.reviewItem.remove()
+        .then(function() {
+            res.status(204).end();
+        })
+        .then(null, next);
 });
 
 router.post('/', function(req, res, next){
@@ -63,9 +63,7 @@ router.post('/', function(req, res, next){
             if(!reviewItem) throw new Error();
             else res.status(201).json(reviewItem);
         })
-        .then(null, function(err){
-            next(err);
-        });
+        .then(null, next);
 });
 
 module.exports = router;

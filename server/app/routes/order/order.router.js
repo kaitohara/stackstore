@@ -10,9 +10,7 @@ router.get('/', function(req, res, next){
         .then(function(orderItems){
             res.json(orderItems);
         })
-        .then(null, function(err){
-            next(err);
-        });
+        .then(null, next);
 });
 
 router.param('orderId', function(req, res, next, orderId){
@@ -48,9 +46,11 @@ router.put('/:orderId', function(req, res, next){
 });
 
 router.delete('/:orderId', function(req, res, next){
-    req.orderItem.remove().then(function() {
-        res.status(204).end();
-    });
+    req.orderItem.remove()
+        .then(function() {
+            res.status(204).end();
+        })
+        .then(null, next);
 });
 
 router.post('/', function(req, res, next){
@@ -60,9 +60,7 @@ router.post('/', function(req, res, next){
             if(!orderItem) throw new Error();
             else res.status(201).json(orderItem);
         })
-        .then(null, function(err){
-            next(err);
-        });
+        .then(null, next);
 });
 
 module.exports = router;
