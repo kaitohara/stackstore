@@ -42,7 +42,12 @@ router.param('id', function(req, res, next, id) {
         });
 })
 
+
 router.get('/:id', function(req, res) {
+    // Artist.findById(req.params.id).exec()
+    //     .then(function(artist){
+    //         res.json(artist)
+    //     })
     res.send(req.artist);
 });
 
