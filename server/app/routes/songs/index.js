@@ -45,7 +45,7 @@ function getById (req, res, next) {
 
 // get one song (by its id)
 router.get('/:id', getById, function(req, res) {
-    res.json(req.song);
+    res.json(req.song)
 });
 
 // update one song (and return it to frontend)
