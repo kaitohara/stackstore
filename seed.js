@@ -159,7 +159,7 @@ function randOrder() {
     var date = {};
     if (status === 'cancelled') {
         // finished an hour from now (if cancelled)
-        date = {finished: Date.now() + 600000};
+        date = {finished: Date.now() + 3600000};
     }
     return {
         // items: itemList,
@@ -244,8 +244,6 @@ var orders = _.times(numOrders, randOrder)
     return new Order(datum);
 });
 console.log('-done generating orders-');
-
-console.log('orders', orders);
 
 var all = users.concat(artists, reviews, genres, songs, albums, orders);
 var models = [User, Artist, Review, Genre, Song, Album, Order];
