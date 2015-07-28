@@ -1,0 +1,30 @@
+<div class="container">
+		<!-- <user-item is-form model="userSearch" class="list-group-item min-content" glyphicon="search"></user-item> -->
+	<br><br>
+	<div class="user-list">
+		<input type="text" ng-model="search">
+		<!-- <button ng-click="getArtists()"></button> -->
+		<ul ng-show="!!search">
+			<li ng-repeat="artist in artists | filter:search">Artist: {{artist.name}}</li>
+		</ul>
+
+		<ul ng-show="!!search">
+			<li ng-repeat="album in albums | filter:search">Album: {{album.title}}</li>
+		</ul>
+
+		<ul ng-show="!!search">
+			<li ng-repeat="song in songs | filter:search">Song: {{song.title}}</li>
+		</ul>
+
+		<!-- <a ng-repeat="artist in artists | filter:artistSearch"
+			ui-sref="artist({id: artist._id})"
+			ui-sref-active="active"
+			class="list-group-item min-content"
+			ng-if="!artist.isDestroyed">
+			<user-item model="artist"></user-item>
+		</a> -->
+	</div>
+	<div class="fixed">
+		<ui-view></ui-view>
+	</div>
+</div>
