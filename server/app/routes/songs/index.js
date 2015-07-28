@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
     var song = new Song(req.body);
     song.save(function(err, savedSong) {
         if (err) return next(err);
-        res.json(savedSong);
+        res.status(201).json(savedSong);
     });
 });
 
@@ -38,25 +38,34 @@ function getById (req, res, next) {
         next();
     })
     .then(null, function(e) {
-        // cast error was thrown in the express assessment when given
-        //  invalid id - might be problem here too (delete this if not)
-        if (e.name === 'CastError') res.status(404).end();
-        else next(e);
+        e.message = "Not Found";
+        e.status = 404;
+        next(e);
     });
 }
 
 // get one song (by its id)
 router.get('/:id', getById, function(req, res) {
-    res.json(req.song);
+    res.json(req.song)
 });
 
 // update one song (and return it to frontend)
 router.put('/:id', function(req, res, next) {
-    Song.findByIdAndUpdate(req.params.id, req.body).exec()
+    Song.findById(req.params.id).exec()
     .then(function(song) {
-        res.json(song);
+        for (var key in req.body) {
+            song[key] = req.body[key];
+        }
+        song.save(function(e) {
+            if (e) return next(e);
+            res.json(song);
+        });
     })
-    .then(null, next);
+    .then(null, function(e) {
+        e.message = "Not Found";
+        e.status = 404;
+        next(e);
+    });
 });
 
 // delete one song
@@ -65,7 +74,11 @@ router.delete('/:id', function(req, res, next) {
     .then(function() {
         res.status(204).end();
     })
-    .then(null, next);
+    .then(null, function(e) {
+        e.message = "Not Found";
+        e.status = 404;
+        next(e);
+    });
 });
 
 module.exports = router;

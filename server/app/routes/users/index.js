@@ -46,7 +46,7 @@ router.put('/:id', function(req, res) {
 })
 
 router.delete('/:id', function(req, res) {
-    req.book.remove().then(function() {
+    req.user.remove().then(function() {
         res.status(204).end()
     })
 })

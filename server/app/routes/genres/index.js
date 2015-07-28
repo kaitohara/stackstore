@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var genre = mongoose.model('Genre')
 
 router.get('/', function(req, res) {
+	console.log('looking for genres');
 	genre.find({}).exec()
 		.then(function(data) {
 			res.json(data);
