@@ -91,7 +91,6 @@ function randSong (n) {
         price: chance.floating({fixed: 2, max: 1000, min: 0}),
         downloads: chance.d20(),
         cap: 2000,
-        // attach album in randAlbum function (?)
         reviews: review,
         url: url
     };
@@ -101,9 +100,6 @@ function randAlbum (n) {
     var auth = chance.pick(artists);
     var genre = chance.pick(genres);
     var albumSongs = songs.slice(n*songsPerAlbum, (n+1)*songsPerAlbum);
-    // albumSongs.forEach(function (song, idx) {
-    //     song.album = ;
-    // });
     var review = reviews.slice(n*reviewsPerAlbum, (n+1)*reviewsPerAlbum);
     return {
         title: randTitle(),
@@ -121,25 +117,6 @@ function randAlbum (n) {
 
 function randOrder() {
     var totalPrice = 0;
-    // var songList = chance.pick(songs, 4);
-    // songList = songList.map(function(song) {
-    //     totalPrice += song.price;
-    //     return {
-    //         itemType: 'song',
-    //         price: song.price,
-    //         quantity: chance.d6()
-    //     };
-    // });
-    // var albumList = chance.pick(albums, 4);
-    // albumList = albumList.map(function(album) {
-    //     totalPrice += album.price;
-    //     return {
-    //         itemType: 'album',
-    //         price: album.price,
-    //         quantity: chance.d6()
-    //     };
-    // });
-    // var itemList = songList.concat(albumList);
     var songList = chance.pick(songs, 4);
     songList = songList.map(function(song) {
         totalPrice += song.price;
@@ -165,7 +142,6 @@ function randOrder() {
         date = {finished: Date.now() + 3600000};
     }
     return {
-        // items: itemList,
         songs: songList,
         albums: albumList,
         date: date,
