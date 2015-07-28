@@ -168,7 +168,7 @@ describe('Songs Route', function () {
 				songs: [song._id],
 				reviews: [review._id]
 			})
-			.expect(200)
+			.expect(201)
 			.end(function(err, res) {
 				if (err) return done(err);
 				expect(res.body.title).to.equal('made this song');

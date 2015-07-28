@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {
     var song = new Song(req.body);
     song.save(function(err, savedSong) {
         if (err) return next(err);
-        res.json(savedSong);
+        res.status(201).json(savedSong);
     });
 });
 
@@ -38,6 +38,7 @@ function getById (req, res, next) {
         next();
     })
     .then(null, function(e) {
+        e.message = "Not Found";
         e.status = 404;
         next(e);
     });
@@ -61,6 +62,7 @@ router.put('/:id', function(req, res, next) {
         });
     })
     .then(null, function(e) {
+        e.message = "Not Found";
         e.status = 404;
         next(e);
     });
@@ -73,6 +75,7 @@ router.delete('/:id', function(req, res, next) {
         res.status(204).end();
     })
     .then(null, function(e) {
+        e.message = "Not Found";
         e.status = 404;
         next(e);
     });

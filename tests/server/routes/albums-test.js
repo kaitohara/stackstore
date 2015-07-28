@@ -146,7 +146,6 @@ describe('Albums Route', function () {
 		});
 	});
 
-
 	it('returns all albums', function(done) {
 		agent.get('/api/albums')
 			.expect(200)
@@ -173,7 +172,7 @@ describe('Albums Route', function () {
 				songs: [song._id],
 				reviews: [review1._id]
 			})
-			.expect(200)
+			.expect(201)
 			.end(function(err, res) {
 				if (err) return done(err);
 				expect(res.body.title).to.equal('made this album');
