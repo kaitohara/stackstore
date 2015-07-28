@@ -13,12 +13,8 @@ var app = require('../../../server/app');
 
 var agent = supertest.agent(app);
 
-var Album = mongoose.model('Album');
-var Song = mongoose.model('Song');
 var Review = mongoose.model('Review');
 var User = mongoose.model('User');
-var Genre = mongoose.model('Genre');
-var Artist = mongoose.model('Artist');
 
 describe('Reviews Route', function () {
 
