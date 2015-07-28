@@ -9,9 +9,18 @@
             </li>
         </ul>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
+        <div ng-show="user" class="welcome">                  
+            <ul class="nav">
+                <li>
+                    <a href="#">{{user.email}} <span>&#9660;</span></a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Order list</a></li>
+                        <hr>
+                        <li><a ng-click="logout()">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

@@ -87,10 +87,10 @@ schema.method.finishCurrentOrder = function(newOrderStatus) {
     Order.findById(user.cart).exec().then(function(cart) {
         cart.orderStatus = newOrderStatus
         cart.date.finished = Date.now()
-        cart.save().then(function(cart) {
+        cart.save().then(function(savedCart) {
             user.pastOrderList.push(user.cart)
-            Order.create().then(function(cart) {
-                user.cart = cart._id
+            Order.create().then(function(newCart) {
+                user.cart = newCart._id
             });
         })
     })
