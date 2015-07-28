@@ -36,9 +36,10 @@ var numArtists = 20;
 var numSongs = 100;
 var numReviews = 150;
 var numGenres = 5;
-var numOrders = 10;
+var numOrders = 16;
 var songsPerAlbum = 5;
 var reviewsPerAlbum = 3;
+var ordersPerUser = 4;
 var numAlbums = Math.ceil(numSongs / songsPerAlbum);
 
 
@@ -244,6 +245,14 @@ var orders = _.times(numOrders, randOrder)
     return new Order(datum);
 });
 console.log('-done generating orders-');
+
+console.log('-assign orders to users-');
+users.forEach(function(user, idx) {
+    user.cart = orders[idx*ordersPerUser];
+    user.pastOrderList = orders.slice(idx * ordersPerUser + 1, (idx+1)*ordersPerUser);
+});
+console.log('-finished assigning orders-');
+
 
 var all = users.concat(artists, reviews, genres, songs, albums, orders);
 var models = [User, Artist, Review, Genre, Song, Album, Order];
