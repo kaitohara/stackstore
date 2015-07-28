@@ -49,7 +49,7 @@ describe('Artists Route', function () {
 		});
 	});
 
-		it('returns all artists', function(done) {
+	it('returns all artists', function(done) {
 		agent.get('/api/artists')
 			.expect(200)
 			.end(function(err, res) {
