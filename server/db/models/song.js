@@ -25,6 +25,9 @@ var schema = new mongoose.Schema({
 	},
 	reviews: {
 		type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
+	},
+	url: {
+		type: String
 	}
 });
 
