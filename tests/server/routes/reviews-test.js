@@ -11,6 +11,10 @@ var clearDB = require('mocha-mongoose')(dbURI);
 var supertest = require('supertest');
 var app = require('../../../server/app');
 
+var agent = supertest.agent(app);
+
+
+
 describe('Reviews Route', function () {
 
 	beforeEach('Establish DB connection', function (done) {
