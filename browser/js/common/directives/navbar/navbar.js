@@ -4,6 +4,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         restrict: 'E',
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
+
+
+
         link: function(scope) {
 
             scope.items = [{
@@ -13,11 +16,15 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
+            }, { 
+                label: 'Search', 
+                state: 'search' 
             }, {
                 label: 'Upload',
                 state: 'upload',
                 auth: true
             }];
+
 
             scope.user = null;
 
