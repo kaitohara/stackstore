@@ -3,10 +3,10 @@ var router = require('express').Router();
 module.exports = router;
 
 router.use('/members', require('./members'));
-router.use('/order', require('./order'));
-router.use('/review', require('./review'));
-router.use('/users', require('./users'))
-router.use('/artists', require('./artists'))
+router.use('/orders', require('./orders'));
+router.use('/reviews', require('./reviews'));
+router.use('/users', require('./users'));
+router.use('/artists', require('./artists'));
 router.use('/songs', require('./songs'));
 router.use('/albums', require('./albums'));
 router.use('/genres', require('./genres'));

@@ -19,7 +19,6 @@ var User = mongoose.model('User');
 var Genre = mongoose.model('Genre');
 var Artist = mongoose.model('Artist');
 
-
 describe('Albums Route', function () {
 
 	beforeEach('Establish DB connection', function (done) {

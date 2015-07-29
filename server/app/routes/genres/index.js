@@ -3,11 +3,10 @@ var router = require('express').Router();
 module.exports = router;
 
 var mongoose = require('mongoose');
-var genre = mongoose.model('Genre')
+var Genre = mongoose.model('Genre')
 
 router.get('/', function(req, res) {
-	console.log('looking for genres');
-	genre.find({}).exec()
+	Genre.find({}).exec()
 		.then(function(data) {
 			res.json(data);
 		})
@@ -17,7 +16,7 @@ router.get('/', function(req, res) {
 })
 
 router.get('/:genre', function(req, res) {
-	genre.find({
+	Genre.find({
 			name: req.params.genre
 		}).exec()
 		.then(function(data) {
@@ -27,9 +26,3 @@ router.get('/:genre', function(req, res) {
 			res.json(err)
 		})
 })
-
-// Make sure this is after all of
-// the registered routes!
-router.use(function(req, res) {
-	res.status(404).end();
-});

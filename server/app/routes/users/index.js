@@ -4,18 +4,20 @@ module.exports = router;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
     User.find().exec()
         .then(function(users) {
             res.json(users);
         })
+        .then(null, next);
 });
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
     User.create(req.body)
         .then(function(user) {
             res.status(201).json(user)
         })
+        .then(null, next);
 });
 
 router.param('id', function(req, res, next, id) {
@@ -101,17 +103,21 @@ router.get('/:id/cart', function(req, res) {
         })
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', function(req, res, next) {
     for (var key in req.body) {
         req.user[key] = req.body[key]
     }
-    req.user.save().then(function(user) {
-        res.json(user)
-    })
+    req.user.save()
+        .then(function(user) {
+            res.json(user)
+        })
+        .then(null, next);
 })
 
-router.delete('/:id', function(req, res) {
-    req.user.remove().then(function() {
-        res.status(204).end()
-    })
+router.delete('/:id', function(req, res, next) {
+    req.user.remove()
+        .then(function() {
+            res.status(204).end()
+        })
+        .then(null, next);
 })
