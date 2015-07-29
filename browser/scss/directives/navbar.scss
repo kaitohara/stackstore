@@ -67,7 +67,7 @@ navbar {
     font-size: 20px;
     // color: $stackify-green;
     // background: $stackify-green;
-    border: 2px solid $stackify-green;
+    border: 2px solid darken($stackify-green, 10%);
     border-radius: 40px;
   }
   .welcome {
