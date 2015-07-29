@@ -1,9 +1,44 @@
 <section id="profile">
-    <p>
-        This website--the very one at which you currently gaze--was created by a basic scaffolding
-        concocted at Fullstack Academy. Here are some of the people who make it all very real:
-    </p>
-    {{user.name}}
+  <div class="col-md-3">
+    <img src="{{user.photo}}" class="img-circle" height="250" width="250">
+    <center><h3>{{user.name}}</h3></center>
+    <center>{{user.email}}<center>
+      
+  </div>
+  <div class="col-md-9">
+
+     <ul>
+      <li class="order" ng-repeat="order in user.pastOrderList" >
+      <!-- {{order}} -->
+        <span>Date:  {{order.date.created}}</span>
+       
+        <h2>{{ order.orderStatus}}</h2>
+        <span>${{ order.totalPrice }}</span>
+        <ul>
+          <li class="album" ng-repeat="album in order.albums">
+            <img src="{{album.album.photo}}">
+            <!-- {{album.album}} -->
+            <div >
+              <h2>{{album.album.title}}</h2>
+
+              <h4>{{album.album.artist.name}}</h4>
+              {{album.album.year}}
+              ${{album.album.price}}
+              <!-- {{album.album.photo}} -->
+            </div>
+
+          </li>
+        </ul>        
+        
+            <!-- ui-sref="order" -->
+
+<!-- {"_id":"55b861560489607b1ebd5995","title":"Mejoih Wi Cokuli Lor","price":684.27,"year":2031,"artist":"55b861560489607b1ebd5884","downloads":10,"__v":0,"reviews":["55b861560489607b1ebd58a0","55b861560489607b1ebd58a1","55b861560489607b1ebd58a2"],"songs":["55b861560489607b1ebd5945","55b861560489607b1ebd5946","55b861560489607b1ebd5947","55b861560489607b1ebd5948","55b861560489607b1ebd5949"],"genre":["55b861560489607b1ebd592b"],"cap":1000,"photo":"http://lorempixel.com/200/200"}  -->
+
+      </li>
+    </ul>
+
+  </div>
+
     <!-- <carousel interval="2000">
         <slide ng-repeat="image in images">
             <img height="300" ng-src="{{ image }}" />
