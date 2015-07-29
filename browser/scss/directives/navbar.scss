@@ -22,10 +22,11 @@ navbar {
   }
   .nav > li {
     &:hover .sub-menu {
+      display: block;
       z-index: 1;
       opacity: 1;
     }
-    a {
+    > a {
       cursor: pointer;
       transition: color 0.2s;
       font-weight: bold;
@@ -102,6 +103,7 @@ navbar {
     }
   }
   .sub-menu {
+    display:none;
     width: 100%;
     padding: 5px 0px;
     position: absolute;
@@ -120,9 +122,9 @@ navbar {
         padding: 10px 20px;
         display: block;
         font-weight: normal;
+        color: grey;
         &:hover {
           background: white;
-          color: grey;
           font-weight: bold;
           text-decoration: none;
         }
