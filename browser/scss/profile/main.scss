@@ -3,7 +3,14 @@
   width: 90%;
   @include clearfix;
   .order {
-    .album {}
+    border:1px solid grey;
+    border-radius:10px;
+          padding:10px;
+
+    .album {
+      margin:20px;
+      border:1px dotted grey;
+    }
   }
   // p {
   //   width: 40%;
