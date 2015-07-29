@@ -29,6 +29,10 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 return AuthService.isAuthenticated();
             };
 
+            scope.isAdmin = function() {
+                return AuthService.isAdmin();
+            };
+
             scope.logout = function() {
                 AuthService.logout().then(function() {
                     $state.go('home');
