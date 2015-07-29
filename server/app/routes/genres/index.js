@@ -26,3 +26,12 @@ router.get('/:genre', function(req, res) {
 			res.json(err)
 		})
 })
+
+router.post('/', function(req, res, next) {
+    Genre.create(req.body)
+        .then(function(genre) {
+            res.status(201).json(genre);
+        })
+        .then(null, next);
+});
+
