@@ -28,6 +28,13 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     },
+    name: {
+        type: String
+    },
+    photo: {
+        type: String,
+        default: "http://lorempixel.com/200/200/people"
+    },
     pastOrderList: {
         type: [{
             type: mongoose.Schema.Types.ObjectId,

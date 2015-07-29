@@ -1,7 +1,5 @@
 $stackify-green: #66ff99;
 
-//#6ae368;
-
 navbar {
   display: block;
   background: white;
@@ -32,29 +30,76 @@ navbar {
       transition: color 0.2s;
       font-weight: bold;
       color: grey;
-      &.active {
-        color: darken($stackify-green, 10%);
+      &:active {
+        color: white;
+        background: darken($stackify-green, 10%);
       }
       &:hover {
         background: none;
-        color: $stackify-green;
+        color: darken($stackify-green, 10%);
       }
       &:focus {
         background: none;
       }
     }
   }
-  .login-button {
-    float: right;
-    border: 1px solid black;
-    margin-top: 10px;
-    background: none;
-    outline: none !important;
+  .search-bar {
+    float: left;
+    padding: 10px 30px;
+    .search-text {
+      border: 0;
+      border-bottom: 2px dashed grey;
+      font-size: 18px;
+    }
+  }
+  .glyphicon {
+    color: grey;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover {
+      // background: none;
+      color: darken($stackify-green, 10%);
+    }
+  }
+  .glyphicon-shopping-cart {
+    margin-left: 30px;
+    padding: 15px;
+    font-size: 20px;
+    // color: $stackify-green;
+    // background: $stackify-green;
+    border: 2px solid darken($stackify-green, 10%);
+    border-radius: 40px;
   }
   .welcome {
     float: right;
-    // margin-top: 10px;
- 
+    padding: 5px;
+    > li {
+      float: left;
+      position: relative;
+      display: block;
+    }
+    .signup-button {
+      margin: 5px 10px;
+      background: darken($stackify-green, 10%);
+      outline: none !important;
+      color: white;
+      font-weight: bold;
+      &:hover {
+        background: none;
+        border: 1px solid black;
+        color: darken($stackify-green, 10%);
+      }
+    }
+    .login-button {
+      margin: 5px 10px;
+      border: 1px solid black;
+      background: none;
+      font-weight: bold;
+      outline: none !important;
+      &:hover {
+        color: darken($stackify-green, 10%);
+      }
+    }
   }
   .sub-menu {
     width: 100%;
@@ -66,11 +111,11 @@ navbar {
     opacity: 0;
     transition: opacity linear 0.15s;
     // border: 1px solid  grey;
-    // box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
-    background: $stackify-green;
+    background: lighten($stackify-green, 10%);
     li {
       display: block;
-      // font-size: 16px;
+      font-size: 16px;
+      clear: both;
       a {
         padding: 10px 20px;
         display: block;
@@ -78,12 +123,14 @@ navbar {
         &:hover {
           background: white;
           color: grey;
+          font-weight: bold;
           text-decoration: none;
         }
       }
     }
     hr {
       margin: 5px;
+      border-top: 2px solid white;
     }
   }
 }
