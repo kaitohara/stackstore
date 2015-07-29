@@ -15,10 +15,10 @@ router.get('/', function(req, res, next) {
     }
 
     Album.find(query).exec()
-    .then(function(albums) {
-        res.json(albums);
-    })
-    .then(null, next);
+        .then(function(albums) {
+            res.json(albums);
+        })
+        .then(null, next);
 });
 
 // post a new album (sends it back to frontend)
@@ -30,77 +30,50 @@ router.post('/', function(req, res, next) {
     });
 });
 
-// get album by id and save for later
-function getById (req, res, next) {
-    Album.findById(req.params.id).exec()
-    .then(function(album) {
-        req.album = album;
-        next();
-    })
-    .then(null, function(e) {
-        e.message = "Not Found";
-        e.status = 404;
-        next(e);
-    });
-}
 
-router.get('/artist/:id', function(req, res){
-    Album.find({artist:req.params.id}).exec()
+// get album by id and save for later
+// attach album to request
+router.param('id', function(req, res, next, id) {
+    Album.findById(id).exec()
+        .then(function(album) {
+            if (!album) throw Error();
+            req.album = album;
+            next();
+        })
+        .then(null, function(e) {
+            e.message = "Not Found";
+            e.status = 404;
+            next(e);
+        });
+});
+
+router.get('/artist/:artistId', function(req, res){
+    Album.find({artist:req.params.artistId}).exec()
     .then(function(albums){
         res.json(albums)
     })
 })
 
-router.get('/:id', getById, function(req, res) {
-    res.json(req.album)
-})
-
 
 // get one album (by its id)
-
-////test for multiple
-// router.get('/:id', function(req, res) {
-//     console.log('iddddd', req.params.id.split())
-//     Album.find({
-//         '_id': { $in: req.params.id.split()}
-//         }).exec()
-//     .then(function(album){
-//         console.log('resultttt',album)
-//         res.json(album)
-//     })
-//     // res.json(req.album);
-// });
+router.get('/:id', function(req, res) {
+    res.json(req.album);
+});
 
 // update one album (and return it to frontend)
 router.put('/:id', function(req, res, next) {
-    Album.findById(req.params.id).exec()
-    .then(function(album) {
-        // update the album -- and return updated album
-        for (var key in req.body) {
-            album[key] = req.body[key];
-        }
-        album.save(function(e) {
-            if (e) return next(e);
-            res.json(album);
-        });
-    })
-    .then(null, function(e) {
-        e.message = "Not Found";
-        e.status = 404;
-        next(e);
+    for (var key in req.body) {
+        req.album[key] = req.body[key];
+    }
+    req.album.save().then(function(album) {
+        res.json(album);
     });
 });
 
 // delete one album
 router.delete('/:id', function(req, res, next) {
-    Album.findByIdAndRemove(req.params.id).exec()
-    .then(function() {
+    req.album.remove().then(function() {
         res.status(204).end();
-    })
-    .then(null, function(e) {
-        e.message = "Not Found";
-        e.status = 404;
-        next(e);
     });
 });
 

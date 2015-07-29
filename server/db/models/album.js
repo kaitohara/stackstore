@@ -10,7 +10,7 @@ var schema = new mongoose.Schema({
 	photo: {
 		// stored as url
 		type: String,
-		default: "http://lorempixel.com/200/200"
+		default: "http://lorempixel.com/200/200/nightlife"
 	},
 	price: {
 		type: Number,
@@ -21,8 +21,8 @@ var schema = new mongoose.Schema({
 		required: true
 	},
 	artist: {
-		type: mongoose.Schema.Types.ObjectId, 
-		ref: 'Artist', 
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Artist',
 		required: true
 	},
 	downloads: {
@@ -33,15 +33,24 @@ var schema = new mongoose.Schema({
 		default: 1000
 	},
 	genre: {
-		type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Genre'}],
+		type: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Genre'
+		}],
 		required: true
 	},
 	songs: {
-		type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Song'}],
+		type: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Song'
+		}],
 		required: true
 	},
 	reviews: {
-		type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
+		type: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Review'
+		}]
 	}
 });
 

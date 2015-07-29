@@ -19,6 +19,10 @@ var schema = new mongoose.Schema({
 		type: Number,
 		default: 1000
 	},
+	artist: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Artist'
+	},
 	album: {
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'Album'
