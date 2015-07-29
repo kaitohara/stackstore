@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon --watch server -e js,html server/start.js",
     "postinstall": "gulp build",
+    "seed": "node seed.js",
     "test": "mocha tests",
     "test-server": "mocha tests/server/**/*.js",
     "test-routes": "mocha tests/server/routes/*.js",
