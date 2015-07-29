@@ -1,0 +1,14 @@
+<h2>You're managing orders</h2>
+<label>Filter</label>
+<!-- <input ng-model="orderFilter"> -->
+<select ng-model="orderFilter">
+	<option>Cancelled</option>
+	<option>Completed</option>
+	<option>Created</option>
+	<option>Processing</option>
+</select>
+<pre>{{orderFilter}}</pre>
+<div ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
+	<!-- {{order | json}} -->
+	<order-elem order="order"></order-elem>
+</div>
