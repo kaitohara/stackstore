@@ -12,8 +12,14 @@
 				<!-- <span>Admin: {{user.</span> -->
 			</p>
 		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-4" ng-click="console.log('hi')">
 			<img ng-src="{{user.photo}}">
+		</div>
+	</div>
+	<div class="row">
+		<!-- <pre>{{user|json}}</pre> -->
+		<div class="col-xs-4">
+			<button class="btn btn-warning" ng-click="change({user: user, status: !user.isAdmin})">Toggle Admin</button>
 		</div>
 	</div>
 </a>

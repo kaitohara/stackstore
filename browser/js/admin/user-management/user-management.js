@@ -14,6 +14,14 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('AdminUserCtrl', ['$scope', 'users', function($scope, users){
+app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($scope, users, AdminFactory){
 	$scope.users = users;
+	$scope.changeStatus = function(user, status) {
+		console.log('changin status to: ', status, 'for: ', user.name);
+		AdminFactory.changeStatus(user._id, status)
+			.then(function(res) {
+				console.log('success');
+				user.isAdmin = status;
+			});
+	};
 }]);
