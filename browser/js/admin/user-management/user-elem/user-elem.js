@@ -1,9 +1,11 @@
-app.directive('userElem', function() {
+app.directive('userElem', function(AdminFactory) {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/admin/user-management/user-elem/user-elem.html',
 		scope: {
-			user: '='
+			user: '=',
+			change: '&',
+			delete: '&'
 		}
 	};
 });

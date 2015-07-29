@@ -2,7 +2,8 @@
 <div class="list-group">
 	<label>Filter</label>
 	<input ng-model="userFilter">
+	<!-- <p>function: {{changeStatus}}</p> -->
 	<div ng-repeat="user in filteredUsers = (users | filter:userFilter)">
-		<user-elem user="user"></user-elem>
+		<user-elem user="user" change="changeStatus(user, status)" delete="deleteUser(user)"></user-elem>
 	</div>
 </div>

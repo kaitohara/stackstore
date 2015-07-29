@@ -29,5 +29,17 @@ app.factory('AdminFactory', ['$http', function($http){
 			});
 	};
 
+	fact.changeStatus = function(userId, status) {
+		return $http.put('/api/users/' + userId, {isAdmin: status})
+			.then(function(res) {
+				return res.data;
+			});
+	};
+
+	fact.deleteUser = (userId) => {
+		return $http.delete('/api/users/' + userId)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);
