@@ -6,7 +6,8 @@ var review = mongoose.model('Review');
 
 
 router.param('reviewId', function(req, res, next, reviewId){
-    review.findById(reviewId)
+	var searchIds = reviewId.split(',');
+    review.find({'_id': {$in:searchIds}})
         .then(function(reviewItem){
             req.reviewItem = reviewItem;
             next();

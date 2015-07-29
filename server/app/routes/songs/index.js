@@ -32,7 +32,8 @@ router.post('/', function(req, res, next) {
 
 // get song by id and save for later
 router.param('id', function(req, res, next, id) {
-    Song.findById(id).exec()
+    var searchIds = id.split(',');
+    Song.find({'_id': {$in:searchIds}}).exec()
         .then(function(song) {
             if (!song) throw Error();
             req.song = song;
