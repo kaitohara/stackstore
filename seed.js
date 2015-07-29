@@ -45,33 +45,42 @@ var ordersPerUser = 4;
 var numAlbums = Math.ceil(numSongs / songsPerAlbum);
 
 
-function randTitle () {
+function randTitle() {
     return chance.sentence({
-        words: chance.natural({min: 1, max: 6})
-    }).slice(0, -1).replace(/\s\w/g, function (match) {
+        words: chance.natural({
+            min: 1,
+            max: 6
+        })
+    }).slice(0, -1).replace(/\s\w/g, function(match) {
         return match.toUpperCase();
     });
 }
 
-function randArtist () {
+function randArtist() {
     return {
         name: chance.first() + ' ' + chance.last()
     };
 }
 
-function randReview () {
+function randReview() {
     var user = chance.pick(users);
     return {
         title: randTitle(),
         content: chance.paragraph({
-            sentences: chance.natural({min: 2, max: 4})
+            sentences: chance.natural({
+                min: 2,
+                max: 4
+            })
         }),
         author: user,
-        rating: chance.integer({min: 1, max: 5})
+        rating: chance.integer({
+            min: 1,
+            max: 5
+        })
     };
 }
 
-function randGenre () {
+function randGenre() {
     return {
         name: chance.word()
     };
@@ -83,12 +92,17 @@ var songUrls = [
     'https://www.youtube.com/watch?v=yzTuBuRdAyA&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=3',
     'https://www.youtube.com/watch?v=QcIy9NiNbmo&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=4'
 ];
-function randSong (n) {
-    var review = reviews.slice(n*reviewsPerAlbum, (n+1)*reviewsPerAlbum);
+
+function randSong(n) {
+    var review = reviews.slice(n * reviewsPerAlbum, (n + 1) * reviewsPerAlbum);
     var url = chance.pick(songUrls);
     return {
         title: randTitle(),
-        price: chance.floating({fixed: 2, max: 1000, min: 0}),
+        price: chance.floating({
+            fixed: 2,
+            max: 1000,
+            min: 0
+        }),
         downloads: chance.d20(),
         cap: 2000,
         reviews: review,
@@ -96,15 +110,19 @@ function randSong (n) {
     };
 }
 
-function randAlbum (n) {
+function randAlbum(n) {
     var auth = chance.pick(artists);
     var genre = chance.pick(genres);
-    var albumSongs = songs.slice(n*songsPerAlbum, (n+1)*songsPerAlbum);
-    var review = reviews.slice(n*reviewsPerAlbum, (n+1)*reviewsPerAlbum);
+    var albumSongs = songs.slice(n * songsPerAlbum, (n + 1) * songsPerAlbum);
+    var review = reviews.slice(n * reviewsPerAlbum, (n + 1) * reviewsPerAlbum);
     return {
         title: randTitle(),
         photo: "http://lorempixel.com/200/200",
-        price: chance.floating({fixed: 2, max: 1000, min: 0}),
+        price: chance.floating({
+            fixed: 2,
+            max: 1000,
+            min: 0
+        }),
         year: chance.year(),
         artist: auth,
         downloads: chance.d20(),
@@ -139,7 +157,9 @@ function randOrder() {
     var date = {};
     if (status === 'cancelled') {
         // finished an hour from now (if cancelled)
-        date = {finished: Date.now() + 3600000};
+        date = {
+            finished: Date.now() + 3600000
+        };
     }
     return {
         songs: songList,
@@ -155,79 +175,79 @@ console.log('---seeding---');
 console.log('-generating users-');
 // hardcode users so we know their passwords
 // // add user carts later
-var users = [
-    {
-        email: 'testing@fsa.com',
-        password: 'password'
-    },
-    {
-        email: 'obama@gmail.com',
-        password: 'potus',
-        isAdmin: true
-    },
-    {
-        email: 'jack@mulrow.com',
-        password: 'jack',
-        isAdmin: true
-    },
-    {
-        email: 'kaito@hara.com',
-        password: 'kaito',
-        isAdmin: true
-    }
-];
+
+var users = [{
+    email: 'testing@fsa.com',
+    password: 'password',
+    name: "Test Em",
+}, {
+    email: 'obama@gmail.com',
+    password: 'potus',
+    name: "Obama",
+    isAdmin: true
+}, {
+    email: 'jack@mulrow.com',
+    password: 'jack',
+    name: "Jack Mulrow",
+    isAdmin: true
+}, {
+    email: 'kaito@hara.com',
+    password: 'kaito',
+    name: "Kaito Hara",
+    isAdmin: true
+}];
 users = users
-.map(function (datum) {
-    return new User(datum);
-});
+    .map(function(datum) {
+        return new User(datum);
+    });
 console.log('-done generating users-');
 
 console.log('-generating artists-');
 var artists = _.times(numArtists, randArtist)
-.map(function (datum) {
-    return new Artist(datum);
-});
+    .map(function(datum) {
+        return new Artist(datum);
+    });
 console.log('-done generating artists-');
 
 console.log('-generating reviews-');
 var reviews = _.times(numReviews, randReview)
-.map(function (datum) {
-    return new Review(datum);
-});
+    .map(function(datum) {
+        return new Review(datum);
+    });
 console.log('-done generating reviews-');
 
 console.log('-generating genres-');
 var genres = _.times(numGenres, randGenre)
-.map(function (datum) {
-    return new Genre(datum);
-});
+    .map(function(datum) {
+        return new Genre(datum);
+    });
 console.log('-done generating genres-');
 
 console.log('-generating songs-');
 var songs = _.times(numSongs, randSong)
-.map(function (datum) {
-    return new Song(datum);
-});
+    .map(function(datum) {
+        return new Song(datum);
+    });
 console.log('-done generating songs-');
 
 console.log('-generating albums-');
 var albums = _.times(numAlbums, randAlbum)
-.map(function (datum) {
-    return new Album(datum);
-});
+    .map(function(datum) {
+        return new Album(datum);
+    });
 console.log('-done generating albums-');
 
 console.log('-generating orders-');
 var orders = _.times(numOrders, randOrder)
-.map(function (datum) {
-    return new Order(datum);
-});
+    .map(function(datum) {
+        return new Order(datum);
+    });
 console.log('-done generating orders-');
 
 console.log('-assign orders to users-');
 users.forEach(function(user, idx) {
-    user.cart = orders[idx*ordersPerUser];
-    user.pastOrderList = orders.slice(idx * ordersPerUser + 1, (idx+1)*ordersPerUser);
+    user.cart = orders[idx * ordersPerUser];
+    user.pastOrderList = orders.slice(idx * ordersPerUser + 1, (idx + 1) * ordersPerUser);
 });
 console.log('-finished assigning orders-');
 
@@ -246,18 +266,18 @@ var models = [User, Artist, Review, Genre, Song, Album, Order];
 
 console.log('-removing-');
 async.each(models,
-    function (model, done) {
+    function(model, done) {
         model.remove({}, done);
     },
-    function (err) {
+    function(err) {
         if (err) return console.error('error while removing documents', err);
         console.log('-done removing-');
         console.log('-saving-');
         async.each(all,
-            function (doc, done) {
+            function(doc, done) {
                 doc.save(done);
             },
-            function (err) {
+            function(err) {
                 if (err) console.error('seed error', err);
                 else console.log('-done saving-');
                 console.log('---done seeding---');
