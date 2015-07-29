@@ -2,3 +2,8 @@ Artist Profile
 
 
 <h1>{{artist.name}}</h1>
+{{artistId}}
+<h3>Albums:</h3>
+<ul>
+	<li ng-repeat="album in albums">{{album.title}}</li>
+</ul>

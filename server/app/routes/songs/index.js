@@ -31,8 +31,10 @@ router.post('/', function(req, res, next) {
 });
 
 // get song by id and save for later
+//searchIds is an array to allow for searching multiple Ids
 function getById (req, res, next) {
-    Song.findById(req.params.id).exec()
+    var searchIds = req.params.id.split(',');
+    Song.find({'_id': {$in:searchIds}}).exec()
     .then(function(song) {
         req.song = song;
         next();

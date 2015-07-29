@@ -1,8 +1,8 @@
 app.factory('Review', function ($http){
 	return {
-		getReview: function(id){
+		getReview: function(ids){
 			// console.log('id', id.join())
-			return $http.get('/api/reviews/'+ id).then(function(response){
+			return $http.get('/api/reviews/'+ ids).then(function(response){
 				console.log('factory response', response.data)
 				return response.data;
 			})
