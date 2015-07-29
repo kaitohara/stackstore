@@ -30,6 +30,8 @@ router.post('/', function(req, res, next) {
     });
 });
 
+
+// get album by id and save for later
 // attach album to request
 router.param('id', function(req, res, next, id) {
     Album.findById(id).exec()
@@ -44,6 +46,14 @@ router.param('id', function(req, res, next, id) {
             next(e);
         });
 });
+
+router.get('/artist/:artistId', function(req, res){
+    Album.find({artist:req.params.artistId}).exec()
+    .then(function(albums){
+        res.json(albums)
+    })
+})
+
 
 // get one album (by its id)
 router.get('/:id', function(req, res) {

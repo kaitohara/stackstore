@@ -21,7 +21,8 @@ router.get('/', function(req, res, next){
 });
 
 router.param('reviewId', function(req, res, next, reviewId){
-    review.findById(reviewId)
+	var searchIds = reviewId.split(',');
+    review.find({'_id': {$in:searchIds}})
         .then(function(reviewItem){
             req.reviewItem = reviewItem;
             next();
@@ -33,9 +34,27 @@ router.param('reviewId', function(req, res, next, reviewId){
         });
 });
 
+// <<<<<<< HEAD
+// // get song by id and save for later
+// //searchIds is an array to allow for searching multiple Ids
+// function getById (req, res, next) {
+// 	var searchIds = req.params.id.split(',');
+// 	Review.find({'_id': {$in:searchIds}}).exec()
+// 	// Review.findById(req.params.id).exec()
+// 	.then(function(review){
+// 		req.review = review;
+// 		next();
+// 	})
+// 	.then(null, function(e) {
+// 		e.status = 404;
+// 		next(e);
+// 	})
+// }
+// =======
 router.get('/:reviewId', function(req, res){
     res.json(req.reviewItem);
 });
+// >>>>>>> 194d00b0c09c4c6ba73c1ec8ffc91c534a368c05
 
 router.put('/:reviewId', function(req, res, next){
     for (var key in req.body) {
