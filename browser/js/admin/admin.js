@@ -6,6 +6,6 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('AdminCtrl', ['$scope', function($scope){
-	
+app.controller('AdminCtrl', ['$scope', 'AdminFactory', function($scope, AdminFactory){
+
 }]);

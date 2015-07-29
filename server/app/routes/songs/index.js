@@ -30,6 +30,15 @@ router.post('/', function(req, res, next) {
     });
 });
 
+// return songs populated with albums
+router.get('/populated', function(req, res, next) {
+    Song.find({}).populate('album artist genre').exec()
+        .then(function(songs) {
+            res.json(songs);
+        })
+        .then(null, next);
+});
+
 // get song by id and save for later
 router.param('id', function(req, res, next, id) {
     var searchIds = id.split(',');
