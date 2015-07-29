@@ -1,7 +1,6 @@
 app.controller('SongCtrl', function ($scope, song, Album){
-	$scope.song = song;
+	$scope.song = song[0];
 	Album.getAlbum($scope.song.album).then(function(data){
-		console.log('gotAlbum?', $scope.song.album, data)
 		$scope.album = data;
 	})
 });

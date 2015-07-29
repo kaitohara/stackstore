@@ -3,10 +3,10 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 
-var review = mongoose.model('Review');
+var Review = mongoose.model('Review');
 
 router.param('reviewId', function(req, res, next, reviewId){
-    review.findById(reviewId)
+    Review.findById(reviewId)
         .then(function(reviewItem){
             req.reviewItem = reviewItem;
             next();
@@ -17,7 +17,7 @@ router.param('reviewId', function(req, res, next, reviewId){
 });
 
 router.get('/', function(req, res, next){
-    review.find().exec()
+    Review.find().exec()
         .then(function(reviewItems){
             res.json(reviewItems);
         })
@@ -39,7 +39,7 @@ router.put('/:reviewId', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-    review
+    Review
         .create(req.body)
         .then(function(reviewItem){
             if(!reviewItem) throw new Error();

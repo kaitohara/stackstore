@@ -43,9 +43,19 @@ function getById (req, res, next) {
         next(e);
     });
 }
+
+router.get('/artist/:id', function(req, res){
+    Album.find({artist:req.params.id}).exec()
+    .then(function(albums){
+        res.json(albums)
+    })
+})
+
 router.get('/:id', getById, function(req, res) {
     res.json(req.album)
 })
+
+
 // get one album (by its id)
 
 ////test for multiple

@@ -14,8 +14,12 @@ router.get('/', function(req, res){
 		})
 });
 
+// get song by id and save for later
+//searchIds is an array to allow for searching multiple Ids
 function getById (req, res, next) {
-	Review.findById(req.params.id).exec()
+	var searchIds = req.params.id.split(',');
+	Review.find({'_id': {$in:searchIds}}).exec()
+	// Review.findById(req.params.id).exec()
 	.then(function(review){
 		req.review = review;
 		next();
