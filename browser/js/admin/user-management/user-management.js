@@ -24,4 +24,9 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 				user.isAdmin = status;
 			});
 	};
+	$scope.deleteUser = function(user) {
+		console.log('deleting: ', user.name);
+		AdminFactory.deleteUser(user._id)
+			.then(res => console.log('successful delete'));
+	};
 }]);

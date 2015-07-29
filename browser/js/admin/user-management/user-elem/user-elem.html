@@ -1,4 +1,4 @@
-<a class="list-group-item">
+<a ng-hide="deleted" class="list-group-item">
 	<div class="row">
 		<!-- <pre>{{user|json}}</pre> -->
 		<div class="col-xs-8">
@@ -20,6 +20,7 @@
 		<!-- <pre>{{user|json}}</pre> -->
 		<div class="col-xs-4">
 			<button class="btn btn-warning" ng-click="change({user: user, status: !user.isAdmin})">Toggle Admin</button>
+			<button class="btn btn-danger" ng-click="delete({user: user}); deleted = true">Delete User</button>
 		</div>
 	</div>
 </a>

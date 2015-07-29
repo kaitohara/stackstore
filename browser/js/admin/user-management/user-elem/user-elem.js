@@ -4,7 +4,8 @@ app.directive('userElem', function(AdminFactory) {
 		templateUrl: 'js/admin/user-management/user-elem/user-elem.html',
 		scope: {
 			user: '=',
-			change: '&'
+			change: '&',
+			delete: '&'
 		}
 	};
 });

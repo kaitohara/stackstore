@@ -36,5 +36,10 @@ app.factory('AdminFactory', ['$http', function($http){
 			});
 	};
 
+	fact.deleteUser = (userId) => {
+		return $http.delete('/api/users/' + userId)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);
