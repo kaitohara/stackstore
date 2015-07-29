@@ -7,7 +7,6 @@
 	<option>Created</option>
 	<option>Processing</option>
 </select>
-<pre>{{orderFilter}}</pre>
 <div ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
 	<!-- {{order | json}} -->
 	<order-elem order="order"></order-elem>

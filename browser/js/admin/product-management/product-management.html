@@ -71,15 +71,15 @@
 	<h1>Songs</h1>
 	<label>Filter</label>
 	<input ng-model="songFilter">
-	<h3 ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
+	<div ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
 		<song-elem song="song"></song-elem>
-	</h3>
+	</div>
 </div>
 <div class="col-sm-6">
 	<h1>Albums</h1>
 	<label>Filter</label>
 	<input ng-model="albumFilter">
-	<h3 ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
+	<div ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
 		<album-elem album="album"></album-elem>
-	</h3>
+	</div>
 </div>
