@@ -257,6 +257,7 @@ songs.forEach(function(song, idx) {
         return album.songs.indexOf(song._id) > -1;
     })[0];
     song.album = alb;
+    song.artist = alb.artist;
 });
 console.log('-finished assigning albums-');
 
