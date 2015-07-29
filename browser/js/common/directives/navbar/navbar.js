@@ -13,10 +13,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 { label: 'Users', state: 'reviews' }
             ];
 
-
-
-        link: function(scope) {
-
             scope.items = [{
                 label: 'Discover',
                 state: 'discover'
@@ -33,7 +29,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
             scope.setSearchCategory = function(category){
                 scope.searchCategory = category;
-            }
+            };
             scope.showSearchBar = true;
             scope.user = null;
 

@@ -1,16 +1,9 @@
-var router = require('express').Router();
-var reviews = require('./reviews.router.js');
-
-router.use('/', reviews);
-
-module.exports = router;
-
 'use strict';
 
 var router = require('express').Router();
 var mongoose = require('mongoose');
-
 var review = mongoose.model('Review');
+
 
 router.param('reviewId', function(req, res, next, reviewId){
     review.findById(reviewId)
