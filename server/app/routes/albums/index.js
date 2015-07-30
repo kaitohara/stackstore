@@ -1,5 +1,6 @@
 'use strict';
 var router = require('express').Router();
+var _ = require('lodash');
 
 // albums api
 var mongoose = require('mongoose');
@@ -7,14 +8,7 @@ var Album = mongoose.model('Album');
 
 // get all albums (optionally sort by parameters)
 router.get('/', function(req, res, next) {
-
-    // allows for search parameters
-    var query = {};
-    if (req.query) {
-        query = req.query;
-    }
-
-    Album.find(query).exec()
+    Album.find(req.query).exec()
         .then(function(albums) {
             res.json(albums);
         })
@@ -30,29 +24,28 @@ router.post('/', function(req, res, next) {
     });
 });
 
-
 // get album by id and save for later
-// attach album to request
 router.param('id', function(req, res, next, id) {
     Album.findById(id).exec()
         .then(function(album) {
-            if (!album) throw Error();
+            if (!album) throw Error('Not Found');
             req.album = album;
             next();
         })
         .then(null, function(e) {
-            e.message = "Not Found";
-            e.status = 404;
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
             next(e);
         });
 });
 
 // get album by artist
-router.get('/artist/:artistId', function(req, res){
+router.get('/artist/:artistId', function(req, res, next){
     Album.find({artist:req.params.artistId}).exec()
     .then(function(albums){
         res.json(albums);
-    });
+    })
+    .then(null, next);
 });
 
 // get one album (by its id)
@@ -62,9 +55,7 @@ router.get('/:id', function(req, res) {
 
 // update one album (and return it to frontend)
 router.put('/:id', function(req, res, next) {
-    for (var key in req.body) {
-        req.album[key] = req.body[key];
-    }
+    _.extend(req.album, req.body);
     req.album.save().then(function(album) {
         res.json(album);
     });

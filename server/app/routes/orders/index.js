@@ -2,11 +2,12 @@
 
 var router = require('express').Router();
 var mongoose = require('mongoose');
+var _ = require('lodash');
 
 var Order = mongoose.model('Order');
 
 router.get('/', function(req, res, next){
-    Order.find().exec()
+    Order.find(req.query).exec()
         .then(function(orderItems){
             res.json(orderItems);
         })
@@ -18,15 +19,13 @@ router.param('orderId', function(req, res, next, orderId){
         .exec()
         .then(function(orderItem){
             if(!orderItem) throw new Error();
-            else {
-                req.orderItem = orderItem;
-                next();
-            }
+            req.orderItem = orderItem;
+            next();
         })
-        .then(null, function(err) {
-            err.message = "Not Found";
-            err.status = 404;
-            next(err);
+        .then(null, function(e) {
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
+            next(e);
         });
 });
 
@@ -35,9 +34,7 @@ router.get('/:orderId', function(req, res){
 });
 
 router.put('/:orderId', function(req, res, next){
-    for (var key in req.body) {
-        req.orderItem[key] = req.body[key];
-    }
+    _.extend(req.orderItem, req.body);
     req.orderItem.save()
         .then(function(orderItem){
             res.json(orderItem);
@@ -54,20 +51,10 @@ router.delete('/:orderId', function(req, res, next){
 });
 
 router.post('/', function(req, res, next){
-    Order
-        .create(req.body)
+    Order.create(req.body)
         .then(function(orderItem){
             if(!orderItem) throw new Error();
             else res.status(201).json(orderItem);
-        })
-        .then(null, next);
-});
-
-// post because it is easier to send data
-router.post('/multi/id', function(req, res, next) {
-    Order.find({'_id': {$in: req.body}})
-        .then(function(orders) {
-            res.json(orders);
         })
         .then(null, next);
 });

@@ -1,33 +1,29 @@
 'use strict';
 var router = require('express').Router();
+var _ = require('lodash');
 
 // songs api
 var mongoose = require('mongoose');
 var Song = mongoose.model('Song');
 
-///multiple songs - for Get routes
+// multiple songs - for Get routes
 router.get('/multiple', function(req, res, next){
     var searchIds = req.query.ids.split(',');
     Song.find({'_id': {$in:searchIds}}).exec()
        .then(function(reviewItems){
+        if (!reviewItems.length) throw Error('Not Found');
            res.json(reviewItems);
        })
-       .then(null, function(err){
-           err.status = 404;
-           next(err);
+       .then(null, function(e){
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
+            next(e);
        });
 });
 
 // get all songs (optionally sort by parameters)
 router.get('/', function(req, res, next) {
-
-    // allows for search parameters
-    var query = {};
-    if (req.query) {
-        query = req.query;
-    }
-
-    Song.find(query).exec()
+    Song.find(req.query).exec()
         .then(function(songs) {
             res.json(songs);
         })
@@ -56,28 +52,25 @@ router.get('/populated', function(req, res, next) {
 router.param('id', function(req, res, next, id) {
     Song.findById(id).exec()
         .then(function(song) {
-            if (!song) throw Error();
+            if (!song) throw Error('Not Found');
             req.song = song;
             next();
         })
         .then(null, function(e) {
-            e.message = "Not Found";
-            e.status = 404;
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
             next(e);
         });
 });
 
 // get one song (by its id)
 router.get('/:id', function(req, res) {
-    console.log(req.song);
     res.json(req.song);
 });
 
 // update one song (and return it to frontend)
 router.put('/:id', function(req, res, next) {
-    for (var key in req.body) {
-        req.song[key] = req.body[key];
-    }
+    _.extend(req.song, req.body);
     req.song.save()
         .then(function(song) {
             res.json(song);
