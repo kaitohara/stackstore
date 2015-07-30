@@ -5,7 +5,8 @@ app.directive('userElem', function(AdminFactory) {
 		scope: {
 			user: '=',
 			change: '&',
-			delete: '&'
+			delete: '&',
+			reset: '&'
 		}
 	};
 });

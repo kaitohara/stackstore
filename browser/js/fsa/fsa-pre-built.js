@@ -107,6 +107,11 @@
             });
         };
 
+        this.resetPassword = (userId, password) => {
+            return $http.put('/api/users/' + userId, {resetPassword: false, password: password})
+                .then(res => res.data);
+        };
+
     });
 
     app.service('Session', function($rootScope, AUTH_EVENTS) {

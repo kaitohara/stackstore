@@ -41,5 +41,10 @@ app.factory('AdminFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.resetPassword = (userId) => {
+		return $http.put('/api/users/' + userId, {resetPassword: true})
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);
