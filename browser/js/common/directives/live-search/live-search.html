@@ -1,19 +1,24 @@
-<div id="live-search" ng-slide-down="widgetExpanded" lazy-render duration=".8">
+  <div id="live-search" ng-slide-down="widgetExpanded" lazy-render duration=".8">
     <div class="container" ng-controller="SearchCtrl">
       <br>
       <div class="user-list search-results">
         <div class="row">
           <h2 class="pull-left">Search Results:</h2>
         </div>
-        <!-- SONGS SEARCH RESULT-->
+        
         <div>
+          <!-- SONGS SEARCH RESULT-->
           <ul ng-show="!!search" class="search-list">
-            <li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)">
-
-              Song: <a ui-sref="song({id:song._id})">{{song.title}}</a>
+            <li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)" ng-model="song">
+              <div class='search-item-content'>
+              <img class='search-photo' src="{{song.album.photo}}">
+              
+              <a class="song-link" ui-sref="song({id:song._id})" ng-click="toggleSlide()">{{song.title}}</a>
+              <br><br>
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="toggleSlide()">{{song.artist.name}}</a>
+              </div>
             </li>
           </ul>
-
           <!-- ARTISTS SEARCH RESULT-->
           <ul ng-show="!!search" class="search-list">
             <li class='search-item' ng-repeat="artist in filteredArtists = (artists | filter:search)">
@@ -43,8 +48,6 @@
       <user-item model="artist"></user-item>
     </a> -->
   </div>
-  <div class="fixed">
-    <ui-view></ui-view>
-  </div>
+
 </div>
 </div>
