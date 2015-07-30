@@ -23,6 +23,10 @@ var schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Artist'
 	},
+	genre: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Genre'	
+	},
 	album: {
 		type: mongoose.Schema.Types.ObjectId, 
 		ref: 'Album'

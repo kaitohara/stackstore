@@ -1,0 +1,9 @@
+<h2>You're managing users</h2>
+<div class="list-group">
+	<label>Filter</label>
+	<input ng-model="userFilter">
+	<!-- <p>function: {{changeStatus}}</p> -->
+	<div ng-repeat="user in filteredUsers = (users | filter:userFilter)">
+		<user-elem user="user" change="changeStatus(user, status)" delete="deleteUser(user)"></user-elem>
+	</div>
+</div>

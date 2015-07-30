@@ -15,13 +15,13 @@ body {
 }
 
 #main {
-  padding-top: 60px;
-  width: 1200px;
+
+  width: 100%;
   margin: 0 auto;
 }
 
-@import 'directives/main';
-@import 'home/main';
-@import 'about/main';
-@import 'tutorial/main';
-@import 'login/main';
+@import "directives/main";
+@import "home/main";
+@import "profile/main";
+@import "tutorial/main";
+@import "login/main";
