@@ -42,9 +42,6 @@ schema.pre('save', function(next) {
     	if (status === 'cancelled' || status === 'completed') {
     		// set cancel date
     		this.date.finished = Date.now();
-    	} else if (status === 'created') {
-    		// set creation date
-    		this.date.created = Date.now();
     	}
     }
     next();
