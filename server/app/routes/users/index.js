@@ -38,73 +38,34 @@ router.get('/:id', function(req, res) {
     res.json(req.user)
 });
 
-router.get('/:id/profile', function(req, res) {
-    User.findById(req.params.id)
-        .populate('pastOrderList')
-        .exec()
-        .then(function(user) {
-            var options2 = {
-                path: 'pastOrderList.albums.album',
-                model: 'Album'
-            };
-            User.populate(user, options2)
-                .then(function(popedUser) {
-                    var options3 = {
-                        path: 'pastOrderList.songs.song',
-                        model: 'Song'
-                    };
-                    User.populate(popedUser, options3)
-                        .then(function(populatedUser) {
-                            var options4 = {
-                                path: 'pastOrderList.albums.album.artist pastOrderList.songs.song.artist',
-                                model: 'Artist'
-                            };
-                            User.populate(populatedUser, options4)
-                                .then(function(finalUser) {
-                                    var options5 = {
-                                        path: 'pastOrderList.albums.album.genre pastOrderList.songs.song.genre',
-                                        model: 'Genre'
-                                    };
-                                    User.populate(finalUser, options5)
-                                        .then(function(finalFinalUser) {
-                                            res.json(finalFinalUser)
-                                        })
-                                })
-                        })
-                })
-        })
+router.get('/:id/profile', function(req, res, next) {
+    User.deepPopulate(req.user, [
+        'pastOrderList',
+        'pastOrderList.albums.album',
+        'pastOrderList.songs.song',
+        'pastOrderList.albums.album.artist',
+        'pastOrderList.songs.song.artist',
+        'pastOrderList.albums.album.genre',
+        'pastOrderList.songs.song.genre'
+    ], function(err, user) {
+        if (err) next(err)
+        res.json(user)
+    })
 });
 
 router.get('/:id/cart', function(req, res) {
-    var options1 = {
-        path: ' cart',
-        model: 'Order'
-    };
-    User.populate(req.user, options1)
-        .then(function(popUser) {
-            var options2 = {
-                path: ' cart.albums.album',
-                model: 'Album'
-            };
-            User.populate(popUser, options2)
-                .then(function(popedUser) {
-                    var options3 = {
-                        path: ' cart.songs.song',
-                        model: 'Song'
-                    };
-                    User.populate(popedUser, options3)
-                        .then(function(populatedUser) {
-                            var options4 = {
-                                path: 'cart.albums.album.artist cart.songs.song.artist',
-                                model: 'Artist'
-                            };
-                            User.populate(populatedUser, options4)
-                                .then(function(finalUser) {
-                                    res.json(finalUser)
-                                })
-                        })
-                })
-        })
+    User.deepPopulate(req.user, [
+        'cart',
+        'cart.albums.album',
+        'cart.songs.song',
+        'cart.albums.album.artist',
+        'cart.songs.song.artist',
+        'cart.albums.album.genre',
+        'cart.songs.song.genre'
+    ], function(err, user) {
+        if (err) next(err)
+        res.json(user)
+    })
 });
 
 router.put('/:id', function(req, res, next) {
