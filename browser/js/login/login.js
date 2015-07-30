@@ -12,7 +12,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
     $scope.login = {};
     $scope.error = null;
-    $scope.resetPassword = false;
 
     $scope.sendLogin = function (loginInfo) {
 
@@ -24,7 +23,6 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
             console.log(user, user.resetPassword);
             if (user.resetPassword) {
                 console.log('you have to reset your password');
-                $scope.resetPassword = true;
                 $state.go('reset');
             }
             else $state.go('home');
