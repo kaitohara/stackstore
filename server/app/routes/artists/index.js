@@ -1,19 +1,13 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
+var _ = require('lodash');
 
 var mongoose = require('mongoose');
 var Artist = mongoose.model('Artist');
 
 router.get('/', function(req, res, next) {
-
-    // allows for search parameters
-    var query = {};
-    if (req.query) {
-        query = req.query;
-    }
-
-    Artist.find(query).exec()
+    Artist.find(req.query).exec()
         .then(function(artists) {
             res.json(artists);
         })
@@ -23,7 +17,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     Artist.create(req.body)
         .then(function(artist) {
-            res.status(201).json(artist)
+            res.status(201).json(artist);
         })
         .then(null, next);
 });
@@ -31,41 +25,34 @@ router.post('/', function(req, res, next) {
 router.param('id', function(req, res, next, id) {
     Artist.findById(id).exec()
         .then(function(artist) {
-            if (!artist) throw Error()
-            req.artist = artist
-            next()
+            if (!artist) throw Error('Not Found');
+            req.artist = artist;
+            next();
         })
-        .then(null, function(err) {
-            err.message = "Not Found"
-            err.status = 404
-            next(err)
+        .then(null, function(e) {
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
+            next(e);
         });
-})
-
+});
 
 router.get('/:id', function(req, res) {
-    // Artist.findById(req.params.id).exec()
-    //     .then(function(artist){
-    //         res.json(artist)
-    //     })
     res.send(req.artist);
 });
 
 router.put('/:id', function(req, res, next) {
-    for (var key in req.body) {
-        req.artist[key] = req.body[key]
-    }
+    _.extend(req.artist, req.body);
     req.artist.save()
         .then(function(artist) {
-            res.json(artist)
+            res.json(artist);
         })
         .then(null, next);
-})
+});
 
 router.delete('/:id', function(req, res, next) {
     req.artist.remove()
         .then(function() {
-            res.status(204).end()
+            res.status(204).end();
         })
         .then(null, next);
-})
+});
