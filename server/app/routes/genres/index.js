@@ -17,8 +17,8 @@ router.get('/', function(req, res) {
 });
 
 // get genre by name
-router.get('/:genre', function(req, res, next) {
-	Genre.find({name: req.params.genre}).exec()
+router.get('/:name', function(req, res, next) {
+	Genre.findOne({name: req.params.name}).exec()
 		.then(function(data) {
 			res.json(data);
 		})
@@ -42,4 +42,3 @@ router.post('/', function(req, res, next) {
         })
         .then(null, next);
 });
-

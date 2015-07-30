@@ -129,21 +129,14 @@ describe('Review Route', function () {
             .send({title: 'updated review'})
             .expect(200)
             .end(function(err, res) {
-                if (err){
-                    done(err);
-                }
-                else {
-                    expect(res.body.title).to.equal('updated review');
-                    Review
-                        .findById(res.body._id)
-                        .then(function (rev) {
-                            expect(rev.title).to.equal('updated review');
-                            done();
-                        })
-                        .then(null, function (err) {
-                            done(err);
-                        });
-                }
+                if (err) done(err);
+                expect(res.body.title).to.equal('updated review');
+                Review.findById(res.body._id).exec()
+                    .then(function (rev) {
+                        expect(rev.title).to.equal('updated review');
+                        done();
+                    })
+                    .then(null, done);
             });
     });
 
@@ -152,7 +145,6 @@ describe('Review Route', function () {
             .expect(204)
             .end(function(err, res) {
                 if (err) return done(err);
-                else
                 Review.findById(review._id, function(err, or) {
                     expect(or).to.be.null;
                     done();
