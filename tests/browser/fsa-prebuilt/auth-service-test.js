@@ -46,7 +46,7 @@ describe('AuthService', function () {
                 expect(user).to.be.equal(x);
                 done();
             });
-            $rootScope.$digest(); // In order to resolve $q promise.
+            $rootScope.$digest(); // In orders to resolve $q promise.
         });
 
         describe('when user not already authenticated', function () {

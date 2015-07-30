@@ -5,9 +5,14 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
 
-
-
-        link: function(scope) {
+        link: function (scope, Search) {
+            scope.categories = [
+                { label: 'Albums', state: 'albums' },
+                { label: 'Artists', state: 'albums' },
+                { label: 'Genres', state: 'genres' },
+                { label: 'Orders', state: 'orders' },
+                { label: 'Users', state: 'reviews' }
+            ];
 
             scope.items = [{
                 label: 'Discover',
@@ -23,6 +28,10 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             }];
 
 
+            scope.setSearchCategory = function(category){
+                scope.searchCategory = category;
+            };
+            scope.showSearchBar = true;
             scope.user = null;
 
             scope.isLoggedIn = function() {
