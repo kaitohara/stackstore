@@ -9,17 +9,19 @@
     text-align: center;
   }
   #live-search{
-  	background-color:#2E312D;
+  	background-color:#181919;
   	height:500px;
   	width:100%;
   	color:white;
   }
   .search-item {
-  	border:1px solid white;
+  	// border:1px solid white;
   	width:250px;
   	height:300px;
   	display:inline-block;
   	margin: 10px 10px 90px 10px;
+    background-color: #1e1e1e;
+    border-radius:1px
   }
   .search-list {
   	list-style: none;

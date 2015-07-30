@@ -6,62 +6,40 @@ app.config(function ($stateProvider) {
 	});
 });
 
-// app.service('Search', function(){
-// 	var search = this;
-// 	search.term = 'bla'; 
-// 	// return {
-// 	// 	searchTerm: '',
-// 	// 	update:function(value){
-// 	// 		this.searchTerm = value;
-// 	// 		console.log('in factory', this.searchTerm)
-// 	// 	}
-// 	// }
-// })
 
-// app.factory('SearchService', function(){
-// 	var searchTerm = '';
-// 	//register an observer
-// 	this.registerObserverCallback = function(callback){
-// 		observerCallbacks.push(callback);
-// 	}
-// 	//call this when you know search Term has been changed
-// 	var notifyObservers = function(){
-// 		angular.forEach(observerCallbacks, function(callback){
-// 			callback();
-// 		});
-// 	};
-
-// })
-
-app.controller('SearchCtrl', function ($scope, artists, albums, songs){
+app.controller('SearchCtrl', function ($scope, artists, albums, songs, Album, $rootScope){
 	$scope.test = '123'
 	$scope.artists;
 	$scope.albums;
+	$scope.allResults = [];
+	$scope.searchResults = [];
 
 	artists.getArtists().then(function(data){
 		$scope.artists = data;
+		$scope.allResults.push(data)
 	});
 
 	albums.getAlbums().then(function(data){
 		$scope.albums = data;
+		$scope.allResults.push(data)
 	})
 
 	songs.getSongs().then(function(data){
 		$scope.songs = data;
+		$scope.allResults.push(data)
 	})
-	// $scope.getArtists = function(){
-	// 	artists.getArtists().then(function(data){
-	// 		$scope.artists = data;
-	// 		console.log(data)
-	// 	});
-	// }
 
 
-	// $scope.getartists = function(){
-	// 	artists.getArtists().then(function(data){
-	// 		$scope.artists = data;
-	// 	});
-	// }
-	// $scope.artistSearch = new Artist();
+	
 
+    	// for(var i = 0; i < $scope.results.length; i++){
+     //    	var artist = $scope.results.name;
+     //    	var album =
+     //    	if($scope.results[i].indexOf(str) != -1){
+     //    		$scope.searchResults.push($scope.results[i]);
+     //    	}
+    	// }
+    
+
+    
 })
