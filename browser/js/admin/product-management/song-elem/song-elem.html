@@ -1,0 +1,17 @@
+<a class="list-group-item">
+	<div class="row">
+		<div class="col-xs-6">
+			<h3 class="list-group-item-heading">Title: {{song.title}}</h3>
+			<hr>
+			<p class="list-group-item-text">
+				<span>By: {{song.artist.name}}</span>
+			</p>
+			<p class="list-group-item-text">
+				<span>Genre: {{song.genre.name}}</span>
+			</p>
+		</div>
+		<div class="col-xs-6">
+			<img ng-src="{{song.album.photo}}">
+		</div>
+	</div>
+</a>

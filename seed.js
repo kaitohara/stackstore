@@ -155,7 +155,7 @@ function randOrder() {
     });
     var status = chance.pick(['created', 'processing', 'cancelled', 'completed']);
     var date = {};
-    if (status === 'cancelled') {
+    if (status === 'cancelled' || status === 'completed') {
         // finished an hour from now (if cancelled)
         date = {
             finished: Date.now() + 3600000
@@ -258,6 +258,7 @@ songs.forEach(function(song, idx) {
     })[0];
     song.album = alb;
     song.artist = alb.artist;
+    song.genre = alb.genre;
 });
 console.log('-finished assigning albums-');
 
