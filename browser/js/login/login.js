@@ -17,8 +17,15 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
         $scope.error = null;
 
-        AuthService.login(loginInfo).then(function () {
-            $state.go('home');
+        console.log('logging in');
+
+        AuthService.login(loginInfo).then(function (user) {
+            console.log(user, user.resetPassword);
+            if (user.resetPassword) {
+                console.log('you have to reset your password');
+                $state.go('reset');
+            }
+            else $state.go('home');
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';
         });
