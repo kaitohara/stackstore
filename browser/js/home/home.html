@@ -9,15 +9,25 @@
 				<div class="row">
 					<h2 class="pull-left">Search Results:</h2>
 				</div>
-				<!-- SONGS SEARCH RESULT-->
+				
 				<div>
-					<ul ng-show="!!search" class="search-list">
-						<li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)">
+					<!-- ALL SEARCH RESULT-->
+					<!-- <ul ng-show="!!search" class="search-list">
+						<li class='search-item'ng-repeat="thing in filteredThings = (everything | filter:search)">
+							{{thing.title}}</a>
+						</li>
+					</ul> -->
 
-							Song: <a ui-sref="song({id:song._id})">{{song.title}}</a>
+					{{results}}
+
+					<!-- SONGS SEARCH RESULT-->
+					<ul ng-show="!!search" class="search-list">
+						<li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)" ng-model="song">
+							<div ng-repeat="album in filteredAlbums = (albums | filter:song._id)"><img src="{{album.photo}}">
+							</div>
+							<a ui-sref="song({id:song._id})">{{artists[$index].name}} - {{song.title}}</a>
 						</li>
 					</ul>
-
 					<!-- ARTISTS SEARCH RESULT-->
 					<ul ng-show="!!search" class="search-list">
 						<li class='search-item' ng-repeat="artist in filteredArtists = (artists | filter:search)">
