@@ -2,6 +2,7 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order')
+var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
     email: {
@@ -94,13 +95,16 @@ schema.method.finishCurrentOrder = function(newOrderStatus) {
     Order.findById(user.cart).exec().then(function(cart) {
         cart.orderStatus = newOrderStatus
         cart.date.finished = Date.now()
-        cart.save().then(function(savedCart) {
-            user.pastOrderList.push(user.cart)
-            Order.create().then(function(newCart) {
-                user.cart = newCart._id
-            });
-        })
+        cart.save()
+            .then(function(savedCart) {
+                user.pastOrderList.push(user.cart)
+                Order.create().then(function(newCart) {
+                    user.cart = newCart._id
+                })
+            })
     })
 }
+
+schema.plugin(deepPopulate);
 
 mongoose.model('User', schema);
