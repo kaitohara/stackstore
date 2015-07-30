@@ -35,4 +35,19 @@ var schema = new mongoose.Schema({
 	}
 });
 
+schema.pre('save', function(next) {
+    if (this.isModified('orderStatus')) {
+    	// update dates
+    	var status = this.orderStatus;
+    	if (status === 'cancelled' || status === 'completed') {
+    		// set cancel date
+    		this.date.finished = Date.now();
+    	} else if (status === 'created') {
+    		// set creation date
+    		this.date.created = Date.now();
+    	}
+    }
+    next();
+});
+
 mongoose.model('Order', schema);

@@ -19,7 +19,7 @@
 			</p>
 			<div>
 				<button ng-hide="changing" class="btn btn-warning" ng-click="changing = true">Change Status</button>
-				<select ng-show="changing" ng-model="newStatus">
+				<select name="status" ng-show="changing" ng-model="newStatus">
 					<option selected>cancelled</option>
 					<option>completed</option>
 					<option>created</option>

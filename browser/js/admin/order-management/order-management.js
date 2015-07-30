@@ -19,8 +19,10 @@ app.controller('AdminOrderCtrl', ['$scope', 'orders', 'AdminFactory', function($
 
 	$scope.changeStatus = function(order, status) {
 		AdminFactory.changeOrderStatus(order._id, status)
-			.then(() => {
+			.then((res) => {
+				console.log(res);
 				order.orderStatus = status;
+				order.date = res.date;
 			});
 	};
 
