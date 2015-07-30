@@ -1,9 +1,9 @@
 'use strict';
 
 var router = require('express').Router();
-var mongoose = require('mongoose');
 
-var review = mongoose.model('Review');
+router.use('/review', require('./review.router.js'));
+router.use('/reviews', require('./reviews.router.js'));
 
 router.get('/', function(req, res, next){
 
@@ -66,5 +66,6 @@ router.post('/', function(req, res, next){
         })
         .then(null, next);
 });
+
 
 module.exports = router;
