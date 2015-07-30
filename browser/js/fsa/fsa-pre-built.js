@@ -112,6 +112,11 @@
                 .then(res => res.data);
         };
 
+        this.signup = (credentials) => {
+            return $http.post('/api/users', credentials)
+                .then(res => res.data);
+        };
+
     });
 
     app.service('Session', function($rootScope, AUTH_EVENTS) {
