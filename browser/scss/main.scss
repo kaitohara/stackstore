@@ -29,6 +29,11 @@ body {
   padding-top: 60px;
 }
 
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";

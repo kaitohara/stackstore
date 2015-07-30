@@ -1,4 +1,3 @@
-Album page
 <div class="row">
 	<div class="col-lg-8 col-centered">
 <h1>{{album.title}}</h1>
@@ -6,13 +5,13 @@ Album page
 <h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
 <h3>Songs:</h3>
 <ul>
-	<li ng-repeat="song in songs">{{song.title}}</li>
+	<li ng-repeat="song in album.songs">{{song.title}}</li>
 </ul>
 <h3>Price: ${{album.price}}</h3>
 <h3>Year: {{album.year}}</h3>
 <h3>Downloads: {{album.downloads}}</h3>
 <h3>Reviews:</h3>
-<div ng-repeat="review in reviews">
+<div ng-repeat="review in album.reviews">
 	<p>{{review.title}}</p>
 	<p>{{review.rating}}/5</p>
 	<p>{{review.content}}</p>
