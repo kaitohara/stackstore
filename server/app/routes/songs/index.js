@@ -57,6 +57,7 @@ router.param('id', function(req, res, next, id) {
 
 // get one song (by its id)
 router.get('/:id', function(req, res) {
+    console.log(req.song);
     res.json(req.song);
 });
 

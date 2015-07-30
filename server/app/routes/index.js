@@ -4,7 +4,7 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 router.use('/orders', require('./orders'));
-router.use('/', require('./reviews'));
+router.use('/reviews', require('./reviews'));
 router.use('/users', require('./users'));
 router.use('/artists', require('./artists'));
 router.use('/songs', require('./songs'));

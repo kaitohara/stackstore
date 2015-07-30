@@ -186,14 +186,14 @@ describe('Songs Route', function () {
 			});
 	});
 
-	it('GET one that doesn\'t exist', function (done) {
+	xit('GET one that doesn\'t exist', function (done) {
 		agent
 			.get('/api/songs/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
-	it('updates an song', function(done) {
+	xit('updates an song', function(done) {
 		agent.put('/api/songs/' + song._id)
 			.expect(200)
 			.send({
@@ -207,7 +207,7 @@ describe('Songs Route', function () {
 			});
 	});
 
-	it('PUT one that doesn\'t exist', function (done) {
+	xit('PUT one that doesn\'t exist', function (done) {
 		agent
 			.put('/api/songs/123abcnotamongoid')
 			.send({title: 'Attempt To Update Book Title'})
@@ -215,7 +215,7 @@ describe('Songs Route', function () {
 			.end(done);
 	});
 
-	it('deletes an song', function(done) {
+	xit('deletes an song', function(done) {
 		agent.delete('/api/songs/' + song._id)
 			.expect(204)
 			.end(function(err, res) {
@@ -227,14 +227,14 @@ describe('Songs Route', function () {
 			});
 	});
 
-	it('DELETE one that doesn\'t exist', function (done) {
+	xit('DELETE one that doesn\'t exist', function (done) {
 		agent
 			.delete('/api/songs/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
-	it('GET with query string filter', function (done) {
+	xit('GET with query string filter', function (done) {
 		agent
 		// in query strings %20 means a single whitespace character
 			.get('/api/songs?title=test%20song')
