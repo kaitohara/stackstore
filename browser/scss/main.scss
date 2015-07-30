@@ -26,6 +26,7 @@ body {
 #main {
   width: 100%;
   margin: 0 auto;
+  padding-top: 60px;
 }
 
 .col-centered{
@@ -35,6 +36,6 @@ body {
 
 @import "directives/main";
 @import "home/main";
-@import "profile/main";
+@import "user/main";
 @import "tutorial/main";
 @import "login/main";

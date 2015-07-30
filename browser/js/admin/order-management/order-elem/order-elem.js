@@ -3,7 +3,8 @@ app.directive('orderElem', function() {
 		restrict: 'E',
 		templateUrl: 'js/admin/order-management/order-elem/order-elem.html',
 		scope: {
-			order: '='
+			order: '=',
+			status: '&'
 		}
 	};
 });

@@ -1,43 +1,4 @@
-<section id="profile" class="container">
-  <div class="col-md-3 account-panel">
-    
-    <ul class="list-group">
-      <li class="list-group-item thumbnail">
-        <img src="{{user.photo}}" height="250" width="250">      
-        <div class="caption">
-          <center><h3>{{user.name}}</h3></center>
-          <center>{{user.email}}</center>
-        </div>
-      </li>
-
-      <li class="list-group-item">My profile</li>
-
-      <li class="list-group-item">My order history</li>
-      <li class="list-group-item">My cart</li>
-
-    </ul>
-
-  </div>
-
-  <div class="col-md-9 orders">
-    <center><h1>My Orders</h1></center>
-
-    <ul class="orders-bar row">
-      <li class="col-md-3">
-        <a>Orders</a>
-      </li>
-      <li class="col-md-3">
-        <a>Open Orders</a></li>
-      </li>
-      <li class="col-md-3">
-       <a> Completed Orders</a>
-      </li>
-      <li class="col-md-3">
-        <a>Cancelled Orders</a>
-      </li>
-    </ul>
-
-    <ul>
+<ul>
       <li class="panel" ng-class="{'panel-danger':order.orderStatus=='created','panel-warning':order.orderStatus=='processing','panel-sucess':order.orderStatus=='completed','panel-default':order.orderStatus=='cancelled'}" ng-repeat="order in user.pastOrderList" >
       <!-- {{order}} -->
         <div class="panel-heading">
@@ -54,9 +15,9 @@
             <ul>
               <li class="row album" ng-repeat="album in order.albums" ng-click="">
 
-                <img src="{{album.album.photo}}" class="col-md-4">
+                <img src="{{album.album.photo}}" class="col-md-3">
                 <!-- {{album.album}} -->
-                <div class="list-group col-md-8">
+                <div class="list-group col-md-9">
                   <center><h3 class="list-group-item album-title">{{album.album.title}}</h3></center>
 
                   <center><h4 class="list-group-item">by {{album.album.artist.name}}</h4></center>
@@ -83,11 +44,3 @@
         </div>
       </li>
     </ul>
-  </div>
-
-    <!-- <carousel interval="2000">
-        <slide ng-repeat="image in images">
-            <img height="300" ng-src="{{ image }}" />
-        </slide>
-    </carousel> -->
-</section>

@@ -1,0 +1,16 @@
+#live-search {
+  background-color: #2E312D;
+  height: 500px;
+  width: 100%;
+  color: white;
+  .search-item {
+    border: 1px solid white;
+    width: 250px;
+    height: 300px;
+    display: inline-block;
+    margin: 10px 10px 90px 10px;
+  }
+  .search-list {
+    list-style: none;
+  }
+}

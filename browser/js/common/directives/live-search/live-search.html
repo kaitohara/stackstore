@@ -1,0 +1,50 @@
+<div id="live-search" ng-slide-down="widgetExpanded" lazy-render duration=".8">
+    <div class="container" ng-controller="SearchCtrl">
+      <br>
+      <div class="user-list search-results">
+        <div class="row">
+          <h2 class="pull-left">Search Results:</h2>
+        </div>
+        <!-- SONGS SEARCH RESULT-->
+        <div>
+          <ul ng-show="!!search" class="search-list">
+            <li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)">
+
+              Song: <a ui-sref="song({id:song._id})">{{song.title}}</a>
+            </li>
+          </ul>
+
+          <!-- ARTISTS SEARCH RESULT-->
+          <ul ng-show="!!search" class="search-list">
+            <li class='search-item' ng-repeat="artist in filteredArtists = (artists | filter:search)">
+              Artist: <a ui-sref="artist({name: artist.name, id: artist._id})">{{artist.name}}</a>
+            </li>
+          </ul>
+
+          <!-- ALBUMS SEARCH RESULT-->
+          <ul ng-show="!!search" class="search-list">
+            <li class='search-item' ng-repeat="album in filteredAlbums = (albums | filter:search)">
+              <img src="{{album.photo}}">
+              <br>
+              Album: <a ui-sref="album({id:album._id})">{{album.title}}</a>
+            </li>
+          </ul>
+        </div>
+
+
+        <p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
+        </p>
+
+    <!-- <a ng-repeat="artist in artists | filter:artistSearch"
+      ui-sref="artist({id: artist._id})"
+      ui-sref-active="active"
+      class="list-group-item min-content"
+      ng-if="!artist.isDestroyed">
+      <user-item model="artist"></user-item>
+    </a> -->
+  </div>
+  <div class="fixed">
+    <ui-view></ui-view>
+  </div>
+</div>
+</div>
