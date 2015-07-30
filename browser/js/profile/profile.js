@@ -23,7 +23,6 @@ app.controller('ProfileController', function($scope, user) {
 app.factory('ProfileFactory', function($http) {
   return {
     populateAll: function(user) {
-      console.log(user)
       return $http.get("api/users/" + user._id + '/profile')
         .then(function(res) {
           return res.data

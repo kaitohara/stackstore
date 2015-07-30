@@ -39,18 +39,15 @@ router.get('/:id', function(req, res) {
 });
 
 router.get('/:id/profile', function(req, res) {
-    console.log('hi')
-    var options1 = {
-        path: 'pastOrderList',
-        model: 'Order'
-    };
-    User.populate(req.user, options1)
-        .then(function(popUser) {
+    User.findById(req.params.id)
+        .populate('pastOrderList')
+        .exec()
+        .then(function(user) {
             var options2 = {
                 path: 'pastOrderList.albums.album',
                 model: 'Album'
             };
-            User.populate(popUser, options2)
+            User.populate(user, options2)
                 .then(function(popedUser) {
                     var options3 = {
                         path: 'pastOrderList.songs.song',
@@ -64,7 +61,14 @@ router.get('/:id/profile', function(req, res) {
                             };
                             User.populate(populatedUser, options4)
                                 .then(function(finalUser) {
-                                    res.json(finalUser)
+                                    var options5 = {
+                                        path: 'pastOrderList.albums.album.genre pastOrderList.songs.song.genre',
+                                        model: 'Genre'
+                                    };
+                                    User.populate(finalUser, options5)
+                                        .then(function(finalFinalUser) {
+                                            res.json(finalFinalUser)
+                                        })
                                 })
                         })
                 })
