@@ -17,7 +17,7 @@
   .search-item {
   	// border:1px solid white;
   	width:250px;
-  	height:300px;
+  	height:350px;
   	display:inline-block;
   	margin: 10px 10px 90px 10px;
     background-color: #1e1e1e;
@@ -25,7 +25,18 @@
   }
   .search-list {
   	list-style: none;
-  	
+    color:#DFE0E6;
+    a {
+      color:#DFE0E6;
+    }
+  }
+
+  .search-item-content {
+    padding: 25px;
+    height: 340px;
+  }
+  .search-photo {
+    padding-bottom:10px;
   }
 }
 

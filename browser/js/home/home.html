@@ -11,21 +11,16 @@
 				</div>
 				
 				<div>
-					<!-- ALL SEARCH RESULT-->
-					<!-- <ul ng-show="!!search" class="search-list">
-						<li class='search-item'ng-repeat="thing in filteredThings = (everything | filter:search)">
-							{{thing.title}}</a>
-						</li>
-					</ul> -->
-
-					{{results}}
-
 					<!-- SONGS SEARCH RESULT-->
 					<ul ng-show="!!search" class="search-list">
 						<li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)" ng-model="song">
-							<div ng-repeat="album in filteredAlbums = (albums | filter:song._id)"><img src="{{album.photo}}">
+							<div class='search-item-content'>
+							<img class='search-photo' src="{{song.album.photo}}">
+							
+							<a class="song-link" ui-sref="song({id:song._id})">{{song.title}}</a>
+							<br><br>
+							<a class="artist-link" ui-sref="artist({name: artist.name, id: artist._id})">{{song.artist.name}}</a>
 							</div>
-							<a ui-sref="song({id:song._id})">{{artists[$index].name}} - {{song.title}}</a>
 						</li>
 					</ul>
 					<!-- ARTISTS SEARCH RESULT-->
