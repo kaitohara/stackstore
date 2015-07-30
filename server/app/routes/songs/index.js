@@ -30,23 +30,16 @@ router.post('/', function(req, res, next) {
     });
 });
 
+// return songs populated with albums
+router.get('/populated', function(req, res, next) {
+    Song.find({}).populate('album artist genre').exec()
+        .then(function(songs) {
+            res.json(songs);
+        })
+        .then(null, next);
+});
+
 // get song by id and save for later
-// <<<<<<< HEAD
-// //searchIds is an array to allow for searching multiple Ids
-// function getById (req, res, next) {
-//     var searchIds = req.params.id.split(',');
-//     Song.find({'_id': {$in:searchIds}}).exec()
-//     .then(function(song) {
-//         req.song = song;
-//         next();
-//     })
-//     .then(null, function(e) {
-//         e.message = "Not Found";
-//         e.status = 404;
-//         next(e);
-//     });
-// }
-// =======
 router.param('id', function(req, res, next, id) {
     var searchIds = id.split(',');
     Song.find({'_id': {$in:searchIds}}).exec()
@@ -61,7 +54,6 @@ router.param('id', function(req, res, next, id) {
             next(e);
         });
 });
-// >>>>>>> 194d00b0c09c4c6ba73c1ec8ffc91c534a368c05
 
 // get one song (by its id)
 router.get('/:id', function(req, res) {

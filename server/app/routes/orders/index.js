@@ -63,4 +63,13 @@ router.post('/', function(req, res, next){
         .then(null, next);
 });
 
+// post because it is easier to send data
+router.post('/multi/id', function(req, res, next) {
+    Order.find({'_id': {$in: req.body}})
+        .then(function(orders) {
+            res.json(orders);
+        })
+        .then(null, next);
+});
+
 module.exports = router;

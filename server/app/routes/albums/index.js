@@ -50,10 +50,9 @@ router.param('id', function(req, res, next, id) {
 router.get('/artist/:artistId', function(req, res){
     Album.find({artist:req.params.artistId}).exec()
     .then(function(albums){
-        res.json(albums)
-    })
-})
-
+        res.json(albums);
+    });
+});
 
 // get one album (by its id)
 router.get('/:id', function(req, res) {

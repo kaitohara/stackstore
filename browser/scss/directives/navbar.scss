@@ -1,4 +1,4 @@
-$stackify-green: #66ff99;
+$stackify-green: #2ed465;
 
 navbar {
   display: block;
@@ -22,10 +22,11 @@ navbar {
   }
   .nav > li {
     &:hover .sub-menu {
+      display: block;
       z-index: 1;
       opacity: 1;
     }
-    a {
+    > a {
       cursor: pointer;
       transition: color 0.2s;
       font-weight: bold;
@@ -36,7 +37,7 @@ navbar {
       }
       &:hover {
         background: none;
-        color: darken($stackify-green, 10%);
+        color: $stackify-green;
       }
       &:focus {
         background: none;
@@ -58,7 +59,7 @@ navbar {
     text-decoration: none;
     &:hover {
       // background: none;
-      color: darken($stackify-green, 10%);
+      color: $stackify-green;
     }
   }
   .glyphicon-shopping-cart {
@@ -67,7 +68,7 @@ navbar {
     font-size: 20px;
     // color: $stackify-green;
     // background: $stackify-green;
-    border: 2px solid darken($stackify-green, 10%);
+    border: 2px solid $stackify-green;
     border-radius: 40px;
   }
   .welcome {
@@ -80,14 +81,14 @@ navbar {
     }
     .signup-button {
       margin: 5px 10px;
-      background: darken($stackify-green, 10%);
+      background: $stackify-green;
       outline: none !important;
       color: white;
       font-weight: bold;
       &:hover {
         background: none;
         border: 1px solid black;
-        color: darken($stackify-green, 10%);
+        color: $stackify-green;
       }
     }
     .login-button {
@@ -97,11 +98,12 @@ navbar {
       font-weight: bold;
       outline: none !important;
       &:hover {
-        color: darken($stackify-green, 10%);
+        color: $stackify-green;
       }
     }
   }
   .sub-menu {
+    display: none;
     width: 100%;
     padding: 5px 0px;
     position: absolute;
@@ -111,7 +113,7 @@ navbar {
     opacity: 0;
     transition: opacity linear 0.15s;
     // border: 1px solid  grey;
-    background: lighten($stackify-green, 10%);
+    background: $stackify-green;
     li {
       display: block;
       font-size: 16px;
@@ -120,11 +122,12 @@ navbar {
         padding: 10px 20px;
         display: block;
         font-weight: normal;
+        color: white;
         &:hover {
           background: white;
-          color: grey;
           font-weight: bold;
           text-decoration: none;
+          color: grey;
         }
       }
     }

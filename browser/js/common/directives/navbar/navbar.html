@@ -34,6 +34,8 @@
                     <li><a href="#">Order list</a></li>
                     <hr>
                     <li><a ng-click="logout()">Logout</a></li>
+                    <hr ng-if="isAdmin()">
+                    <li ng-if="isAdmin()"><a ui-sref="admin">Admin Stuff</a></li>
                 </ul>    
             </li>
         </ul>
