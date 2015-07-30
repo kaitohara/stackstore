@@ -186,14 +186,14 @@ describe('Songs Route', function () {
 			});
 	});
 
-	xit('GET one that doesn\'t exist', function (done) {
+	it('GET one that doesn\'t exist', function (done) {
 		agent
 			.get('/api/songs/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
-	xit('updates an song', function(done) {
+	it('updates an song', function(done) {
 		agent.put('/api/songs/' + song._id)
 			.expect(200)
 			.send({
@@ -207,7 +207,7 @@ describe('Songs Route', function () {
 			});
 	});
 
-	xit('PUT one that doesn\'t exist', function (done) {
+	it('PUT one that doesn\'t exist', function (done) {
 		agent
 			.put('/api/songs/123abcnotamongoid')
 			.send({title: 'Attempt To Update Book Title'})
@@ -215,7 +215,7 @@ describe('Songs Route', function () {
 			.end(done);
 	});
 
-	xit('deletes an song', function(done) {
+	it('deletes an song', function(done) {
 		agent.delete('/api/songs/' + song._id)
 			.expect(204)
 			.end(function(err, res) {
@@ -227,14 +227,14 @@ describe('Songs Route', function () {
 			});
 	});
 
-	xit('DELETE one that doesn\'t exist', function (done) {
+	it('DELETE one that doesn\'t exist', function (done) {
 		agent
 			.delete('/api/songs/123abcnotamongoid')
 			.expect(404)
 			.end(done);
 	});
 
-	xit('GET with query string filter', function (done) {
+	it('GET with query string filter', function (done) {
 		agent
 		// in query strings %20 means a single whitespace character
 			.get('/api/songs?title=test%20song')
@@ -247,4 +247,21 @@ describe('Songs Route', function () {
 				done();
 			});
 	});
+
+	it('returns multiple songs specified by ids', function (done) {
+        var queryString = song._id + ',' + song2._id;
+        agent.get('/api/songs/multiple')
+            .query({ids: queryString})
+            .expect(200)
+            .end(function (err, res) {
+            	console.log(res.body);
+                if (err) return done(err);
+                expect(res.body.length).to.equal(2);
+                expect(res.body).to.be.instanceof(Array);
+                expect(res).to.have.deep.property('body[0].title', 'test song');
+                expect(res).to.have.deep.property('body[1].title', 'test song2');
+                expect(res.body[0]._id).to.equal(''+song._id);
+                done();
+            });
+    });
 });
