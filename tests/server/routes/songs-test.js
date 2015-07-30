@@ -247,4 +247,21 @@ describe('Songs Route', function () {
 				done();
 			});
 	});
+
+	it('returns multiple songs specified by ids', function (done) {
+        var queryString = song._id + ',' + song2._id;
+        agent.get('/api/songs/multiple')
+            .query({ids: queryString})
+            .expect(200)
+            .end(function (err, res) {
+            	console.log(res.body);
+                if (err) return done(err);
+                expect(res.body.length).to.equal(2);
+                expect(res.body).to.be.instanceof(Array);
+                expect(res).to.have.deep.property('body[0].title', 'test song');
+                expect(res).to.have.deep.property('body[1].title', 'test song2');
+                expect(res.body[0]._id).to.equal(''+song._id);
+                done();
+            });
+    });
 });

@@ -82,9 +82,23 @@ describe('Review Route', function () {
         });
     });
 
+    it('returns all reviews', function (done) {
+        agent.get('/api/reviews')
+            .expect(200)
+            .end(function (err, res) {
+                console.log(res.body);
+                if (err) return done(err);
+
+                expect(res.body).to.be.instanceof(Array);
+                expect(res.body.length).to.equal(3);
+                expect(res.body[0].title).to.equal('test review');
+                expect(res.body[0].rating).to.equal(4);
+                done();
+            });
+    });
 
     it('returns one review', function(done) {
-            agent.get('/api/review/' + review._id)
+            agent.get('/api/reviews/' + review._id)
                 .expect(200)
                 .end(function(err, res) {
                     if (err) return done(err);
@@ -94,7 +108,7 @@ describe('Review Route', function () {
         });
 
     it('creates a new review', function(done) {
-        agent.post('/api/review/')
+        agent.post('/api/reviews')
             .send({
                 title: 'new review',
                 content: 'new text that still needs to be 50 characters and this should be long enough',
@@ -111,7 +125,7 @@ describe('Review Route', function () {
 
     it('updates a review', function(done) {
         agent
-            .put('/api/review/' + review._id)
+            .put('/api/reviews/' + review._id)
             .send({title: 'updated review'})
             .expect(200)
             .end(function(err, res) {
@@ -134,7 +148,7 @@ describe('Review Route', function () {
     });
 
     it('deletes a review', function(done) {
-        agent.delete('/api/review/' + review._id)
+        agent.delete('/api/reviews/' + review._id)
             .expect(204)
             .end(function(err, res) {
                 if (err) return done(err);
@@ -147,17 +161,17 @@ describe('Review Route', function () {
     });
 
 
-
     it('GET one that doesn\'t exist', function (done) {
         agent
-            .get('/api/review/123abcnotamongoid')
+            .get('/api/reviews/123abcnotamongoid')
             .expect(404)
             .end(done);
     });
 
+
     it('DELETE one that doesn\'t exist', function (done) {
         agent
-            .delete('/api/review/123abcnotamongoid')
+            .delete('/api/reviews/123abcnotamongoid')
             .expect(404)
             .end(done);
     });
@@ -165,15 +179,17 @@ describe('Review Route', function () {
 
     it('PUT one that doesn\'t exist', function (done) {
         agent
-            .put('/api/review/123abcnotamongoid')
+            .put('/api/reviews/123abcnotamongoid')
             .send({title: 'this won\'t work'})
             .expect(404)
             .end(done);
     });
 
 
-    it('returns multiple reviews', function (done) {
-        agent.get('/api/reviews/' + review._id + ',' + review2._id + ',' + review3._id)
+    it('returns multiple reviews specified by ids', function (done) {
+        var queryString = review._id + ',' + review2._id + ',' + review3._id;
+        agent.get('/api/reviews/multiple')
+            .query({ids: queryString})
             .expect(200)
             .end(function (err, res) {
                 if (err) return done(err);
@@ -187,9 +203,10 @@ describe('Review Route', function () {
     });
 
 
-    it('GET many that doesn\'t exist', function (done) {
+    it('GET many that don\'t exist', function (done) {
         agent
-            .get('/api/reviews/123abcnotamongoid%2C12312324134315325sdfsdfdsfds')
+            .get('/api/reviews/multiple')
+            .query({ids: '123abcnotamongoid,' + '2C12312324134315325sdfsdfdsfds'})
             .expect(404)
             .end(done);
     });
@@ -209,17 +226,4 @@ describe('Review Route', function () {
             });
     });
 
-    it('returns all reviews', function (done) {
-        agent.get('/api/reviews/')
-            .expect(200)
-            .end(function (err, res) {
-                console.log(res.body);
-                if (err) return done(err);
-                expect(res.body).to.be.instanceof(Array);
-                expect(res.body.length).to.equal(3);
-                expect(res.body[0].title).to.equal('test review');
-                expect(res.body[0].rating).to.equal(4);
-                done();
-            });
-    });
 });

@@ -47,6 +47,7 @@ router.param('id', function(req, res, next, id) {
         });
 });
 
+// get album by artist
 router.get('/artist/:artistId', function(req, res){
     Album.find({artist:req.params.artistId}).exec()
     .then(function(albums){
