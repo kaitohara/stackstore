@@ -5,12 +5,18 @@ $stackify-green: #2ed465;
   margin: 0 auto;
   width: 90%;
   @include clearfix;
+  .account-panel {
+    display: block;
+    // @include add-border;
+ 
+  }
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
   .orders {
+    // border-left: 1px solid $border-grey;
     padding: 0 0 0 40px;
     h1 {
       margin: 0;
@@ -49,13 +55,12 @@ $stackify-green: #2ed465;
     }
   }
   .status {
-    margin: 10px 20px;
-    display: block;
     font-size: 18px;
     padding: 10px;
   }
   .order-details {
-    margin: 10px 20px;
+    margin: 10px 40px 0 20px;
+    display: inline-block;
   }
   .album {
     display: block;
