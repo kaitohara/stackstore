@@ -53,6 +53,10 @@ var schema = new mongoose.Schema({
     resetPassword: {
         type: Boolean,
         default: false
+    },
+    seller: {
+        type: Boolean,
+        default: false
     }
 });
 
