@@ -19,7 +19,7 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 	$scope.changeStatus = function(user, status) {
 		console.log('changin status to: ', status, 'for: ', user.name);
 		AdminFactory.changeStatus(user._id, status)
-			.then(function(res) {
+			.then(function() {
 				console.log('success');
 				user.isAdmin = status;
 			});

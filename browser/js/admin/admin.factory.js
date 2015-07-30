@@ -46,5 +46,10 @@ app.factory('AdminFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.changeOrderStatus = (orderId, status) => {
+		return $http.put('/api/orders/' + orderId, {orderStatus: status})
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

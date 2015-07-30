@@ -14,7 +14,16 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('AdminOrderCtrl', ['$scope', 'orders', function($scope, orders){
+app.controller('AdminOrderCtrl', ['$scope', 'orders', 'AdminFactory', function($scope, orders, AdminFactory){
 	$scope.orders = orders;
+
+	$scope.changeStatus = function(order, status) {
+		AdminFactory.changeOrderStatus(order._id, status)
+			.then((res) => {
+				console.log(res);
+				order.orderStatus = status;
+				order.date = res.date;
+			});
+	};
 
 }]);
