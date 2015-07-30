@@ -6,6 +6,33 @@ app.config(function ($stateProvider) {
 	});
 });
 
+// app.service('Search', function(){
+// 	var search = this;
+// 	search.term = 'bla'; 
+// 	// return {
+// 	// 	searchTerm: '',
+// 	// 	update:function(value){
+// 	// 		this.searchTerm = value;
+// 	// 		console.log('in factory', this.searchTerm)
+// 	// 	}
+// 	// }
+// })
+
+// app.factory('SearchService', function(){
+// 	var searchTerm = '';
+// 	//register an observer
+// 	this.registerObserverCallback = function(callback){
+// 		observerCallbacks.push(callback);
+// 	}
+// 	//call this when you know search Term has been changed
+// 	var notifyObservers = function(){
+// 		angular.forEach(observerCallbacks, function(callback){
+// 			callback();
+// 		});
+// 	};
+
+// })
+
 app.controller('SearchCtrl', function ($scope, artists, albums, songs){
 	$scope.test = '123'
 	$scope.artists;
