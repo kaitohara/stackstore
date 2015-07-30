@@ -1,6 +1,8 @@
 'use strict';
 var mongoose = require('mongoose');
 
+var deepPopulate = require('mongoose-deep-populate');
+
 var schema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -10,7 +12,7 @@ var schema = new mongoose.Schema({
 	price: {
 		type: Number,
 		required: true,
-		min: 0 
+		min: 0
 	},
 	downloads: {
 		type: Number
@@ -25,10 +27,10 @@ var schema = new mongoose.Schema({
 	},
 	genre: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Genre'	
+		ref: 'Genre'
 	},
 	album: {
-		type: mongoose.Schema.Types.ObjectId, 
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Album'
 	},
 	reviews: {
@@ -38,5 +40,16 @@ var schema = new mongoose.Schema({
 		type: String
 	}
 });
+
+schema.statics.getAllReviews = function(){
+    schema
+        .find({})
+        .deepPopulate(songs, 'review.auther', function(err, _songs){
+            songs.forEach(function(song){
+                return song;
+            })
+        });
+
+}
 
 mongoose.model('Song', schema);

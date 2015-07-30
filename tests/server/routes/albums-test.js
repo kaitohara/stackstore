@@ -177,6 +177,9 @@ describe('Albums Route', function () {
 				expect(res.body.title).to.equal('made this album');
 				done();
 			});
+        //check db for posted album.
+
+
 	});
 
 	it('returns one album', function(done) {
@@ -188,6 +191,18 @@ describe('Albums Route', function () {
 				done();
 			});
 	});
+
+    it('returns multiple albums', function(done){
+        agent.get('/api/albums/artist/' + artist._id)
+            .expect(200)
+            .end(function(err , res){
+            	console.log(res.body);
+                if (err) return done(err);
+                expect(res.body[0].title).to.equal('test album');
+                expect(res.body[1].title).to.equal('test album2');
+                done();
+            });
+    });
 
 	it('GET one that doesn\'t exist', function (done) {
 		agent

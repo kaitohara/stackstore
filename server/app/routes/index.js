@@ -14,5 +14,5 @@ router.use('/genres', require('./genres'));
 // Make sure this is after all of
 // the registered routes!
 router.use(function(req, res) {
-  res.status(404).end();
+    res.status(404).send("Not Found");
 });

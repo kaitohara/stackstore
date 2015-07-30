@@ -7,7 +7,9 @@ app.config(function ($stateProvider) {
 });
 
 
+
 app.controller('SearchCtrl', function ($scope, artists, albums, songs, Album, $rootScope){
+
 	$scope.test = '123'
 	$scope.artists;
 	$scope.albums;

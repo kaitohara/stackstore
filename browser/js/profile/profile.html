@@ -1,10 +1,22 @@
-<section id="profile">
-  <div class="col-md-3 thumbnail">
-      <img src="{{user.photo}}" height="250" width="250">      
-      <div class="caption">
-        <center><h3>{{user.name}}</h3></center>
-        <center>{{user.email}}</center>
-      </div>
+<section id="profile" class="container">
+  <div class="col-md-3 account-panel">
+    
+    <ul class="list-group">
+      <li class="list-group-item thumbnail">
+        <img src="{{user.photo}}" height="250" width="250">      
+        <div class="caption">
+          <center><h3>{{user.name}}</h3></center>
+          <center>{{user.email}}</center>
+        </div>
+      </li>
+
+      <li class="list-group-item">My profile</li>
+
+      <li class="list-group-item">My order history</li>
+      <li class="list-group-item">My cart</li>
+
+    </ul>
+
   </div>
 
   <div class="col-md-9 orders">
@@ -29,10 +41,10 @@
       <li class="panel" ng-class="{'panel-danger':order.orderStatus=='created','panel-warning':order.orderStatus=='processing','panel-sucess':order.orderStatus=='completed','panel-default':order.orderStatus=='cancelled'}" ng-repeat="order in user.pastOrderList" >
       <!-- {{order}} -->
         <div class="panel-heading">
-          <span class="status label" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-sucess':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
-          <div class="panel-title">
-            <span class="order-details">{{order.date.created}}</span>
-            <span class="order-details">${{order.totalPrice}}</span>
+          <h2 class="panel-title order-details">{{order.date.created}}</h2>
+          <div>
+            <span class="status label order-details" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-sucess':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
+            <h5 class="order-details">${{order.totalPrice}}</h5>
             <span class="order-details">ID# {{order._id}}</span>
           </div>
         </div>

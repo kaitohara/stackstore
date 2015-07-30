@@ -5,6 +5,19 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var Song = mongoose.model('Song');
 
+///multiple songs - for Get routes
+router.get('/multiple', function(req, res, next){
+    var searchIds = req.query.ids.split(',');
+    Song.find({'_id': {$in:searchIds}}).exec()
+       .then(function(reviewItems){
+           res.json(reviewItems);
+       })
+       .then(null, function(err){
+           err.status = 404;
+           next(err);
+       });
+});
+
 // get all songs (optionally sort by parameters)
 router.get('/', function(req, res, next) {
 
@@ -41,8 +54,7 @@ router.get('/populated', function(req, res, next) {
 
 // get song by id and save for later
 router.param('id', function(req, res, next, id) {
-    var searchIds = id.split(',');
-    Song.find({'_id': {$in:searchIds}}).exec()
+    Song.findById(id).exec()
         .then(function(song) {
             if (!song) throw Error();
             req.song = song;
@@ -57,6 +69,7 @@ router.param('id', function(req, res, next, id) {
 
 // get one song (by its id)
 router.get('/:id', function(req, res) {
+    console.log(req.song);
     res.json(req.song);
 });
 
