@@ -17,4 +17,6 @@ app.config(['$stateProvider',function($stateProvider) {
 app.controller('AdminOrderCtrl', ['$scope', 'orders', function($scope, orders){
 	$scope.orders = orders;
 
+	
+
 }]);
