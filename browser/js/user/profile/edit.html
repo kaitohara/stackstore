@@ -1,46 +1,49 @@
 <div class="panel panel-success" >
-<!-- {{order}} -->
   <div class="panel-heading">
-    <h1 class="panel-title">Edit Profile</h1>
+   <span class="panel-title">Edit Profile</span>
   </div>
-
   <div class="panel-body">
-    <button class="btn btn-default">Upload photo</button>
-    <h3>Name</h3>
-    <h3>Email</h3>
-    <!-- <div>
-      <ul>
-        <li class="row album" ng-repeat="album in order.albums" ng-click="">
-
-          <img src="{{album.album.photo}}" class="col-md-3">
-           {{album.album}} 
-          <div class="list-group col-md-9">
-            <center><h3 class="list-group-item album-title">{{album.album.title}}</h3></center>
-
-            <center><h4 class="list-group-item">by {{album.album.artist.name}}</h4></center>
-
-            <div class="list-group-item row">
-              <div class="col-md-4">
-                <center>Year: {{album.album.year}}</center>
-              </div>
-              <div class="col-md-4">
-              <center>Price: ${{album.album.price}}</center>
-              </div>
-              <div class="col-md-4">
-               <center> Downloads: <span class="badge">{{album.album.downloads}}</span></center>
-              </div>
-            </div>
-
-            <div class="list-group-item" >
-              Genres: <button class="btn btn-info" ng-repeat="genre in album.album.genre">{{genre.name}}</button>
-            </div>
-          </div>
-        </li>
-      </ul>        
-    </div> -->
+    <div class="form-group">
+      <button class="btn btn-default">Upload new photo</button>
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" class="form-control" placeholder="{{user.name}}">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" placeholder="{{user.email}}">
+    </div>
+    <div class="form-group">
+      <label>Old password</label>
+      <input type="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>New password</label>
+      <input type="password" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Confirm new password</label>
+      <input type="password" class="form-control">
+    </div>
   </div>
-
-  <div class="panel-footer">footer
+  <div class="panel-footer">
+    <button class="btn btn-success">Update profile</button>
   </div>
 </div>
+
+<div class="panel panel-danger" >
+  <div class="panel-heading">
+    <span class="panel-title">Delete account</span>
+  </div>
+  <div class="panel-body">
+    <span>Are you sure you want to leave us?</span>
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-danger">Yes, I'm coldhearted</button>
+  </div>
+</div>
+
+
+
 
