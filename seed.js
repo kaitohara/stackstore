@@ -87,10 +87,12 @@ function randGenre() {
 }
 
 var songUrls = [
-    'https://www.youtube.com/watch?v=vjW8wmF5VWc&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=1',
-    'https://www.youtube.com/watch?v=QcIy9NiNbmo&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=2',
-    'https://www.youtube.com/watch?v=yzTuBuRdAyA&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=3',
-    'https://www.youtube.com/watch?v=QcIy9NiNbmo&list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI&index=4'
+    'https://soundcloud.com/flume/flume-some-minds-feat-andrew-wyatt',
+    'https://soundcloud.com/flume/lorde-tennis-court-flume-remix',
+    'https://soundcloud.com/eric-prydz/pryda-backdraft',
+    'https://soundcloud.com/dirtysouth/until-the-end-feat-joe-gil',
+    'https://soundcloud.com/jagwar-ma/come-save-me',
+    'https://soundcloud.com/odesza/say_my_name'
 ];
 
 function randSong(n) {

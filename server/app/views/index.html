@@ -11,10 +11,34 @@
     <script src="/lodash/index.js"></script>
     <script src="/angular/angular.js"></script>
     <script src="/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
     <script src="/socket.io-client/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+   (function() {
+      var script = document.createElement('script');
+ 
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+ 
+      var entry = document.getElementsByTagName('script')[0];
+      entry.parentNode.insertBefore(script, entry);
+   }());
+ 
+   ToneDenReady = window.ToneDenReady || [];
+   ToneDenReady.push(function() {
+      // This is where all the action happens:
+      ToneDen.player.create({
+         dom: '#player',
+         urls: [
+            
+         ],
+         skin:'dark'
+      });
+   });
+</script>
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp">
