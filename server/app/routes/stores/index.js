@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
         .then(null, next);
 });
 
+
 router.param('id', function(req, res, next, id) {
     Store.findById(id).exec()
         .then(function(store) {
@@ -32,6 +33,19 @@ router.param('id', function(req, res, next, id) {
             // invalid ids sometimes throw cast error
             if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
             next(e);
+        });
+});
+
+router.get('/:id/populated', function(req, res, next) {
+    Store.deepPopulate(req.store, [
+        'albums',
+        'songs',
+        'songs.genre',
+        'songs.artist',
+        'songs.album'
+        ], function(e, store) {
+            if (e) next(e);
+            res.json(store);
         });
 });
 

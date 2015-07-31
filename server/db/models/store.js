@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
 	// these products are only available on this store
@@ -27,5 +28,7 @@ var schema = new mongoose.Schema({
 		minlength: 3
 	}
 });
+
+schema.plugin(deepPopulate);
 
 mongoose.model('Store', schema);
