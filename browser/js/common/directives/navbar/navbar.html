@@ -45,12 +45,13 @@
             <li ng-show="user">   
                 <a href="#">{{user.email}} <span>&#9660;</span></a>               
                 <ul class="sub-menu">
-                    <li><a ui-sref="profile">Profile</a></li>
-                    <li><a href="#">Order list</a></li>
+                    <li><a ui-sref="profile.edit">Profile</a></li>
+                    <li><a ui-sref="profile.orderHistory">Order list</a></li>
+                    <hr ng-if="isAdmin()">
+                    <li ng-if="isAdmin()"><a ui-sref="admin">Privileges</a></li>
                     <hr>
                     <li><a ng-click="logout()">Logout</a></li>
-                    <hr ng-if="isAdmin()">
-                    <li ng-if="isAdmin()"><a ui-sref="admin">Admin Stuff</a></li>
+                    
                 </ul>    
             </li>
         </ul>
