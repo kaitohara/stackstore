@@ -8,6 +8,5 @@
 	<option>Processing</option>
 </select>
 <div ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
-	<!-- {{order | json}} -->
-	<order-elem order="order"></order-elem>
+	<order-elem order="order" status="changeStatus(order, newStatus)"></order-elem>
 </div>

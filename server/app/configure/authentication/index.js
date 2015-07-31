@@ -62,10 +62,8 @@ module.exports = function(app) {
         req.logout();
         res.status(200).end();
     });
-
     // Each strategy enabled gets registered.
     ENABLED_AUTH_STRATEGIES.forEach(function(strategyName) {
         require(path.join(__dirname, strategyName))(app);
     });
-
 };

@@ -1,11 +1,12 @@
 'use strict';
 var router = require('express').Router();
 module.exports = router;
+var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 router.get('/', function(req, res, next) {
-    User.find().exec()
+    User.find(req.query).exec()
         .then(function(users) {
             res.json(users);
         })
@@ -23,16 +24,16 @@ router.post('/', function(req, res, next) {
 router.param('id', function(req, res, next, id) {
     User.findById(id).exec()
         .then(function(user) {
-            if (!user) throw Error()
-            req.user = user
-            next()
+            if (!user) throw Error('Not Found');
+            req.user = user;
+            next();
         })
-        .then(null, function(err) {
-            err.message = "Not Found"
-            err.status = 404
-            next(err)
+        .then(null, function(e) {
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
+            next(e);
         });
-})
+});
 
 router.get('/:id', function(req, res) {
     res.json(req.user)
@@ -69,9 +70,7 @@ router.get('/:id/cart', function(req, res) {
 });
 
 router.put('/:id', function(req, res, next) {
-    for (var key in req.body) {
-        req.user[key] = req.body[key]
-    }
+    _.extend(req.user, req.body);
     req.user.save()
         .then(function(user) {
             res.json(user)

@@ -26,13 +26,9 @@
 
         <form name="searchBar" ng-controller="navbarCtrl" class="search-bar" method="get" action="/search">
             <a ui-sref="search" class="glyphicon glyphicon-search"></a>
-            <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" placeholder="Search" ng-change="update(search, !searchBar.$error.required)" required>
+            <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" ng-focus="expandSlider()" ng-blur="closeSlider()" placeholder="Search" ng-change="update(search, !searchBar.$error.required)" required>
         </form>
-
-        <!-- <button ng-controller="navbarCtrl"  ng-click="click()">
-            Click to slide in/out
-        </button> -->
-
+        
         <span ui-sref="cart" class="glyphicon glyphicon-shopping-cart"></span>
 
         <ul class="nav welcome">

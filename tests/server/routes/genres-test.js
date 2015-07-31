@@ -65,9 +65,17 @@ describe('Genres Route', function () {
 			.expect(200)
 			.end(function(err, res) {
 				if (err) return done(err);
-				expect(res.body).to.be.instanceof(Array);
-				expect(res.body.length).to.equal(1);
-				expect(res.body[0].name).to.equal('testGenre2');
+				expect(res.body.name).to.equal('testGenre2');
+				done();
+			});
+	});
+
+	it('returns one genre specified by id', function(done) {
+		agent.get('/api/genres/id/' + genre2._id)
+			.expect(200)
+			.end(function(err, res) {
+				if (err) return done(err);
+				expect(res.body.name).to.equal('testGenre2');
 				done();
 			});
 	});

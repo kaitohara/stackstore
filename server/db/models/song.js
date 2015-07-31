@@ -6,8 +6,7 @@ var deepPopulate = require('mongoose-deep-populate');
 var schema = new mongoose.Schema({
 	title: {
 		type: String,
-		required: true,
-		unique: true
+		required: true
 	},
 	price: {
 		type: Number,
@@ -44,7 +43,7 @@ var schema = new mongoose.Schema({
 schema.statics.getAllReviews = function(){
     schema
         .find({})
-        .deepPopulate(songs, 'review.auther', function(err, _songs){
+        .deepPopulate(songs, 'review.author', function(err, _songs){
             songs.forEach(function(song){
                 return song;
             })
