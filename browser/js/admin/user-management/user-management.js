@@ -1,7 +1,7 @@
 app.config(['$stateProvider',function($stateProvider) {
 	$stateProvider.state('admin.users', {
 		url: '/users',
-		templateUrl: 'js/admin/user-management/user-management.html',
+		templateUrl: 'js/admin/views-management/views-management.html',
 		controller: 'AdminUserCtrl',
 		resolve: {
 			users: function($http) {

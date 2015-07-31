@@ -819,14 +819,14 @@ function isLeafNode (node) {
  <file name="index.html">
  <div ng-controller="ExampleController">
  <form novalidate class="simple-form">
- Name: <input type="text" ng-model="user.name" /><br />
- E-mail: <input type="email" ng-model="user.email" /><br />
- Gender: <input type="radio" ng-model="user.gender" value="male" />male
- <input type="radio" ng-model="user.gender" value="female" />female<br />
+ Name: <input type="text" ng-model="views.name" /><br />
+ E-mail: <input type="email" ng-model="views.email" /><br />
+ Gender: <input type="radio" ng-model="views.gender" value="male" />male
+ <input type="radio" ng-model="views.gender" value="female" />female<br />
  <button ng-click="reset()">RESET</button>
- <button ng-click="update(user)">SAVE</button>
+ <button ng-click="update(views)">SAVE</button>
  </form>
- <pre>form = {{user | json}}</pre>
+ <pre>form = {{views | json}}</pre>
  <pre>master = {{master | json}}</pre>
  </div>
 
@@ -835,14 +835,14 @@ function isLeafNode (node) {
     .controller('ExampleController', ['$scope', function($scope) {
       $scope.master= {};
 
-      $scope.update = function(user) {
+      $scope.update = function(views) {
         // Example with 1 argument
-        $scope.master= angular.copy(user);
+        $scope.master= angular.copy(views);
       };
 
       $scope.reset = function() {
         // Example with 2 arguments
-        angular.copy($scope.master, $scope.user);
+        angular.copy($scope.master, $scope.views);
       };
 
       $scope.reset();
@@ -3375,7 +3375,7 @@ function annotate(fn) {
  * @name $injector#has
  *
  * @description
- * Allows the user to query if the particular service exists.
+ * Allows the views to query if the particular service exists.
  *
  * @param {string} name Name of the service to query.
  * @returns {boolean} `true` if injector has given service.
@@ -4091,7 +4091,7 @@ function $AnchorScrollProvider() {
       else if (hash === 'top') $window.scrollTo(0, 0);
     }
 
-    // does not scroll when user clicks on anchor link that is currently on
+    // does not scroll when views clicks on anchor link that is currently on
     // (no url change, no $location.hash() change), browser native does scroll
     if (autoScrollingEnabled) {
       $rootScope.$watch(function autoScrollWatch() {return $location.hash();},
@@ -4567,9 +4567,9 @@ function Browser(window, document, $log, $sniffer) {
    * Register callback function that will be called, when url changes.
    *
    * It's only called when the url is changed from outside of angular:
-   * - user types different url into address bar
-   * - user clicks on history (forward/back) button
-   * - user clicks on a link
+   * - views types different url into address bar
+   * - views clicks on history (forward/back) button
+   * - views clicks on a link
    *
    * It's not called when url is changed by $browser.url() method
    *
@@ -4585,7 +4585,7 @@ function Browser(window, document, $log, $sniffer) {
     // TODO(vojta): refactor to use node's syntax for events
     if (!urlChangeInit) {
       // We listen on both (hashchange/popstate) when available, as some browsers (e.g. Opera)
-      // don't fire popstate when user change the address bar and don't fire hashchange when url
+      // don't fire popstate when views change the address bar and don't fire hashchange when url
       // changed by push/replaceState
 
       // html5 history api - popstate event
@@ -7951,7 +7951,7 @@ function $HttpProvider() {
      * ## Cross Site Request Forgery (XSRF) Protection
      *
      * [XSRF](http://en.wikipedia.org/wiki/Cross-site_request_forgery) is a technique by which
-     * an unauthorized site can gain your user's private data. Angular provides a mechanism
+     * an unauthorized site can gain your views's private data. Angular provides a mechanism
      * to counter XSRF. When performing XHR requests, the $http service reads a token from a cookie
      * (by default, `XSRF-TOKEN`) and sets it as an HTTP header (`X-XSRF-TOKEN`). Since only
      * JavaScript that runs on your domain could read the cookie, your server can be assured that
@@ -7962,7 +7962,7 @@ function $HttpProvider() {
      * cookie called `XSRF-TOKEN` on the first HTTP GET request. On subsequent XHR requests the
      * server can verify that the cookie matches `X-XSRF-TOKEN` HTTP header, and therefore be sure
      * that only JavaScript running on your domain could have sent the request. The token must be
-     * unique for each user and must be verifiable by the server (to prevent the JavaScript from
+     * unique for each views and must be verifiable by the server (to prevent the JavaScript from
      * making up its own tokens). We recommend that the token is a digest of your site's
      * authentication cookie with a [salt](https://en.wikipedia.org/wiki/Salt_(cryptography&#41;)
      * for added security.
@@ -8872,7 +8872,7 @@ function $InterpolateProvider() {
       // concatenated values are unsafe to use and could easily lead to XSS.  By requiring that a
       // single expression be used for iframe[src], object[src], etc., we ensure that the value
       // that's used is assigned or constructed by some JS code somewhere that is more testable or
-      // make it obvious that you bound the value to some user controlled value.  This helps reduce
+      // make it obvious that you bound the value to some views controlled value.  This helps reduce
       // the load when auditing for XSS issues.
       if (trustedContext && parts.length > 1) {
           throw $interpolateMinErr('noconcat',
@@ -9776,7 +9776,7 @@ function locationGetterSetter(property, preprocess) {
  * - Exposes the current URL in the browser address bar, so you can
  *   - Watch and observe the URL.
  *   - Change the URL.
- * - Synchronizes the URL with the browser when the user
+ * - Synchronizes the URL with the browser when the views
  *   - Changes the address bar.
  *   - Clicks the back or forward button (or clicks a History link).
  *   - Clicks on a link.
@@ -11241,14 +11241,14 @@ function getterFn(path, options, fullExp) {
  * Converts Angular {@link guide/expression expression} into a function.
  *
  * ```js
- *   var getter = $parse('user.name');
+ *   var getter = $parse('views.name');
  *   var setter = getter.assign;
- *   var context = {user:{name:'angular'}};
- *   var locals = {user:{name:'local'}};
+ *   var context = {views:{name:'angular'}};
+ *   var locals = {views:{name:'local'}};
  *
  *   expect(getter(context)).toEqual('angular');
  *   setter(context, 'newValue');
- *   expect(context.user.name).toEqual('newValue');
+ *   expect(context.views.name).toEqual('newValue');
  *   expect(getter(context, locals)).toEqual('local');
  * ```
  *
@@ -12339,7 +12339,7 @@ function $RootScopeProvider(){
 
         lastDirtyWatch = null;
 
-        // in the case user pass string, we need to compile it, do we really need this ?
+        // in the case views pass string, we need to compile it, do we really need this ?
         if (!isFunction(listener)) {
           var listenFn = compileToFn(listener || noop, 'listener');
           watcher.fn = function(newVal, oldVal, scope) {listenFn(scope);};
@@ -13631,7 +13631,7 @@ function $SceDelegateProvider() {
  *
  * Strict Contextual Escaping (SCE) is a mode in which AngularJS requires bindings in certain
  * contexts to result in a value that is marked as safe to use for that context.  One example of
- * such a context is binding arbitrary html controlled by the user via `ng-bind-html`.  We refer
+ * such a context is binding arbitrary html controlled by the views via `ng-bind-html`.  We refer
  * to these contexts as privileged or SCE contexts.
  *
  * As of version 1.2, Angular ships with SCE enabled by default.
@@ -13652,10 +13652,10 @@ function $SceDelegateProvider() {
  * <div ng-bind-html="userHtml"></div>
  * ```
  *
- * Notice that `ng-bind-html` is bound to `userHtml` controlled by the user.  With SCE
- * disabled, this application allows the user to render arbitrary HTML into the DIV.
- * In a more realistic example, one may be rendering user comments, blog articles, etc. via
- * bindings.  (HTML is just one example of a context where rendering user controlled input creates
+ * Notice that `ng-bind-html` is bound to `userHtml` controlled by the views.  With SCE
+ * disabled, this application allows the views to render arbitrary HTML into the DIV.
+ * In a more realistic example, one may be rendering views comments, blog articles, etc. via
+ * bindings.  (HTML is just one example of a context where rendering views controlled input creates
  * security vulnerabilities.)
  *
  * For the case of HTML, you might use a library, either on the client side, or on the server side,
@@ -14672,7 +14672,7 @@ function $WindowProvider(){
  * @name $filter
  * @kind function
  * @description
- * Filters are used for formatting data displayed to the user.
+ * Filters are used for formatting data displayed to the views.
  *
  * The general syntax in templates is as follows:
  *
@@ -15829,7 +15829,7 @@ var htmlAnchorDirective = valueFn({
  *
  * @description
  * Using Angular markup like `{{hash}}` in an href attribute will
- * make the link go to the wrong URL if the user clicks it before
+ * make the link go to the wrong URL if the views clicks it before
  * Angular has a chance to replace the `{{hash}}` markup with its
  * value. Until Angular replaces the markup the link will be broken
  * and will most likely return a 404 error. The `ngHref` directive
@@ -16233,8 +16233,8 @@ var nullFormCtrl = {
  * @ngdoc type
  * @name form.FormController
  *
- * @property {boolean} $pristine True if user has not interacted with the form yet.
- * @property {boolean} $dirty True if user has already interacted with the form.
+ * @property {boolean} $pristine True if views has not interacted with the form yet.
+ * @property {boolean} $dirty True if views has already interacted with the form.
  * @property {boolean} $valid True if all of the containing forms and controls are valid.
  * @property {boolean} $invalid True if at least one containing control or form is invalid.
  *
@@ -16681,7 +16681,7 @@ var inputType = {
    * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
    *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
    *    patterns defined as scope expressions.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    * @param {boolean=} [ngTrim=true] If set to false Angular will not automatically trim the input.
    *    This parameter is ignored for input[type=password] controls, which will never trim the
@@ -16765,7 +16765,7 @@ var inputType = {
    * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
    *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
    *    patterns defined as scope expressions.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    *
    * @example
@@ -16841,7 +16841,7 @@ var inputType = {
    * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
    *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
    *    patterns defined as scope expressions.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    *
    * @example
@@ -16918,7 +16918,7 @@ var inputType = {
    * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
    *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
    *    patterns defined as scope expressions.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    *
    * @example
@@ -16983,7 +16983,7 @@ var inputType = {
    * @param {string} ngModel Assignable angular expression to data-bind to.
    * @param {string} value The value to which the expression should be set when selected.
    * @param {string=} name Property name of the form under which the control is published.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    * @param {string} ngValue Angular expression which sets the value to which the expression should
    *    be set when selected.
@@ -17036,7 +17036,7 @@ var inputType = {
    * @param {string=} name Property name of the form under which the control is published.
    * @param {string=} ngTrueValue The value to which the expression should be set when selected.
    * @param {string=} ngFalseValue The value to which the expression should be set when not selected.
-   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   * @param {string=} ngChange Angular expression to be executed when input changes due to views
    *    interaction with the input element.
    *
    * @example
@@ -17205,13 +17205,13 @@ function textInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       deferListener();
     });
 
-    // if user modifies input value using context menu in IE, we need "paste" and "cut" events to catch it
+    // if views modifies input value using context menu in IE, we need "paste" and "cut" events to catch it
     if ($sniffer.hasEvent('paste')) {
       element.on('paste cut', deferListener);
     }
   }
 
-  // if user paste into input using mouse on older browser
+  // if views paste into input using mouse on older browser
   // or form autocomplete on newer browser, we need "change" event to catch it
   element.on('change', listener);
 
@@ -17420,7 +17420,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
  * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
  *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
  *    patterns defined as scope expressions.
- * @param {string=} ngChange Angular expression to be executed when input changes due to user
+ * @param {string=} ngChange Angular expression to be executed when input changes due to views
  *    interaction with the input element.
  * @param {boolean=} [ngTrim=true] If set to false Angular will not automatically trim the input.
  */
@@ -17448,7 +17448,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
  * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
  *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
  *    patterns defined as scope expressions.
- * @param {string=} ngChange Angular expression to be executed when input changes due to user
+ * @param {string=} ngChange Angular expression to be executed when input changes due to views
  *    interaction with the input element.
  * @param {boolean=} [ngTrim=true] If set to false Angular will not automatically trim the input.
  *    This parameter is ignored for input[type=password] controls, which will never trim the
@@ -17460,15 +17460,15 @@ function checkboxInputType(scope, element, attr, ctrl) {
        <script>
           angular.module('inputExample', [])
             .controller('ExampleController', ['$scope', function($scope) {
-              $scope.user = {name: 'guest', last: 'visitor'};
+              $scope.views = {name: 'guest', last: 'visitor'};
             }]);
        </script>
        <div ng-controller="ExampleController">
          <form name="myForm">
-           User name: <input type="text" name="userName" ng-model="user.name" required>
+           User name: <input type="text" name="userName" ng-model="views.name" required>
            <span class="error" ng-show="myForm.userName.$error.required">
              Required!</span><br>
-           Last name: <input type="text" name="lastName" ng-model="user.last"
+           Last name: <input type="text" name="lastName" ng-model="views.last"
              ng-minlength="3" ng-maxlength="10">
            <span class="error" ng-show="myForm.lastName.$error.minlength">
              Too short!</span>
@@ -17476,7 +17476,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
              Too long!</span><br>
          </form>
          <hr>
-         <tt>user = {{user}}</tt><br/>
+         <tt>views = {{views}}</tt><br/>
          <tt>myForm.userName.$valid = {{myForm.userName.$valid}}</tt><br>
          <tt>myForm.userName.$error = {{myForm.userName.$error}}</tt><br>
          <tt>myForm.lastName.$valid = {{myForm.lastName.$valid}}</tt><br>
@@ -17488,16 +17488,16 @@ function checkboxInputType(scope, element, attr, ctrl) {
        </div>
       </file>
       <file name="protractor.js" type="protractor">
-        var user = element(by.binding('{{user}}'));
+        var views = element(by.binding('{{views}}'));
         var userNameValid = element(by.binding('myForm.userName.$valid'));
         var lastNameValid = element(by.binding('myForm.lastName.$valid'));
         var lastNameError = element(by.binding('myForm.lastName.$error'));
         var formValid = element(by.binding('myForm.$valid'));
-        var userNameInput = element(by.model('user.name'));
-        var userLastInput = element(by.model('user.last'));
+        var userNameInput = element(by.model('views.name'));
+        var userLastInput = element(by.model('views.last'));
 
         it('should initialize to model', function() {
-          expect(user.getText()).toContain('{"name":"guest","last":"visitor"}');
+          expect(views.getText()).toContain('{"name":"guest","last":"visitor"}');
           expect(userNameValid.getText()).toContain('true');
           expect(formValid.getText()).toContain('true');
         });
@@ -17506,7 +17506,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
           userNameInput.clear();
           userNameInput.sendKeys('');
 
-          expect(user.getText()).toContain('{"last":"visitor"}');
+          expect(views.getText()).toContain('{"last":"visitor"}');
           expect(userNameValid.getText()).toContain('false');
           expect(formValid.getText()).toContain('false');
         });
@@ -17515,7 +17515,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
           userLastInput.clear();
           userLastInput.sendKeys('');
 
-          expect(user.getText()).toContain('{"name":"guest","last":""}');
+          expect(views.getText()).toContain('{"name":"guest","last":""}');
           expect(lastNameValid.getText()).toContain('true');
           expect(formValid.getText()).toContain('true');
         });
@@ -17524,7 +17524,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
           userLastInput.clear();
           userLastInput.sendKeys('xx');
 
-          expect(user.getText()).toContain('{"name":"guest"}');
+          expect(views.getText()).toContain('{"name":"guest"}');
           expect(lastNameValid.getText()).toContain('false');
           expect(lastNameError.getText()).toContain('minlength');
           expect(formValid.getText()).toContain('false');
@@ -17534,7 +17534,7 @@ function checkboxInputType(scope, element, attr, ctrl) {
           userLastInput.clear();
           userLastInput.sendKeys('some ridiculously long name');
 
-          expect(user.getText()).toContain('{"name":"guest"}');
+          expect(views.getText()).toContain('{"name":"guest"}');
           expect(lastNameValid.getText()).toContain('false');
           expect(lastNameError.getText()).toContain('maxlength');
           expect(formValid.getText()).toContain('false');
@@ -17593,8 +17593,8 @@ var VALID_CLASS = 'ng-valid',
  *
  * @property {Object} $error An object hash with all errors as keys.
  *
- * @property {boolean} $pristine True if user has not interacted with the control yet.
- * @property {boolean} $dirty True if user has already interacted with the control.
+ * @property {boolean} $pristine True if views has not interacted with the control yet.
+ * @property {boolean} $dirty True if views has already interacted with the control.
  * @property {boolean} $valid True if there is no error.
  * @property {boolean} $invalid True if at least one error on the control.
  *
@@ -17612,7 +17612,7 @@ var VALID_CLASS = 'ng-valid',
  * collaborate together to achieve the desired result.
  *
  * Note that `contenteditable` is an HTML5 attribute, which tells the browser to let the element
- * contents be edited in place by the user.  This will not work on older browsers.
+ * contents be edited in place by the views.  This will not work on older browsers.
  *
  * We are using the {@link ng.service:$sce $sce} service here and include the {@link ngSanitize $sanitize}
  * module to automatically remove "bad" content like inline event listener (e.g. `<span onclick="...">`).
@@ -17725,7 +17725,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @name ngModel.NgModelController#$render
    *
    * @description
-   * Called when the view needs to be updated. It is expected that the user of the ng-model
+   * Called when the view needs to be updated. It is expected that the views of the ng-model
    * directive will implement this method.
    */
   this.$render = noop;
@@ -18033,9 +18033,9 @@ var ngModelDirective = function() {
  * @name ngChange
  *
  * @description
- * Evaluate the given expression when the user changes the input.
+ * Evaluate the given expression when the views changes the input.
  * The expression is evaluated immediately, unlike the JavaScript onchange event
- * which only triggers at the end of a change (usually, when the user leaves the
+ * which only triggers at the end of a change (usually, when the views leaves the
  * form element or presses the return key).
  * The expression is not evaluated when the value change is coming from the model.
  *
@@ -18307,7 +18307,7 @@ var ngValueDirective = function() {
  *
  * It is preferable to use `ngBind` instead of `{{ expression }}` if a template is momentarily
  * displayed by the browser in its raw state before Angular compiles it. Since `ngBind` is an
- * element attribute, it makes the bindings invisible to the user while the page is loading.
+ * element attribute, it makes the bindings invisible to the views while the page is loading.
  *
  * An alternative solution to this problem would be using the
  * {@link ng.directive:ngCloak ngCloak} directive.
@@ -18403,9 +18403,9 @@ var ngBindDirective = ngDirective({
          salutationInput.clear();
          salutationInput.sendKeys('Greetings');
          nameInput.clear();
-         nameInput.sendKeys('user');
+         nameInput.sendKeys('views');
 
-         expect(salutationElem.getText()).toBe('Greetings user!');
+         expect(salutationElem.getText()).toBe('Greetings views!');
        });
      </file>
    </example>
@@ -18943,7 +18943,7 @@ var ngCloakDirective = ngDirective({
  *     by specifying `as propertyName`.
  *
  * @example
- * Here is a simple form for editing user contact information. Adding, removing, clearing, and
+ * Here is a simple form for editing views contact information. Adding, removing, clearing, and
  * greeting are methods declared on the controller (see source tab). These methods can
  * easily be called from the angular markup. Any changes to the data are automatically reflected
  * in the View without the need for a manual update.
@@ -20218,7 +20218,7 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
  *
  * # Configuring ngPluralize with offset
  * The `offset` attribute allows further customization of pluralized text, which can result in
- * a better user experience. For example, instead of the message "4 people are viewing this document",
+ * a better views experience. For example, instead of the message "4 people are viewing this document",
  * you might display "John, Kate and 2 others are viewing this document".
  * The offset attribute allows you to offset a number by any desired value.
  * Let's take a look at an example:
@@ -20458,12 +20458,12 @@ var ngPluralizeDirective = ['$locale', '$interpolate', function($locale, $interp
  * @param {repeat_expression} ngRepeat The expression indicating how to enumerate a collection. These
  *   formats are currently supported:
  *
- *   * `variable in expression` – where variable is the user defined loop variable and `expression`
+ *   * `variable in expression` – where variable is the views defined loop variable and `expression`
  *     is a scope expression giving the collection to enumerate.
  *
  *     For example: `album in artist.albums`.
  *
- *   * `(key, value) in expression` – where `key` and `value` can be any user defined identifiers,
+ *   * `(key, value) in expression` – where `key` and `value` can be any views defined identifiers,
  *     and `expression` is the scope expression giving the collection to enumerate.
  *
  *     For example: `(name, age) in {'adam':10, 'amalie':12}`.
@@ -21673,7 +21673,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
           ngModelCtrl = ctrls[1],
           multiple = attr.multiple,
           optionsExp = attr.ngOptions,
-          nullOption = false, // if false, user will not be able to select it (used by ngOptions)
+          nullOption = false, // if false, views will not be able to select it (used by ngOptions)
           emptyOption,
           // we can't just jqLite('<option>') since jqLite is not smart enough
           // to create it in <select> and IE barfs otherwise.
@@ -21954,7 +21954,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
               }
               selectedSet = selectedSet || selected; // see if at least one item is selected
             }
-            label = displayFn(scope, locals); // what will be seen by the user
+            label = displayFn(scope, locals); // what will be seen by the views
 
             // doing displayFn(scope, locals) || '' overwrites zero values
             label = isDefined(label) ? label : '';

@@ -4,7 +4,7 @@ app.config(function($stateProvider) {
   $stateProvider.state('profile', {
     url: '/profile',
     controller: 'ProfileController',
-    templateUrl: 'js/user/profile/profile.html',
+    templateUrl: 'js/views/profile/profile.html',
     resolve: {
       user: function(AuthService, ProfileFactory) {
         return AuthService.getLoggedInUser()

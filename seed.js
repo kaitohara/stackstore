@@ -174,7 +174,7 @@ console.log('---seeding---');
 
 console.log('-generating users-');
 // hardcode users so we know their passwords
-// // add user carts later
+// // add views carts later
 
 var users = [{
     email: 'testing@fsa.com',

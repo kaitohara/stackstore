@@ -3,6 +3,13 @@ var router = require('express').Router();
 module.exports = router;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var emailer = require('../../email');
+
+var path = require('path');
+
+router.get('/activate/:id', function(req, res, next) {
+
+})
 
 router.get('/', function(req, res, next) {
     User.find().exec()
@@ -15,7 +22,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     User.create(req.body)
         .then(function(user) {
+
+            console.log(user);
+            emailer(user.email,user.email);
             res.status(201).json(user)
+
         })
         .then(null, next);
 });
@@ -86,3 +97,4 @@ router.delete('/:id', function(req, res, next) {
         })
         .then(null, next);
 })
+

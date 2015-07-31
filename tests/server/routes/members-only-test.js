@@ -47,11 +47,11 @@ describe('Members Route', function () {
 			password: 'shoopdawoop'
 		};
 
-		beforeEach('Create a user', function (done) {
+		beforeEach('Create a views', function (done) {
 			User.create(userInfo, done);
 		});
 
-		beforeEach('Create loggedIn user agent and authenticate', function (done) {
+		beforeEach('Create loggedIn views agent and authenticate', function (done) {
 			loggedInAgent = supertest.agent(app);
 			loggedInAgent.post('/login').send(userInfo).end(done);
 		});

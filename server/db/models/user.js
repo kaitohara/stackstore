@@ -9,7 +9,7 @@ var schema = new mongoose.Schema({
         type: String,
         unique: true,
         // emails should have a @ symbol
-        validate: /.+@.+/
+        //validate: /.+@.+/
     },
     password: {
         type: String
@@ -53,15 +53,31 @@ var schema = new mongoose.Schema({
     resetPassword: {
         type: Boolean,
         default: false
+    },
+    active: {
+        type: Boolean,
+        default: false
+    }
+    signUpToken: {
+        type: String,
+        default: generateSalt
     }
 });
 
+
+
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
-var generateSalt = function() {
+function generateSalt() {
     return crypto.randomBytes(16).toString('base64');
 };
 
+
+schema.method.createSignUpToken = function(){
+    if(!this.signUpToken) this.signUpToken = generateSalt();
+}
+
+schema.method.removeSignUpToken
 var encryptPassword = function(plainText, salt) {
     var hash = crypto.createHash('sha1');
     hash.update(plainText);
@@ -74,6 +90,7 @@ schema.pre('save', function(next) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
+
     var user = this
     if (!this.cart) {
         Order.create().then(function(newOrder) {

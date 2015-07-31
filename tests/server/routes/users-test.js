@@ -183,7 +183,7 @@ describe('Users Route', function () {
 			email: 'testing2@testing.edu',
 			password: 'password2',
 			isAdmin: true
-			// this user has no orders
+			// this views has no orders
 		}, function(err, u) {
 			if (err) return done(err);
 			user2 = u;
@@ -207,7 +207,7 @@ describe('Users Route', function () {
 			});
 	});
 
-	it('creates a new user', function(done) {
+	it('creates a new views', function(done) {
 		agent.post('/api/users')
 			.send({
 				email: 'new@testing.co',
@@ -221,7 +221,7 @@ describe('Users Route', function () {
 			});
 	});
 
-	it('returns one user', function(done) {
+	it('returns one views', function(done) {
 		agent.get('/api/users/' + user2._id)
 			.expect(200)
 			.end(function(err, res) {
@@ -238,15 +238,15 @@ describe('Users Route', function () {
 			.end(done);
 	});
 
-	it('updates a user', function(done) {
+	it('updates a views', function(done) {
 		agent.put('/api/users/' + user._id)
 			.expect(200)
 			.send({
-				email: 'updated@user'
+				email: 'updated@views'
 			})
 			.end(function(err, res) {
 				if (err) return done(err);
-				expect(res.body.email).to.equal('updated@user');
+				expect(res.body.email).to.equal('updated@views');
 				done();
 			});
 	});
@@ -259,7 +259,7 @@ describe('Users Route', function () {
 			.end(done);
 	});
 
-	it('deletes a user', function(done) {
+	it('deletes a views', function(done) {
 		agent.delete('/api/users/' + user._id)
 			.expect(204)
 			.end(function(err, res) {

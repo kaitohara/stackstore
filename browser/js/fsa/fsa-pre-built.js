@@ -58,7 +58,7 @@
         }
 
         // Uses the session factory to see if an
-        // authenticated user is currently registered.
+        // authenticated views is currently registered.
         this.isAuthenticated = function() {
             return !!Session.user;
         };
@@ -70,7 +70,7 @@
         this.getLoggedInUser = function(fromServer) {
 
             // If an authenticated session exists, we
-            // return the user attached to that session
+            // return the views attached to that session
             // with a promise. This ensures that we can
             // always interface with this method asynchronously.
 
@@ -82,7 +82,7 @@
             }
 
             // Make request GET /session.
-            // If it returns a user, call onSuccessfulLogin with the response.
+            // If it returns a views, call onSuccessfulLogin with the response.
             // If it returns a 401 response, we catch it and instead resolve to null.
             return $http.get('/session').then(onSuccessfulLogin).catch(function() {
                 return null;
