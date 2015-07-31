@@ -1,12 +1,15 @@
 $border-grey: #dddddd;
-$stackify-green: #2ed465;
+$stackify-green: #2ed465; 
+// #DF2B30
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  background: #FFFFFF;
+  // background:#181919;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @mixin clearfix {
@@ -39,3 +42,4 @@ body {
 @import "user/main";
 @import "tutorial/main";
 @import "login/main";
+@import "products/song";
