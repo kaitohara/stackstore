@@ -247,7 +247,11 @@ describe('Users Route', function () {
 			.end(function(err, res) {
 				if (err) return done(err);
 				expect(res.body.email).to.equal('updated@user');
-				done();
+				User.findById(user._id).exec()
+					.then(function(u) {
+						expect(u.email).to.equal('updated@user');
+						done();
+					});
 			});
 	});
 

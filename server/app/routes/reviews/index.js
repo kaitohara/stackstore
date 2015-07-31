@@ -1,8 +1,9 @@
 'use strict';
 var router = require('express').Router();
 var mongoose = require('mongoose');
-var review = mongoose.model('Review');
+var _ = require('lodash');
 
+var review = mongoose.model('Review');
 
 ///multiple reviews - for Get routes
 router.get('/multiple', function(req, res, next){
@@ -10,21 +11,19 @@ router.get('/multiple', function(req, res, next){
     review
        .find({'_id': {$in:searchIds}}).exec()
        .then(function(reviewItems){
-           res.json(reviewItems);
+            if (!reviewItems.length) throw Error('Not Found');
+            res.json(reviewItems);
        })
-       .then(null, function(err){
-           err.status = 404;
-           next(err);
+       .then(null, function(e){
+            // invalid ids sometimes throw cast error
+            if (e.name === "CastError" || e.message === "Not Found") e.status = 404;
+            next(e);
        });
 });
 
 // return all reviews (optional search parameters)
 router.get('/', function(req, res, next){
-    var query = {};
-    if (req.query) {
-        query = req.query;
-    }
-    review.find(query).exec()
+    review.find(req.query).exec()
         .then(function(reviewItems){
             res.json(reviewItems);
         })
@@ -66,9 +65,7 @@ router.post('/', function(req, res, next){
 
 //update by Id
 router.put('/:reviewId', function(req, res, next){
-    for (var key in req.body) {
-        req.reviewItem[key] = req.body[key];
-    }
+    _.extend(req.reviewItem, req.body);
     req.reviewItem.save()
         .then(function(reviewItem){
             res.json(reviewItem);
