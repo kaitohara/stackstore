@@ -54,9 +54,14 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    // -- multitenancy
     isSeller: {
         type: Boolean,
         default: false
+    },
+    store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Store'
     }
 });
 

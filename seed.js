@@ -32,17 +32,21 @@ var Genre = mongoose.model('Genre');
 var Song = mongoose.model('Song');
 var Album = mongoose.model('Album');
 var Order = mongoose.model('Order');
+var Store = mongoose.model('Store');
 
 // constants for generation
 var numArtists = 20;
 var numSongs = 100;
+var numExSongs = 15;
 var numReviews = 150;
 var numGenres = 5;
 var numOrders = 16;
 var songsPerAlbum = 5;
 var reviewsPerAlbum = 3;
 var ordersPerUser = 4;
+var storesPerUser = 1;
 var numAlbums = Math.ceil(numSongs / songsPerAlbum);
+var numExAlbums = Math.ceil(numExSongs / songsPerAlbum);
 
 
 function randTitle() {
@@ -170,6 +174,21 @@ function randOrder() {
     };
 }
 
+function randStore() {
+    var songList = exSongs;
+    var albumList = exAlbums;
+    var date = {};
+
+    return {
+        songs: songList,
+        albums: albumList,
+        date: date,
+        // only jack has a store - he's the third user, look below
+        owner: users[2],
+        name: randTitle()
+    };
+}
+
 console.log('---seeding---');
 
 console.log('-generating users-');
@@ -263,9 +282,47 @@ songs.forEach(function(song, idx) {
 });
 console.log('-finished assigning albums-');
 
+console.log('-generating exclusive songs-');
+var exSongs = _.times(numExSongs, randSong)
+    .map(function(datum) {
+        return new Song(datum);
+    });
+exSongs.forEach(function(song) {
+        song.storeExclusive = true;
+    });
+console.log('-done generating exclusive songs-');
 
-var all = users.concat(artists, reviews, genres, songs, albums, orders);
-var models = [User, Artist, Review, Genre, Song, Album, Order];
+console.log('-generating exclusive albums-');
+var exAlbums = _.times(numExAlbums, randAlbum)
+    .map(function(datum) {
+        return new Album(datum);
+    });
+exAlbums.forEach(function(album) {
+        album.storeExclusive = true;
+    });
+console.log('-done generating exclusive albums-');
+
+console.log('-generating stores-');
+var stores = _.times(1, randStore)
+    .map(function(datum) {
+        return new Store(datum);
+    });
+    console.log('lookhere=-=-=-=-=-=--=-=-=', stores);
+console.log('-done generating stores-');
+
+console.log('-assign stores to users-');
+// each seller has a store (only jack right now)
+// var sellers = users.filter(function(user) {return user.isSeller;});
+// sellers.forEach(function(user, idx) {
+//         user.store = stores[idx];
+//     });
+// ++ hardcoded ++
+// jack has the only store
+users[2].store = stores[0]._id;
+console.log('-finished assigning stores-');
+
+var all = users.concat(artists, reviews, genres, songs, albums, orders, exSongs, exAlbums, stores);
+var models = [User, Artist, Review, Genre, Song, Album, Order, Store];
 
 console.log('-removing-');
 async.each(models,
