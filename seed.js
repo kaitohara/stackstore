@@ -228,6 +228,7 @@ var users = [{
     email: 'testing@fsa.com',
     password: 'password',
     name: "Test Em",
+    isSeller: true
 }, {
     email: 'obama@gmail.com',
     password: 'potus',

@@ -42,6 +42,10 @@ body {
   height: calc(100vh - 300px);
 }
 
+textarea.form-control {
+  resize: vertical;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";
