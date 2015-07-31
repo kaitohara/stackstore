@@ -21,7 +21,8 @@
         logoutSuccess: 'auth-logout-success',
         sessionTimeout: 'auth-session-timeout',
         notAuthenticated: 'auth-not-authenticated',
-        notAuthorized: 'auth-not-authorized'
+        notAuthorized: 'auth-not-authorized',
+        statusChange: 'auth-status-change'
     });
 
     app.factory('AuthInterceptor', function($rootScope, $q, AUTH_EVENTS) {
@@ -66,6 +67,8 @@
         this.isAdmin = function() {
             return Session.user.isAdmin;
         };
+
+        this.isSeller = () => Session.user.isSeller;
 
         this.getLoggedInUser = function(fromServer) {
 

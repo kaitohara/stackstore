@@ -54,7 +54,7 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    seller: {
+    isSeller: {
         type: Boolean,
         default: false
     }

@@ -189,7 +189,8 @@ var users = [{
     email: 'jack@mulrow.com',
     password: 'jack',
     name: "Jack Mulrow",
-    isAdmin: true
+    isAdmin: true,
+    isSeller: true
 }, {
     email: 'kaito@hara.com',
     password: 'kaito',
