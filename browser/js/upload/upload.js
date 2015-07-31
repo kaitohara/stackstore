@@ -21,6 +21,7 @@ app.config(function ($stateProvider) {
 app.controller('UploadCtrl', function ($scope, $state, user, store) {
     $scope.user = user;
     $scope.store = store;
+    $scope.show = 'songs';
     console.log(user);
     console.log(store);
 

@@ -32,9 +32,14 @@ body {
   padding-top: 60px;
 }
 
-.col-centered{
+.col-centered {
   float: none;
   margin: 0 auto;
+}
+
+.sidebar {
+  overflow-y: scroll;
+  height: calc(100vh - 300px);
 }
 
 @import "directives/main";
