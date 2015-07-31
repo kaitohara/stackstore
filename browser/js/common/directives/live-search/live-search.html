@@ -13,9 +13,9 @@
               <div class='search-item-content'>
               <img class='search-photo' src="{{song.album.photo}}">
               
-              <a class="song-link" ui-sref="song({id:song._id})" ng-click="toggleSlide()">{{song.title}}</a>
+              <a class="song-link" ui-sref="song({id:song._id})" ng-click="closeSlide()">{{song.title}}</a>
               <br><br>
-              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="toggleSlide()">{{song.artist.name}}</a>
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a>
               </div>
             </li>
           </ul>
