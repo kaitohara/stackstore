@@ -26,6 +26,15 @@ var schema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 3
+	},
+	description: {
+		type: String
+	},
+	url: {
+		// comes after stackify.com/stores/
+		type: String,
+		required: true,
+		maxlength: 40
 	}
 });
 

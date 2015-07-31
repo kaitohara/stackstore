@@ -1,4 +1,4 @@
-<a class="list-group-item">
+<!-- <a class="list-group-item">
 	<div class="row">
 		<div class="col-xs-6">
 			<h3 class="list-group-item-heading">Title: {{album.title}}</h3>
@@ -17,4 +17,18 @@
 			<img ng-src="{{album.photo}}">
 		</div>
 	</div>
-</a>
+</a> -->
+
+<div class="col-sm-6 col-md-4">
+	<div class="thumbnail">
+		<img ng-src="{{album.photo}}" alt="">
+		<div class="caption">
+			<h3>{{album.title}}</h3>
+			<hr>
+			<p>Description:</p>
+			<p>Number of songs: {{album.songs.length}}</p>
+			<p>Year: {{album.year}}</p>
+			<!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+		</div>
+	</div>
+</div>
