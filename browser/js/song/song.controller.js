@@ -25,6 +25,7 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// }());
 
 	// var ToneDenReady = window.ToneDenReady || [];
+	(function(){console.log('thiiiis')}())
 	console.log(ToneDenReady, ToneDen)
 	// ToneDenReady.push(function() {
 	// 	// This is where all the action happens:
@@ -36,13 +37,15 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// 		skin:'dark'
 	// 	});
 	// });
+console.log('toneden player', ToneDen.player)
+	if (!ToneDen.player){
+		console.log('woah')
+	}
 
 	function initToneden(){
 		var config = {
 			dom: "#player",
 			skin: "dark",
-			visualizer:"waves",
-			tracksPerArtist: 999,
 			urls: [
 			$scope.song.url
 			]
