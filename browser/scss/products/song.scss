@@ -5,3 +5,31 @@
 		color:#191919;
 	}
 }
+.Modal-holder {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: transparent;
+  z-index: 2;
+  padding: 30px 15px;
+}
+
+.center-modal {
+    position: fixed;
+    top: 25%;
+    left: 18.5%;
+    z-index: 1050;
+    width: 80%;
+    height: 100%;
+    margin-left: -10%;
+}
+
+.buttons {
+	border-radius: 2px;
+	border: 1px solid #DF2B30;
+	color: #DF2B30;
+	background-color: #FFFFFF;
+	font-weight:bold;
+}
