@@ -72,7 +72,7 @@
 	<label>Filter</label>
 	<input ng-model="songFilter">
 	<div ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
-		<song-elem song="song"></song-elem>
+		<song-elem song="song" admin="true"></song-elem>
 	</div>
 </div>
 <div class="col-sm-6">
@@ -80,6 +80,6 @@
 	<label>Filter</label>
 	<input ng-model="albumFilter">
 	<div ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
-		<album-elem album="album"></album-elem>
+		<album-elem album="album" admin="true"></album-elem>
 	</div>
 </div>

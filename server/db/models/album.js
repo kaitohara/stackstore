@@ -50,6 +50,11 @@ var schema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Review'
 		}]
+	},
+	// true if only available on a seller's store
+	storeExclusive: {
+		type: Boolean,
+		default: false
 	}
 });
 

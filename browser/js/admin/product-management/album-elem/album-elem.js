@@ -3,7 +3,8 @@ app.directive('albumElem', function() {
 		restrict: 'E',
 		templateUrl: 'js/admin/product-management/album-elem/album-elem.html',
 		scope: {
-			album: '='
+			album: '=',
+			admin: '@'
 		}
 	};
 });

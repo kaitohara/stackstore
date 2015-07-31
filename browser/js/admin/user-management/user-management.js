@@ -22,6 +22,9 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 			.then(function() {
 				console.log('success');
 				user.isAdmin = status;
+				// // let app know user's status has changed (and they are the active)
+				// if (user._id === )
+                // $rootScope.$broadcast(AUTH_EVENTS.statusChange, user);
 			});
 	};
 	$scope.deleteUser = function(user) {
