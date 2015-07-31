@@ -7,9 +7,9 @@ app.directive('liveSearch', function($rootScope, $state) {
         $scope.search = args.search
         console.log('update', args)
       })
-      $scope.toggleSlide = function(){
+      $scope.closeSlide = function(){
         console.log('toggle this shit')
-        $scope.widgetExpanded = !$scope.widgetExpanded;
+        $scope.widgetExpanded = false;
       }
       $scope.widgetExpanded = false;
       $rootScope.$on('clicked', function(event, args) {

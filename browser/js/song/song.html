@@ -1,12 +1,20 @@
-<div class="row">
+<div class="row test">
 	<div class="col-lg-8 col-centered">
-		<h1>{{song.title}}</h1>
-		<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
-		<!-- <h3>Artist:  <a ui-sref=""></a>{{album.artist}}</h3> -->
-		<h3>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h3>
-		<img src="{{album.photo}}">
-		<h3>${{song.price}}</h3>
-		<h3>{{song.url}}</h3>
+		<div class="col-lg-8">
+			<h1>{{song.title}}</h1>
+			<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
+			<!-- <h3>Artist:  <a ui-sref=""></a>{{album.artist}}</h3> -->
+			<h3>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h3>
+			<img src="{{album.photo}}">
+			<h3>${{song.price}}</h3>
+			<h3>{{song.url}}</h3>
+		</div>
+		<div class="col-lg-2">
+			<p>{{artist.name}}</p>
+			Discography
+			{{artist.albums}}
+		</div>
+
 	</div>
 </div>
 
