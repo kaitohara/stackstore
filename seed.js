@@ -137,6 +137,30 @@ function randAlbum(n) {
     };
 }
 
+function randExAlbum(n) {
+    var auth = chance.pick(artists);
+    var genre = chance.pick(genres);
+    var albumSongs = exSongs.slice(n * songsPerAlbum, (n + 1) * songsPerAlbum);
+    var review = reviews.slice(n * reviewsPerAlbum, (n + 1) * reviewsPerAlbum);
+    return {
+        title: randTitle(),
+        photo: "http://lorempixel.com/200/200",
+        price: chance.floating({
+            fixed: 2,
+            max: 1000,
+            min: 0
+        }),
+        year: chance.year(),
+        artist: auth,
+        downloads: chance.d20(),
+        cap: 1000,
+        genre: genre,
+        songs: albumSongs,
+        reviews: review,
+        storeExclusive: true
+    };
+}
+
 function randOrder() {
     var totalPrice = 0;
     var songList = chance.pick(songs, 4);
@@ -293,12 +317,9 @@ exSongs.forEach(function(song) {
 console.log('-done generating exclusive songs-');
 
 console.log('-generating exclusive albums-');
-var exAlbums = _.times(numExAlbums, randAlbum)
+var exAlbums = _.times(numExAlbums, randExAlbum)
     .map(function(datum) {
         return new Album(datum);
-    });
-exAlbums.forEach(function(album) {
-        album.storeExclusive = true;
     });
 console.log('-done generating exclusive albums-');
 
@@ -307,8 +328,9 @@ var stores = _.times(1, randStore)
     .map(function(datum) {
         return new Store(datum);
     });
-    console.log('lookhere=-=-=-=-=-=--=-=-=', stores);
 console.log('-done generating stores-');
+
+
 
 console.log('-assign stores to users-');
 // each seller has a store (only jack right now)
@@ -320,6 +342,17 @@ console.log('-assign stores to users-');
 // jack has the only store
 users[2].store = stores[0]._id;
 console.log('-finished assigning stores-');
+
+console.log('-assign exclusive albums to exclusive songs-');
+exSongs.forEach(function(song, idx) {
+    var alb = exAlbums.filter(function(album) {
+        return album.songs.indexOf(song._id) > -1;
+    })[0];
+    song.album = alb;
+    song.artist = alb.artist;
+    song.genre = alb.genre;
+});
+console.log('-finished assigning exclusive albums-');
 
 var all = users.concat(artists, reviews, genres, songs, albums, orders, exSongs, exAlbums, stores);
 var models = [User, Artist, Review, Genre, Song, Album, Order, Store];
