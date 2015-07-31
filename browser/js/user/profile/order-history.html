@@ -1,31 +1,28 @@
-<div class="btn-group btn-group-justified"  data-toggle="buttons">
-  <label class="btn btn-primary active" ng-click="changeOrderStatusView('all')">
-    <input type="radio" name="options" autocomplete="off" checked>All Orders
-  </label>
-
-  <label class="btn btn-warning" ng-click="changeOrderStatusView('processing')">
-    <input  type="radio" name="options" autocomplete="off">Open Orders
-  </label>
-
-  <label class="btn btn-success"  ng-click="changeOrderStatusView('completed')">
-    <input type="radio" name="options" autocomplete="off">Completed Orders</label>
-
-  <label class="btn btn-danger" ng-click="changeOrderStatusView('cancelled')" >
-    <input type="radio" name="options" autocomplete="off">Cancelled Orders</label>
-</div>
+<ul class="nav nav-pills nav-justified">
+  <li class="active"><a data-toggle="pill" ng-click="changeOrderStatusView('all')">
+    All Orders</a></li>
+  <li><a data-toggle="pill" ng-click="changeOrderStatusView('processing')">
+    Open Orders</a></li>
+  <li><a data-toggle="pill" ng-click="changeOrderStatusView('completed')">
+    Completed Orders</a></li>
+  <li><a data-toggle="pill" ng-click="changeOrderStatusView('cancelled')" >
+    Cancelled Orders</a></li>
+</ul>
 
 <hr>
 
+<!-- ng-class="{'panel-danger':order.orderStatus=='created','panel-warning':order.orderStatus=='processing','panel-success':order.orderStatus=='completed','panel-default':order.orderStatus=='cancelled'}" -->
+
+
 <ul>
-  <li class="panel" ng-class="{'panel-danger':order.orderStatus=='created','panel-warning':order.orderStatus=='processing','panel-success':order.orderStatus=='completed','panel-default':order.orderStatus=='cancelled'}" ng-repeat="order in user.pastOrderList" ng-show="currentStatus==order.orderStatus || currentStatus=='all'">
+  <li class="panel panel-default"  ng-repeat="order in user.pastOrderList" ng-show="currentStatus==order.orderStatus || currentStatus=='all'">
     <div class="panel-heading">
-      <h2 class="panel-title order-details">{{order.date.created}}</h2>
-      <div>
-        <span class="status label order-details" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-success':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
-        
-        <span class="order-details">ID# {{order._id}}</span>
-        <h5 class="order-details">${{order.totalPrice}}</h5>
-      </div>
+      <span class="panel-title">
+        <span class="order-details label status" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-success':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
+        <span class="order-details"><b>${{order.totalPrice}}</b></span>
+        <span class="order-details"><small>{{order.date.created}}</small></span>
+        <span class="order-details"><small>ID# {{order._id}}</small></span>
+      </span>
     </div>
 
     <div class="panel-body">
@@ -36,7 +33,7 @@
             <img src="{{album.album.photo}}" class="col-md-3">
             <!-- {{album.album}} -->
             <div class="list-group col-md-9">
-              <center><h3 class="list-group-item album-title">{{album.album.title}}</h3></center>
+              <center><h3><span class="list-group-item album-title">{{album.album.title}}</span></h3></center>
 
               <center><h4 class="list-group-item">by {{album.album.artist.name}}</h4></center>
 
@@ -54,7 +51,7 @@
               </div>
 
               <div class="list-group-item" >
-                Genres: <button class="btn btn-info" ng-repeat="genre in album.album.genre">{{genre.name}}</button>
+                Genres: <button class="btn btn-genre" ng-repeat="genre in album.album.genre">{{genre.name}}</button>
               </div>
             </div>
           </li>

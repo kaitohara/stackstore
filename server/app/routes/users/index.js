@@ -62,10 +62,11 @@ router.get('/:id/cart', function(req, res) {
         'cart.albums.album.artist',
         'cart.songs.song.artist',
         'cart.albums.album.genre',
-        'cart.songs.song.genre'
+        'cart.songs.song.genre',
+        'cart.songs.song.album'
     ], function(err, user) {
         if (err) next(err)
-        res.json(user)
+        res.json(user.cart)
     })
 });
 
