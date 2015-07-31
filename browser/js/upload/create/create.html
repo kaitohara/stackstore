@@ -1,0 +1,22 @@
+<div class="container">
+	<h1>create your store</h1>
+	<div class="main-content">
+		<form role="form" ng-submit="createStore(store)">
+			<div class="form-group">
+				<label for="store_name">Store Name</label>
+				<input type="text" class="form-control" ng-model="store.name" placeholder="What will it be called?">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 form-group">
+					<label for="store_description">Description</label>
+					<textarea style="resize:vertical" name="store_description" rows="5" class="form-control" ng-model="store.description" placeholder="what is the purpose of your store?"></textarea>
+				</div>
+				<div class="col-sm-6 col-xs-6 form-group">
+					<label for="store_url">Url</label>
+					<input name="store_url" type="text" class="form-control" ng-model="store.url" placeholder="the part after stackify.com/stores/" required>
+				</div>
+			</div>
+			<button class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
