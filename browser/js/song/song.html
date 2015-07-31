@@ -1,3 +1,4 @@
+
 <div class="row test">
 	<div class="col-lg-8 col-centered">
 		<div class="col-lg-8">
@@ -6,15 +7,21 @@
 			<!-- <h3>Artist:  <a ui-sref=""></a>{{album.artist}}</h3> -->
 			<h3>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h3>
 			<img src="{{album.photo}}">
+			<br>
+			<button ng-click="openModal()">Buy Now</button>
 			<h3>${{song.price}}</h3>
 			<h3>{{song.url}}</h3>
+			<div id="player"></div>
 		</div>
+
 		<div class="col-lg-2">
 			<p>{{artist.name}}</p>
 			Discography
 			{{artist.albums}}
 		</div>
-
+		<!-- <div ui-view="modal" autoscroll="false"></div> -->
 	</div>
 </div>
+
+
 
