@@ -142,6 +142,10 @@
             this.user = null;
         };
 
+        this.updateUser = function(userData) {
+            _.extend(this.user, userData);
+        };
+
     });
 
 })();

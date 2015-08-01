@@ -13,7 +13,7 @@ app.config(function ($stateProvider) {
     
 });
 
-app.controller('CreateCtrl', function ($scope, $state, user, UploadFactory) {
+app.controller('CreateCtrl', function ($scope, $state, user, UploadFactory, Session) {
     $scope.user = user;
     $scope.createStore = function(store) {
         // add user to new store
@@ -25,7 +25,8 @@ app.controller('CreateCtrl', function ($scope, $state, user, UploadFactory) {
         UploadFactory.createStore(store)
             .then(res => {
                 console.log('you did it!', res);
-                $state.go('upload.edit', res.url);
+                Session.updateUser({store: res._id});
+                $state.go('upload.edit');
             });
     };
 

@@ -1,14 +1,14 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('upload.edit', {
-        url: '/edit/:storeUrl',
+        url: '/edit/',
         templateUrl: 'js/upload/edit/edit.html',
         controller: 'EditCtrl',
         resolve: {
             user: function(AuthService) {
                 return AuthService.getLoggedInUser(true);
             },
-            store: function($http, user, $stateParams) {
+            store: function($http, user) {
                 console.log(user);
                 return $http.get('/api/stores/' + user.store + '/populated')
                     .then(res => res.data);

@@ -3,8 +3,7 @@ app.factory('UploadFactory', ['$http', function($http){
 
 	fact.createStore = function(storeData) {
 		return $http.post('/api/stores', storeData)
-			.then(function(res) {
-				console.log(res);
+			.success(function(res) {
 				return $http.put('/api/users/' + storeData.owner, {store: res._id});
 			})
 			.then(res => res.data);
