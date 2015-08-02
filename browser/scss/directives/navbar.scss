@@ -1,6 +1,6 @@
 navbar {
   display: block;
-  background: white;
+  background: #14191B;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
   .container {
@@ -28,7 +28,7 @@ navbar {
       cursor: pointer;
       transition: color 0.2s;
       font-weight: bold;
-      color: grey;
+      color: #FFFFFF;
       &:active {
         color: white;
         background: darken($stackify-green, 10%);
@@ -50,10 +50,13 @@ navbar {
       border: 0;
       border-bottom: 2px dashed grey;
       font-size: 18px;
+      padding:5px 5px 5px 10px;
+      background-color:#101416;
+      color:#FFFFFF;
     }
   }
   .glyphicon {
-    color: grey;
+    color: $stackify-green;
     font-weight: bold;
     text-decoration: none;
     &:hover {
