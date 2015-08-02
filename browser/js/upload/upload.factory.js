@@ -9,6 +9,16 @@ app.factory('UploadFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.createSong = function(songData) {
+		return $http.post('/api/stores', storeData)
+			.then(res => res.data);
+	};
+
+	fact.createAlbum = function(albumData) {
+		return $http.post('/api/albums', albumData)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);
 
