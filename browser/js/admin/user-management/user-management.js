@@ -27,6 +27,14 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
                 // $rootScope.$broadcast(AUTH_EVENTS.statusChange, user);
 			});
 	};
+	$scope.changeSeller = function(user, status) {
+		console.log('changin status to: ', status, 'for: ', user.name);
+		AdminFactory.changeSeller(user._id, status)
+			.then(function() {
+				console.log('success - seller');
+				user.isSeller = status;
+			});
+	};
 	$scope.deleteUser = function(user) {
 		console.log('deleting: ', user.name);
 		AdminFactory.deleteUser(user._id)

@@ -25,10 +25,8 @@ app.config(function ($stateProvider) {
 app.controller('UploadCtrl', function ($scope, $state, user, store) {
     // if no existing store, users can make one
     if (!store) {
-        alert('you have no store yet');
         $state.go('upload.create');
     } else {
-        alert('update your store');
         $state.go('upload.edit');
     }
 });
