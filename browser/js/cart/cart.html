@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-lg-8 col-centered">
+		{{cart}}
+
+		<h1>Your Shopping Cart</h1>
+		<hr>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="song in cart.songs">
+					<td>{{song.song.title}} - {{song.song.artist.name}}</td>
+					<td>{{song.song.price}}</td>
+					<td><button ng-click="removeSong(song._id)">remove</button></td>
+				</tr>
+				<tr ng-repeat="album in cart.albums">
+					<td>{{album.album.title}} - {{album.album.artist.name}}</td>
+					<td>{{album.album.price}}</td>
+					<td><button ng-click="removeAlbum(album._id)">remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

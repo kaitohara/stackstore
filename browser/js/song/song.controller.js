@@ -38,10 +38,6 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// 	});
 	// });
 console.log('toneden player', ToneDen.player)
-	if (!ToneDen.player){
-		console.log('woah')
-	}
-
 	function initToneden(){
 		var config = {
 			dom: "#player",
@@ -51,11 +47,9 @@ console.log('toneden player', ToneDen.player)
 			]
 		};
 
-		if(typeof ToneDen != 'undefined'){
-			console.log('yooo')
+		if(typeof ToneDen !== 'undefined'){
 			ToneDen.player.create(config);
 		}else{
-			console.log('huh')
 			ToneDenReady.push(function() {
 				ToneDen.player.create(config);      
 			}); 
@@ -77,14 +71,15 @@ console.log('toneden player', ToneDen.player)
 		$scope.artist = data;
 	})
 	$scope.openModal = function(){
-		modalInstance = $modal.open({
+		var modalInstance = $modal.open({
 			animation: true,
-			templateUrl: 'js/purchase/modalView.html',
+			templateUrl: 'js/purchase/modalSongView.html',
 			controller: 'ModalInstanceCtrl',
 			size: 'lg',
 			windowClass: 'center-modal'
 		})
-		modalInstance.result.then(function(){
+		modalInstance.result.then(function(selectedItem){
+			$scope.selected = selectedItem;
 		}, function(){
 		});
 	};
@@ -92,11 +87,19 @@ console.log('toneden player', ToneDen.player)
 	initToneden()
 });
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongInfo){
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongInfo, Song, Cart){
+	Cart.getUser().then(function(data){
+		$scope.currentId = data;
+		Cart.getCart(data).then(function(cart){
+			$scope.cartId = cart._id;
+		})
+	})
 	$scope.ok = function(){
 		$modalInstance.close($scope.selected.item);
 	};
-	$scope.cancel = function(){
+	$scope.addToCart = function(){
+		Song.addSong2Cart($scope.cartId, $scope.song._id)
+		console.log('adding')
 		$modalInstance.dismiss('cancel')
 	};
 	$scope.song = shareSongInfo.getProperty()

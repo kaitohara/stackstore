@@ -3,6 +3,7 @@
     height:500px;
     width:100%;
     color:white;
+    border-bottom: 4px solid $stackify-green;
   }
   .search-item {
     // border:1px solid white;
@@ -15,9 +16,9 @@
   }
   .search-list {
     list-style: none;
-    color:#DFE0E6;
+    color:white;
     a {
-      color:#DFE0E6;
+      color:white;
     }
   }
 

@@ -1,13 +1,14 @@
 .test{
 	// background-color:#252d30;
-  background-color:#FFFFFF;
+  background-color:white;
 	color:#14191B;
 	a {
 		color:#14191B;
 	}
+  padding-top:50px;
 }
 .box{
-  border: 1px solid #DFE4D8;
+  border: 1px solid #14191B;
 }
 .Modal-holder {
   position: fixed;
@@ -16,9 +17,15 @@
   height:100%;
   width:100%;
   background: transparent;
+  background-color: #242D30;
   z-index: 2;
   padding: 30px 15px;
 }
+
+.modal-content{
+  // background-color: ;
+}
+
 
 .center-modal {
     position: fixed;
@@ -32,8 +39,14 @@
 
 .buttons {
 	border-radius: 2px;
-	border: 1px solid #DF2B30;
-	color: #DF2B30;
+	border: 1px solid #00F67D;
+	color: #00F67D;
 	background-color: #FFFFFF;
 	font-weight:bold;
+}
+.buyButton {
+  border: 1px solid #14191B;
+  background:#14191B;
+  color:white;
+  margin-top: 20px;
 }
