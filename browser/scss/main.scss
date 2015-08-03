@@ -9,7 +9,8 @@ $stackify-green: #00f482;
 body {
   background: #FFFFFF;
   // background:#181919;
-  font-family: 'PT Sans', sans-serif;
+  // font-family: 'PT Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 @mixin clearfix {
@@ -29,7 +30,6 @@ body {
 #main {
   width: 100%;
   margin: 0 auto;
-  padding-top: 60px;
 }
 
 .col-centered{

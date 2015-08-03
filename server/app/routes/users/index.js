@@ -54,10 +54,12 @@ router.get('/:id/profile', function(req, res, next) {
     })
 });
 
+//Get a unique user's cart
 router.get('/:id/cart', function(req, res) {
     User.deepPopulate(req.user, [
         'cart',
         'cart.albums.album',
+        'cart.albums.photo',
         'cart.songs.song',
         'cart.albums.album.artist',
         'cart.songs.song.artist',
@@ -65,9 +67,18 @@ router.get('/:id/cart', function(req, res) {
         'cart.songs.song.genre'
     ], function(err, user) {
         if (err) next(err)
-        res.json(user)
+        res.json(user.cart)
     })
 });
+//Update a unique user's cart
+// router.put('/:id/cart', function(req, res){
+//     console.log('remove')
+
+//     User.findOneAndUpdate({_id:req.user}, {$pull:{'cart.songs':{_id:'55bbbb4a77742ce44034f265'}}}).exec()
+//         .then(function(user){
+//             res.json(user)
+//         })
+// })
 
 router.put('/:id', function(req, res, next) {
     _.extend(req.user, req.body);
