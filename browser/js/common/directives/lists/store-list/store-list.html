@@ -1,0 +1,19 @@
+<!-- <h1>This is a list of {{stores.length}} store(s)</h1>
+<div class="list-group">
+	<a class="list-group-item" ng-repeat="store in stores" ui-sref="discover.stores({storeUrl:store.url})">
+		<div>
+			{{store.name}}
+		</div>
+	</a>
+</div> -->
+
+<h1>This is a list of {{stores.length}} store(s)</h1>
+<label>Filter</label>
+<input ng-model="storeFilter">
+<div>
+	<ul class="search-list-scroll">
+		<li class="search-item-scroll" ng-repeat="store in filteredStores = (stores | filter:storeFilter)" ui-sref="discover.stores({storeUrl:store.url})">
+			<store-elem store="store" admin="admin"></store-elem>
+		</li>
+	</ul>
+</div>
