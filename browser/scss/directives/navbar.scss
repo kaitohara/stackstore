@@ -48,11 +48,12 @@ navbar {
     .search-text {
       border-radius:2px;
       border: 0;
-      border-bottom: 2px dashed grey;
-      font-size: 18px;
+      // border-bottom: 1px dashed grey;
+      font-size: 14px;
       padding:5px 5px 5px 10px;
-      background-color:#101416;
+      background-color:#14191B;
       color:#FFFFFF;
+      outline:none;
     }
   }
   .glyphicon {
@@ -83,24 +84,27 @@ navbar {
     }
     .signup-button {
       margin: 5px 10px;
-      background: $stackify-green;
+      background: #242D30;
       outline: none !important;
-      color: white;
+      border: 1px solid $stackify-green;
+      color: $stackify-green;
       font-weight: bold;
       &:hover {
         background: none;
-        border: 1px solid black;
-        color: $stackify-green;
+        background-color: $stackify-green;
+        color:white;
       }
     }
     .login-button {
       margin: 5px 10px;
-      border: 1px solid black;
+      border: 1px solid $stackify-green;
       background: none;
       font-weight: bold;
+      color:$stackify-green;
       outline: none !important;
       &:hover {
-        color: $stackify-green;
+        background-color: $stackify-green;
+        color:white;
       }
     }
   }
