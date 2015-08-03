@@ -18,14 +18,6 @@
     border-color: $stackify-green;
     font-weight: bold;
   }
-  .btn-stakify {
-    background-color: darken($stackify-green, 5%);
-    color: white;
-    border: 1px solid darken($stackify-green, 10%);
-    &:hover {
-      background: darken($stackify-green, 10%);
-    }
-  }
   .orders {
     // border-left: 1px solid $border-grey;
     // padding-right: 60px;
@@ -46,11 +38,10 @@
       }
     }
   }
-  .order-details{
-    display:flex;
-    justify-content:space-around;
+  .order-details {
+    display: flex;
+    justify-content: space-around;
   }
- 
   .album {
     // display: block;
     // margin: 5px 5px 10px;

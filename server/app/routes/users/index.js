@@ -47,7 +47,9 @@ router.get('/:id/profile', function(req, res, next) {
         'pastOrderList.albums.album.artist',
         'pastOrderList.songs.song.artist',
         'pastOrderList.albums.album.genre',
-        'pastOrderList.songs.song.genre'
+        'pastOrderList.songs.song.genre',
+        'pastOrderList.songs.song.album',
+        'pastOrderList.songs.song.album.genre'
     ], function(err, user) {
         if (err) next(err)
         res.json(user)
@@ -64,7 +66,9 @@ router.get('/:id/cart', function(req, res, next) {
         'cart.songs.song.artist',
         'cart.albums.album.genre',
         'cart.songs.song.genre',
-        'cart.songs.song.album'
+        'cart.songs.song.album',
+        'cart.songs.song.album.genre'
+
     ], function(err, user) {
         if (err) next(err)
         res.json(user.cart)

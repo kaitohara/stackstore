@@ -1,5 +1,6 @@
 $border-grey: #dddddd;
-$stackify-green: #00f482; 
+$stackify-green: #00f482;
+
 // #DF2B30
 
 * {
@@ -30,6 +31,7 @@ body {
 #main {
   width: 100%;
   margin: 0 auto;
+  padding-top: 60px;
 }
 
 .col-centered {
@@ -42,12 +44,21 @@ body {
   height: calc(100vh - 300px);
 }
 
+.btn-stackify {
+  background-color: darken($stackify-green, 5%);
+  color: white;
+  border: 1px solid darken($stackify-green, 10%);
+  &:hover {
+    background: darken($stackify-green, 10%);
+  }
+}
+
 textarea.form-control {
   resize: vertical;
 }
 
 #home {
-  background-image: url('/music-background.jpg');
+  background-image: url("/music-background.jpg");
   // background-color: black;
   background-size: cover;
   // background-repeat: repeat;
