@@ -2,7 +2,7 @@ app.factory('DiscoverFactory', ['$http', function($http){
 	var fact = {};
 
 	fact.getStores = function() {
-		return $http.get('/api/stores')
+		return $http.get('/api/stores/populated')
 			.then(res => res.data);
 	};
 
@@ -12,12 +12,12 @@ app.factory('DiscoverFactory', ['$http', function($http){
 	};
 
 	fact.getSongs = function() {
-		return $http.get('/api/songs')
+		return $http.get('/api/songs/populated')
 			.then(res => res.data);
 	};
 
 	fact.getAlbums = function() {
-		return $http.get('/api/albums')
+		return $http.get('/api/albums/populated')
 			.then(res => res.data);
 	};
 
