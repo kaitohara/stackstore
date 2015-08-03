@@ -46,12 +46,12 @@ textarea.form-control {
   resize: vertical;
 }
 
-#home {
-  background-image: url('/music-background.jpg');
-  // background-color: black;
-  background-size: cover;
-  // background-repeat: repeat;
-}
+// #home {
+//   background-image: url('/music-background.jpg');
+//   // background-color: black;
+//   background-size: cover;
+//   // background-repeat: repeat;
+// }
 
 @import "directives/main";
 @import "home/main";
