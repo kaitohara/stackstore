@@ -1,5 +1,4 @@
 app.controller('cartCtrl', function ($scope, Cart){
-	console.log('huh')
 	$scope.test = 'test'
 	//cart._id
 	Cart.getUser().then(function(data){
@@ -23,7 +22,6 @@ app.controller('cartCtrl', function ($scope, Cart){
 		})
 	}
 })
-
 app.factory('Cart', function ($http){
 	return {
 		getUser: function(){
