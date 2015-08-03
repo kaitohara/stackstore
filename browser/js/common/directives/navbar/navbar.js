@@ -25,9 +25,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 // label: 'Upload',
                 // state: 'upload',
                 // auth: false
-            }, {
-                label: 'St',
-                state: 'stores',
             }];
 
 
