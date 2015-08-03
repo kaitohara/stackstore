@@ -1,9 +1,10 @@
 app.directive('orderElem', function() {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/admin/order-management/order-elem/order-elem.html',
+		templateUrl: 'js/common/directives/list-elements/order-elem/order-elem.html',
 		scope: {
 			order: '=',
+			admin: '=',
 			status: '&'
 		}
 	};

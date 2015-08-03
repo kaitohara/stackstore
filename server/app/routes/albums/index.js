@@ -24,6 +24,15 @@ router.post('/', function(req, res, next) {
     });
 });
 
+// get all albums populated with artists and genre
+router.get('/populated', function(req, res, next) {
+    Album.find(req.query).populate('artist genre').exec()
+        .then(function(albums) {
+            res.json(albums);
+        })
+        .then(null, next);
+});
+
 // get album by id and save for later
 router.param('id', function(req, res, next, id) {
     Album.findById(id).populate('songs reviews artist').exec()

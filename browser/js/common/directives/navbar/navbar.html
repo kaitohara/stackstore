@@ -8,6 +8,9 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <!-- hardcoded for now -->
+            <li>
+                <a ui-sref-active="active" ui-sref="discover.list">Discover</a>
+            </li>
             <li ng-show="user.isSeller">
                 <a ui-sref-active="active" ui-sref="upload">Upload</a>
             </li>
@@ -33,8 +36,9 @@
             <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" ng-focus="expandSlider()" ng-blur="closeSlider()" placeholder="Search by artist, song or album" ng-change="update(search, !searchBar.$error.required)" required>
         </form>
         
-        <a ui-sref="shoppingCart">
-            <span ng-show="isLoggedIn()" class="glyphicon glyphicon-shopping-cart"></span>
+
+        <a ui-sref="cart">
+        <span ui-sref="cart" class="glyphicon glyphicon-shopping-cart"></span>
         </a>
 
         <ul class="nav welcome">

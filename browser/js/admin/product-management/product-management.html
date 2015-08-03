@@ -26,19 +26,10 @@
 	</div>
 </div>
 
-<div class="col-sm-6">
-	<h1>Songs</h1>
-	<label>Filter</label>
-	<input ng-model="songFilter">
-	<div class="row" ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
-		<song-elem song="song" admin="true"></song-elem>
-	</div>
-</div>
-<div class="col-sm-6">
-	<h1>Albums</h1>
-	<label>Filter</label>
-	<input ng-model="albumFilter">
-	<div class="row" ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
-		<album-elem album="album" admin="true"></album-elem>
-	</div>
-</div>
+<hr>
+<h1>Albums:</h1>
+<album-list albums="albums" admin="true"></album-list>
+
+<hr>
+<h1>Songs</h1>
+<song-list songs="songs" admin="true"></song-list>

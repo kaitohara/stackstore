@@ -1,5 +1,6 @@
 $border-grey: #dddddd;
-$stackify-green: #00f482; 
+$stackify-green: #00f482;
+
 // #DF2B30
 
 * {
@@ -30,6 +31,7 @@ body {
 #main {
   width: 100%;
   margin: 0 auto;
+  padding-top: 60px;
 }
 
 .col-centered {
@@ -42,6 +44,15 @@ body {
   height: calc(100vh - 300px);
 }
 
+.btn-stackify {
+  background-color: darken($stackify-green, 5%);
+  color: white;
+  border: 1px solid darken($stackify-green, 10%);
+  &:hover {
+    background: darken($stackify-green, 10%);
+  }
+}
+
 textarea.form-control {
   resize: vertical;
 }
@@ -52,6 +63,36 @@ textarea.form-control {
 //   background-size: cover;
 //   // background-repeat: repeat;
 // }
+
+.search-list-scroll {
+  list-style: none;
+  color: black;
+  a {
+    // color:white;
+ 
+  }
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.search-item-scroll {
+  // border:1px solid white;
+  width: 300px;
+  display: inline-block;
+  margin: 10px 10px 90px 10px;
+  background-color: #14191B;
+  border-radius: 1px;
+  color: black;
+  li {
+    overflow-x: scroll;
+  }
+}
+
+.elem-thumb {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @import "directives/main";
 @import "home/main";

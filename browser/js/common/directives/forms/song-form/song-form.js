@@ -4,7 +4,7 @@ app.directive('songForm', function(){
 		restrict: 'E',
 		templateUrl: 'js/common/directives/forms/song-form/song-form.html',
 		scope: {
-			submit: '&'
+			submit: '&',
 		}
 	};
 });
