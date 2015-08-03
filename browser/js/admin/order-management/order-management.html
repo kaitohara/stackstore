@@ -7,6 +7,10 @@
 	<option>Created</option>
 	<option>Processing</option>
 </select>
-<div ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
-	<order-elem order="order" status="changeStatus(order, newStatus)"></order-elem>
+<div>
+	<ul class="search-list-scroll">
+		<li class="search-item-scroll" ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
+			<order-elem order="order" status="changeStatus(order, newStatus)"></order-elem>
+		</li>
+	</ul>	
 </div>

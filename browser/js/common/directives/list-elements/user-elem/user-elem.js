@@ -7,7 +7,8 @@ app.directive('userElem', function(AdminFactory) {
 			change: '&',
 			delete: '&',
 			reset: '&',
-			seller: '&'
+			seller: '&',
+			admin: '='
 		}
 	};
 });

@@ -4,7 +4,7 @@ app.directive('songElem', function() {
 		templateUrl: 'js/common/directives/list-elements/song-elem/song-elem.html',
 		scope: {
 			song: '=',
-			admin: '@',
+			admin: '=',
 			edit: '&'
 		}
 	};

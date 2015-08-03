@@ -4,6 +4,7 @@ app.directive('orderElem', function() {
 		templateUrl: 'js/common/directives/list-elements/order-elem/order-elem.html',
 		scope: {
 			order: '=',
+			admin: '=',
 			status: '&'
 		}
 	};

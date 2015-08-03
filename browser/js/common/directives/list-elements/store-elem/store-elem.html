@@ -1,21 +1,15 @@
-<a ng-hide="deleted" class="list-group-item">
-	<div class="row">
-		<!-- <pre>{{user|json}}</pre> -->
-		<div class="col-xs-8">
-			<h4 class="list-group-item-heading">Name: {{store.name}}</h4>
-			<hr>
-			<p>Owner: {{store.owner}}</p>
-		</div>
-		<div class="col-xs-4" ng-click="console.log('hi')">
-			<img src="http://lorempixel.com/200/200/abstract">
-		</div>
+<div ng-hide="deleted" class="panel panel-primary">
+	<div ng-if="admin">
+		<button class="btn btn-danger">Delete</button>
+		<button class="btn btn-info">Update</button>
 	</div>
-	<div class="row">
-		<!-- <pre>{{user|json}}</pre> -->
-		<div class="col-xs-4">
-			<button class="btn btn-success">Do something</button>
-			<button class="btn btn-info">Do something else</button>
-			<button class="btn btn-warning">A button</button>
-		</div>
+	<div class="panel-body">
+		<img class="elem-thumb" src="http://lorempixel.com/200/200/abstract">
 	</div>
-</a>
+	<div class="panel-footer">
+		<ul class="list-group">
+		    <li class="list-group-item">Name: {{store.name}}</li>
+		    <li class="list-group-item">Owner: {{store.owner}}</li>
+	    </ul>
+	</div>
+</div>
