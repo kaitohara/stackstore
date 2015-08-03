@@ -17,21 +17,50 @@
 <ul>
   <li class="panel panel-default"  ng-repeat="order in user.pastOrderList" ng-show="currentStatus==order.orderStatus || currentStatus=='all'">
     <div class="panel-heading">
-      <span class="panel-title">
-        <span class="order-details label status" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-success':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
-        <span class="order-details"><b>${{order.totalPrice}}</b></span>
-        <span class="order-details"><small>{{order.date.created}}</small></span>
-        <span class="order-details"><small>ID# {{order._id}}</small></span>
-      </span>
+    <div class="panel-title list-group list-group-horizontal">
+                
+      <span class="order-details list-group-item"><small>ID# {{order._id}}</small></span>
+      <span class="order-details list-group-item"><small>{{order.date.created}}</small></span>
+      <span class="order-details list-group-item"><b>${{order.totalPrice}}</b></span>
+        
+        <span class="order-details list-group-item label status" ng-class="{'label-danger':order.orderStatus=='created','label-warning':order.orderStatus=='processing','label-success':order.orderStatus=='completed','label-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span>
+        
+      </div>
     </div>
 
     <div class="panel-body">
       <div>
         <ul>
-          <li class="row album" ng-repeat="album in order.albums" ng-click="">
+          <li class="media album" ng-repeat="album in order.albums" >
+            
+<div class="media-left">
+    <a href="#">
+      <img class="media-object img-rounded" src="{{album.album.photo}}" height="128" width="128">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">{{album.album.title}}</h4>
+    <span>by {{album.album.artist.name}}</span>
+    <div class="row">
+                <div class="col-md-4">
+                  <center>Year: {{album.album.year}}</center>
+                </div>
+                
+                <div class="col-md-4">
+                 <center> Downloads: <span class="badge">{{album.album.downloads}}</span></center>
+                </div>
+                <div class="col-md-4">
+                <center>Price: ${{album.album.price}}</center>
+                </div>
+              </div>
+              <span>Genres: <button class="btn btn-stakify" ng-repeat="genre in album.album.genre">{{genre.name}}</button></span>
+
+  </div>
+
+          </li>
+          <!-- <li class="row album" ng-repeat="album in order.albums" ng-click="">
 
             <img src="{{album.album.photo}}" class="col-md-3">
-            <!-- {{album.album}} -->
             <div class="list-group col-md-9">
               <center><h3><span class="list-group-item album-title">{{album.album.title}}</span></h3></center>
 
@@ -51,10 +80,10 @@
               </div>
 
               <div class="list-group-item" >
-                Genres: <button class="btn btn-genre" ng-repeat="genre in album.album.genre">{{genre.name}}</button>
+                Genres: <button class="btn btn-stakify" ng-repeat="genre in album.album.genre">{{genre.name}}</button>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>        
       </div>
     </div>

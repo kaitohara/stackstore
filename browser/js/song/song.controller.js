@@ -38,10 +38,6 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// 	});
 	// });
 console.log('toneden player', ToneDen.player)
-	if (!ToneDen.player){
-		console.log('woah')
-	}
-
 	function initToneden(){
 		var config = {
 			dom: "#player",
@@ -51,11 +47,9 @@ console.log('toneden player', ToneDen.player)
 			]
 		};
 
-		if(typeof ToneDen != 'undefined'){
-			console.log('yooo')
+		if(typeof ToneDen !== 'undefined'){
 			ToneDen.player.create(config);
 		}else{
-			console.log('huh')
 			ToneDenReady.push(function() {
 				ToneDen.player.create(config);      
 			}); 
@@ -79,7 +73,7 @@ console.log('toneden player', ToneDen.player)
 	$scope.openModal = function(){
 		modalInstance = $modal.open({
 			animation: true,
-			templateUrl: 'js/purchase/modalView.html',
+			templateUrl: 'js/purchase/modalSongView.html',
 			controller: 'ModalInstanceCtrl',
 			size: 'lg',
 			windowClass: 'center-modal'
