@@ -51,12 +51,21 @@ router.post('/removeAlbum', function(req, res, next){
         })
 })
 
-// router.post('/addSong', function(req, res){
-//     Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'songs': {'song': req.body.songId, 'price': 152, 'quantiy'}}).exec()
-//         .then(function(){
-//             res.status(200).send('')
-//         })
-// })
+//add song to a user's cart
+router.post('/addSong', function(req, res){
+    Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'songs': {'song': req.body.songId, 'price': req.body.price, 'quantity': 1}}}).exec()
+        .then(function(){
+            res.status(200).send('')
+        })
+})
+
+//add album to a user's cart
+router.post('/addAlbum', function(req, res){
+    Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'albums': {'album': req.body.albumId, 'price': req.body.price, 'quantity': 1}}}).exec()
+        .then(function(){
+            res.status(200).send('')
+        })
+})
 
 // router.post('/add')
 

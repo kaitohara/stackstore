@@ -45,6 +45,18 @@ app.factory('Cart', function ($http){
 			return $http.post('/api/orders/removeAlbum', {orderId: orderId, pullId:pullId}).then(function(response){
 				console.log('removeItem', response.data)
 			})
+		},
+		addSong2Cart: function(orderId, songId, qty, price){
+			console.log('song added ', orderId, songId)
+			return $http.post('/api/orders/addSong', {orderId: orderId, songId:songId, price: price}).then(function(){
+				return console.log('added succesfully?!')
+			})
+		},
+		addAlbum2Cart: function(orderId, albumId, qty, price){
+			console.log('album added ', orderId, albumId)
+			return $http.post('/api/orders/addAlbum', {orderId: orderId, albumId:albumId, price: price}).then(function(){
+				return console.log('added succesfully?!')
+			})
 		}
 		// addSong: function(orderId, song){
 
