@@ -73,13 +73,12 @@ var schema = new mongoose.Schema({
     }
 });
 
-
-
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
-function generateSalt() {
+var generateSalt = function () {
     return crypto.randomBytes(16).toString('base64');
 };
+
 
 var encryptPassword = function(plainText, salt) {
     var hash = crypto.createHash('sha1');
@@ -93,6 +92,7 @@ schema.pre('save', function(next) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
+
     var user = this;
     if (!this.cart) {
         Order.create().then(function(newOrder) {
@@ -105,6 +105,13 @@ schema.pre('save', function(next) {
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
 
+schema.method('tokenUrl', function(email){
+    return this.constructor.encryptPassword(email, this.salt);
+});
+
+schema.method('verifyTokenUrl', function(token){
+   return this.tokenUrl(this.email) === token;
+});
 schema.method('correctPassword', function(candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });

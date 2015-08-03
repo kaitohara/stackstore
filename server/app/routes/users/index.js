@@ -6,7 +6,31 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var emailer = require('../../email');
 
-var path = require('path');
+router.get('/activate/:email/:token', function(req, res, next) {
+    User.findOne({'email': req.params.email})
+        .exec()
+        .then(function(user){
+            if(user && user.verifyTokenUrl(req.params.token)) {
+                user.active=true;
+                return user.save();
+            }
+            else { next() }
+          })
+        .then(function(savedUser){
+            // async save chaining for success
+            if(savedUser) {
+                console.log('this is the saved user', savedUser);
+                res.json(savedUser);
+            }
+            else {
+                next();
+            }
+        })
+        .then(null, function(err){
+            console.log('what is this error!!!', err);
+            next(err);
+        });
+});
 
 router.get('/', function(req, res, next) {
     User.find(req.query).exec()
@@ -19,11 +43,15 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     User.create(req.body)
         .then(function(user) {
-
-            console.log(user);
-            emailer(user.email,user.email);
-            res.status(201).json(user)
-
+            if(user) {
+                var token = user.tokenUrl(user.email);
+                var root = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
+                emailer(user.email, user.email, root, 'Welcome to Stackify');
+                res.status(201).json(user);
+            }
+            else {
+                next();
+            }
         })
         .then(null, next);
 });
@@ -61,7 +89,7 @@ router.get('/:id/profile', function(req, res, next) {
     })
 });
 
-router.get('/:id/cart', function(req, res) {
+router.get('/:id/cart', function(req, res, next) {
     User.deepPopulate(req.user, [
         'cart',
         'cart.albums.album',

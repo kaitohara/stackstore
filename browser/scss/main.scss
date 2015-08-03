@@ -1,5 +1,5 @@
 $border-grey: #dddddd;
-$stackify-green: #00f482; 
+$stackify-green: #00f482;
 // #DF2B30
 
 * {
@@ -52,3 +52,4 @@ textarea.form-control {
 @import "tutorial/main";
 @import "login/main";
 @import "products/song";
+@import "signup/main";

@@ -27,6 +27,7 @@ router.post('/', function(req, res, next) {
 // get album by id and save for later
 router.param('id', function(req, res, next, id) {
     Album.findById(id).populate('songs reviews artist').exec()
+
         .then(function(album) {
             if (!album) throw Error('Not Found');
             req.album = album;

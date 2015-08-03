@@ -17,34 +17,34 @@
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-   (function() {
-      var script = document.createElement('script');
- 
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = 'http://sd.toneden.io/production/toneden.loader.js'
- 
-      var entry = document.getElementsByTagName('script')[0];
-      entry.parentNode.insertBefore(script, entry);
-   }());
- 
-   ToneDenReady = window.ToneDenReady || [];
-   ToneDenReady.push(function() {
-      // This is where all the action happens:
-      ToneDen.player.create({
-         dom: '#player',
-         urls: [
-            
-         ],
-         skin:'dark'
-      });
-   });
-</script>
+        (function() {
+            var script = document.createElement('script');
+
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+
+            var entry = document.getElementsByTagName('script')[0];
+            entry.parentNode.insertBefore(script, entry);
+        }());
+
+        ToneDenReady = window.ToneDenReady || [];
+        ToneDenReady.push(function() {
+            // This is where all the action happens:
+            ToneDen.player.create({
+                dom: '#player',
+                urls: [
+
+                ],
+                skin:'dark'
+            });
+        });
+    </script>
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp">
-    <navbar></navbar>
-    <live-search></live-search>
-    <div id="main" ui-view></div>
+<navbar></navbar>
+<live-search></live-search>
+<div id="main" ui-view></div>
 </body>
 </html>

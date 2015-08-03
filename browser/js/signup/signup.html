@@ -1,0 +1,19 @@
+<form ng-show="show" id="signup-form" name="signUpForm" ng-submit="signUpForm.$valid && signUpUser(user)">
+    <alert type="danger" ng-show="error">
+        {{ error }}
+    </alert>
+
+    <div class="form-group">
+        <label for="user-email">Email address</label>
+        <input type="text" ng-model="user.email" class="form-control" id="user-email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="user-password">Password</label>
+        <input type="password" ng-model="user.password" class="form-control" id="user-password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<progressbar ng-show="!show" class="progress-striped active" value="100" type="info">info</></progressbar>
+
+
