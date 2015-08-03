@@ -39,31 +39,29 @@ app.controller('AdminProductCtrl', ['$scope', 'songs', 'albums', 'AdminFactory',
 		}
 		$scope.creatingCategory = !$scope.creatingCategory;
 	};
-	$scope.submit = function(type, data) {
-		console.log(type, data);
-		if (type === 'category') {
-			// submit category
-			AdminFactory.createCategory(data)
-				.then(function(cat) {
-					console.log('successful', cat);
-				});
-		} else if (type === 'song'){
-			// submit song
-			AdminFactory.createSong(data)
-				.then(function(song) {
-					console.log('successful', song);
-					$scope.songs.push(song);
-				});
-		} else if (type === 'album'){
-			// submit album
-			// AdminFactory.createAlbum(data)
-			// 	.then(function(album) {
-			// 		console.log('successful', album);
-			// 		$scope.albums.push(album);
-			// 	});
-			$scope.albums.push({title: 'jack made this', artist: 'jack', year: '1994', songs: [1]});
-			$scope.newAlbum = {};
-		}
+
+	$scope.submitCategory = function(data) {
+		console.log('making category', data);
+		AdminFactory.createCategory(data)
+			.then(cat => console.log('successful', cat));
+	};
+
+	$scope.submitSong = function(data) {
+		AdminFactory.createSong(data)
+			.then(data => {
+				console.log('success', song);
+				$scope.songs.push(song);
+			});
+	};
+
+	$scope.submitAlbum = function(data) {
+		console.log('submitting album', data);
+		AdminFactory.createAlbum(data)
+			.then(res => {
+				$scope.albums.push({title: 'jack made this', artist: 'jack', year: '1994', songs: [1]});
+				$scope.newAlbum = {};
+				return res.data;
+			});
 	};
 
 }]);

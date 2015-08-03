@@ -15,34 +15,9 @@
 <div class="row">
 	<div class="col-xs-12">
 		<h2><a ng-click="toggleCreateAlbum()">Add an album</a></h2>
-		<form ng-show="createAlbum" role="form" name="albumForm" ng-submit="submit(type, newAlbum)">
-			<h3>New Album</h3>
-			<div class="form-group">
-				<label>Album Title</label>
-				<input name="title" type="text" class="form-control" ng-model="newAlbum.title" placeholder="What should it be called">
-			</div>
-			<div class="row">
-				<div class="col-sm-3 col-xs-6 form-group">
-					<label for="page_title">Artist</label>
-					<input name="artist" type="text" class="form-control" ng-model="newAlbum.artist" placeholder="DC" required>
-				</div>
-				<div class="col-sm-3 col-xs-6 form-group">
-					<label for="page_title">Photo</label>
-					<input name="page_title" type="text" class="form-control" ng-model="newAlbum.photo" placeholder="album cover photo" required>
-				</div>
-				<div class="col-sm-2 col-xs-4 form-group">
-					<label ng-click="debug()" for="page_title">Year</label>
-					<input name="year" type="number" class="form-control" ng-model="newAlbum.year" required>
-				</div>
-				<div class="col-sm-4 col-xs-8 form-group">
-					<label for="page_title">Price</label>
-				    <div class="input-group">
-				      <div class="input-group-addon">$</div>
-				      <input type="text" class="form-control" ng-model="newAlbum.price" placeholder="Amount" required>
-				    </div>
-				</div>
-			</div>
-			<button class="btn btn-primary" type="submit">Submit</button>
-		</form>
+		<div ng-show="createAlbum">
+			<h2>Make a new album</h2>
+			<album-form submit="createAlbum(album)"></album-form>
+		</div>
 	</div>
 </div>
