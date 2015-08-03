@@ -1,16 +1,30 @@
-#live-search {
-  background-color: #2E312D;
-  height: 500px;
-  width: 100%;
-  color: white;
+#live-search{
+    background-color:#252d30;
+    height:500px;
+    width:100%;
+    color:white;
+  }
   .search-item {
-    border: 1px solid white;
-    width: 250px;
-    height: 300px;
-    display: inline-block;
+    // border:1px solid white;
+    width:250px;
+    height:350px;
+    display:inline-block;
     margin: 10px 10px 90px 10px;
+    background-color: #14191B;
+    border-radius:1px
   }
   .search-list {
     list-style: none;
+    color:#DFE0E6;
+    a {
+      color:#DFE0E6;
+    }
   }
-}
+
+  .search-item-content {
+    padding: 25px;
+    height: 340px;
+  }
+  .search-photo {
+    padding-bottom:10px;
+  }

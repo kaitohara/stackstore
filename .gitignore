@@ -2,7 +2,7 @@
 bower_components
 node_modules
 npm-debug.log
-public/main.js
-public/style.css
+public
 .DS_Store
 coverage
+keys

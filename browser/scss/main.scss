@@ -1,12 +1,15 @@
 $border-grey: #dddddd;
-$stackify-green: #2ed465;
+$stackify-green: #00f482; 
+// #DF2B30
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  background: #FFFFFF;
+  // background:#181919;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @mixin clearfix {
@@ -29,8 +32,23 @@ body {
   padding-top: 60px;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.sidebar {
+  overflow-y: scroll;
+  height: calc(100vh - 300px);
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";
 @import "tutorial/main";
 @import "login/main";
+@import "products/song";

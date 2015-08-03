@@ -6,7 +6,8 @@ app.directive('userElem', function(AdminFactory) {
 			user: '=',
 			change: '&',
 			delete: '&',
-			reset: '&'
+			reset: '&',
+			seller: '&'
 		}
 	};
 });

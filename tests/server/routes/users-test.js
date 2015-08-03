@@ -242,12 +242,16 @@ describe('Users Route', function () {
 		agent.put('/api/users/' + user._id)
 			.expect(200)
 			.send({
-				email: 'updated@views'
+				email: 'updated@user.com'
 			})
 			.end(function(err, res) {
 				if (err) return done(err);
-				expect(res.body.email).to.equal('updated@views');
-				done();
+				expect(res.body.email).to.equal('updated@user.com');
+				User.findById(user._id).exec()
+					.then(function(u) {
+						expect(u.email).to.equal('updated@user.com');
+						done();
+					});
 			});
 	});
 

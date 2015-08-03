@@ -36,6 +36,13 @@ app.factory('AdminFactory', ['$http', function($http){
 			});
 	};
 
+	fact.changeSeller = function(userId, status) {
+		return $http.put('/api/users/' + userId, {isSeller: status})
+			.then(function(res) {
+				return res.data;
+			});
+	};
+
 	fact.deleteUser = (userId) => {
 		return $http.delete('/api/users/' + userId)
 			.then(res => res.data);

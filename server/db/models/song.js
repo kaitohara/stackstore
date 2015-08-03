@@ -6,8 +6,7 @@ var deepPopulate = require('mongoose-deep-populate');
 var schema = new mongoose.Schema({
 	title: {
 		type: String,
-		required: true,
-		unique: true
+		required: true
 	},
 	price: {
 		type: Number,
@@ -38,18 +37,21 @@ var schema = new mongoose.Schema({
 	},
 	url: {
 		type: String
+	},
+	// true if only available on a seller's store
+	storeExclusive: {
+		type: Boolean,
+		default: false
 	}
 });
 
 schema.statics.getAllReviews = function(){
-    schema
-        .find({})
-        .deepPopulate(songs, 'review.auther', function(err, _songs){
+    schema.find({})
+    	.deepPopulate(songs, 'review.author', function(err, _songs){
             songs.forEach(function(song){
                 return song;
-            })
+            });
         });
-
-}
+};
 
 mongoose.model('Song', schema);

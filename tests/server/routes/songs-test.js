@@ -203,7 +203,11 @@ describe('Songs Route', function () {
 				if (err) return done(err);
 				console.log('res', res.body);
 				expect(res.body.title).to.equal('this is a new title');
-				done();
+				Song.findById(song._id).exec()
+					.then(function(s) {
+						expect(s.title).to.equal('this is a new title');
+						done();
+					});
 			});
 	});
 

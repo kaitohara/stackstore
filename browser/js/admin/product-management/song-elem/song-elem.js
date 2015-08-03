@@ -3,7 +3,9 @@ app.directive('songElem', function() {
 		restrict: 'E',
 		templateUrl: 'js/admin/product-management/song-elem/song-elem.html',
 		scope: {
-			song: '='
+			song: '=',
+			admin: '@',
+			edit: '&'
 		}
 	};
 });

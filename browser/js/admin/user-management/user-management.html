@@ -4,6 +4,6 @@
 	<input ng-model="userFilter">
 	<!-- <p>function: {{changeStatus}}</p> -->
 	<div ng-repeat="user in filteredUsers = (users | filter:userFilter)">
-		<user-elem user="user" change="changeStatus(user, status)" delete="deleteUser(user)" reset="resetPassword(user)"></user-elem>
+		<user-elem user="user" change="changeStatus(user, status)" delete="deleteUser(user)" reset="resetPassword(user)" seller="changeSeller(user, status)"></user-elem>
 	</div>
 </div>

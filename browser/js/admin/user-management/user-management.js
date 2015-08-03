@@ -22,6 +22,17 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 			.then(function() {
 				console.log('success');
 				user.isAdmin = status;
+				// // let app know user's status has changed (and they are the active)
+				// if (user._id === )
+                // $rootScope.$broadcast(AUTH_EVENTS.statusChange, user);
+			});
+	};
+	$scope.changeSeller = function(user, status) {
+		console.log('changin status to: ', status, 'for: ', user.name);
+		AdminFactory.changeSeller(user._id, status)
+			.then(function() {
+				console.log('success - seller');
+				user.isSeller = status;
 			});
 	};
 	$scope.deleteUser = function(user) {

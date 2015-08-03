@@ -8,6 +8,7 @@ app.config(function ($stateProvider) {
 		resolve: {
 			song: function(Song, $stateParams) {
 				return Song.getSong($stateParams.id).then(function(data){
+					console.log('data', data)
 					return data;
 				})
 			}
