@@ -78,5 +78,10 @@ app.factory('EditFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.getGenreByName = function(name) {
+		return $http.get('/api/genres/' + name)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

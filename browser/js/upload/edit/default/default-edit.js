@@ -20,6 +20,11 @@ app.controller('EditDefaultCtrl', ['$scope', 'EditFactory', 'AuthService', funct
 			.then(user => {
 				albumData.artist = user.artistProfile;
 				console.log(albumData);
+				return EditFactory.getGenreByName(albumData.genre);
+			})
+			.then(genre => {
+				albumData.genre = genre._id;
+				console.log('updated album data', albumData);
 				return EditFactory.createAlbum(albumData);
 			})
 			.then(res => console.log('done'));
