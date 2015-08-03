@@ -50,5 +50,5 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 		}, function(){
 		});
 	};
-	// initToneden();
+	initToneden();
 });
