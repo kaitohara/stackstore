@@ -6,15 +6,23 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('EditDefaultCtrl', ['$scope', 'EditFactory', function($scope, EditFactory){
+app.controller('EditDefaultCtrl', ['$scope', 'EditFactory', 'AuthService', function($scope, EditFactory, AuthService){
 	console.log('ran edit default crtl');
 	$scope.createSong = false;
 	$scope.createAlbum = false;
 
+	/// the logged in user has to be the artist
 	$scope.createAlbum = function(albumData) {
 		albumData.storeExclusive = true;
-		console.log(albumData);
-		EditFactory.createAlbum(albumData);
+		albumData.songs = [];
+		// attach logged in seller as the artist
+		AuthService.getLoggedInUser()
+			.then(user => {
+				albumData.artist = user.artistProfile;
+				console.log(albumData);
+				return EditFactory.createAlbum(albumData);
+			})
+			.then(res => console.log('done'));
 	};
 	$scope.toggleCreateSong = function() {
         $scope.createSong = !$scope.createSong;
