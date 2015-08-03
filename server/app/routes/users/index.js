@@ -54,7 +54,7 @@ router.get('/:id/profile', function(req, res, next) {
     })
 });
 
-router.get('/:id/cart', function(req, res) {
+router.get('/:id/cart', function(req, res, next) {
     User.deepPopulate(req.user, [
         'cart',
         'cart.albums.album',
