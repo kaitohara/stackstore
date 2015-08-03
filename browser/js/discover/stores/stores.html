@@ -26,7 +26,7 @@
 			<input ng-model="albumFilter">
 			<div class="sidebar">
 				<div class="list-group" ng-repeat="album in filteredAlbums = (store.albums | filter:albumFilter)">
-					<album-elem album="album" admin="false" edit="albumView(alb)"></album-elem>
+					<album-elem album="album" admin="false" edit="albumView(album)"></album-elem>
 				</div>
 			</div>
 		</div>
