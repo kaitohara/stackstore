@@ -22,6 +22,15 @@ router.post('/', function(req, res, next) {
         .then(null, next);
 });
 
+// get all stores populated with owners
+router.get('/populated', function(req, res, next) {
+    Store.find(req.query).populate('owner').exec()
+        .then(function(stores) {
+            res.json(stores);
+        })
+        .then(null, next);
+});
+
 router.get('/url/:url', function(req, res, next) {
     Store.findOne({url: req.params.url}).exec()
         .then(function(store) {

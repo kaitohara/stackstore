@@ -1,0 +1,15 @@
+<div ng-hide="deleted" class="panel panel-primary">
+	<div ng-if="admin">
+		<button class="btn btn-danger">Delete</button>
+		<button class="btn btn-info">Update</button>
+	</div>
+	<div class="panel-body">
+		<img class="elem-thumb" src="http://lorempixel.com/200/200/abstract">
+	</div>
+	<div class="panel-footer">
+		<ul class="list-group">
+		    <li class="list-group-item">Name: {{store.name}}</li>
+		    <li class="list-group-item">Owner: {{store.owner.name}}</li>
+	    </ul>
+	</div>
+</div>

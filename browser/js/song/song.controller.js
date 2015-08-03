@@ -87,21 +87,4 @@ console.log('toneden player', ToneDen.player)
 	initToneden()
 });
 
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongInfo, Song, Cart){
-	Cart.getUser().then(function(data){
-		$scope.currentId = data;
-		Cart.getCart(data).then(function(cart){
-			$scope.cartId = cart._id;
-		})
-	})
-	$scope.ok = function(){
-		$modalInstance.close($scope.selected.item);
-	};
-	$scope.addToCart = function(){
-		Song.addSong2Cart($scope.cartId, $scope.song._id)
-		console.log('adding')
-		$modalInstance.dismiss('cancel')
-	};
-	$scope.song = shareSongInfo.getProperty()
-})
 

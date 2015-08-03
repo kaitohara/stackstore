@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-sm-8">
 		<div class="page-header">
+		  <button class="btn btn-info" ui-sref="discover.list">Return to List View</button>
 		  <button class="btn btn-success" ng-click="defaultView()">Default View</button>
 		  <h1>Store: {{store.name}} <small>owner: {{store.owner.name}}</small></h1>
 		</div>
@@ -26,7 +27,7 @@
 			<input ng-model="albumFilter">
 			<div class="sidebar">
 				<div class="list-group" ng-repeat="album in filteredAlbums = (store.albums | filter:albumFilter)">
-					<album-elem album="album" admin="false" edit="albumView(alb)"></album-elem>
+					<album-elem album="album" admin="false" edit="albumView(album)"></album-elem>
 				</div>
 			</div>
 		</div>

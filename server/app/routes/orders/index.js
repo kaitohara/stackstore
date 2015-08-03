@@ -111,16 +111,6 @@ router.post('/:orderId/addAlbum', function(req, res) {
         .then(null, next);
 })
 
-
-// router.post('/addSong', function(req, res){
-//     Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'songs': {'song': req.body.songId, 'price': 152, 'quantiy'}}).exec()
-//         .then(function(){
-//             res.status(200).send('')
-//         })
-// })
-
-// router.post('/add')
-
 router.put('/:orderId', function(req, res, next) {
     _.extend(req.orderItem, req.body);
     req.orderItem.save()

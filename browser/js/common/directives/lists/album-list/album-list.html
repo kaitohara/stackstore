@@ -1,0 +1,9 @@
+<label>Filter</label>
+<input ng-model="albumFilter">
+<div class="">
+	<ul class="search-list-scroll">
+		<li class="search-item-scroll" ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
+			<album-elem album="album" admin="admin"></album-elem>
+		</li>
+	</ul>
+</div>
