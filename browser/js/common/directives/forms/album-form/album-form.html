@@ -5,9 +5,15 @@
 		<input name="title" type="text" class="form-control" ng-model="newAlbum.title" placeholder="What should it be called">
 	</div>
 	<div class="row">
-		<div class="col-sm-3 col-xs-6 form-group">
+		<div ng-if="admin" class="col-sm-3 col-xs-6 form-group">
 			<label for="page_title">Artist</label>
 			<input name="artist" type="text" class="form-control" ng-model="newAlbum.artist" placeholder="DC" required>
+		</div>
+		<div class="col-sm-3 col-xs-6 form-group">
+			<label for="page_title">Genre</label>
+			<select class="form-control" ng-model="newAlbum.genre" required>
+				<option ng-repeat="genre in genres">{{genre.name}}</option>
+			</select>
 		</div>
 		<div class="col-sm-3 col-xs-6 form-group">
 			<label for="page_title">Photo</label>
