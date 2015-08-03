@@ -1,17 +1,12 @@
 app.config(['$stateProvider',function($stateProvider) {
 	$stateProvider.state('discover', {
+		abstract: true,
 		url: '/discover',
 		templateUrl: 'js/discover/discover.html',
-		controller: 'DiscoverCtrl',
-		resolve: {
-			stores: function(DiscoverFactory) {
-				return DiscoverFactory.getStores();
-			}
-		}
+		controller: 'DiscoverCtrl'
 	});
 }]);
 
-app.controller('DiscoverCtrl', ['$scope', 'stores', function($scope, stores){
-	$scope.stores = stores;
-	console.log('stores', stores);
+app.controller('DiscoverCtrl', ['$scope', function($scope){
+	// $state.go('discover.list');
 }]);

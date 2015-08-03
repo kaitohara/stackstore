@@ -28,24 +28,8 @@
 
 <hr>
 <h1>Albums:</h1>
-<label>Filter</label>
-<input ng-model="albumFilter">
-<div class="">
-	<ul class="search-list-scroll">
-		<li class="search-item-scroll" ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
-			<album-elem album="album" admin="true"></album-elem>
-		</li>
-	</ul>
-</div>
+<album-list albums="albums" admin="true"></album-list>
 
 <hr>
 <h1>Songs</h1>
-<label>Filter</label>
-<input ng-model="songFilter">
-<div>
-	<ul class="search-list-scroll">
-		<li class="search-item-scroll" ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
-			<song-elem song="song" admin="true"></song-elem>
-		</li>
-	</ul>
-</div>
+<song-list songs="songs" admin="true"></song-list>

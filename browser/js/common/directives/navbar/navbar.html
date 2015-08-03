@@ -8,6 +8,9 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <!-- hardcoded for now -->
+            <li>
+                <a ui-sref-active="active" ui-sref="discover.list">Discover</a>
+            </li>
             <li ng-show="user.isSeller">
                 <a ui-sref-active="active" ui-sref="upload">Upload</a>
             </li>
