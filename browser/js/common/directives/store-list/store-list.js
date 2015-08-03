@@ -1,10 +1,12 @@
 app.directive('storeList', function() {
 	return {
 		restrict: 'E',
-		// scope: {},
-		templateUrl: 'js/stores/stores.html',
+		templateUrl: 'js/common/directives/store-list/store-list.html',
+		scope: {
+			stores: '='
+		},
 		link: function(scope, elem, attrs) {
-			
+
 		}
 	};
 });

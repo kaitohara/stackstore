@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col-sm-8">
 		<div class="page-header">
-		  <button class="btn btn-success" ng-click="defaultEdit()">Default View</button>
-		  <h1>Store: {{store.name}} <small>owner: {{user.name}}</small></h1>
+		  <button class="btn btn-success" ng-click="defaultView()">Default View</button>
+		  <h1>Store: {{store.name}} <small>owner: {{store.owner.name}}</small></h1>
 		</div>
 		<ui-view></ui-view>
 	</div>
@@ -16,7 +16,7 @@
 			<input ng-model="songFilter">
 			<div class="sidebar">
 				<div class="list-group" ng-repeat="song in filteredSongs = (store.songs | filter:songFilter)">
-					<song-elem song="song" admin="false"></song-elem>
+					<song-elem song="song" admin="false" edit="songView(song)"></song-elem>
 				</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<input ng-model="albumFilter">
 			<div class="sidebar">
 				<div class="list-group" ng-repeat="album in filteredAlbums = (store.albums | filter:albumFilter)">
-					<album-elem album="album" admin="false"></album-elem>
+					<album-elem album="album" admin="false" edit="albumView(alb)"></album-elem>
 				</div>
 			</div>
 		</div>
