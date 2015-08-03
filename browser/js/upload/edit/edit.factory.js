@@ -44,6 +44,13 @@ app.factory('EditFactory', ['$http', function($http){
 			});
 	};
 
+	fact.saveToStore = function(albumId, store) {
+		var albumIds = store.albums.map(a => a._id);
+		var config = {albums: albumIds};
+		return $http.put('/api/stores/' + store._id, config)
+			.then(res => res.data);
+	};
+
 	fact.createAlbum = function(albumData) {
 		return $http.post('/api/albums', albumData)
 			.then(res => res.data);
@@ -75,6 +82,11 @@ app.factory('EditFactory', ['$http', function($http){
 		var songIds = album.songs.map(s => s._id);
 		var config = {songs: songIds};
 		return $http.put('/api/albums/' + album._id, config)
+			.then(res => res.data);
+	};
+
+	fact.getGenreByName = function(name) {
+		return $http.get('/api/genres/' + name)
 			.then(res => res.data);
 	};
 

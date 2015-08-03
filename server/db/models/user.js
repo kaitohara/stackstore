@@ -59,6 +59,10 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    artistProfile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Artist'
+    },
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Store'
