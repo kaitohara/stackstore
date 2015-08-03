@@ -1,7 +1,7 @@
 app.directive('songElem', function() {
 	return {
 		restrict: 'E',
-		templateUrl: 'js/admin/product-management/song-elem/song-elem.html',
+		templateUrl: 'js/common/directives/list-elements/song-elem/song-elem.html',
 		scope: {
 			song: '=',
 			admin: '@',
