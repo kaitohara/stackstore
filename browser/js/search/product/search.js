@@ -6,7 +6,20 @@ app.config(function ($stateProvider) {
 	});
 });
 
-
+//custom filter that allows 'OR' search with multiple keywords
+app.filter('searchFilter', function ($filter){
+	return function(items, search){
+		//split search terms by word 
+		var searchTerms = search.split(' ');
+		//apply filter on array for each search word
+		searchTerms.forEach(function(term){
+			if (term && term.length){
+				items = $filter('filter')(items, term)
+			}
+		})
+		return items;
+	}
+})
 
 app.controller('SearchCtrl', function ($scope, artists, albums, songs){
 
