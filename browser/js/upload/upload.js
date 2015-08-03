@@ -9,9 +9,13 @@ app.config(function ($stateProvider) {
                 return AuthService.getLoggedInUser();
             },
             store: function($http, user) {
-                console.log('inside the resolve function?', user);
-                return $http.get('/api/stores/' + user.store + '/populated')
-                    .then(res => res.data);
+                if (user.store) {
+                    return $http.get('/api/stores/' + user.store + '/populated')
+                        .then(res => res.data)
+                        .catch(() => null);
+                } else {
+                    return null;
+                }
             }
         }
     });
@@ -19,9 +23,10 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('UploadCtrl', function ($scope, $state, user, store) {
-    $scope.user = user;
-    $scope.store = store;
-    console.log(user);
-    console.log(store);
-
+    // if no existing store, users can make one
+    if (!store) {
+        $state.go('upload.create');
+    } else {
+        $state.go('upload.edit');
+    }
 });

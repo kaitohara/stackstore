@@ -204,6 +204,8 @@ function randStore() {
     var songList = exSongs;
     var albumList = exAlbums;
     var date = {};
+    var title = randTitle();
+    var url = title.toLowerCase().split(' ').join('_');
 
     return {
         songs: songList,
@@ -211,7 +213,8 @@ function randStore() {
         date: date,
         // only jack has a store - he's the third user, look below
         owner: users[2],
-        name: randTitle()
+        name: title,
+        url: url
     };
 }
 
@@ -225,6 +228,7 @@ var users = [{
     email: 'testing@fsa.com',
     password: 'password',
     name: "Test Em",
+    isSeller: true
 }, {
     email: 'obama@gmail.com',
     password: 'potus',
