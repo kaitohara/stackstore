@@ -8,14 +8,8 @@ app.config(function ($stateProvider) {
             user: function(AuthService) {
                 return AuthService.getLoggedInUser();
             },
-            store: function($http, user) {
-                if (user.store) {
-                    return $http.get('/api/stores/' + user.store + '/populated')
-                        .then(res => res.data)
-                        .catch(() => null);
-                } else {
-                    return null;
-                }
+            store: function(EditFactory, user) {
+                return EditFactory.getStore(user.store);
             }
         }
     });

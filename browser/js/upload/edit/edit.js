@@ -16,9 +16,9 @@ app.config(function ($stateProvider) {
     
 });
 
-app.controller('EditCtrl', function ($scope, $state, user, store) {
+app.controller('EditCtrl', function ($scope, $state, user, EditFactory) {
     $scope.user = user;
-    $scope.store = store;
+    $scope.store = EditFactory.currentStore;
     $scope.show = 'songs';
     $scope.createAlbum = false;
     $scope.createSong = false;
