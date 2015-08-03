@@ -15,14 +15,14 @@
                 <a ui-sref-active="active" ui-sref="upload">Upload</a>
             </li>
 
-            <li dropdown>
+            <!-- <li dropdown>
                 <a ui-sref-active="active" dropdown-toggle>{{searchCategory.label || 'Search'}}<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li ng-repeat="category in categories">
                         <a ui-sref="{{ category.state }}" ng-click="setSearchCategory(category)">{{ category.label }}</a>
                     </li>
                 </ul>
-            </li>
+            </li> -->
             <li ng-show="searchCategory.label">
                 <a class="glyphicon glyphicon-search">
                     <input type="text" class="search-text" maxlength="120"
@@ -36,7 +36,10 @@
             <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" ng-focus="expandSlider()" ng-blur="closeSlider()" placeholder="Search by artist, song or album" ng-change="update(search, !searchBar.$error.required)" required>
         </form>
         
+
+        <a ui-sref="cart">
         <span ui-sref="cart" class="glyphicon glyphicon-shopping-cart"></span>
+        </a>
 
         <ul class="nav welcome">
             <li ng-show="!user">
