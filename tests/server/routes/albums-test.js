@@ -221,7 +221,11 @@ describe('Albums Route', function () {
 				if (err) return done(err);
 				console.log('res', res.body);
 				expect(res.body.title).to.equal('this is a new title');
-				done();
+				Album.findById(album._id).exec()
+					.then(function(al) {
+						expect(al.title).to.equal('this is a new title');
+						done();
+					});
 			});
 	});
 

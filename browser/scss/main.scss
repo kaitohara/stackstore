@@ -1,12 +1,17 @@
 $border-grey: #dddddd;
-$stackify-green: #2ed465;
+$stackify-green: #00f482;
+
+// #DF2B30
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  background: #fdfdfd;
+  background: #FFFFFF;
+  // background:#181919;
+  // font-family: 'PT Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 @mixin clearfix {
@@ -29,9 +34,71 @@ body {
   padding-top: 60px;
 }
 
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.sidebar {
+  overflow-y: scroll;
+  height: calc(100vh - 300px);
+}
+
+.btn-stackify {
+  background-color: darken($stackify-green, 5%);
+  color: white;
+  border: 1px solid darken($stackify-green, 10%);
+  &:hover {
+    background: darken($stackify-green, 10%);
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+// #home {
+//   background-image: url('/music-background.jpg');
+//   // background-color: black;
+//   background-size: cover;
+//   // background-repeat: repeat;
+// }
+
+.search-list-scroll {
+  list-style: none;
+  color: black;
+  a {
+    // color:white;
+ 
+  }
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.search-item-scroll {
+  // border:1px solid white;
+  width: 300px;
+  display: inline-block;
+  margin: 10px 10px 90px 10px;
+  background-color: #14191B;
+  border-radius: 1px;
+  color: black;
+  li {
+    overflow-x: scroll;
+  }
+}
+
+.elem-thumb {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";
 @import "tutorial/main";
 @import "login/main";
 @import "signup/main";
+@import "products/song";
+@import "slick/slick"

@@ -1,0 +1,8 @@
+<div>
+	<h3>Songs</h3>
+	<ul>
+		<li ng-repeat="song in album.songs">
+			<p><a ng-click="goToSong(song)">{{song.title}}</a><button class="btn btn-xs btn-danger" ng-click="deleteSong(song)">X</button></p>
+		</li>
+	</ul>
+</div>

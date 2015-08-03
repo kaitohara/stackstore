@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-xs-12 page-header">
+		<h2>{{album.title}} <small>by {{album.artist.name}}</small></h2>
+		<button class="btn btn-primary" ng-click="defaultAlbum()">All songs</button>
+		<button class="btn btn-danger" ng-click="deleteAlbum()">Delete Album</button>
+	</div>
+	<div class="col-sm-6">
+		<h2><a ng-click="toggleCreateSong()">Add song to album</a></h2>
+		<div ng-show="createSong">
+			<song-form submit="createSong(song)"></song-form>
+		</div>
+		<ui-view></ui-view>
+	</div>
+	<div class="col-sm-6">
+		<img style="width:100%" ng-src="{{album.photo}}">
+	</div>
+</div>

@@ -1,14 +1,13 @@
 app.controller('navbarCtrl', function($scope, $rootScope) {
-    // var updateSearch = function(){
-    //     $scope.searchTerm = Search
-    // }
     $scope.search
     $scope.bool = false;
+    //Typing in the search box broadcasts what's being typed
+    //Search Slider = closed if search textbox = pristine
+    //Search Slider = expanded if search textbox = dirty
     $scope.update = function(val, bool) {
             $rootScope.$broadcast('searching', {
                 search: val
             })
-            console.log(bool, $scope.bool)
             if (bool !== $scope.bool) {
                 $scope.widgetExpanded = !$scope.widgetExpanded
                 $rootScope.$broadcast('clicked', {
@@ -16,24 +15,20 @@ app.controller('navbarCtrl', function($scope, $rootScope) {
                 })
             }
             $scope.bool = bool;
-
         }
-        // $scope.widgetExpanded = false;
-    $scope.click = function() {
-        console.log('ctrl click')
-        $scope.widgetExpanded = !$scope.widgetExpanded
+    
+    //Search slider closes if search bar loses focus
+    $scope.closeSlider = function(){
         $rootScope.$broadcast('clicked', {
-            clicked: $scope.widgetExpanded
+            clicked: false
         })
     }
-
-
-    // $scope.update = function(val){
-    //     Search.update(val)
-    //     console.log(val, Search.searchTerm)
-    //     console.log($scope.test)
-    // }
-    // $scope.$watch(Search.term, function(){
-    //     console.log('a')
-    // })
+    //If search bar already has text, clicking on it will expand it
+    $scope.expandSlider = function(){
+        if (!!$scope.search){
+           $rootScope.$broadcast('clicked', {
+            clicked: true
+        }) 
+        }
+    }
 })

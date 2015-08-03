@@ -219,7 +219,11 @@ describe('Orders Route', function () {
 			.end(function(err, res) {
 				if (err) return done(err);
 				expect(res.body.totalPrice).to.equal(555);
-				done();
+				Order.findById(order._id).exec()
+					.then(function(o) {
+						expect(o.totalPrice).to.equal(555);
+						done();
+					});
 			});
 	});
 

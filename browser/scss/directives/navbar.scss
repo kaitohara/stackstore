@@ -1,6 +1,6 @@
 navbar {
   display: block;
-  background: white;
+  background: #14191B;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
   .container {
@@ -28,7 +28,7 @@ navbar {
       cursor: pointer;
       transition: color 0.2s;
       font-weight: bold;
-      color: grey;
+      color: #FFFFFF;
       &:active {
         color: white;
         background: darken($stackify-green, 10%);
@@ -48,12 +48,16 @@ navbar {
     .search-text {
       border-radius:2px;
       border: 0;
-      border-bottom: 2px dashed grey;
-      font-size: 18px;
+      // border-bottom: 1px dashed grey;
+      font-size: 14px;
+      padding:5px 5px 5px 10px;
+      background-color:#14191B;
+      color:#FFFFFF;
+      outline:none;
     }
   }
   .glyphicon {
-    color: grey;
+    color: $stackify-green;
     font-weight: bold;
     text-decoration: none;
     &:hover {
@@ -80,24 +84,27 @@ navbar {
     }
     .signup-button {
       margin: 5px 10px;
-      background: $stackify-green;
+      background: #242D30;
       outline: none !important;
-      color: white;
+      border: 1px solid $stackify-green;
+      color: $stackify-green;
       font-weight: bold;
       &:hover {
         background: none;
-        border: 1px solid black;
-        color: $stackify-green;
+        background-color: $stackify-green;
+        color:white;
       }
     }
     .login-button {
       margin: 5px 10px;
-      border: 1px solid black;
+      border: 1px solid $stackify-green;
       background: none;
       font-weight: bold;
+      color:$stackify-green;
       outline: none !important;
       &:hover {
-        color: $stackify-green;
+        background-color: $stackify-green;
+        color:white;
       }
     }
   }

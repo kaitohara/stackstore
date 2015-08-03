@@ -1,4 +1,5 @@
-app.controller('AlbumCtrl', function ($scope, album, Artist, Review, Song){
+app.controller('AlbumCtrl', function ($scope, album, Artist, Review, Song, $modal, shareSongInfo){
+		
 	$scope.album = album;
 
 	Artist.getArtist($scope.album.artist).then(function(data){
@@ -18,7 +19,20 @@ app.controller('AlbumCtrl', function ($scope, album, Artist, Review, Song){
 		$scope.songs = data;
 	})
 
+	shareSongInfo.setProperty(album)
 
+	$scope.openModal = function(){
+		var modalInstance = $modal.open({
+			animation: true,
+			templateUrl: 'js/purchase/modalAlbumView.html',
+			controller: 'ModalInstanceCtrl',
+			size: 'lg',
+			windowClass: 'center-modal'
+		})
+		modalInstance.result.then(function(){
+		}, function(){
+		});
+	};
 
 	// $scope.getAlbumArtist = function(){
 	// 	Artist.getArtist($scope.album.artist).then(function(data){

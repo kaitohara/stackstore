@@ -101,7 +101,11 @@ describe('Artists Route', function () {
 				if (err) return done(err);
 				console.log('res', res.body);
 				expect(res.body.name).to.equal('updated artist');
-				done();
+				Artist.findById(artist._id).exec()
+					.then(function(a) {
+						expect(a.name).to.equal('updated artist');
+						done();
+					});
 			});
 	});
 

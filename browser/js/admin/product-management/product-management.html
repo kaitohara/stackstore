@@ -12,74 +12,24 @@
 	</div>
 	<div ng-if="creatingCategory">
 		<h2>Make a category!</h2>
-		<form role="form" ng-submit="submit('category', genre)">
-			<div class="form-group">
-				<label>Genre Name</label>
-				<input name="name" type="text" class="form-control" ng-model="genre.name" placeholder="What should it be called">
-			</div>
-			<button class="btn btn-primary" type="submit">Submit</button>
-		</form>
+		<category-form submit="submitCategory(category)"></category-form>
 	</div>
 	<div ng-if="creatingProduct">
 		<h2>Make a product!</h2>
 		<h2>New <a ng-click="type='song'">Song</a> or <a ng-click="type='album'">Album</a></h2>
 		<div ng-if="type==='song'">
-			<form role="form" name="songForm" ng-submit="submit(type, newSong)">
-				<h3>New Song</h3>
-				<div class="form-group">
-					<label>Song Title</label>
-					<input name="title" type="text" class="form-control" ng-model="newSong.name" placeholder="What should it be called">
-				</div>
-				<button class="btn btn-primary" type="submit">Submit</button>
-			</form>
+			<song-form submit="submitSong(song)"></song-form>
 		</div>
 		<div ng-if="type==='album'">
-			<form role="form" name="albumForm" ng-submit="submit(type, newAlbum)">
-				<h3>New Album</h3>
-				<div class="form-group">
-					<label>Album Title</label>
-					<input name="title" type="text" class="form-control" ng-model="newAlbum.title" placeholder="What should it be called">
-				</div>
-				<div class="row">
-					<div class="col-sm-3 col-xs-6 form-group">
-						<label for="page_title">Artist</label>
-						<input name="artist" type="text" class="form-control" ng-model="newAlbum.artist" placeholder="DC" required>
-					</div>
-					<div class="col-sm-3 col-xs-6 form-group">
-						<label for="page_title">Photo</label>
-						<input name="page_title" type="text" class="form-control" ng-model="newAlbum.photo" placeholder="album cover photo" required>
-					</div>
-					<div class="col-sm-2 col-xs-4 form-group">
-						<label ng-click="debug()" for="page_title">Year</label>
-						<input name="year" type="number" class="form-control" ng-model="newAlbum.year" required>
-					</div>
-					<div class="col-sm-4 col-xs-8 form-group">
-						<label for="page_title">Price</label>
-					    <div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="text" class="form-control" ng-model="newAlbum.price" placeholder="Amount" required>
-					    </div>
-					</div>
-				</div>
-				<button class="btn btn-primary" type="submit">Submit</button>
-			</form>
+			<album-form submit="submitAlbum(album)"></album-form>
 		</div>
 	</div>
 </div>
 
-<div class="col-sm-6">
-	<h1>Songs</h1>
-	<label>Filter</label>
-	<input ng-model="songFilter">
-	<div ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
-		<song-elem song="song"></song-elem>
-	</div>
-</div>
-<div class="col-sm-6">
-	<h1>Albums</h1>
-	<label>Filter</label>
-	<input ng-model="albumFilter">
-	<div ng-repeat="album in filteredAlbums = (albums | filter:albumFilter)">
-		<album-elem album="album"></album-elem>
-	</div>
-</div>
+<hr>
+<h1>Albums:</h1>
+<album-list albums="albums" admin="true"></album-list>
+
+<hr>
+<h1>Songs</h1>
+<song-list songs="songs" admin="true"></song-list>

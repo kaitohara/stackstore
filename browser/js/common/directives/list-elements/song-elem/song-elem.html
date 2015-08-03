@@ -1,0 +1,16 @@
+<div class="panel panel-primary" ng-click="edit({song:song})">
+	<div ng-if="admin">
+		<button class="btn btn-danger">Delete</button>
+		<button class="btn btn-info">Update</button>
+	</div>
+	<div class="panel-body">
+		<img class="elem-thumb" ng-src="{{song.album.photo}}">
+	</div>
+	<div class="panel-footer">
+		<ul class="list-group">
+		    <li class="list-group-item">Title: {{song.title}}</li>
+		    <li class="list-group-item">Artist: {{song.artist.name}}</li>
+		    <li class="list-group-item">Album: {{song.album.title}}</li>
+	    </ul>
+	</div>
+</div>
