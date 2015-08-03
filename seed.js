@@ -360,7 +360,18 @@ exSongs.forEach(function(song, idx) {
 });
 console.log('-finished assigning exclusive albums-');
 
-var all = users.concat(artists, reviews, genres, songs, albums, orders, exSongs, exAlbums, stores);
+console.log('-making artist profiles for sellers-');
+var sellers = users.filter(function(us) {return us.isSeller;});
+var artistProfiles = [];
+sellers.forEach(function(seller) {
+    var newArtist = new Artist({name: seller.name});
+    artistProfiles.push(newArtist);
+    seller.artistProfile = newArtist;
+});
+console.log('-finsihed making artist profiles for sellers-');
+
+
+var all = users.concat(artists, reviews, genres, songs, albums, orders, exSongs, exAlbums, stores, artistProfiles);
 var models = [User, Artist, Review, Genre, Song, Album, Order, Store];
 
 console.log('-removing-');
