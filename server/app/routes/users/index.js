@@ -54,8 +54,7 @@ router.get('/:id/profile', function(req, res, next) {
     })
 });
 
-//Get a unique user's cart
-router.get('/:id/cart', function(req, res) {
+router.get('/:id/cart', function(req, res, next) {
     User.deepPopulate(req.user, [
         'cart',
         'cart.albums.album',
@@ -64,7 +63,8 @@ router.get('/:id/cart', function(req, res) {
         'cart.albums.album.artist',
         'cart.songs.song.artist',
         'cart.albums.album.genre',
-        'cart.songs.song.genre'
+        'cart.songs.song.genre',
+        'cart.songs.song.album'
     ], function(err, user) {
         if (err) next(err)
         res.json(user.cart)

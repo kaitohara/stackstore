@@ -8,8 +8,8 @@ var schema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        // emails should have a @ symbol
-        validate: /.+@.+/
+        // validate emails - from here: http://regexlib.com/REDetails.aspx?regexp_id=26
+        validate: /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
     },
     password: {
         type: String
@@ -53,6 +53,19 @@ var schema = new mongoose.Schema({
     resetPassword: {
         type: Boolean,
         default: false
+    },
+    // -- multitenancy
+    isSeller: {
+        type: Boolean,
+        default: false
+    },
+    artistProfile: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Artist'
+    },
+    store: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Store'
     }
 });
 
@@ -74,11 +87,11 @@ schema.pre('save', function(next) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
-    var user = this
+    var user = this;
     if (!this.cart) {
         Order.create().then(function(newOrder) {
-            user.cart = newOrder._id
-        })
+            user.cart = newOrder._id;
+        });
     }
     next();
 });
@@ -91,23 +104,25 @@ schema.method('correctPassword', function(candidatePassword) {
 });
 
 schema.method.setAdmin = function(isAdmin) {
-    this.isAdmin = isAdmin
-}
+    this.isAdmin = isAdmin;
+};
 
 schema.method.finishCurrentOrder = function(newOrderStatus) {
-    var user = this
-    Order.findById(user.cart).exec().then(function(cart) {
-        cart.orderStatus = newOrderStatus
-        cart.date.finished = Date.now()
-        cart.save()
-            .then(function(savedCart) {
-                user.pastOrderList.push(user.cart)
-                Order.create().then(function(newCart) {
-                    user.cart = newCart._id
-                })
-            })
+    var user = this;
+    return Order.findById(user.cart).exec()
+    .then(function(cart) {
+        cart.orderStatus = newOrderStatus;
+        cart.date.finished = Date.now();
+        return cart.save();
     })
-}
+    .then(function(savedCart) {
+        user.pastOrderList.push(user.cart);
+        return Order.create();
+    })
+    .then(function(newCart) {
+        user.cart = newCart._id;
+    });
+};
 
 schema.plugin(deepPopulate);
 

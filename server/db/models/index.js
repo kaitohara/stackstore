@@ -8,3 +8,4 @@ require('./genre');
 require('./order');
 require('./user');
 require('./review');
+require('./store');

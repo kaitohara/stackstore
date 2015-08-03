@@ -21,10 +21,13 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
+            // }, {
+                // label: 'Upload',
+                // state: 'upload',
+                // auth: false
             }, {
-                label: 'Upload',
-                state: 'upload',
-                auth: true
+                label: 'St',
+                state: 'stores',
             }];
 
 
@@ -58,11 +61,17 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 scope.user = null;
             };
 
+            var updateUser = function(user) {
+                console.log('responding to broadcast', user);
+                scope.user = user;
+            };
+
             setUser();
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
             $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
+            $rootScope.$on(AUTH_EVENTS.statusChange, updateUser);
 
         }
 

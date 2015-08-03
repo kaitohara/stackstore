@@ -32,17 +32,21 @@ var Genre = mongoose.model('Genre');
 var Song = mongoose.model('Song');
 var Album = mongoose.model('Album');
 var Order = mongoose.model('Order');
+var Store = mongoose.model('Store');
 
 // constants for generation
 var numArtists = 20;
 var numSongs = 100;
+var numExSongs = 15;
 var numReviews = 150;
 var numGenres = 5;
 var numOrders = 16;
 var songsPerAlbum = 5;
 var reviewsPerAlbum = 3;
 var ordersPerUser = 4;
+var storesPerUser = 1;
 var numAlbums = Math.ceil(numSongs / songsPerAlbum);
+var numExAlbums = Math.ceil(numExSongs / songsPerAlbum);
 
 
 function randTitle() {
@@ -135,6 +139,30 @@ function randAlbum(n) {
     };
 }
 
+function randExAlbum(n) {
+    var auth = chance.pick(artists);
+    var genre = chance.pick(genres);
+    var albumSongs = exSongs.slice(n * songsPerAlbum, (n + 1) * songsPerAlbum);
+    var review = reviews.slice(n * reviewsPerAlbum, (n + 1) * reviewsPerAlbum);
+    return {
+        title: randTitle(),
+        photo: "http://lorempixel.com/200/200",
+        price: chance.floating({
+            fixed: 2,
+            max: 1000,
+            min: 0
+        }),
+        year: chance.year(),
+        artist: auth,
+        downloads: chance.d20(),
+        cap: 1000,
+        genre: genre,
+        songs: albumSongs,
+        reviews: review,
+        storeExclusive: true
+    };
+}
+
 function randOrder() {
     var totalPrice = 0;
     var songList = chance.pick(songs, 4);
@@ -172,6 +200,24 @@ function randOrder() {
     };
 }
 
+function randStore() {
+    var songList = exSongs;
+    var albumList = exAlbums;
+    var date = {};
+    var title = randTitle();
+    var url = title.toLowerCase().split(' ').join('_');
+
+    return {
+        songs: songList,
+        albums: albumList,
+        date: date,
+        // only jack has a store - he's the third user, look below
+        owner: users[2],
+        name: title,
+        url: url
+    };
+}
+
 console.log('---seeding---');
 
 console.log('-generating users-');
@@ -182,6 +228,7 @@ var users = [{
     email: 'testing@fsa.com',
     password: 'password',
     name: "Test Em",
+    isSeller: true
 }, {
     email: 'obama@gmail.com',
     password: 'potus',
@@ -191,7 +238,8 @@ var users = [{
     email: 'jack@mulrow.com',
     password: 'jack',
     name: "Jack Mulrow",
-    isAdmin: true
+    isAdmin: true,
+    isSeller: true
 }, {
     email: 'kaito@hara.com',
     password: 'kaito',
@@ -264,9 +312,67 @@ songs.forEach(function(song, idx) {
 });
 console.log('-finished assigning albums-');
 
+console.log('-generating exclusive songs-');
+var exSongs = _.times(numExSongs, randSong)
+    .map(function(datum) {
+        return new Song(datum);
+    });
+exSongs.forEach(function(song) {
+        song.storeExclusive = true;
+    });
+console.log('-done generating exclusive songs-');
 
-var all = users.concat(artists, reviews, genres, songs, albums, orders);
-var models = [User, Artist, Review, Genre, Song, Album, Order];
+console.log('-generating exclusive albums-');
+var exAlbums = _.times(numExAlbums, randExAlbum)
+    .map(function(datum) {
+        return new Album(datum);
+    });
+console.log('-done generating exclusive albums-');
+
+console.log('-generating stores-');
+var stores = _.times(1, randStore)
+    .map(function(datum) {
+        return new Store(datum);
+    });
+console.log('-done generating stores-');
+
+
+
+console.log('-assign stores to users-');
+// each seller has a store (only jack right now)
+// var sellers = users.filter(function(user) {return user.isSeller;});
+// sellers.forEach(function(user, idx) {
+//         user.store = stores[idx];
+//     });
+// ++ hardcoded ++
+// jack has the only store
+users[2].store = stores[0]._id;
+console.log('-finished assigning stores-');
+
+console.log('-assign exclusive albums to exclusive songs-');
+exSongs.forEach(function(song, idx) {
+    var alb = exAlbums.filter(function(album) {
+        return album.songs.indexOf(song._id) > -1;
+    })[0];
+    song.album = alb;
+    song.artist = alb.artist;
+    song.genre = alb.genre;
+});
+console.log('-finished assigning exclusive albums-');
+
+console.log('-making artist profiles for sellers-');
+var sellers = users.filter(function(us) {return us.isSeller;});
+var artistProfiles = [];
+sellers.forEach(function(seller) {
+    var newArtist = new Artist({name: seller.name});
+    artistProfiles.push(newArtist);
+    seller.artistProfile = newArtist;
+});
+console.log('-finsihed making artist profiles for sellers-');
+
+
+var all = users.concat(artists, reviews, genres, songs, albums, orders, exSongs, exAlbums, stores, artistProfiles);
+var models = [User, Artist, Review, Genre, Song, Album, Order, Store];
 
 console.log('-removing-');
 async.each(models,

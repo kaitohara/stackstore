@@ -32,9 +32,18 @@ body {
   margin: 0 auto;
 }
 
-.col-centered{
+.col-centered {
   float: none;
   margin: 0 auto;
+}
+
+.sidebar {
+  overflow-y: scroll;
+  height: calc(100vh - 300px);
+}
+
+textarea.form-control {
+  resize: vertical;
 }
 
 @import "directives/main";

@@ -9,7 +9,11 @@
 			</p>
 			<p class="list-group-item-text">
 				<span ng-show="user.isAdmin">This user is an admin</span>
-				<span ng-hide="user.isAdmin">Regular customer</span>
+				<span ng-hide="user.isAdmin">Regular privileges</span>
+			</p>
+			<p class="list-group-item-text">
+				<span ng-show="user.isSeller">This user is a seller</span>
+				<span ng-hide="user.isSeller">Regular customer</span>
 			</p>
 		</div>
 		<div class="col-xs-4" ng-click="console.log('hi')">
@@ -20,6 +24,7 @@
 		<!-- <pre>{{user|json}}</pre> -->
 		<div class="col-xs-4">
 			<button class="btn btn-warning" ng-click="change({user: user, status: !user.isAdmin})">Toggle Admin</button>
+			<button class="btn btn-primary" ng-click="seller({user: user, status: !user.isSeller})">Toggle Seller</button>
 			<button class="btn btn-danger" ng-click="delete({user: user}); deleted = true">Delete User</button>
 			<button class="btn btn-info" ng-click="reset({user: user})">Reset Password</button>
 		</div>

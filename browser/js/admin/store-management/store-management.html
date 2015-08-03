@@ -1,0 +1,8 @@
+<h2>You're managing stores</h2>
+<div class="list-group">
+	<label>Filter</label>
+	<input ng-model="storeFilter">
+	<div ng-repeat="store in filteredStores = (stores | filter:storeFilter)">
+		<store-elem store="store"></store-elem>
+	</div>
+</div>
