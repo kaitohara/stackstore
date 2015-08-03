@@ -6,44 +6,13 @@ order {
     margin: 0;
     padding: 0;
   }
-  .glyphicon-remove {
-    // color: red;
-    // font-size: 20;
- 
-  }
   .order-details {
     display: flex;
     justify-content: space-around;
   }
   .album {
-    // display: block;
-    // margin: 5px 5px 10px;
-    // padding: 0px;
     @include add-border;
-    // border: 1px dashed $stackify-green;
-    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-    // border-radius: 4px;
-    img {
-      margin: 0;
-      padding: 0;
-    }
-    .list-group {
-      padding: 0;
-      .row {
-        color: grey;
-      }
-    }
-    .list-group-item {
-      margin: 0;
-      border-radius: 0;
-      border: 0;
-      border-bottom: 1px dotted $stackify-green;
-    }
-    .album-title {
-      // background: $stackify-green;
-      // color: white;
-   
-    }
+    border-radius: 6px;
     .col-md-4 {
       border-right: 1px dotted $stackify-green;
       &:last-of-type {

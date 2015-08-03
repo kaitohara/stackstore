@@ -120,8 +120,6 @@ router.put('/:orderId', function(req, res, next) {
         .then(null, next);
 });
 
-
-
 router.delete('/:orderId', function(req, res, next) {
     req.orderItem.remove()
         .then(function() {
