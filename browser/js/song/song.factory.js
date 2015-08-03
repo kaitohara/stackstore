@@ -3,9 +3,14 @@ app.factory('Song', function ($http){
 		getSong: function(id){
 			//here 'id' is a concatenated string of Ids being queried
 			return $http.get('/api/songs/'+id).then(function(response){
-				console.log('here',id, response.data)
+				console.log('here',id, response.data);
 				return response.data;
-			})
+			});
+		},
+		getPopulatedSong: function(id) {
+			console.log('runnint get pop song');
+			return $http.get('/api/songs/' + id + '/populated')
+				.then(res => res.data);
 		}
-	}
-})
+	};
+});
