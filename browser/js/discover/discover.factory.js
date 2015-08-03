@@ -11,5 +11,15 @@ app.factory('DiscoverFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.getSongs = function() {
+		return $http.get('/api/songs')
+			.then(res => res.data);
+	};
+
+	fact.getAlbums = function() {
+		return $http.get('/api/albums')
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

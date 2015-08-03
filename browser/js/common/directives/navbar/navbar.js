@@ -15,9 +15,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             ];
 
             scope.items = [{
-                label: 'Discover',
-                state: 'discover'
-            }, {
+            //     label: 'Discover',
+            //     state: 'discover'
+            // }, {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
