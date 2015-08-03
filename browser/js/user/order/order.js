@@ -53,8 +53,7 @@ app.factory('OrderFactory', function($http) {
     },
     addSong2Cart: function(orderId, songId, qty, price) {
       console.log('song added ', orderId, songId)
-      return $http.post('/api/orders/' + orderId + '/addSong', {
-        // orderId: orderId,
+      return $http.put('/api/orders/' + orderId + '/addSong', {
         songId: songId,
         price: price
       }).then(function() {
@@ -65,8 +64,7 @@ app.factory('OrderFactory', function($http) {
     },
     addAlbum2Cart: function(orderId, albumId, qty, price) {
       console.log('album added ', orderId, albumId)
-      return $http.post('/api/orders/' + orderId + '/addAlbum', {
-        // orderId: orderId,
+      return $http.put('/api/orders/' + orderId + '/addAlbum', {
         albumId: albumId,
         price: price
       }).then(function() {
