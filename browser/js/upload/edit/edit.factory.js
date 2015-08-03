@@ -44,6 +44,13 @@ app.factory('EditFactory', ['$http', function($http){
 			});
 	};
 
+	fact.saveToStore = function(albumId, store) {
+		var albumIds = store.albums.map(a => a._id);
+		var config = {albums: albumIds};
+		return $http.put('/api/stores/' + store._id, config)
+			.then(res => res.data);
+	};
+
 	fact.createAlbum = function(albumData) {
 		return $http.post('/api/albums', albumData)
 			.then(res => res.data);

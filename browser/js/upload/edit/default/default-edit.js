@@ -18,14 +18,21 @@ app.controller('EditDefaultCtrl', ['$scope', 'EditFactory', 'AuthService', funct
 		// attach logged in seller as the artist
 		AuthService.getLoggedInUser()
 			.then(user => {
+				// attach seller's artist to album
 				albumData.artist = user.artistProfile;
 				console.log(albumData);
 				return EditFactory.getGenreByName(albumData.genre);
 			})
 			.then(genre => {
+				// attach genre id to album
 				albumData.genre = genre._id;
 				console.log('updated album data', albumData);
 				return EditFactory.createAlbum(albumData);
+			})
+			.then(alb => {
+				// add album to store
+				EditFactory.currentStore.albums.push(alb);
+				return EditFactory.saveToStore(alb._id, EditFactory.currentStore);
 			})
 			.then(res => console.log('done'));
 	};
