@@ -6,6 +6,12 @@ app.factory('Song', function ($http){
 				console.log('here',id, response.data)
 				return response.data;
 			})
+		},
+		addSong2Cart: function(orderId, songId){
+			console.log('song added ', orderId, songId)
+			return $http.post('/api/orders/addSong', {orderId: orderId, songId:songId}).then(function(){
+				return console.log('added succesfully?!')
+			})
 		}
 	}
 })
