@@ -4,7 +4,8 @@ app.directive('songElem', function() {
 		templateUrl: 'js/admin/product-management/song-elem/song-elem.html',
 		scope: {
 			song: '=',
-			admin: '@'
+			admin: '@',
+			edit: '&'
 		}
 	};
 });

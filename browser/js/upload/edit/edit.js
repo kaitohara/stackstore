@@ -8,10 +8,8 @@ app.config(function ($stateProvider) {
             user: function(AuthService) {
                 return AuthService.getLoggedInUser(true);
             },
-            store: function($http, user) {
-                console.log(user);
-                return $http.get('/api/stores/' + user.store + '/populated')
-                    .then(res => res.data);
+            store: function(EditFactory, user) {
+                return EditFactory.getStorePopulated(user.store);
             }
         }
     });
@@ -25,9 +23,6 @@ app.controller('EditCtrl', function ($scope, $state, user, store) {
     $scope.createAlbum = false;
     $scope.createSong = false;
 
-    console.log(user);
-    console.log(store);
-
     $scope.toggleCreateAlbum = function() {
         $scope.createAlbum = !$scope.createAlbum;
     };
@@ -36,8 +31,15 @@ app.controller('EditCtrl', function ($scope, $state, user, store) {
     };
 
     $scope.albumEdit = function(album) {
-        console.log('in album edit', album);
         $state.go('upload.edit.album', {albumId: album._id});
+    };
+
+    $scope.songEdit = function(song) {
+        $state.go('upload.edit.album.song', {songId: song._id});
+    };
+
+    $scope.defaultEdit = function() {
+        $state.go('upload.edit.default');
     };
 
     $state.go('upload.edit.default');
