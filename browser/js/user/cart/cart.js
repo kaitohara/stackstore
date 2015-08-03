@@ -14,11 +14,10 @@ app.config(function($stateProvider) {
           })
       }
     })
-
 });
-app.controller('CartController', function($scope, cart) {
-  $scope.order = cart;
 
+app.controller('CartController', function($scope, cart) {
+  $scope.cart = cart;
 });
 
 app.factory('CartFactory', function($http) {
