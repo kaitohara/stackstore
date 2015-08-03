@@ -40,6 +40,9 @@ body {
 .sidebar {
   overflow-y: scroll;
   height: calc(100vh - 300px);
+  ul {
+    list-style: none;
+  }
 }
 
 textarea.form-control {
