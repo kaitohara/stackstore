@@ -5,6 +5,8 @@ var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 var OrderModel = mongoose.model('Order');
 
+var facebookId;
+
 module.exports = function (app) {
 
     var facebookConfig = app.getValue('env').FACEBOOK;
@@ -17,6 +19,8 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
+
+        facebookId = profile.id;
 
         UserModel.findOne({ 'facebook.id': profile.id }).exec()
             .then(function (user) {
@@ -52,7 +56,18 @@ module.exports = function (app) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/');
+            // attach cart to user
+            UserModel.findOne({'facebook.id': facebookId})
+                .then(function(user) {
+                    if (req.session.cart) {
+                        user.cart = req.session.cart;
+                        user.save().then(function(){
+                            res.redirect('/');
+                        });
+                    } else {
+                        res.redirect('/');
+                    }
+                });
         });
 
 };
