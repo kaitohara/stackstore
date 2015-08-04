@@ -4,6 +4,7 @@ var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
+var OrderModel = mongoose.model('Order');
 
 module.exports = function (app) {
 
@@ -16,13 +17,16 @@ module.exports = function (app) {
     };
 
     var createNewUser = function (token, tokenSecret, profile) {
-        return UserModel.create({
-            twitter: {
-                id: profile.id,
-                username: profile.username,
-                token: token,
-                tokenSecret: tokenSecret
-            }
+        return OrderModel.create({}).then(function(order) {
+            UserModel.create({
+                twitter: {
+                    id: profile.id,
+                    username: profile.username,
+                    token: token,
+                    tokenSecret: tokenSecret
+                },
+                cart: order
+            });
         });
     };
 

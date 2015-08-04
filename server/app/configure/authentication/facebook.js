@@ -3,6 +3,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
+var OrderModel = mongoose.model('Order');
 
 module.exports = function (app) {
 
@@ -23,12 +24,15 @@ module.exports = function (app) {
                 if (user) {
                     return user;
                 } else {
-                    return UserModel.create({
-                        facebook: {
-                            id: profile.id
-                        },
-                        email: profile.emails[0].value,
-                        name: profile.displayName
+                    return OrderModel.create({}).then(function(order) {
+                        UserModel.create({
+                            facebook: {
+                                id: profile.id
+                            },
+                            email: profile.emails[0].value,
+                            name: profile.displayName,
+                            cart: order
+                        });
                     });
                 }
 
@@ -37,7 +41,7 @@ module.exports = function (app) {
             }, function (err) {
                 console.error('Error creating user from Facebook authentication', err);
                 done(err);
-            })
+            });
 
     };
 
