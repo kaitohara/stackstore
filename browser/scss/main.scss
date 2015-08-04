@@ -122,6 +122,11 @@ textarea.form-control {
   height: 400px;
 }
 
+.item-content-scroll-song {
+  padding: 25px;
+  height: 500px;
+}
+
 .elem-thumb {
   display: block;
   margin-left: auto;
@@ -165,6 +170,14 @@ textarea.form-control {
 
 .admin-btn {
   margin-bottom: 15px;
+}
+
+.admin-nav {
+  color: white;
+}
+
+.discover-header {
+  margin-bottom: 24px;
 }
 
 @import "directives/main";
