@@ -2,9 +2,6 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-// var mongoose = require('mongoose')
-// var User = mongoose.model('User')
-// var Order = mongoose.model('Order')
 
 var ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {

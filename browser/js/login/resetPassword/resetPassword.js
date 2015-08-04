@@ -21,7 +21,7 @@ app.controller('ResetCtrl', function ($scope, AuthService, $state) {
 
         AuthService.login(login).then(function (user) {
             return AuthService.resetPassword(user._id, reset.password);
-        }).then(user => {
+        }).then(() => {
             console.log('all done');
             $state.go('home');
         }).catch(function () {

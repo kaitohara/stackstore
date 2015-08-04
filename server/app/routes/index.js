@@ -25,6 +25,7 @@ router.get('/cart', function(req, res) {
       req.session.cart = newOrder._id
       res.json(req.session.cart)
     })
+    .then(null, next);
   }
 })
 

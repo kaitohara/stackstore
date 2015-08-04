@@ -67,8 +67,7 @@ router.get('/:id', function(req, res) {
 // update one album (and return it to frontend)
 router.put('/:id', function(req, res, next) {
     _.extend(req.album, req.body);
-    req.album.save()
-        .then(function(album) {
+    req.album.save().then(function(album) {
             res.json(album);
         })
         .then(null, next);
@@ -76,8 +75,7 @@ router.put('/:id', function(req, res, next) {
 
 // delete one album
 router.delete('/:id', function(req, res, next) {
-    req.album.remove()
-        .then(function() {
+    req.album.remove().then(function() {
             res.status(204).end();
         })
         .then(null, next);

@@ -22,9 +22,6 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 			.then(function() {
 				console.log('success');
 				user.isAdmin = status;
-				// // let app know user's status has changed (and they are the active)
-				// if (user._id === )
-                // $rootScope.$broadcast(AUTH_EVENTS.statusChange, user);
 			});
 	};
 	$scope.changeSeller = function(user, status) {
@@ -38,11 +35,20 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 	$scope.deleteUser = function(user) {
 		console.log('deleting: ', user.name);
 		AdminFactory.deleteUser(user._id)
-			.then(res => console.log('successful delete'));
+			.then(res => {
+				console.log('successful delete', res);
+				_.remove(users, u => u._id === user._id);
+			});
 	};
 	$scope.resetPassword = function(user) {
 		console.log('reset password for: ', user.name);
 		AdminFactory.resetPassword(user._id)
-			.then(res => console.log('successful reset'));
+			.then(() => console.log('successful reset'));
 	};
 }]);
+
+
+
+
+
+//// make users disappear on delete
