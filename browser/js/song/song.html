@@ -1,32 +1,34 @@
 <div class="row test">
-	<div class="col-lg-8 col-centered">
-		<div class="col-lg-8 box">
+	<div class="col-lg-12 songContainer">
+		<div class="mycol12 box col-centered ">
+			<div class="col-lg-12 songContent">
+				<h2>{{album.artist.name}} - {{song.title}}</h2>
+				<hr>
+				<div id="songInfo">
+					<h3>Artist: <a ui-sref="artist({name:album.artist.name, id:album.artist._id})">{{album.artist.name}}</a></h3>
+					<h4>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h4>
+					<br><br>
+					<h3>{{song.price | currency}}</h3>
+					<button class="buyButton" ng-click="openModal()">Buy Song</button>
+				</div>
+				<div > 
+					<img src="{{song.photo}}" width="270">
+				</div>
 
-			<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
-			<h2>{{song.title}}</h2>
-			<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
-			<h4>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h4>
-			<img class="pull-right" src="{{song.photo}}" width="300">
+				<br>
 
-			<br>
-			<button class="buyButton" ng-click="openModal()">Buy Song</button>
-			<h4>${{song.price}}</h4>
-			<div class="player-container">
-				<div id="player"></div>
+
+				<div class="player-container">
+					<div id="player"></div>
+				</div>
+				<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
 			</div>
-		</div>
 
-		<div class="col-lg-4">
-			<h2>Discography for: {{song.artist.name}}</h2>
-			<ul>
-				<li ng-repeat="album in artist.albums">{{song.album.title}}</li>
-			</ul>
-		</div>
-		
-		<div class="col-sm-12">
-			<hr>
-			<h2>Reviews</h2>
-			<review-list reviews="song.reviews"></review-list>
+			<div class="col-sm-12">
+				<hr>
+				<h2>Reviews</h2>
+				<review-list reviews="song.reviews"></review-list>
+			</div>
 		</div>
 	</div>
 </div>

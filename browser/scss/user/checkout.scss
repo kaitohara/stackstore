@@ -1,0 +1,39 @@
+.white-input{
+	background:none;
+	border: 1px solid gray;
+	padding: 3px;
+	margin:5px;
+}
+
+.preview-cart{
+	display:block;
+	height:100px;
+	margin: 5px;
+}
+
+.previewText{
+	margin-left: 5px;
+}
+
+.checkout-cart{
+	height: 60vh;
+	overflow:scroll;
+}
+
+.order-submit{
+	// border: 1px solid #F01358;
+	border: none;
+	border-radius:1px;
+	// background: #F01358;
+	background:$stackify-green;
+	color: #1D1E25;
+	font-size:1.2em;
+	font-weight:bold;
+	padding: 5px;
+}
+.checkout {
+	a {
+		color: white;
+	}
+	
+}

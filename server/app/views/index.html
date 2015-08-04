@@ -19,25 +19,31 @@
   <script src="/socket.io-client/socket.io.js"></script>
   <script type="text/javascript">
 
-        (function() {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.async = true;
-            script.src = 'http://sd.toneden.io/production/toneden.loader.js'
-            var entry = document.getElementsByTagName('script')[0];
-            entry.parentNode.insertBefore(script, entry);
-        }());
-        ToneDenReady = window.ToneDenReady || [];
-        ToneDenReady.push(function() {
-            // This is where all the action happens:
-            ToneDen.player.create({
-                dom: '#player',
-                urls: [
-                ],
-                skin:'dark'
-            });
-        });
-    </script>
+
+  (function() {
+    var script = document.createElement('script');
+
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+
+    var entry = document.getElementsByTagName('script')[0];
+    entry.parentNode.insertBefore(script, entry);
+  }());
+
+  ToneDenReady = window.ToneDenReady || [];
+  ToneDenReady.push(function() {
+      // This is where all the action happens:
+      ToneDen.player.create({
+       dom: '#player',
+       urls: [
+
+       ],
+       skin:'dark'
+     });
+    });
+  </script>
+ 
     <script type="text/javascript">
         $(document).ready(function(){
             $('.MySlick').slick({
@@ -46,6 +52,7 @@
         });
     </script>
     <script src="/main.js"></script>
+
 </head>
 <body ng-app="FullstackGeneratedApp">
 <navbar></navbar>
