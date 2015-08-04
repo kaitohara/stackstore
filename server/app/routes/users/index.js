@@ -4,6 +4,7 @@ module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Order = mongoose.model('Order');
 
 router.get('/', function(req, res, next) {
     User.find(req.query).exec()
@@ -14,11 +15,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.create(req.body)
-        .then(function(user) {
-            res.status(201).json(user)
-        })
-        .then(null, next);
+    Order.create({}).then(function(order) {
+        if (req.session.cart) {
+            req.body.cart = req.session.cart;
+        } else {
+            req.body.cart = order;
+        }
+        User.create(req.body)
+            .then(function(user) {
+                res.status(201).json(user);
+            })
+            .then(null, next);
+    })
+    .then(null, next);
 });
 
 router.param('id', function(req, res, next, id) {
