@@ -39,6 +39,14 @@ router.post('/', function(req, res, next) {
     });
 });
 
+router.put('/multi', function(req, res, next) {
+    Song.remove({_id: { $in: req.body}}).exec()
+        .then(function() {
+            res.status(204).end();
+        })
+        .then(null, next);
+});
+
 // return songs populated with albums
 router.get('/populated', function(req, res, next) {
     Song.find({}).populate('album artist genre').exec()
