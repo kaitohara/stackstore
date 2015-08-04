@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<!-- <div class="panel panel-primary">
 	<div>
 		<button ng-hide="changing" class="btn btn-warning" ng-click="changing = true">Change Status</button>
 		<select name="status" ng-show="changing" ng-model="newStatus">
@@ -24,5 +24,44 @@
 		    	Cancelled On: {{order.date.finished | date:'short'}}
 		    </li>
 	    </ul>
+	</div>
+</div>
+ -->
+
+ <div class="item-content-scroll elem" ng-click="edit({album:album})">
+	<div ng-if="true">
+		<button ng-hide="changing" class="btn btn-warning" ng-click="changing = true">Change Status</button>
+		<select class="order-select" name="status" ng-show="changing" ng-model="newStatus">
+			<option selected>cancelled</option>
+			<option>completed</option>
+			<option>created</option>
+			<option>processing</option>
+		</select>
+		<button ng-show="changing" class="btn btn-primary" ng-click="status({order: order, newStatus: newStatus}); changing = false">Submit</button>
+	</div>
+	<div>
+		<div style="display:block">
+			<!-- <img class="search-photo" src="{{album.photo}}" width="200"> -->
+			<h2>- Orders -</h2>
+		</div>
+		<div>
+			<ul class="list-group elem-list">
+				<li>
+					<a class="album-link">User: {{order.user}}</a>
+				</li>
+				<li>
+					<a class="artist-link">Total Price: {{order.totalPrice | currency}}</a> 
+				</li>
+				<li>
+					<a class="artist-link">Created On: {{order.date.created | date:'short'}}</a> 
+				</li>
+				<li ng-if="order.orderStatus === 'completed'">
+					<a class="artist-link">Completed on: {{order.date.finished | date:'short'}}</a> 
+				</li>
+				<li ng-if="order.orderStatus === 'cancelled'">
+					<a class="artist-link">Cancelled On: {{order.date.finished | date:'short'}}</a> 
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
