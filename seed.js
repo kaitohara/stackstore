@@ -256,16 +256,16 @@ console.log('-generating artists-');
 var artists = [
     {name: "Major Lazer"},
     {name: "Flume"},
-    {name: "Kryder"},
+    {name: "Sweater Beats"},
     {name: "Axwell"},
     {name: "Tycho"},
     {name: "Jagwar Ma"},
     {name: "Odesza"},
     {name: "The Black Keys"},
     {name: "Griz"},
-    {name: "Alison Wonderland"},
+    {name: "Feed Me"},
     {name: "Pretty Lights"},
-    {name: "Kygo"}
+    {name: "Gramatik"}
 ];
 artists = artists
     .map(function(datum) {
@@ -344,7 +344,76 @@ var songs = [
     {title: 'Bring You Down feat. George Maple', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/bring-you-down-feat-george'},
     {title: 'Warm Thoughts', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/warm-thoughts-1'},
     {title: 'What You Need', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/what-you-need'},
-    {title: 'Star Eyes', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/star-eyes-1'}
+    {title: 'Star Eyes', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/star-eyes-1'},
+    //45-55 Griz - Say It Loud
+    {title: 'The Anthem (ft. Mike Avery)', photo: 'https://i1.sndcdn.com/artworks-000107781255-ofcbv7-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/the-anthem-ft-mike-avery'},
+    {title: 'Funk Party', photo: 'https://i1.sndcdn.com/artworks-000109789379-twtlt8-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/funk-party'},
+    {title: 'Get Down (ft. Sunsquabi And Manic Focus)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/get-down-ft-sunsquabi-and-manic-focus'},
+    {title: 'Need This (ft. The Floozies)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/need-this-ft-the-floozies'},
+    {title: 'It\'s All Good (ft. Jessie Arlen)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/its-all-good'},
+    {title: 'A Fine Way To Die (feat. Orlando Napier)', photo: 'https://i1.sndcdn.com/artworks-000099710322-mobqcy-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/a-fine-way-to-die'},
+    {title: 'For The Love (feat. Talib Kweli)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/for-the-love-feat-talib-kweli'},
+    {title: 'Stop Trippin\' (with iDA HAWK)', photo: 'https://i1.sndcdn.com/artworks-000104753724-bxtahx-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/stop-trippin-with-ida-hawk'},
+    {title: 'Headspace (Time Is On Our Side)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/headspace'},
+    {title: 'Turnin\' (ft. Orlando Napier)', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/turnin-ft-orlando-napier'},
+    {title: 'Take It High (ft. Ivan Neville) [Bonus]', photo: 'https://i1.sndcdn.com/artworks-000111810252-80xrgj-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/take-it-high-ft-ivan-neville-bonus'},
+    //56-66 Griz - Rebel Era
+    {title: 'Rebel Era', photo: 'https://i1.sndcdn.com/artworks-000044701030-j6ivkm-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/griz/griz-gettin-live'},
+    {title: 'Hard Times', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/griz-hard-times'},
+    {title: 'Feel The Love', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/feel-the-love-1'},
+    {title: 'DTW To DIA (the Travels Of Mr. B)', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/dtw-to-dia-the-travels-of-mr-b'},
+    {title: 'Simple (ft. The Floozies)', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/simple-ft-the-floozies'},
+    {title: 'Dance With Me', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/dance-with-me'},
+    {title: 'Do My Thang', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/do-my-thang'},
+    {title: 'Too Young For Tragedy Pt. II', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/too-young-for-tragedy-pt-ii'},
+    {title: 'Crime In The City', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/crime-in-the-city'},
+    {title: 'Keep The Dream Alive', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/keep-the-dream-alive'},
+    {title: 'How It Ends (ft Dominic Lalli)', photo: 'http://bit.ly/1g4Vb4t', price: 1.50, url: 'https://soundcloud.com/griz/how-it-ends-ft-dominic-lalli'},
+    //67-78 Griz - Mad Liberation
+    {title: 'Too Young For Tragedy', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/01-too-young-for-tragedy'},
+    {title: 'Smash The Funk', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/smash-the-funk-forthcoming'},
+    {title: 'Rock N Roll', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/03-rock-n-roll'},
+    {title: 'Blastaa', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/04-blastaa-1'},
+    {title: 'Live On Arrival', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/10-wonder-why'},
+    {title: 'Where Is The Love?', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/wheres-the-love'},
+    {title: 'Mr. B (feat. Dominic Lalli)', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/04-blastaa'},
+    {title: 'Fall In Love Too Fast', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/05-live-on-arrival'},
+    {title: 'Better Than Ive Ever Been', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/09-better-than-ive-ever-been'},
+    {title: 'Wonder Why', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/07-mr-b-ft-dominic-lalli'},
+    {title: 'The Future Is Now', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/the-future-is-now'},
+    {title: 'See You Again', photo: 'http://bit.ly/1JKbUWS', price: 1.50, url: 'https://soundcloud.com/griz/08-fall-in-love-too-fast'},
+    //79-93 Gramatik - The Age Of Reason
+    {title: 'Brave Men Feat. Eskobars', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/01-gramatik-brave-men-feat-1'},
+    {title: 'Torture Feat. Eric Krasno', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/02-gramatik-torture-feat'},
+    {title: 'Bluestep (Album Version)', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/03-gramatik-bluestep-album-1'},
+    {title: 'Pardon My French', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/04-gramatik-pardon-my-french-1'},
+    {title: 'We Used To Dream Feat. Exmag & Gibbz', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/05-gramatik-we-used-to-dream-1'},
+    {title: 'You Don\'t Understand', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/06-gramatik-you-dont-1'},
+    {title: 'Obviously Feat. Cherub & Exmag', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/07-gramatik-obviously-feat-1'},
+    {title: 'Control Room Before You Feat. ILLUMNTR', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/08-gramatik-control-room-1'},
+    {title: 'Prime Time', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/09-gramatik-prime-time-1'},
+    {title: 'Get A Grip Feat. Gibbz', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/10-gramatik-get-a-grip-feat-1'},
+    {title: 'Just Jammin\' NYC Feat. Exmag', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/11-gramatik-just-jammin-nyc-1'},
+    {title: 'Expect Us', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/12-gramatik-expect-us-1'},
+    {title: 'Faraway Feat. Orlando Napier', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/13-gramatik-faraway-feat-1'},
+    {title: 'No Turning Back', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/14-gramatik-no-turning-back-1'},
+    {title: 'It\'s Just A Ride', photo: 'http://bit.ly/1JKd04W', price: 1.50, url: 'https://soundcloud.com/gramatik/15-gramatik-its-just-a-ride-1'},
+    //94-96 Sweater Beats - Cloud City
+    {title: 'Dark Matter ft. a l l i e', photo: 'http://bit.ly/1In6oox', price: 1.50, url: 'https://soundcloud.com/sweaters/dark-matter-feat-allie'},
+    {title: 'Rain Dance', photo: 'http://bit.ly/1In6oox', price: 1.50, url: 'https://soundcloud.com/sweaters/02-rain-dance'},
+    {title: 'Golden Sun', photo: 'http://bit.ly/1In6oox', price: 1.50, url: 'https://soundcloud.com/sweaters/golden-sun-1'},
+    //97-100
+    {title: 'Patience', photo: 'http://bit.ly/1Ul5sZF', price: 1.50, url: 'https://soundcloud.com/feedme/patience'},
+    {title: 'Time For Myself', photo: 'https://i1.sndcdn.com/artworks-000080067114-exi5nr-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/feedme/feed-me-time-for-myself'},
+    {title: 'Alarm Clock', photo: 'https://i1.sndcdn.com/artworks-000081916354-migfks-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/feedme/alarm-clock'},
+    {title: 'Without Gravity', photo: 'http://bit.ly/1Ul5sZF', price: 1.50, url: 'https://soundcloud.com/feedme/without-gravity'}
+    //101
+    // {title: 'a', photo: 'pic', price: 1.50, url: ''},
+
+
+
+
+
 
 
 ]
@@ -367,7 +436,14 @@ var albums = [
     {title: 'Peace Is The Mission', photo: 'http://bit.ly/1DoKUuG', price: 7.99, year: 2015, artist: artistsKeys['Major Lazer'], genre: genres[0]['_id'], songs: concatSongs(0,8)},
     {title: 'Awake', photo: 'http://bit.ly/1E5ytPp', price: 9.99, year: 2014, artist: artistsKeys['Tycho'], genre: genres[0]['_id'], songs: concatSongs(9,16)},
     {title: 'In Return', photo: 'http://bit.ly/1P2eFTH', price: 9.99, year: 2014, artist: artistsKeys['Odesza'], genre: genres[0]['_id'], songs: concatSongs(17,29)},
-    {title: 'Flume', photo: 'http://bit.ly/1M8gr7i', price: 9.99, year: 2013, artist: artistsKeys['Flume'], genre: genres[0]['_id'], songs: concatSongs(30,44)}
+    {title: 'Flume', photo: 'http://bit.ly/1M8gr7i', price: 9.99, year: 2013, artist: artistsKeys['Flume'], genre: genres[0]['_id'], songs: concatSongs(30,44)},
+    {title: 'Say It Loud', photo: 'http://bit.ly/1SIrgkh', price: 9.99, year: 2015, artist: artistsKeys['Griz'], genre: genres[0]['_id'], songs: concatSongs(45,55)},
+    {title: 'Rebel Era', photo: 'http://bit.ly/1g4Vb4t', price: 9.99, year: 2014, artist: artistsKeys['Griz'], genre: genres[0]['_id'], songs: concatSongs(55,66)},
+    {title: 'Mad Liberation', photo: 'http://bit.ly/1JKbUWS', price: 9.99, year: 2012, artist: artistsKeys['Griz'], genre: genres[0]['_id'], songs: concatSongs(67,78)},
+    {title: 'The Age Of Reason', photo: 'http://bit.ly/1JKd04W', price: 9.99, year: 2014, artist: artistsKeys['Gramatik'], genre: genres[0]['_id'], songs: concatSongs(79,93)},
+    {title: 'Cloud City', photo: 'http://bit.ly/1In6oox', price: 9.99, year: 2014, artist: artistsKeys['Sweater Beats'], genre: genres[0]['_id'], songs: concatSongs(94,96)},
+    {title: 'Feed Me\'s Psychedelic Journey', photo: 'http://bit.ly/1Ul5sZF', price: 9.99, year: 2014, artist: artistsKeys['Feed Me'], genre: genres[0]['_id'], songs: concatSongs(97,100)}
+
 
 
 ]
