@@ -1,6 +1,5 @@
 'use strict';
 var mongoose = require('mongoose');
-
 var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
@@ -59,5 +58,7 @@ schema.statics.getAllReviews = function(){
             });
         });
 };
+
+schema.plugin(deepPopulate);
 
 mongoose.model('Song', schema);

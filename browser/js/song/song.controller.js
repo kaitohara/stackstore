@@ -7,58 +7,59 @@ app.service('shareSongInfo', function(){
 		setProperty: function(value){
 			property = value;
 		}
-	}
-})
-
-app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareSongInfo){
-	$scope.song = song;
-	// (function() {
-	// 	console.log('wwooo')
-	// 	var script = document.createElement('script');
-
-	// 	script.type = 'text/javascript';
-	// 	script.async = true;
-	// 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
-
-	// 	var entry = document.getElementsByTagName('script')[0];
-	// 	entry.parentNode.insertBefore(script, entry);
-	// }());
-
-	// var ToneDenReady = window.ToneDenReady || [];
-	(function(){console.log('thiiiis')}())
-	console.log(ToneDenReady, ToneDen)
-	// ToneDenReady.push(function() {
-	// 	// This is where all the action happens:
-	// 	ToneDen.player.create({
-	// 		dom: '#player',
-	// 		urls: [
-	// 		'https://soundcloud.com/kryder/ltric-this-feeling-kryder-remix-1'
-	// 		],
-	// 		skin:'dark'
-	// 	});
-	// });
-console.log('toneden player', ToneDen.player)
-	function initToneden(){
-		var config = {
-			dom: "#player",
-			skin: "dark",
-			urls: [
-			$scope.song.url
-			]
-		};
-
-		if(typeof ToneDen !== 'undefined'){
-			ToneDen.player.create(config);
-		}else{
-			ToneDenReady.push(function() {
-				ToneDen.player.create(config);      
-			}); 
-		}
 	};
+});
+
+// app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareSongInfo){
+// 	$scope.song = song;
+// 	// (function() {
+// 	// 	console.log('wwooo')
+// 	// 	var script = document.createElement('script');
+
+// 	// 	script.type = 'text/javascript';
+// 	// 	script.async = true;
+// 	// 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+
+// 	// 	var entry = document.getElementsByTagName('script')[0];
+// 	// 	entry.parentNode.insertBefore(script, entry);
+// 	// }());
+
+// 	// var ToneDenReady = window.ToneDenReady || [];
+// 	(function(){console.log('thiiiis')}())
+// 	console.log(ToneDenReady, ToneDen)
+// 	// ToneDenReady.push(function() {
+// 	// 	// This is where all the action happens:
+// 	// 	ToneDen.player.create({
+// 	// 		dom: '#player',
+// 	// 		urls: [
+// 	// 		'https://soundcloud.com/kryder/ltric-this-feeling-kryder-remix-1'
+// 	// 		],
+// 	// 		skin:'dark'
+// 	// 	});
+// 	// });
+// console.log('toneden player', ToneDen.player)
+// 	function initToneden(){
+// 		var config = {
+// 			dom: "#player",
+// 			skin: "dark",
+// 			urls: [
+// 			$scope.song.url
+// 			]
+// 		};
+
+// 		if(typeof ToneDen !== 'undefined'){
+// 			ToneDen.player.create(config);
+// 		}else{
+// 			ToneDenReady.push(function() {
+// 				ToneDen.player.create(config);      
+// 			}); 
+// 		}
+// 	};
 	
 
-	// console.log('ToneDenReady', ToneDenReady)
-	// console.log('toneden', ToneDen)
+// 	// console.log('ToneDenReady', ToneDenReady)
+// 	// console.log('toneden', ToneDen)
+
 
 	shareSongInfo.setProperty(song)
 	// console.log('ToneDen', ToneDen, ToneDen.player, {define:function(){}},ToneDenReady)

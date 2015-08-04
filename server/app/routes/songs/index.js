@@ -48,6 +48,19 @@ router.get('/populated', function(req, res, next) {
         .then(null, next);
 });
 
+router.get('/:id/populated', function(req, res, next) {
+    Song.deepPopulate(req.song, [
+        'album',
+        'genre',
+        'artist',
+        'reviews',
+        'reviews.author'
+        ], function(e, song) {
+            if (e) next(e);
+            res.json(song);
+        });
+});
+
 // get song by id and save for later
 router.param('id', function(req, res, next, id) {
     Song.findById(id).exec()

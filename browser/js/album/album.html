@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-lg-8 col-centered">
 		<div class="col-lg-8 box">
+			<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
 			<h1>{{album.title}}</h1>
 			<img class="pull-right" src="{{album.photo}}" width="300">
 			<h3>Artist: <a ui-sref="artist({name:album.artist.name, id:album.artist._id})">{{album.artist.name}}</a></h3>
