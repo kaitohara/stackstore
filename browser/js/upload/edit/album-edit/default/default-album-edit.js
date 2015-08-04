@@ -10,7 +10,7 @@ app.controller('AlbumEditDefaultCtrl', ['$scope', 'EditFactory', function($scope
 	$scope.deleteSong = function(song) {
 		console.log('deleting this', song);
 		EditFactory.deleteSong(song._id)
-			.then(res => {
+			.then(() => {
 				// remove from local album
 				_.pull(EditFactory.currentAlbum.songs, song);
 			});
