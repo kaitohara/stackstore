@@ -1,33 +1,50 @@
 <div class="row">
-	<div class="col-sm-8">
-		<div class="page-header">
-		  <button class="btn btn-success" ng-click="defaultEdit()">Default View</button>
-		  <h1>Store: {{store.name}} <small>owner: {{user.name}}</small></h1>
+
+	<div class="">
+		<button class="btn btn-success" ng-click="defaultEdit()">Default View</button>
+		<div class="page-header store-header">
+	  		<h1>Store: {{store.name}} <small>owner: {{user.name}}</small></h1>
+		</div>
+		<h3>Description: {{store.description}}</h3>
+		<div class="row">
+			<div class="col-xs-12">
+				<h2><a ng-click="toggleCreateAlbum()" class="btn btn-default">Add an album</a></h2>
+				<div ng-show="createAlbum">
+					<album-form submit="submitAlbum(album)"></album-form>
+				</div>
+			</div>
 		</div>
 		<ui-view></ui-view>
 	</div>
 
-	<div class="col-sm-4 col-xs-12">
+	<hr class="stack-hr">
+	<div class="">
 		<button ng-click="show='songs'" class="btn btn-primary">Songs</button>
 		<button ng-click="show='albums'" class="btn btn-warning">Albums</button>
 		<div ng-show="show==='songs'">
-			<h2>Songs</h2>
+			<hr class="stack-hr">
+			<h2>Exclusive Songs</h2>
 			<label>Filter</label>
 			<input ng-model="songFilter">
-			<div class="sidebar">
-				<div class="list-group" ng-repeat="song in filteredSongs = (store.songs | filter:songFilter)">
-					<song-elem song="song" admin="false" edit="songEdit(song)"></song-elem>
-				</div>
+			<div class="">
+				<ul class="search-list-scroll">
+					<li class="search-item-scroll" ng-repeat="song in (store.songs | filter:songFilter)">
+						<song-elem song="song" admin="false" edit="songEdit(song)"></song-elem>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div ng-show="show==='albums'">
-			<h2>Albums</h2>
+			<hr class="stack-hr">
+			<h2>Exclusive Albums</h2>
 			<label>Filter</label>
 			<input ng-model="albumFilter">
-			<div class="sidebar">
-				<div class="list-group" ng-repeat="album in filteredAlbums = (store.albums | filter:albumFilter)">
-					<album-elem album="album" admin="false" edit="albumEdit(album)"></album-elem>
-				</div>
+			<div class="">
+				<ul class="search-list-scroll">
+					<li class="search-item-scroll" ng-repeat="album in (store.albums | filter:albumFilter)">
+						<album-elem album="album" admin="false" edit="albumEdit(album)"></album-elem>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

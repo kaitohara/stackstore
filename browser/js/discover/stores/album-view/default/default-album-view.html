@@ -1,8 +1,11 @@
-<div>
-	<h3>Songs</h3>
-	<ul>
-		<li ng-repeat="song in album.songs">
-			<p><a ng-click="goToSong(song)">{{song.title}}</a></p>
-		</li>
-	</ul>
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Songs</h3>
+		<hr class="stack-hr">
+		<ul class="album-song-list">
+			<li ng-repeat="song in album.songs">
+				<p><a ng-click="goToSong(song)">{{song.title}}</a></p>
+			</li>
+		</ul>
+	</div>
 </div>

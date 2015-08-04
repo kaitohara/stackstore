@@ -17,7 +17,7 @@ app.controller('EditAlbumCtrl', ['$scope', 'EditFactory', 'album', '$state', fun
 	$scope.toggleCreateSong = function() {
         $scope.createSong = !$scope.createSong;
     };
-    $scope.createSong = function(songData) {
+    $scope.submitSong = function(songData) {
 		songData.storeExclusive = true;
 		// update song data with album data
 		songData.genre = $scope.album.genre[0];
