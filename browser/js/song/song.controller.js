@@ -30,13 +30,13 @@ app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSo
 		// (function() {
 		// 	var script = document.createElement('script');
 
-	// 	script.type = 'text/javascript';
-	// 	script.async = true;
-	// 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+    // 	script.type = 'text/javascript';
+    // 	script.async = true;
+    // 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
 
-	// 	var entry = document.getElementsByTagName('script')[0];
-	// 	entry.parentNode.insertBefore(script, entry);
-	// }());
+    // 	var entry = document.getElementsByTagName('script')[0];
+    // 	entry.parentNode.insertBefore(script, entry);
+    // }());
 
 	// var ToneDenReady = window.ToneDenReady || [];
 	// (function(){console.log('thiiiis')}())
@@ -70,9 +70,6 @@ app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSo
 			});
 		}
 	};
-
-	// console.log('ToneDenReady', ToneDenReady)
-	// console.log('toneden', ToneDen)
 
 	shareSongInfo.setProperty(song)
 

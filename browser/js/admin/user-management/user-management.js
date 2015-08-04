@@ -1,20 +1,22 @@
+
 app.config(['$stateProvider',function($stateProvider) {
-	$stateProvider.state('admin.users', {
-		url: '/users',
-		templateUrl: 'js/admin/user-management/user-management.html',
-		controller: 'AdminUserCtrl',
-		resolve: {
-			users: function($http) {
-				return $http.get('/api/users')
-					.then(function(res) {
-						return res.data;
-					});
-			}
-		}
-	});
+    $stateProvider.state('admin.users', {
+        url: '/users',
+        templateUrl: 'js/admin/user-management/user-management.html',
+        controller: 'AdminUserCtrl',
+        resolve: {
+            users: function($http) {
+                return $http.get('/api/users')
+                    .then(function(res) {
+                        return res.data;
+                    });
+            }
+        }
+    });
 }]);
 
 app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($scope, users, AdminFactory){
+
 	$scope.users = users;
 	$scope.changeStatus = function(user, status) {
 		console.log('changin status to: ', status, 'for: ', user.name);
