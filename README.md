@@ -45,7 +45,7 @@ Similar to Amazon, your site should support browsing its products without having
 
 ## Authenticated Users
 - [x] Logout
-- 
+
 ### Account management
 - [x] View past order list
 - [x] View order detail
@@ -53,7 +53,7 @@ Similar to Amazon, your site should support browsing its products without having
   - [x] Items with quantity and subtotal
   - [x] Link to the original product detail page
   - [x] Date/time order was created
-  - 
+
 ### Product reviews
 - [ ] Leave a review (with text and a 5-star rating) for a product
 
