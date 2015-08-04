@@ -7,11 +7,8 @@ app.config(function($stateProvider) {
       controller: 'CartController',
       templateUrl: 'js/user/cart/cart.html',
       resolve: {
-        cart: (AuthService, CartFactory) =>
-          AuthService.getLoggedInUser()
-          .then(function(user) {
-            return CartFactory.getUserCart(user)
-          })
+        cart: (AuthService) =>
+          AuthService.getCart()
       }
     })
 });
@@ -21,11 +18,5 @@ app.controller('CartController', function($scope, cart) {
 });
 
 app.factory('CartFactory', function($http) {
-  return {
-    getUserCart: (user) =>
-      $http.get("api/users/" + user._id + '/cart')
-      .then(function(res) {
-        return res.data
-      })
-  }
+  return {}
 })

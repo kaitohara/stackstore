@@ -53,9 +53,12 @@
 
         function onSuccessfulLogin(response) {
             var data = response.data;
-            Session.create(data.id, data.user);
-            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            return data.user;
+            return $http.get('/api/orders/' + data.user.cart)
+                .then(function(res) {
+                    Session.create(data.id, data.user, res.data);
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                    return data.user;
+                })
         }
 
         // Uses the session factory to see if an
@@ -93,6 +96,19 @@
 
         };
 
+        function onGettingCart(res) {
+            Session.createCart(res.data)
+            return res.data
+        }
+
+        this.getCart = function() {
+            if (Session.cart) return $q.when(Session.cart)
+            return $http.get('/api/cart').then(function(res) {
+                return $http.get('/api/orders/' + res.data)
+                    .then(onGettingCart)
+            })
+        }
+
         this.login = function(credentials) {
             return $http.post('/login', credentials)
                 .then(onSuccessfulLogin)
@@ -111,7 +127,10 @@
         };
 
         this.resetPassword = (userId, password) => {
-            return $http.put('/api/users/' + userId, {resetPassword: false, password: password})
+            return $http.put('/api/users/' + userId, {
+                    resetPassword: false,
+                    password: password
+                })
                 .then(res => res.data);
         };
 
@@ -131,15 +150,22 @@
 
         this.id = null;
         this.user = null;
+        this.cart = null
 
-        this.create = function(sessionId, user) {
+        this.create = function(sessionId, user, cart) {
             this.id = sessionId;
             this.user = user;
+            this.cart = cart
         };
+
+        this.createCart = function(cart) {
+            this.cart = cart
+        }
 
         this.destroy = function() {
             this.id = null;
             this.user = null;
+            this.cart = null
         };
 
         this.updateUser = function(userData) {

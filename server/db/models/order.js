@@ -29,15 +29,19 @@ var schema = new mongoose.Schema({
       default: Date.now
     },
     // finished = cancelled OR completed
-    finished: Date
+    finished: {
+      type: Date
+    }
   },
   totalPrice: {
-    type: Number
+    type: Number,
+    default: 0
   },
   orderStatus: {
     // created, processing, cancelled, or completed
     type: String,
     enum: ['created', 'processing', 'cancelled', 'completed'],
+    default: 'created',
     required: true
   }
 });
