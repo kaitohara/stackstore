@@ -26,6 +26,10 @@ app.config(function ($urlRouterProvider, $locationProvider) {
         .when('/auth/:provider', function() {
             window.location.reload();
         })
+        // redirect to our github page
+        .when('/github', function() {
+            window.location.href = "http://www.github.com/kaitohara/stackstore";
+        });
 
 });
 
