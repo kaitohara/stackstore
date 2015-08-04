@@ -1,8 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
 
-var deepPopulate = require('mongoose-deep-populate');
-
 var schema = new mongoose.Schema({
 	title: {
 		type: String,
@@ -44,14 +42,5 @@ var schema = new mongoose.Schema({
 		default: false
 	}
 });
-
-schema.statics.getAllReviews = function(){
-    schema.find({})
-    	.deepPopulate(songs, 'review.author', function(err, _songs){
-            songs.forEach(function(song){
-                return song;
-            });
-        });
-};
 
 mongoose.model('Song', schema);

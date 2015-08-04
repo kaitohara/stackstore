@@ -115,7 +115,7 @@ schema.method.finishCurrentOrder = function(newOrderStatus) {
         cart.date.finished = Date.now();
         return cart.save();
     })
-    .then(function(savedCart) {
+    .then(function() {
         user.pastOrderList.push(user.cart);
         return Order.create();
     })

@@ -58,14 +58,16 @@ router.put('/:id', function(req, res, next) {
     _.extend(req.album, req.body);
     req.album.save().then(function(album) {
         res.json(album);
-    });
+    })
+    .then(null, next);
 });
 
 // delete one album
 router.delete('/:id', function(req, res, next) {
     req.album.remove().then(function() {
         res.status(204).end();
-    });
+    })
+    .then(null, next);
 });
 
 module.exports = router;

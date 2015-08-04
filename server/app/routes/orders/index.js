@@ -40,6 +40,7 @@ router.post('/removeSong', function(req, res, next){
             res.status(201).send('')
             // })
         })
+        .then(null, next);
 })
 
 router.post('/removeAlbum', function(req, res, next){
@@ -49,22 +50,25 @@ router.post('/removeAlbum', function(req, res, next){
             res.status(201).send('')
             // })
         })
+        .then(null, next);
 })
 
 //add song to a user's cart
-router.post('/addSong', function(req, res){
+router.post('/addSong', function(req, res, next){
     Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'songs': {'song': req.body.songId, 'price': req.body.price, 'quantity': 1}}}).exec()
         .then(function(){
             res.status(200).send('')
         })
+        .then(null, next);
 })
 
 //add album to a user's cart
-router.post('/addAlbum', function(req, res){
+router.post('/addAlbum', function(req, res, next){
     Order.findOneAndUpdate({_id:req.body.orderId}, {$push:{'albums': {'album': req.body.albumId, 'price': req.body.price, 'quantity': 1}}}).exec()
         .then(function(){
             res.status(200).send('')
         })
+        .then(null, next);
 })
 
 // router.post('/add')
