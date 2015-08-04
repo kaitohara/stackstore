@@ -31,8 +31,8 @@
             </li>
         </ul>
 
-        <form name="searchBar" ng-controller="navbarCtrl" class="search-bar" method="get" action="/search">
-            <a ui-sref="search" class="glyphicon glyphicon-search"></a>
+        <form name="searchBar" ng-controller="navbarCtrl" class="search-bar" method="get" ng-submit="submitSearch()">
+            <a ui-sref="search({searchParam:search})" class="glyphicon glyphicon-search"></a>
             <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" ng-focus="expandSlider()" ng-blur="closeSlider()" placeholder="Search by artist, song or album" ng-change="update(search, !searchBar.$error.required)" required>
         </form>
         

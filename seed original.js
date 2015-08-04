@@ -253,31 +253,10 @@ users = users
 console.log('-done generating users-');
 
 console.log('-generating artists-');
-var artists = [
-    {name: "Major Lazer"},
-    {name: "Flume"},
-    {name: "Kryder"},
-    {name: "Axwell"},
-    {name: "Tycho"},
-    {name: "Jagwar Ma"},
-    {name: "Odesza"},
-    {name: "The Black Keys"},
-    {name: "Griz"},
-    {name: "Alison Wonderland"},
-    {name: "Pretty Lights"},
-    {name: "Kygo"}
-];
-artists = artists
+var artists = _.times(numArtists, randArtist)
     .map(function(datum) {
         return new Artist(datum);
     });
-
-//generate an object of artist names mapped to _ids for easier referencing when making seed arrays
-var artistsKeys = {}
-for (var key in artists){
-    artistsKeys[artists[key].name] = artists[key]._id
-}
-
 console.log('-done generating artists-');
 
 console.log('-generating reviews-');
@@ -294,84 +273,15 @@ var genres = _.times(numGenres, randGenre)
     });
 console.log('-done generating genres-');
 
-console.log('-generating songs-', artists);
-var songs = [
-    //0-8 Major Lazer - Peace is the Mission
-    {title: 'Be Together (feat. Wild Belle)', photo: 'https://i1.sndcdn.com/artworks-000118756473-j1o6zg-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/be-together-feat-wild-belle'},
-    {title: 'Too Original (feat. Elliphant & Jovi Rockwell)', photo: 'https://i1.sndcdn.com/artworks-000116363034-6z1q0k-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/major-lazer-too-originalfeat-elliphant-jovi-rockwell'},
-    {title: 'Blaze Up The Fire (feat. Chronixx)', photo: 'https://i1.sndcdn.com/artworks-000118756577-embi06-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/blaze-up-the-fire-feat'},
-    {title: 'Lean On (feat. MØ)', photo: 'https://i1.sndcdn.com/artworks-000108593302-0ek7n6-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/major-lazer-dj-snake-lean-on-feat-mo'},
-    {title: 'Powerful (feat. Ellie Goulding & Tarrus Riley', photo: 'https://i1.sndcdn.com/artworks-000118284174-xs1ldd-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/major-lazer-powerful-feat-ellie-goulding-tarrus-riley'},
-    {title: 'Light It Up (feat. Nyla)', photo: 'https://i1.sndcdn.com/artworks-000118756749-yap0g6-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/light-it-up-feat-nyla'},
-    {title: 'Roll The Bass', photo: 'https://i1.sndcdn.com/artworks-000111033075-e14fkl-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/major-lazer-roll-the-bass'},
-    {title: 'Night Riders (feat. Travi$ Scott, 2 Chainz, Pusha T, & Mad Cobra', photo: 'https://i1.sndcdn.com/artworks-000113980823-pvufmg-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/night-riders-feat-travi-scott-2-chainz-pusha-t-mad-cobra'},
-    {title: 'All My Love (feat. Ariana Grande & Machel Montano) (Remix)', photo: 'https://i1.sndcdn.com/artworks-000118756546-xpzdfm-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/majorlazer/all-my-love-feat-ariana'},
-    //9-16 Tycho - Awake
-    {title: 'Awake', photo: 'https://i1.sndcdn.com/artworks-000060116506-zfp3zc-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/tycho-awake'},
-    {title: 'Montana', photo: 'https://i1.sndcdn.com/artworks-000068571467-ctyent-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/tycho-montana'},
-    {title: 'L', photo: 'https://i1.sndcdn.com/artworks-000072776600-m75qs3-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/l'},
-    {title: 'Dye', photo: 'https://i1.sndcdn.com/artworks-000072776600-m75qs3-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/dye'},
-    {title: 'See', photo: 'https://i1.sndcdn.com/artworks-000079670864-3wqw3j-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/see'},
-    {title: 'Apogee', photo: 'https://i1.sndcdn.com/artworks-000072776600-m75qs3-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/apogee'},
-    {title: 'Spectre', photo: 'https://i1.sndcdn.com/artworks-000071356473-151puu-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/spectre'},
-    {title: 'Plains', photo: 'https://i1.sndcdn.com/artworks-000072776600-m75qs3-t500x500.jpg', price: 1.50, url: 'https://soundcloud.com/tycho/plains'},
-    //17-29 Odesza - In Return
-    {title: 'Always This Late', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/always-this-late'},
-    {title: 'Say My Name (feat. Zyra)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/say_my_name'},
-    {title: 'Bloom', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/bloom'},
-    {title: 'All We Need (feat. Shy Girls)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/all-we-need'},
-    {title: 'Sundara', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/sundara'},
-    {title: 'White Lies (feat. Jenni Potts)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/white-lies'},
-    {title: 'Kusanagi', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/kusanagi'},
-    {title: 'Echoes (feat. Py)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/echoes'},
-    {title: 'It\'s Only (feat. Zyra)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/its-only'},
-    {title: 'Koto', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/koto'},
-    {title: 'Memories That You Call (feat. Monsoonsiren)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/memories'},
-    {title: 'Sun Models (feat. Madelyn Grant)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/sun-models-feat-madelyn-grant'},
-    {title: 'For Us (feat. Briana Marela)', photo: 'http://bit.ly/1P2eFTH', price: 1.50, url: 'https://soundcloud.com/odesza/for-us'},
-    //30-44 Flume - Flume
-    {title: 'Sintra', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/sintra'},
-    {title: 'Holdin On', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/holdin-on-1'},
-    {title: 'Left Alone feat. Chet Faker', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/left-alone-feat-chet-faker'},
-    {title: 'Sleepless feat. Jezzabell Doran', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/sleepless-feat-jezzabell-doran'},
-    {title: 'On Top feat. T.Shirt', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/on-top-feat-t-shirt'},
-    {title: 'Stay Close', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/stay-close-1'},
-    {title: 'Insane feat. Moon Holiday', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/insane-feat-moon-holiday'},
-    {title: 'Change', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/change-1'},
-    {title: 'Ezra', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/ezra-1'},
-    {title: 'More Than You Thought', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/more-than-you-thought-1'},
-    {title: 'Space Cadet', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/space-cadet'},
-    {title: 'Bring You Down feat. George Maple', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/bring-you-down-feat-george'},
-    {title: 'Warm Thoughts', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/warm-thoughts-1'},
-    {title: 'What You Need', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/what-you-need'},
-    {title: 'Star Eyes', photo: 'http://bit.ly/1M8gr7i', price: 1.50, url: 'https://soundcloud.com/flume/star-eyes-1'}
-
-
-]
-
-songs=songs
+console.log('-generating songs-');
+var songs = _.times(numSongs, randSong)
     .map(function(datum) {
         return new Song(datum);
     });
-console.log('-done generating songs-', songs);
+console.log('-done generating songs-');
 
 console.log('-generating albums-');
-function concatSongs(startRange, endRange){
-    result = []
-    for (var i = startRange; i <= endRange; i++){
-        result.push(songs[i]['_id'])
-    }
-    return result;
-}
-var albums = [
-    {title: 'Peace Is The Mission', photo: 'http://bit.ly/1DoKUuG', price: 7.99, year: 2015, artist: artistsKeys['Major Lazer'], genre: genres[0]['_id'], songs: concatSongs(0,8)},
-    {title: 'Awake', photo: 'http://bit.ly/1E5ytPp', price: 9.99, year: 2014, artist: artistsKeys['Tycho'], genre: genres[0]['_id'], songs: concatSongs(9,16)},
-    {title: 'In Return', photo: 'http://bit.ly/1P2eFTH', price: 9.99, year: 2014, artist: artistsKeys['Odesza'], genre: genres[0]['_id'], songs: concatSongs(17,29)},
-    {title: 'Flume', photo: 'http://bit.ly/1M8gr7i', price: 9.99, year: 2013, artist: artistsKeys['Flume'], genre: genres[0]['_id'], songs: concatSongs(30,44)}
-
-
-]
-albums = albums
+var albums = _.times(numAlbums, randAlbum)
     .map(function(datum) {
         return new Album(datum);
     });

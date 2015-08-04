@@ -2,11 +2,12 @@
 <div class="row test">
 	<div class="col-lg-8 col-centered">
 		<div class="col-lg-8 box">
+			{{song}}
 			<h2>{{song.title}}</h2>
+			<img class="pull-right" src="{{song.photo}}" width="300">
 			<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
 			<!-- <h3>Artist:  <a ui-sref=""></a>{{album.artist}}</h3> -->
 			<h4>Album: <a ui-sref="album({id:album._id})">{{album.title}}</a></h4>
-			<img src="{{album.photo}}">
 			<br>
 			<button class="buyButton" ng-click="openModal()">Buy Song</button>
 			<h4>${{song.price}}</h4>

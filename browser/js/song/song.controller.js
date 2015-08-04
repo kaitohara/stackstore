@@ -71,6 +71,7 @@ console.log('toneden player', ToneDen.player)
 		$scope.artist = data;
 	})
 	$scope.openModal = function(){
+		console.log('wtf')
 		var modalInstance = $modal.open({
 			animation: true,
 			templateUrl: 'js/purchase/modalSongView.html',
