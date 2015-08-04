@@ -154,6 +154,7 @@ textarea.form-control {
 
 .stack-hr {
   color: $stackify-green;
+  border-color: $stackify-green;
 }
 
 .order-select {
@@ -179,6 +180,17 @@ textarea.form-control {
 }
 .right {
   float: right;
+}
+
+.album-song-list {
+  list-style-type: none;
+  a {
+    color: white;
+  }
+}
+
+.store-header {
+  border-color: $stackify-green !important;
 }
 
 @import "directives/main";
