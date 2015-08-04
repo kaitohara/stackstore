@@ -9,7 +9,7 @@ app.factory('Song', function ($http){
 		},
 		getPopulatedSong: function(id) {
 			console.log('runnint get pop song');
-			return $http.get('/api/songs/' + id + '/populated')
+			return $http.get('/api/songs/' + id)
 				.then(res => res.data);
 		}
 	};
