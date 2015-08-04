@@ -11,7 +11,7 @@ app.config(['$stateProvider',function($stateProvider) {
 					});
 			},
 			albums: function($http) {
-				return $http.get('/api/albums')
+				return $http.get('/api/albums/populated')
 					.then(function(res) {
 						return res.data;
 					});
@@ -62,6 +62,37 @@ app.controller('AdminProductCtrl', ['$scope', 'songs', 'albums', 'AdminFactory',
 				$scope.newAlbum = {};
 				return res.data;
 			});
+	};
+
+	$scope.deleteSong = function(song) {
+		console.log('deleting this song', song);
+		AdminFactory.deleteSong(song._id)
+			.then(() => {
+				_.remove(songs, s => s._id === song._id);
+			});
+	};
+
+	$scope.updateSong = function(song, config) {
+		AdminFactory.updateSong(song._id, config)
+			.then(res => console.log('the update res', res));
+	};
+
+	$scope.deleteAlbum = function(album) {
+		AdminFactory.deleteAlbum(album._id)
+			.then(() => {
+				_.remove(albums, al => al._id === album._id);
+				// delete all songs from that album too
+				_.remove(songs, s => _.includes(album.songs, s._id));
+				return AdminFactory.deleteSongs(album.songs);
+			})
+			.then(res => {
+				console.log('you did it', res);
+			});
+	};
+
+	$scope.updateAlbum = function(album, config) {
+		AdminFactory.deleteAlbum(album._id, config)
+			.then(res => console.log('the update res', res));
 	};
 
 }]);

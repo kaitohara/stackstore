@@ -1,11 +1,13 @@
-<div class="page-header">
-  <h1>Admin Activities <small>Subtext for header</small></h1>
-</div>
-<ul class="nav nav-tabs nav-justified">
-	<li><a ui-sref="admin.users">User Management</a></li>
-	<li><a ui-sref="admin.products">Product Management</a></li>
-	<li><a ui-sref="admin.orders">Order Management</a></li>
-	<li><a ui-sref="admin.stores">Store Management</a></li>
-</ul>
+<section id="admin" class="container">
+	<div class="page-header">
+	  <h1>Admin Activities <small>Choose a category below</small></h1>
+	</div>
+	<ul class="nav nav-tabs nav-justified">
+		<li><a ui-sref="admin.users" class="admin-nav">User Management</a></li>
+		<li><a ui-sref="admin.products" class="admin-nav">Product Management</a></li>
+		<li><a ui-sref="admin.orders" class="admin-nav">Order Management</a></li>
+		<li><a ui-sref="admin.stores" class="admin-nav">Store Management</a></li>
+	</ul>
 
-<ui-view></ui-view>
+	<ui-view></ui-view>
+</section>

@@ -18,7 +18,7 @@
   <script src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="/socket.io-client/socket.io.js"></script>
   <script type="text/javascript">
-  
+
 
   (function() {
     var script = document.createElement('script');
@@ -43,12 +43,21 @@
      });
     });
   </script>
-  <script src="/main.js"></script>
+ 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.MySlick').slick({
+                'setting-name': 'setting-value'
+            });
+        });
+    </script>
+    <script src="/main.js"></script>
+
 </head>
 <body ng-app="FullstackGeneratedApp">
-  <navbar></navbar>
-  <live-search></live-search>
-  <div id="main" ui-view></div>
-  <footer></footer>
+<navbar></navbar>
+<live-search></live-search>
+<div id="main" ui-view></div>
+<footer></footer>
 </body>
 </html>
