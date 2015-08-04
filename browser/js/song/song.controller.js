@@ -12,19 +12,22 @@ app.service('shareSongInfo', function() {
 
 app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSongInfo) {
 	$scope.song = song;
-	$scope.album = $scope.song.album
-	$scope.artist = $scope.song.artist
+	Album.getAlbum($scope.song.album).then(function(data){
+			$scope.album = data;
+		})
+	Artist.getArtist($scope.song.artist).then(function(data){
+			$scope.artist = data;
+		})
+	// $scope.album = $scope.song.album
+	// $scope.artist = $scope.song.artist
 		// console.log('here in ctrl')
 		// Album.getAlbum($scope.song.album).then(function(data){
-		// 	console.log('why the fuck doesnt this work anymore', data)
 		// 	$scope.album = data;
 		// })
 		// Artist.getArtist($scope.song.artist).then(function(data){
-		// 	console.log(data)
 		// 	$scope.artist = data;
 		// })
 		// (function() {
-		// 	console.log('wwooo')
 		// 	var script = document.createElement('script');
 
 	// 	script.type = 'text/javascript';
