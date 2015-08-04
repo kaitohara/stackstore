@@ -13,6 +13,7 @@ app.service('shareSongInfo', function() {
 app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSongInfo) {
 	$scope.song = song;
 	Album.getAlbum($scope.song.album).then(function(data){
+		console.log('in song ctrl')
 			$scope.album = data;
 		})
 	Artist.getArtist($scope.song.artist).then(function(data){
@@ -84,7 +85,6 @@ app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSo
 			animation: true,
 			templateUrl: 'js/purchase/modalSongView.html',
 			controller: 'ModalInstanceCtrl',
-			size: 'lg',
 			windowClass: 'center-modal'
 		})
 		modalInstance.result.then(function(selectedItem) {

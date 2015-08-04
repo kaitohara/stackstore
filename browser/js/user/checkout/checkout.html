@@ -1,0 +1,84 @@
+<div class="container checkout">
+	<div class="row">
+		<div class="col-lg-10 col-centered">
+			<div class="col-lg-8">
+				Your Account / <a ui-sref="cart">Cart</a> / Checkout 
+				<h1>Check Out</h1>
+				<p>Customer Information</p>
+				<input type="text">
+				<p>Payment Method</p>
+				<br><br>
+				<p>Billing Info</p>
+				<input type="text">
+				<input type="text" placeholder="Card #">
+				<select>
+					<option>01 - January</option>
+					<option>02 - February</option>
+					<option>03 - March</option>
+					<option>04 - April</option>
+					<option>05 - May</option>
+					<option>06 - June</option>
+					<option>07 - July</option>
+					<option>08 - August</option>
+					<option>09 - September</option>
+					<option>10 - October</option>
+					<option>11 - November</option>
+					<option>12 - December</option>
+				</select>
+
+				<select>
+					<option>2015</option>
+					<option>2016</option>
+					<option>2017</option>
+					<option>2018</option>
+					<option>2019</option>
+					<option>2020</option>
+					<option>2021</option>
+					<option>2022</option>
+					<option>2023</option>
+					<option>2024</option>
+					<option>2025</option>
+				</select>
+				
+				<input type="text" placeholder="CVV">
+
+				Billing Information
+				<input class="white-input" type="text" placeholder="First Name">
+				<input class="white-input" type="text" placeholder="Last Name">
+				<input class="white-input" type="text" placeholder="Address 1">
+				<input class="white-input" type="text" placeholder="Address 2">
+				<input class="white-input" type="text" placeholder="ZIP">
+				<input class="white-input" type="text" placeholder="City">
+				<input class="white-input" type="text" value="United States">
+				<input class="white-input" type="text" placeholder="State">
+				<input class="white-input" type="text" placeholder="Email">
+				<br><br><br>
+				<button class="order-submit"><h4>Submit Order ></h4></button>
+			</div>
+			<div class="col-lg-4">
+				Cart
+				<div class="checkout-cart">
+				<ul>
+					<li ng-repeat="song in cart.songs" class="preview-cart">
+						<img width="100" class="pull-left" src="{{song.song.photo}}">
+						<div class="previewText">
+							<a ui-sref="artist({name: song.song.artist.name, id: song.song.artist._id})"><p>{{song.song.artist.name}}</p></a>
+							<a ui-sref="song({id:song.song._id})"><p>{{song.song.title}}</p></a>
+							<p>{{song.song.price | currency}}</p>
+						</div>
+						
+					</li>
+				</ul>	
+				</div>
+
+					
+
+				<br>
+				<div>
+					<h2><p>Total: {{cart.totalPrice | currency}}</p></h2>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
