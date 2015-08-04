@@ -22,10 +22,10 @@ router.get('/cart', function(req, res, next) {
     res.json(req.session.cart)
   } else {
     Order.create({}).then(function(newOrder) {
-      req.session.cart = newOrder._id
-      res.json(req.session.cart)
-    })
-    .then(null, next);
+        req.session.cart = newOrder._id
+        res.json(req.session.cart)
+      })
+      .then(null, next);
   }
 })
 

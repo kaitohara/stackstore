@@ -1,31 +1,31 @@
-app.service('shareSongInfo', function(){
+app.service('shareSongInfo', function() {
 	var property = "First";
 	return {
-		getProperty: function(){
+		getProperty: function() {
 			return property;
 		},
-		setProperty: function(value){
+		setProperty: function(value) {
 			property = value;
 		}
 	}
 })
 
-app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareSongInfo){
+app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSongInfo) {
 	$scope.song = song;
 	$scope.album = $scope.song.album
 	$scope.artist = $scope.song.artist
-	// console.log('here in ctrl')
-	// Album.getAlbum($scope.song.album).then(function(data){
-	// 	console.log('why the fuck doesnt this work anymore', data)
-	// 	$scope.album = data;
-	// })
-	// Artist.getArtist($scope.song.artist).then(function(data){
-	// 	console.log(data)
-	// 	$scope.artist = data;
-	// })
-	// (function() {
-	// 	console.log('wwooo')
-	// 	var script = document.createElement('script');
+		// console.log('here in ctrl')
+		// Album.getAlbum($scope.song.album).then(function(data){
+		// 	console.log('why the fuck doesnt this work anymore', data)
+		// 	$scope.album = data;
+		// })
+		// Artist.getArtist($scope.song.artist).then(function(data){
+		// 	console.log(data)
+		// 	$scope.artist = data;
+		// })
+		// (function() {
+		// 	console.log('wwooo')
+		// 	var script = document.createElement('script');
 
 	// 	script.type = 'text/javascript';
 	// 	script.async = true;
@@ -48,35 +48,35 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// 		skin:'dark'
 	// 	});
 	// });
-// console.log('toneden player', ToneDen.player)
+	// console.log('toneden player', ToneDen.player)
 
-	function initToneden(){
+	function initToneden() {
 		var config = {
 			dom: "#player",
 			skin: "dark",
 			urls: [
-			$scope.song.url
+				$scope.song.url
 			]
 		};
 
-		if(typeof ToneDen !== 'undefined'){
+		if (typeof ToneDen !== 'undefined') {
 			ToneDen.player.create(config);
-		}else{
+		} else {
 			ToneDenReady.push(function() {
-				ToneDen.player.create(config);      
-			}); 
+				ToneDen.player.create(config);
+			});
 		}
 	};
-	
 
 	// console.log('ToneDenReady', ToneDenReady)
 	// console.log('toneden', ToneDen)
 
 	shareSongInfo.setProperty(song)
+
 	// console.log('ToneDen', ToneDen, ToneDen.player, {define:function(){}},ToneDenReady)
 	// ToneDen.player.getInstanceByDom("#player").addTracks('https://soundcloud.com/kryder/ltric-this-feeling-kryder-remix-1')
-	
-	$scope.openModal = function(){
+
+	$scope.openModal = function() {
 		var modalInstance = $modal.open({
 			animation: true,
 			templateUrl: 'js/purchase/modalSongView.html',
@@ -84,12 +84,10 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 			size: 'lg',
 			windowClass: 'center-modal'
 		})
-		modalInstance.result.then(function(selectedItem){
+		modalInstance.result.then(function(selectedItem) {
 			$scope.selected = selectedItem;
-		}, function(){
-		});
+		}, function() {});
 	};
 	// loadPlayer();
 	initToneden()
 });
-

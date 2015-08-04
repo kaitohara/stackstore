@@ -1,0 +1,20 @@
+<section id="collection" class="container">
+  <ul ng-repeat="order in collection" ng-show="order.orderStatus=='completed'">
+    <li class='collection-item' ng-repeat="album in order.albums">
+      <div class='item-content'>
+        <img class='search-photo' src="{{album.album.photo}}" width="200">
+        <a class="song-link" ui-sref="album({id:album.album._id})" >{{album.album.title}}</a>
+        <br><br>
+        <a class="artist-link" ui-sref="artist({name: album.album.artist.name, id: album.album.artist._id})" >{{album.album.artist.name}}</a> 
+      </div>
+    </li>
+    <li class='collection-item' ng-repeat="song in order.songs">
+      <div class='item-content'>
+       <img class='search-photo' src="{{song.song.album.photo}}" width="200">
+      <a class="song-link" ui-sref="song({id:song.song._id})" >{{song.song.title}}</a>
+      <br><br>
+      <a class="artist-link" ui-sref="artist({name: song.song.artist.name, id: song.song.artist._id})">{{song.song.artist.name}}</a> 
+      </div>
+    </li>      
+  </ul>
+</section>
