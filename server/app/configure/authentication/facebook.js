@@ -16,6 +16,8 @@ module.exports = function (app) {
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
 
+        console.log('facebook sent me this info', profile);
+
         UserModel.findOne({ 'facebook.id': profile.id }).exec()
             .then(function (user) {
 
@@ -25,7 +27,8 @@ module.exports = function (app) {
                     return UserModel.create({
                         facebook: {
                             id: profile.id
-                        }
+                        },
+                        name: profile.displayName,
                     });
                 }
 
@@ -40,7 +43,7 @@ module.exports = function (app) {
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
