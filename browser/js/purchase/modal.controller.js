@@ -1,5 +1,5 @@
-app.controller('ModalInstanceCtrl', function($scope, $modalInstance, shareSongInfo, Song, OrderFactory) {
-	$scope.cartId = OrderFactory.getCurrentOrderID()
+app.controller('ModalInstanceCtrl', function($scope, $modalInstance, shareSongInfo, Song, OrderFactory, Session) {
+	$scope.cartId = Session.cart._id;
 	$scope.ok = function() {
 		$modalInstance.close($scope.selected.item);
 	};
