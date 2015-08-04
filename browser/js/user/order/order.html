@@ -13,17 +13,21 @@
       <ul>
         <li class="media album" ng-repeat="album in order.albums">
           <div class="media-left">
-            <a href="#">
+            <a ui-sref="album({id:album.album._id})" >
               <img class="media-object img-rounded" src="{{album.album.photo}}" height="173" width="173">
             </a>
           </div>
           <div class="media-body ">
             <ul class="list-group">
               <li class="list-group-item">
-                <h4 class="media-heading">{{album.album.title}}</h4>
+                <a ui-sref="album({id:album.album._id})" >
+                  <h4 class="media-heading">{{album.album.title}}</h4></a>
               </li>
-              <li class="list-group-item">  
-                <span>by {{album.album.artist.name}}</span></li>
+              <li class="list-group-item">by 
+                <a ui-sref="artist({name: album.album.artist.name, id: album.album.artist._id})">  
+                  <span>{{album.album.artist.name}}</span>
+                </a>
+              </li>
               <li class="list-group-item">  
               <div class="row">
               <div class="col-md-4">
@@ -50,16 +54,18 @@
 
         <li class="media album" ng-repeat="song in order.songs">
           <div class="media-left">
-            <a href="#">
+            <a ui-sref="song({id:song.song._id})">
               <img class="media-object img-rounded" src="{{song.song.photo}}" height="173" width="173">
             </a>
           </div>
           <div class="media-body">
           <ul class="list-group">
             <li class="list-group-item">
-              <h4 class="media-heading">{{song.song.title}}</h4></li>
-            <li class="list-group-item"> 
-              <span>by {{song.song.artist.name}}</span></li>
+            <a ui-sref="song({id:song.song._id})">
+              <h4 class="media-heading">{{song.song.title}}</h4></a></li>
+            <li class="list-group-item">by 
+            <a ui-sref="artist({name: song.song.artist.name, id: song.song.artist._id})"> 
+              <span>{{song.song.artist.name}}</span></a></li>
             <li class="list-group-item"> 
             <div class="row">
               <div class="col-md-4">
