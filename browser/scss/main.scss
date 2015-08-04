@@ -168,6 +168,14 @@ textarea.form-control {
   margin-bottom: 24px;
 }
 
+.left {
+  margin-top: 5px;
+  float: left;
+}
+.right {
+  float: right;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";
