@@ -25,7 +25,10 @@ module.exports = function(app) {
             mongooseConnection: mongoose.connection
         }),
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 6000
+        }
     }));
 
     // Initialize passport and also allow it to read
@@ -60,6 +63,7 @@ module.exports = function(app) {
     // Simple /logout route.
     app.get('/logout', function(req, res) {
         req.logout();
+        req.session.cart = null
         res.status(200).end();
     });
     // Each strategy enabled gets registered.

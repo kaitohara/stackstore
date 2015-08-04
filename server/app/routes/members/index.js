@@ -32,19 +32,19 @@ router.get('/secret-stash', ensureAuthenticated, function(req, res) {
     res.send(_.shuffle(theStash));
 });
 
-router.get('/me', function(req, res){
-    console.log('req sesh', req.session.passport.user)
-    res.status(200).send(req.session.passport.user)
-    // User.findById(req.session.passport.user).exec()
-    //     .then(function(user){
-    //         console.log(user)
-    //         Order.findById(user.cart).deepPopulate(albums).exec()
-    //             .then(function(order){
-    //                 console.log(order)
-    //                 res.json(order)
-    //             })
-    //     })
+// router.get('/me', function(req, res){
+//     console.log('req sesh', req.session.passport.user)
+//     res.status(200).send(req.session.passport.user)
+//     // User.findById(req.session.passport.user).exec()
+//     //     .then(function(user){
+//     //         console.log(user)
+//     //         Order.findById(user.cart).deepPopulate(albums).exec()
+//     //             .then(function(order){
+//     //                 console.log(order)
+//     //                 res.json(order)
+//     //             })
+//     //     })
 
 
-    // res.status(200).send(req.session.passport.user)
-})
+//     // res.status(200).send(req.session.passport.user)
+// })
