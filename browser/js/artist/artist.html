@@ -1,0 +1,13 @@
+Artist Profile
+
+<div class="row">
+	<div class="col-lg-8 col-centered">
+		<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
+		<h1>{{artist.name}}</h1>
+		{{artistId}}
+		<h3>Albums:</h3>
+		<ul>
+			<li ng-repeat="album in albums">{{album.title}}</li>
+		</ul>
+	</div>
+</div>

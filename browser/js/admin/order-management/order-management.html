@@ -1,0 +1,17 @@
+<h2>You're managing orders</h2>
+<label>Filter</label>
+<select ng-model="orderFilter">
+	<option>Cancelled</option>
+	<option>Completed</option>
+	<option>Created</option>
+	<option>Processing</option>
+</select>
+<div>
+	<ul class="search-list-scroll">
+		<li class="search-item-scroll" ng-repeat="order in filteredOrders = (orders | filter:orderFilter)">
+			<order-elem order="order" status="changeStatus(order, newStatus)"></order-elem>
+		</li>
+	</ul>	
+</div>
+
+<!-- <order-list orders="orders" admin="true"></order-list> -->

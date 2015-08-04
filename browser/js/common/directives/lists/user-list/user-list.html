@@ -1,0 +1,9 @@
+<label>Filter</label>
+<input ng-model="userFilter">
+<div>
+	<ul class="search-list-scroll">
+		<li class="search-item-scroll" ng-repeat="user in filteredUsers = (users | filter:userFilter)">
+			<user-elem user="user" admin="admin" change="changeStatus(user, status)" delete="deleteUser(user)" reset="resetPassword(user)" seller="changeSeller(user, status)"></user-elem>
+		</li>
+	</ul>
+</div>

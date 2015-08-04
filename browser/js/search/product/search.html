@@ -1,0 +1,44 @@
+<div class="container">
+		<!-- <user-item is-form model="userSearch" class="list-group-item min-content" glyphicon="search"></user-item> -->
+	<br><br>
+	<div class="user-list">
+		<input type="text" ng-model="search">
+		<!-- <button ng-click="getArtists()"></button> -->
+
+		<!-- SONGS SEARCH RESULT-->
+		<ul ng-show="!!search">
+			<li ng-repeat="song in filteredSongs = (songs | searchFilter:search)">
+				Song: <a ui-sref="song({id:song._id})">{{song.title}}</a>
+			</li>
+		</ul>
+
+		<!-- ARTISTS SEARCH RESULT-->
+		<ul ng-show="!!search">
+			<li ng-repeat="artist in filteredArtists = (artists | searchFilter:search)">
+				Artist: <a ui-sref="artist({name: artist.name, id: artist._id})">{{artist.name}}</a>
+			</li>
+		</ul>
+
+		<!-- ALBUMS SEARCH RESULT-->
+		<ul ng-show="!!search">
+			<li ng-repeat="album in filteredAlbums = (albums | searchFilter:search)">
+				Album: <a ui-sref="album({id:album._id})">{{album.title}}</a>
+			</li>
+		</ul>
+
+
+		<p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
+		</p>
+
+		<!-- <a ng-repeat="artist in artists | filter:artistSearch"
+			ui-sref="artist({id: artist._id})"
+			ui-sref-active="active"
+			class="list-group-item min-content"
+			ng-if="!artist.isDestroyed">
+			<user-item model="artist"></user-item>
+		</a> -->
+	</div>
+	<div class="fixed">
+		<ui-view></ui-view>
+	</div>
+</div>
