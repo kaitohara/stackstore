@@ -1,0 +1,20 @@
+{
+  "name": "stackstore",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kaitohara/stackstore",
+  "authors": [
+    "Kaito Hara <kaito.hara@me.com.>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ng-slide-down": "~0.4.2",
+    "bootstrap-social": "~4.9.1"
+  }
+}

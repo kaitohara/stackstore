@@ -1,41 +1,3 @@
-<!-- <a class="list-group-item" ng-click="edit({album: album})">
-	<div class="row">
-		<div class="col-xs-6">
-			<h3 class="list-group-item-heading">Title: {{album.title}}</h3>
-			<hr>
-			<p class="list-group-item-text">
-				<span>By: {{album.artist.name}}</span>
-			</p>
-			<p class="list-group-item-text">
-				<span>Number of songs: {{album.songs.length}}</span>
-			</p>
-			<p class="list-group-item-text">
-				<span>Year: {{album.year}}</span>
-			</p>
-		</div>
-		<div class="col-xs-6">
-			<img ng-src="{{album.photo}}">
-		</div>
-	</div>
-</a> -->
-
-<!-- <a ng-click="edit({album: album})">
-<div class="list-group-item">
-	<img ng-src="{{album.photo}}">
-	<h3 class="list-group-item-heading">Title: {{album.title}}</h3>
-	<hr>
-	<p class="list-group-item-text">
-		<span>By: {{album.artist.name}}</span>
-	</p>
-	<p class="list-group-item-text">
-		<span>Number of songs: {{album.songs.length}}</span>
-	</p>
-	<p class="list-group-item-text">
-		<span>Year: {{album.year}}</span>
-	</p>
-</div>
-</a> -->
-
 <div class="panel panel-primary" ng-click="edit({album:album})">
 	<div ng-if="admin">
 		<button class="btn btn-danger">Delete</button>
@@ -46,9 +8,18 @@
 	</div>
 	<div class="panel-footer">
 		<ul class="list-group">
-		    <li class="list-group-item">Title: {{album.title}}</li>
-		    <li class="list-group-item">Artist: {{album.artist.name}}</li>
-		    <li class="list-group-item">Number of Songs: {{album.songs.length}}</li>
+		    <a class="list-group-item" ui-sref="album({id:album._id})">
+		    	<li>Title: {{album.title}}</li>
+		    </a>
+		    <a class="list-group-item" ui-sref="artist({name: album.artist.name, id: album.artist._id})">
+		    	<li>Artist: {{album.artist.name}}</li>
+		    </a>
+		    <a class="list-group-item">
+		    	<li>Number of Songs: {{album.songs.length}}</li>
+	    	</a>
+	    	<a class="list-group-item">
+		    	<li>Year: {{album.year}}</li>
+	    	</a>
 	    </ul>
 	</div>
 </div>
