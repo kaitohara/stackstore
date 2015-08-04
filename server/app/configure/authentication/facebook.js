@@ -11,7 +11,8 @@ module.exports = function (app) {
     var facebookCredentials = {
         clientID: facebookConfig.clientID,
         clientSecret: facebookConfig.clientSecret,
-        callbackURL: facebookConfig.callbackURL
+        callbackURL: facebookConfig.callbackURL,
+        profileFields: ['id', 'displayName', 'emails']
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
@@ -25,7 +26,9 @@ module.exports = function (app) {
                     return UserModel.create({
                         facebook: {
                             id: profile.id
-                        }
+                        },
+                        email: profile.emails[0].value,
+                        name: profile.displayName
                     });
                 }
 
@@ -40,7 +43,7 @@ module.exports = function (app) {
 
     passport.use(new FacebookStrategy(facebookCredentials, verifyCallback));
 
-    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
