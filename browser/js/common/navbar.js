@@ -1,4 +1,4 @@
-app.controller('navbarCtrl', function($scope, $rootScope) {
+app.controller('navbarCtrl', function($scope, $rootScope, $state) {
     $scope.search
     $scope.bool = false;
     //Typing in the search box broadcasts what's being typed
@@ -30,5 +30,12 @@ app.controller('navbarCtrl', function($scope, $rootScope) {
             clicked: true
         }) 
         }
+    }
+    $scope.submitSearch = function(){
+        console.log('hit this')
+        $rootScope.$broadcast('clicked', {
+            clicked: false
+        })
+        $state.go('search', {searchParam:$scope.search})
     }
 })

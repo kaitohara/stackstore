@@ -1,6 +1,6 @@
 app.config(function ($stateProvider) {
 	$stateProvider.state('search', {
-		url: '/search',
+		url: '/search/:searchParam',
 		controller: 'SearchCtrl',
 		templateUrl: 'js/search/product/search.html'
 	});

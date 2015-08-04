@@ -1,11 +1,5 @@
 app.controller('ModalInstanceCtrl', function($scope, $modalInstance, shareSongInfo, Song, OrderFactory) {
-	// OrderFactory.getUser().then(function(data) {
-	// $scope.currentId = data;
-	// OrderFactory.getCart(data).then(function(cart) {
-	// $scope.cartId = cart._id;
 	$scope.cartId = OrderFactory.getCurrentOrderID()
-		// })
-		//})
 	$scope.ok = function() {
 		$modalInstance.close($scope.selected.item);
 	};

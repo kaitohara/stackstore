@@ -14,6 +14,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('CartController', function($scope, cart) {
+  console.log(cart)
   $scope.cart = cart;
 });
 
