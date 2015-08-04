@@ -7,10 +7,10 @@ order {
     margin: 0;
     padding: 0;
   }
-  .order-details {
-    display: flex;
-    justify-content: space-around;
-  }
+  // .order-details {
+  //   display: flex;
+  //   justify-content: space-around;
+  // }
   .album {
     @include add-border;
     border-radius: 6px;
@@ -21,10 +21,8 @@ order {
       }
     }
   }
-  
-  
   .btn-genre {
-    padding:1px 4px;
+    padding: 1px 4px;
     background-color: darken($stackify-green, 5%);
     color: white;
     border: 1px solid darken($stackify-green, 10%);
@@ -33,9 +31,10 @@ order {
     }
   }
   .btn-xl {
-    position:inherit;
+    position: inherit;
     // padding: 18px 28px;
-    font-size: 25px; //change this to your desired size
+    font-size: 25px;
+    //change this to your desired size
     line-height: normal;
     // -webkit-border-radius: 8px;
     //    -moz-border-radius: 8px;

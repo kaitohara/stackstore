@@ -26,9 +26,9 @@ module.exports = function(app) {
         }),
         resave: false,
         saveUninitialized: false,
-        cookie: {
-            maxAge: 6000
-        }
+        // cookie: {
+        //     maxAge: 6000
+        // }
     }));
 
     // Initialize passport and also allow it to read
