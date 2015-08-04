@@ -35,7 +35,7 @@
             <a ui-sref="search({searchParam:search})" class="glyphicon glyphicon-search"></a>
             <input type="text" class="search-text" size="40" maxlength="120" ng-model="search" ng-focus="expandSlider()" ng-blur="closeSlider()" placeholder="Search by artist, song or album" ng-change="update(search, !searchBar.$error.required)" required>
         </form>
-        
+
 
         <a ui-sref="cart">
             <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -48,8 +48,8 @@
             <li ng-show="!user">
                 <button ui-sref="signup" class="btn signup-button">Sign up</button>
             </li>
-            <li ng-show="user">   
-                <a href="#">{{user.email}} <span>&#9660;</span></a>               
+            <li ng-show="user">
+                <a href="#">{{user.email}} <span>&#9660;</span></a>
                 <ul class="sub-menu">
                     <li><a ui-sref="profile.edit">Profile</a></li>
                     <li><a ui-sref="profile.orderHistory">Order list</a></li>
@@ -57,8 +57,8 @@
                     <li ng-if="isAdmin()"><a ui-sref="admin">Privileges</a></li>
                     <hr>
                     <li><a ng-click="logout()">Logout</a></li>
-                    
-                </ul>    
+
+                </ul>
             </li>
         </ul>
     </div>
