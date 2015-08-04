@@ -95,6 +95,8 @@ textarea.form-control {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 200px;
+  // height: 200px;
 }
 
 .review {
@@ -117,4 +119,4 @@ textarea.form-control {
 @import "login/main";
 @import "signup/main";
 @import "products/song";
-@import "slick/slick"
+@import "slick/slick";
