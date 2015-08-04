@@ -2,10 +2,13 @@
     <h3 class="modal-title">Album</h3>
 </div>
 <div class="modal-body">
-    <p>{{album.title}}</p>
-    <p>$  {{album.price}}</p>
+    <p>{{item.title}}</p>
+    <p>$  {{item.price}}</p>
     High-quality download of MP3, WAV + more
-    {{album}}
+    <!-- {{item}} -->
+    <alert type="danger" ng-show="error">
+      {{ error }}
+    </alert>
 </div>
 <div class="modal-footer">
     <button class="btn buttons" ng-click="ok()">Purchase Now</button>

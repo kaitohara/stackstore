@@ -45,6 +45,11 @@ body {
   min-height: calc(100% - 100px - 50px);
 }
 
+.flex-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
 .col-centered {
   float: none;
   margin: 0 auto;
