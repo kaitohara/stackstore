@@ -1,4 +1,4 @@
-app.directive('orderList', function(FormFactory){
+app.directive('orderList', function(){
 	// Runs during compile
 	return {
 		restrict: 'E',
@@ -6,9 +6,6 @@ app.directive('orderList', function(FormFactory){
 		scope: {
 			admin: '=',
 			orders: '='
-		},
-		link: function(scope, elem, attrs) {
-
 		}
 	};
 });

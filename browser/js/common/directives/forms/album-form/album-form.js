@@ -7,8 +7,7 @@ app.directive('albumForm', function(FormFactory){
 			submit: '&',
 			admin: '='
 		},
-		link: function(scope, elem, attrs) {
-			console.log('rna album form directive');
+		link: function(scope) {
 			FormFactory.getGenres()
 				.then(genres => scope.genres = genres);
 		}

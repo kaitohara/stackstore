@@ -14,7 +14,7 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('AdminStoreCtrl', ['$scope', 'stores', 'AdminFactory', function($scope, stores, AdminFactory){
+app.controller('AdminStoreCtrl', ['$scope', 'stores', function($scope, stores){
 	$scope.stores = stores;
 	console.log('store ctrl ran');
 }]);

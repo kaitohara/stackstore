@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state) {
+app.controller('AdditionalInfoCtrl', function ($scope, AuthService) {
 
     $scope.additional = {};
     $scope.error = null;
@@ -20,13 +20,14 @@ app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state) {
         console.log('signing up');
         console.log('info', additionalInfo);
 
-        // AuthService.submit(additionalInfo)
-        //     .then(function (user) {
-        //         console.log(additionalInfo);
-        //         // $state.go('home');
-        //     }).catch(function () {
-        //         $scope.error = 'Invalid signup credentials.';
-        //     });
+        AuthService.submit(additionalInfo)
+            .then(function (user) {
+                console.log(additionalInfo);
+                console.log(user);
+                // $state.go('home');
+            }).catch(function () {
+                $scope.error = 'Invalid signup credentials.';
+            });
 
     };
 

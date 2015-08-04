@@ -1,4 +1,4 @@
-app.directive('reviewList', function(FormFactory){
+app.directive('reviewList', function(){
 	// Runs during compile
 	return {
 		restrict: 'E',
@@ -9,9 +9,7 @@ app.directive('reviewList', function(FormFactory){
 		},
 		link: function(scope, elem, attrs) {
 			scope.noReviews = false;
-			console.log('these reviews', attrs.reviews);
 			if (!attrs.reviews.length) {
-				console.log('no reviews');
 				scope.noReviews = true;
 			}
 		}

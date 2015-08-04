@@ -34,7 +34,7 @@ app.controller('EditDefaultCtrl', ['$scope', 'EditFactory', 'AuthService', funct
 				EditFactory.currentStore.albums.push(alb);
 				return EditFactory.saveToStore(alb._id, EditFactory.currentStore);
 			})
-			.then(res => console.log('done'));
+			.then(() => console.log('done'));
 	};
 	$scope.toggleCreateSong = function() {
         $scope.createSong = !$scope.createSong;

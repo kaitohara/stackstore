@@ -33,14 +33,14 @@ app.controller('EditAlbumCtrl', ['$scope', 'EditFactory', 'album', '$state', fun
 				// add to album in db
 				return EditFactory.saveToAlbum(song._id, EditFactory.currentAlbum);
 			})
-			.then(res => console.log('you did it!'));
+			.then(() => console.log('you did it!'));
 	};
 	$scope.goToSong = function(song) {
 		$state.go('upload.edit.album.song', {songId: song._id});
 	};
 	$scope.deleteAlbum = function() {
 		EditFactory.deleteAlbum($scope.album._id)
-			.then(res => {
+			.then(() => {
 				$state.go('upload.edit.default');
 			});
     };

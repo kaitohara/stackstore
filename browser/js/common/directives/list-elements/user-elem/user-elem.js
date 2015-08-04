@@ -1,4 +1,4 @@
-app.directive('userElem', function(AdminFactory) {
+app.directive('userElem', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/common/directives/list-elements/user-elem/user-elem.html',
