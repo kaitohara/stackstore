@@ -48,7 +48,7 @@ app.controller('AdminProductCtrl', ['$scope', 'songs', 'albums', 'AdminFactory',
 
 	$scope.submitSong = function(data) {
 		AdminFactory.createSong(data)
-			.then(data => {
+			.then(song => {
 				console.log('success', song);
 				$scope.songs.push(song);
 			});

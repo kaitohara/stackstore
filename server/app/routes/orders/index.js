@@ -29,7 +29,7 @@ router.param('orderId', function(req, res, next, orderId) {
         });
 });
 
-router.get('/:orderId', function(req, res) {
+router.get('/:orderId', function(req, res, next) {
     Order.deepPopulate(req.orderItem, [
         'albums.album',
         'songs.song',

@@ -8,5 +8,5 @@ app.config(['$stateProvider',function($stateProvider) {
 }]);
 
 app.controller('DiscoverCtrl', ['$scope', function($scope){
-	// $state.go('discover.list');
+
 }]);

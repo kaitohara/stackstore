@@ -1,4 +1,4 @@
-app.directive('songList', function(FormFactory){
+app.directive('songList', function(){
 	// Runs during compile
 	return {
 		restrict: 'E',
@@ -6,9 +6,6 @@ app.directive('songList', function(FormFactory){
 		scope: {
 			admin: '=',
 			songs: '='
-		},
-		link: function(scope, elem, attrs) {
-
 		}
 	};
 });
