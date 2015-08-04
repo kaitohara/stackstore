@@ -20,7 +20,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, ResetPassword
             ResetPasswordFactory.resetUser(email)
                 .then(function(user){
                     if(user._id){
-                        $state.user=user;
+                        $state.user = user;
                         $state.go('reset.success');
                     }
                     else {
@@ -45,7 +45,7 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, ResetPassword
         AuthService.login(loginInfo).then(function (user) {
             if (user.resetPassword) {
                 console.log('you have to reset your password');
-                $state.go('reset');
+                $state.go('reset.local');
             }
             else $state.go('home');
         }).catch(function () {

@@ -6,22 +6,22 @@ app.controller('SignUpCtrl', function ($scope, AuthService, $state) {
     $scope.sendLogin = function (signupInfo) {
 
         $scope.error = null;
-        console.log('signing up');
+        console.log('signing up', signupInfo);
 
         AuthService.signup(signupInfo).then(function (user) {
             console.log(user);
-            $scope.show=false;
+            $scope.show = false;
             //$state.go('additional');
             if(user._id){
-                $state.signup=user;
+                $state.signup = user;
                 $state.go('signup.success');
-                $scope.show=true;
+                $scope.show = true;
             } else {
                 return "User Validation Failed";
             }
         }).catch(function () {
             $scope.error = 'Invalid signup credentials.';
-            $scope.show=true;
+            $scope.show = true;
         });
     };
 

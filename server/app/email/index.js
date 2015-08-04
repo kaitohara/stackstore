@@ -1,5 +1,5 @@
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_key = require('../../keys/index.js').mandrill_key;
+var mandrill_key = require('../../../keys').mandrill_key;
 var mandrill_client = new mandrill.Mandrill(mandrill_key);
 
 var path = require('path');
