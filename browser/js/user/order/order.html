@@ -14,13 +14,18 @@
         <li class="media album" ng-repeat="album in order.albums">
           <div class="media-left">
             <a href="#">
-              <img class="media-object img-rounded" src="{{album.album.photo}}" height="128" width="128">
+              <img class="media-object img-rounded" src="{{album.album.photo}}" height="173" width="173">
             </a>
           </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{album.album.title}}</h4>
-            <span>by {{album.album.artist.name}}</span>
-            <div class="row">
+          <div class="media-body ">
+            <ul class="list-group">
+              <li class="list-group-item">
+                <h4 class="media-heading">{{album.album.title}}</h4>
+              </li>
+              <li class="list-group-item">  
+                <span>by {{album.album.artist.name}}</span></li>
+              <li class="list-group-item">  
+              <div class="row">
               <div class="col-md-4">
                 <center>Year: {{album.album.year}}</center>
               </div>
@@ -31,24 +36,31 @@
               <center>Price: ${{album.price}}</center>
               </div>
             </div>
-            <span>Genres: <button class="btn btn-stackify" ng-repeat="genre in album.album.genre">{{genre.name}}</button></span>
+          </li>
+          <li class="list-group-item">
+          <span>Genres: <button class="btn btn-genre" ng-repeat="genre in album.album.genre">{{genre.name}}</button></span></li>
+          </ul>
           </div>
           <div class="media-right" ng-show="order.orderStatus=='created'">
-          <button class="btn btn-danger btn-lg" ng-click="removeAlbum(album._id)">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
+            <button class="btn btn-danger btn-xl glyphicon glyphicon-remove" ng-click="removeAlbum(album._id)">
+              <!-- <span class="glyphicon glyphicon-remove"></span> -->
+            </button>
           </div>
         </li>
 
         <li class="media album" ng-repeat="song in order.songs">
           <div class="media-left">
             <a href="#">
-              <img class="media-object img-rounded" src="{{song.song.photo}}" height="128" width="128">
+              <img class="media-object img-rounded" src="{{song.song.photo}}" height="173" width="173">
             </a>
           </div>
           <div class="media-body">
-            <h4 class="media-heading">{{song.song.title}}</h4>
-            <span>by {{song.song.artist.name}}</span>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <h4 class="media-heading">{{song.song.title}}</h4></li>
+            <li class="list-group-item"> 
+              <span>by {{song.song.artist.name}}</span></li>
+            <li class="list-group-item"> 
             <div class="row">
               <div class="col-md-4">
                 <center>Year: {{song.song.album.year}}</center>
@@ -61,10 +73,13 @@
               <center>Price: ${{song.price}}</center>
               </div>
             </div>
-            <span>Genres: <button class="btn btn-stackify" ng-repeat="genre in song.song.album.genre">{{genre.name}}</button></span>
+          </li>
+          <li class="list-group-item"> 
+            <span>Genres: <button class="btn btn-genre" ng-repeat="genre in song.song.album.genre">{{genre.name}}</button></span></li>
+          </ul>
           </div>
           <div class="media-right" ng-show="order.orderStatus=='created'" >
-          <button class="btn btn-danger btn-lg" ng-click="removeSong(song._id)">
+          <button class="btn btn-danger btn-xl" ng-click="removeSong(song._id)">
             <span class="glyphicon glyphicon-remove"></span>
           </button>
           </div>

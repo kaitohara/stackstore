@@ -25,11 +25,16 @@ app.config(function($stateProvider) {
     })
 });
 
-app.controller('ProfileController', function($scope, user) {
+app.controller('ProfileController', function($scope, user, ProfileFactory) {
   $scope.user = user;
   $scope.currentStatus = "all"
   $scope.changeOrderStatusView = function(newStatus) {
     $scope.currentStatus = newStatus;
+  }
+  $scope.editProfile = function(newUserData) {
+    ProfileFactory.editUserInfo(newUserData).then(function(populatedUserData) {
+      $scope.user = populatedUserData
+    })
   }
 });
 
@@ -37,8 +42,9 @@ app.factory('ProfileFactory', function($http) {
   return {
     getUserInfo: (user) =>
       $http.get("api/users/" + user._id + '/profile')
-      .then(function(res) {
-        return res.data
-      })
+      .then((res) => res.data),
+    editUserInfo: (newUserData) =>
+      $http.put("api/users/" + newUserData._id)
+      .then((res) => this.getUserInfo(res.data))
   }
 })

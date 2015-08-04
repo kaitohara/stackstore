@@ -1,6 +1,7 @@
 order {
   margin: 0 auto;
   @include clearfix;
+  color: black;
   ul {
     list-style-type: none;
     margin: 0;
@@ -14,10 +15,31 @@ order {
     @include add-border;
     border-radius: 6px;
     .col-md-4 {
-      border-right: 1px dotted $stackify-green;
+      border-right: 1px solid $border-grey;
       &:last-of-type {
         border: 0;
       }
     }
+  }
+  
+  
+  .btn-genre {
+    padding:1px 4px;
+    background-color: darken($stackify-green, 5%);
+    color: white;
+    border: 1px solid darken($stackify-green, 10%);
+    &:hover {
+      background: darken($stackify-green, 10%);
+    }
+  }
+  .btn-xl {
+    position:inherit;
+    // padding: 18px 28px;
+    font-size: 25px; //change this to your desired size
+    line-height: normal;
+    // -webkit-border-radius: 8px;
+    //    -moz-border-radius: 8px;
+    //         border-radius: 8px;
+    @include clearfix;
   }
 }

@@ -17,7 +17,3 @@ app.controller('CartController', function($scope, cart) {
   console.log(cart)
   $scope.cart = cart;
 });
-
-app.factory('CartFactory', function($http) {
-  return {}
-})

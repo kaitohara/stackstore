@@ -1,6 +1,7 @@
 #profile {
   margin: 0 auto;
   @include clearfix;
+  color: black;
   ul {
     list-style-type: none;
     margin: 0;
@@ -31,7 +32,7 @@
         color: $stackify-green;
       }
       a {
-        color: grey;
+        color: white;
         font-size: 16px;
         font-weight: bold;
         padding-bottom: 0;

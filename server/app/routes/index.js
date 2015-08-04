@@ -14,7 +14,7 @@ router.use('/albums', require('./albums'));
 router.use('/genres', require('./genres'));
 router.use('/stores', require('./stores'));
 
-router.get('/cart', function(req, res, next) {
+router.get('/cart', function(req, res) {
   if (req.user) {
     req.session.cart = req.user.cart
     res.json(req.session.cart)
