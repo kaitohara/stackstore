@@ -5,7 +5,9 @@ app.directive('songElem', function() {
 		scope: {
 			song: '=',
 			admin: '=',
-			edit: '&'
+			edit: '&',
+			delete: '&',
+			update: '&'
 		}
 	};
 });
