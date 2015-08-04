@@ -11,7 +11,7 @@ app.config(['$stateProvider',function($stateProvider) {
 					});
 			},
 			albums: function($http) {
-				return $http.get('/api/albums')
+				return $http.get('/api/albums/populated')
 					.then(function(res) {
 						return res.data;
 					});
