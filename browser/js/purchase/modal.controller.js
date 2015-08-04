@@ -1,7 +1,9 @@
-app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongInfo, Song, Cart){
-	Cart.getUser().then(function(data){
+app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongInfo, Song, CartFactory, OrderFactory){
+	CartFactory.getUser().then(function(data){
+		console.log('here bitch')
 		$scope.currentId = data;
-		Cart.getCart(data).then(function(cart){
+		console.log(data)
+		CartFactory.getCart(data).then(function(cart){
 			$scope.cartId = cart._id;
 		})
 	})
@@ -10,11 +12,11 @@ app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, shareSongI
 	};
 	$scope.addSongToCart = function(){
 		console.log('woo')
-		Cart.addSong2Cart($scope.cartId, $scope.item._id, $scope.item.quantity, $scope.item.price)
+		OrderFactory.addSong2Cart($scope.cartId, $scope.item._id, $scope.item.quantity, $scope.item.price)
 		$modalInstance.dismiss('cancel')
 	};
 	$scope.addAlbumToCart = function(){
-		Cart.addAlbum2Cart($scope.cartId, $scope.item._id, $scope.item.quantity, $scope.item.price)
+		OrderFactory.addAlbum2Cart($scope.cartId, $scope.item._id, $scope.item.quantity, $scope.item.price)
 		$modalInstance.dismiss('cancel')
 	};
 	$scope.item = shareSongInfo.getProperty()

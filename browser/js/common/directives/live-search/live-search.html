@@ -10,11 +10,11 @@
           <!-- <button>'<'</button> -->
           <!-- SONGS SEARCH RESULT-->
           <ul ng-show="!!search" class="search-list">
-            <li class='search-item' ng-repeat="song in filteredSongs = (songs | searchFilter:search | limitTo:4)" ng-model="song">
+            <li class='search-item' ng-repeat="song in filteredSongs = (songs | searchFilter:search)" ng-model="song">
 
               <div class='item-content'>
 
-               <img class='search-photo' src="{{song.album.photo}}">
+               <img class='search-photo' src="{{song.photo}}" width="200">
               
               <a class="song-link" ui-sref="song({id:song._id})" ng-click="closeSlide()">{{song.title}}</a>
               <br><br>
@@ -25,7 +25,7 @@
             <li class='search-item' ng-repeat="album in filteredAlbums = (albums | searchFilter:search | limitTo:4)" ng-model="album">
               <div class='item-content'>
                 A
-              <img class='search-photo' src="{{album.album.photo}}">
+              <img class='search-photo' src="{{album.album.photo}}" width="200">
               
               <a class="album-link" ui-sref="album({id:album._id})" ng-click="closeSlide()">{{album.title}}</a>
               <br><br>
@@ -40,7 +40,8 @@
               artist: <a ui-sref="artist({id:artist._id})">{{artist.title}}</a>
               </div>
             </li>
-
+            <p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
+        </p>
           </ul>
           <!-- ARTISTS SEARCH RESULT-->
           <!-- 
@@ -61,9 +62,7 @@
           </ul>
         </div>-->
 
-
-        <p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
-        </p>
+        
 
     <!-- <a ng-repeat="artist in artists | filter:artistSearch"
       ui-sref="artist({id: artist._id})"
