@@ -1,9 +1,0 @@
-<label>Filter</label>
-<input ng-model="songFilter">
-<div>
-	<ul class="search-list-scroll">
-		<li class="search-item-scroll" ng-repeat="song in filteredSongs = (songs | filter:songFilter)">
-			<song-elem song="song" admin="admin"></song-elem>
-		</li>
-	</ul>
-</div>
