@@ -8,30 +8,82 @@ var Order = mongoose.model('Order');
 
 var emailer = require('../../email');
 
+
+router.put('/reset/:email', function(req, res, next){
+    User
+        .findOne({"email": req.params.email})
+        .exec()
+        .then(function(user){
+            if(user && user.validAttemptedLogin){
+                user.increasePasswordResetCounter();
+                return user.save()
+            }
+            else throw Error('Not Found')
+        })
+        .then(function(savedUser){
+            if(savedUser) {
+                var callbackUrl = 'http://localhost:1337/api/users/reset/' + savedUser.email + '/' + savedUser.passwordResetUrl();
+                console.log('callbackur', callbackUrl);
+                emailer(
+                    savedUser.email
+                    , savedUser.email
+                    , callbackUrl
+                    , 'Reset Password Request'
+                    , 'Hi, we received a request to reset your password'
+                    , 'Click here to reset your password'
+                );
+                res.status(201).json(savedUser);
+            }
+            else next();
+        })
+        .then(null, function(err){
+            return next(err);
+        });
+});
+
+router.get('/reset/:email/:token', function(req, res, next){
+    User.findOne({'email': req.params.email})
+        .exec()
+        .then(function(user){
+            if(user && user.passwordResetUrl(req.params.token)) {
+                var stringUrl ='/reset/confirmed/' + user.email;
+                    res.redirect(301,stringUrl);
+            }
+            else throw Error('Reset Token is Invalid');
+        })
+        .then(null,function(err){
+            next(err);
+        });
+});
+
 router.get('/activate/:email/:token', function(req, res, next) {
     User.findOne({'email': req.params.email})
         .exec()
         .then(function(user){
-            if(user && user.verifyTokenUrl(req.params.token)) {
-                user.active=true;
+            if(user && user.verifyTokenUrl(req.params.token) && !user.active) {
+                //check if user already activated
+                user.active = true;
                 return user.save();
             }
-            else { next() }
-          })
+            else if(user && user.verifyTokenUrl(req.params.token) && user.active) {
+                req.alreadyActivated=true;
+                return user;
+            }
+            else throw Error();
+        })
         .then(function(savedUser){
             // async save chaining for success
             if(savedUser) {
-                console.log('this is the saved user', savedUser);
-                res.json(savedUser);
+                if(req.alreadyActivated) {
+                    res.redirect(301,'/login')
+                } else {
+                    var stringUrl ='/signup/confirmed/' + savedUser._id;
+                    res.redirect(301,stringUrl);
+                }
             }
-            else {
-                next();
-            }
+            else throw Error();
         })
-        .then(null, function(err){
-            console.log('what is this error!!!', err);
-            next(err);
-        });
+        .then(null,next);
 });
 
 
@@ -67,6 +119,7 @@ router.post('/', function(req, res, next) {
             .then(null, next);
     })
     .then(null, next);
+
 });
 
 router.param('id', function(req, res, next, id) {
@@ -82,6 +135,7 @@ router.param('id', function(req, res, next, id) {
             next(e);
         });
 });
+
 
 router.get('/:id', function(req, res) {
     res.json(req.user)

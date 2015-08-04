@@ -70,6 +70,14 @@ var schema = new mongoose.Schema({
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Store'
+    },
+    resetPasswordCounter: {
+        type: Number,
+        default: 0
+    },
+    attemptedLogin: {
+        type: Number,
+        default: 0
     }
 });
 
@@ -112,9 +120,36 @@ schema.method('tokenUrl', function(email){
 schema.method('verifyTokenUrl', function(token){
    return this.tokenUrl(this.email) === token;
 });
+
+schema.method('passwordResetUrl', function(){
+    return this.constructor.encryptPassword(this.password + this.resetPasswordCounter, this.salt)
+});
+
+schema.method('increasePasswordResetCounter', function(){
+    return this.resetPasswordCounter++;
+});
+
+schema.method('verifyPasswordResetToken', function(token){
+    return this.passwordResetUrl(this.password) === token;
+});
 schema.method('correctPassword', function(candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
+
+schema.method('logAttemptedLogin', function(){
+    return this.attemptedLogin++;
+});
+
+schema.method('validAttemptedLogin', function(){
+    if(this.attemptedLogin <=5){
+        return true;
+    }
+    else return false;
+});
+
+schema.method('resetAttemptedLogin', function(){
+    return this.attemptedLogin = 0;
+})
 
 schema.method.setAdmin = function(isAdmin) {
     this.isAdmin = isAdmin;

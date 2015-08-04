@@ -4,12 +4,26 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
-    // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
-    $urlRouterProvider.otherwise('/');
-    // for oauth
-    $urlRouterProvider.when('/auth/:provider', function() {
-        window.location.reload();
-    });
+
+    $urlRouterProvider
+        // User router's redirect work around for signup/confirm route
+        .when('signup/confirmed', function($state){
+            $state.go('signup.confirmed');
+        })
+        // User router's redirect work around for already activated users
+        .when('login', function($state){
+            $state.go('login');
+        })
+        .when('reset', function($state){
+            $state.go('reset');
+        })
+        .when('reset.confirmed', function($state){
+            $state.go('reset.confirmed');
+        })// for oauth
+        .when('/auth/:provider', function() {
+            window.location.reload();
+        })
+
 });
 
 // This app.run is for controlling access to specific states.

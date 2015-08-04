@@ -110,6 +110,11 @@ textarea.form-control {
   margin-left: auto;
   margin-right: auto;
   vertical-align: middle;
+
+.stackify-form {
+  width: 60%;
+  margin: 0 auto;
+
 }
 
 @import "directives/main";
@@ -119,4 +124,3 @@ textarea.form-control {
 @import "login/main";
 @import "signup/main";
 @import "products/song";
-@import "slick/slick";

@@ -1,17 +1,18 @@
-app.factory('SignUpFactory', function ($http) {
+app.factory('ResetPasswordFactory', function($http){
     function transformData (response) {
         return response.data;
     }
+
     return {
-        add: function(data) {
-            return $http.post('/api/users/' , data)
+        resetUser: function(email) {
+            return $http.put('/api/users/reset/' + email)
                 .then(transformData)
-                .then(function(createdUser){
-                    return createdUser;
+                .then(function(user){
+                    return user;
                 })
                 .then(null, function(err){
                     return err;
                 })
         }
     }
-});
+})
