@@ -7,21 +7,21 @@
 
 		<!-- SONGS SEARCH RESULT-->
 		<ul ng-show="!!search">
-			<li ng-repeat="song in filteredSongs = (songs | filter:search)">
+			<li ng-repeat="song in filteredSongs = (songs | searchFilter:search)">
 				Song: <a ui-sref="song({id:song._id})">{{song.title}}</a>
 			</li>
 		</ul>
 
 		<!-- ARTISTS SEARCH RESULT-->
 		<ul ng-show="!!search">
-			<li ng-repeat="artist in filteredArtists = (artists | filter:search)">
+			<li ng-repeat="artist in filteredArtists = (artists | searchFilter:search)">
 				Artist: <a ui-sref="artist({name: artist.name, id: artist._id})">{{artist.name}}</a>
 			</li>
 		</ul>
 
 		<!-- ALBUMS SEARCH RESULT-->
 		<ul ng-show="!!search">
-			<li ng-repeat="album in filteredAlbums = (albums | filter:search)">
+			<li ng-repeat="album in filteredAlbums = (albums | searchFilter:search)">
 				Album: <a ui-sref="album({id:album._id})">{{album.title}}</a>
 			</li>
 		</ul>

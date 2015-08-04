@@ -38,69 +38,6 @@
       }
     }
   }
-  .status {
-    font-size: 14px;
-    padding: 10px;
-  }
-  .order-details {
-    margin-right: 60px;
-    display: inline-block;
-  }
-  .album {
-    // display: block;
-    margin: 5px 5px 10px;
-    padding: 0px;
-    @include add-border;
-    // border: 1px dashed $stackify-green;
-    // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
-    // border-radius: 4px;
-    img {
-      margin: 0;
-      padding: 0;
-    }
-    .list-group {
-      padding: 0;
-      .row {
-        color: grey;
-      }
-    }
-    .list-group-item {
-      margin: 0;
-      border-radius: 0;
-      border: 0;
-      border-bottom: 1px dotted $stackify-green;
-    }
-    .album-title {
-      // background: $stackify-green;
-      // color: white;
-   
-    }
-    .col-md-4 {
-      border-right: 1px dotted $stackify-green;
-      &:last-of-type {
-        border: 0;
-      }
-    }
-    .btn-genre {
-      border: 2px solid $stackify-green;
-      border-radius: 10px;
-      background: none;
-      color: grey;
-      font-weight: bold;
-      &:hover {
-        background-color: $stackify-green;
-        color: white;
-      }
-    }
-  }
-  // p {
-  //   width: 40%;
-  //   margin: 0 auto;
-  //   text-align: justify;
-  //   font-size: 22px;
-  //   font-weight: 300;
-  //   float: left;
-  // }
   // .carousel {
   //   float: right;
   //   width: 55%;

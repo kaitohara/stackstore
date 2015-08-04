@@ -7,38 +7,62 @@
         </div>
         
         <div>
+          <!-- <button>'<'</button> -->
           <!-- SONGS SEARCH RESULT-->
           <ul ng-show="!!search" class="search-list">
-            <li class='search-item'ng-repeat="song in filteredSongs = (songs | filter:search)" ng-model="song">
-              <div class='search-item-content'>
-              <img class='search-photo' src="{{song.album.photo}}">
+            <li class='search-item' ng-repeat="song in filteredSongs = (songs | searchFilter:search)" ng-model="song">
+
+              <div class='item-content'>
+
+               <img class='search-photo' src="{{song.photo}}" width="200">
               
               <a class="song-link" ui-sref="song({id:song._id})" ng-click="closeSlide()">{{song.title}}</a>
               <br><br>
-              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a>
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a> 
               </div>
             </li>
+
+            <li class='search-item' ng-repeat="album in filteredAlbums = (albums | searchFilter:search | limitTo:4)" ng-model="album">
+              <div class='item-content'>
+                A
+              <img class='search-photo' src="{{album.album.photo}}" width="200">
+              
+              <a class="album-link" ui-sref="album({id:album._id})" ng-click="closeSlide()">{{album.title}}</a>
+              <br><br>
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a> 
+              </div>
+            </li>
+
+            <li class='search-item' ng-repeat="artist in filteredArtists = (artists | searchFilter:search | limitTo:4)">
+              <div class='item-content'>
+              <img src="{{artist.photo}}">
+              <br>
+              artist: <a ui-sref="artist({id:artist._id})">{{artist.title}}</a>
+              </div>
+            </li>
+            <p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
+        </p>
           </ul>
           <!-- ARTISTS SEARCH RESULT-->
+          <!-- 
           <ul ng-show="!!search" class="search-list">
-            <li class='search-item' ng-repeat="artist in filteredArtists = (artists | filter:search)">
+            <li class='search-item' ng-repeat="artist in filteredArtists = (artists | searchFilter:search | limitTo:4)">
               Artist: <a ui-sref="artist({name: artist.name, id: artist._id})">{{artist.name}}</a>
             </li>
-          </ul>
+          </ul>-->
 
           <!-- ALBUMS SEARCH RESULT-->
+          <!-- 
           <ul ng-show="!!search" class="search-list">
-            <li class='search-item' ng-repeat="album in filteredAlbums = (albums | filter:search)">
+            <li class='search-item' ng-repeat="album in filteredAlbums = (albums | searchFilter:search | limitTo:4)">
               <img src="{{album.photo}}">
               <br>
               Album: <a ui-sref="album({id:album._id})">{{album.title}}</a>
             </li>
           </ul>
-        </div>
+        </div>-->
 
-
-        <p ng-show="!filteredSongs.length && !filteredAlbums.length && !filteredArtists.length">"{{search}}" not found
-        </p>
+        
 
     <!-- <a ng-repeat="artist in artists | filter:artistSearch"
       ui-sref="artist({id: artist._id})"

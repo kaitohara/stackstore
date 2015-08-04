@@ -1,0 +1,10 @@
+<!-- <label>Filter</label>
+<input ng-model="reviewFilter"> -->
+<div>
+	<ul ng-if="!noReviews" class="review">
+		<li class="" ng-repeat="review in filteredSongs = (reviews | filter:reviewFilter)">
+			<review-elem review="review" admin="admin"></review-elem>
+		</li>
+	</ul>
+	<h2 ng-if="noReviews">There are no reviews yet, add one!</h2>
+</div>

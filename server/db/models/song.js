@@ -1,6 +1,5 @@
 'use strict';
 var mongoose = require('mongoose');
-
 var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
@@ -8,13 +7,19 @@ var schema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	photo: {
+		type: String,
+		default: "http://lorempixel.com/200/200/nightlife"
+	},
 	price: {
 		type: Number,
 		required: true,
-		min: 0
+		min: 0,
+		default: 1.50
 	},
 	downloads: {
-		type: Number
+		type: Number,
+		default: 0
 	},
 	cap: {
 		type: Number,
@@ -53,5 +58,7 @@ schema.statics.getAllReviews = function(){
             });
         });
 };
+
+schema.plugin(deepPopulate);
 
 mongoose.model('Song', schema);

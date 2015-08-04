@@ -5,7 +5,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
 
-        link: function (scope, Search) {
+        link: function (scope) {
             scope.categories = [
                 { label: 'Albums', state: 'albums' },
                 { label: 'Artists', state: 'albums' },
@@ -15,9 +15,9 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             ];
 
             scope.items = [{
-                label: 'Discover',
-                state: 'discover'
-            }, {
+            //     label: 'Discover',
+            //     state: 'discover'
+            // }, {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
@@ -25,9 +25,6 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 // label: 'Upload',
                 // state: 'upload',
                 // auth: false
-            }, {
-                label: 'St',
-                state: 'stores',
             }];
 
 

@@ -51,7 +51,7 @@
             });
             return openPromise = $timeout(function () {
               return element.css({
-                overflow: 'hidden',
+                overflow: 'visible',
                 transition: 'none',
                 height: '500px'
               });

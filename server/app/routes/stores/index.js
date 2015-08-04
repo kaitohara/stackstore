@@ -22,6 +22,33 @@ router.post('/', function(req, res, next) {
         .then(null, next);
 });
 
+// get all stores populated with owners
+router.get('/populated', function(req, res, next) {
+    Store.find(req.query).populate('owner').exec()
+        .then(function(stores) {
+            res.json(stores);
+        })
+        .then(null, next);
+});
+
+router.get('/url/:url', function(req, res, next) {
+    Store.findOne({url: req.params.url}).exec()
+        .then(function(store) {
+            Store.deepPopulate(store, [
+                'owner',
+                'albums',
+                'albums.genre',
+                'songs',
+                'songs.genre',
+                'songs.artist',
+                'songs.album'
+                ], function(e, popStore) {
+                    if (e) next(e);
+                    res.json(popStore);
+                });
+        })
+        .then(null, next);
+});
 
 router.param('id', function(req, res, next, id) {
     Store.findById(id).exec()

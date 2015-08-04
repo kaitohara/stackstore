@@ -1,4 +1,4 @@
-app.controller('navbarCtrl', function($scope, $rootScope) {
+app.controller('navbarCtrl', function($scope, $rootScope, $state) {
     $scope.search
     $scope.bool = false;
     //Typing in the search box broadcasts what's being typed

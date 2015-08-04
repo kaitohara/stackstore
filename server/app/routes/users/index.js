@@ -82,7 +82,9 @@ router.get('/:id/profile', function(req, res, next) {
         'pastOrderList.albums.album.artist',
         'pastOrderList.songs.song.artist',
         'pastOrderList.albums.album.genre',
-        'pastOrderList.songs.song.genre'
+        'pastOrderList.songs.song.genre',
+        'pastOrderList.songs.song.album',
+        'pastOrderList.songs.song.album.genre'
     ], function(err, user) {
         if (err) next(err)
         res.json(user)
@@ -93,17 +95,29 @@ router.get('/:id/cart', function(req, res, next) {
     User.deepPopulate(req.user, [
         'cart',
         'cart.albums.album',
+        'cart.albums.photo',
         'cart.songs.song',
         'cart.albums.album.artist',
         'cart.songs.song.artist',
         'cart.albums.album.genre',
         'cart.songs.song.genre',
-        'cart.songs.song.album'
+        'cart.songs.song.album',
+        'cart.songs.song.album.genre'
+
     ], function(err, user) {
         if (err) next(err)
         res.json(user.cart)
     })
 });
+//Update a unique user's cart
+// router.put('/:id/cart', function(req, res){
+//     console.log('remove')
+
+//     User.findOneAndUpdate({_id:req.user}, {$pull:{'cart.songs':{_id:'55bbbb4a77742ce44034f265'}}}).exec()
+//         .then(function(user){
+//             res.json(user)
+//         })
+// })
 
 router.put('/:id', function(req, res, next) {
     _.extend(req.user, req.body);
