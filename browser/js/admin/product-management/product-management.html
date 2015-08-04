@@ -1,30 +1,29 @@
-<h1>You're managing products</h1>
+<br></br>
 <div class="col-xs-12">
-    <h2>Edit products</h2>
-    <hr>
-    <div class="row">
-        <div class="col-sm-6">
-            <h3><a ng-click="toggleCreateCategory()">Create a category (genre)</a></h3>
-        </div>
-        <div class="col-sm-6">
-            <h3><a ng-click="toggleCreateProduct()">Create a product</a></h3>
-        </div>
-    </div>
-    <div ng-if="creatingCategory">
-        <h2>Make a category!</h2>
-        <category-form submit="submitCategory(category)"></category-form>
-    </div>
-    <div ng-if="creatingProduct">
-        <h2>Make a product!</h2>
-        <h2>New <a ng-click="type='song'">Song</a> or <a ng-click="type='album'">Album</a></h2>
-        <div ng-if="type==='song'">
-            <song-form submit="submitSong(song)"></song-form>
-        </div>
-        <div ng-if="type==='album'">
-            <album-form submit="submitAlbum(album)"></album-form>
-        </div>
-    </div>
+	<h2>Edit products:
+		<button class="btn btn-default" ng-click="toggleCreateCategory()">Create a category (genre)</button>
+		<button class="btn btn-default" ng-click="toggleCreateProduct()">Create a product</button>
+	</h2>
+	<hr>
+	<div class="col-sm-6" ng-if="creatingCategory">
+		<h2>Make a category!</h2>
+		<category-form submit="submitCategory(category)"></category-form>
+		<br></br>
+	</div>
+	<div class="col-sm-6" ng-if="creatingProduct">
+		<h2>Make a product!</h2>
+		<h2>New <button class="btn btn-default" ng-click="type='song'">Song</button> or <button class="btn btn-default" ng-click="type='album'">Album</button></h2>
+		<div ng-if="type==='song'">
+			<song-form submit="submitSong(song)"></song-form>
+		</div>
+		<div ng-if="type==='album'">
+			<album-form submit="submitAlbum(album)"></album-form>
+		</div>
+		<br></br>
+	</div>
+	<br></br>
 </div>
+
 
 <hr>
 <h1>Albums:</h1>

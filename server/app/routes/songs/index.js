@@ -49,7 +49,13 @@ router.put('/multi', function(req, res, next) {
 
 // return songs populated with albums
 router.get('/populated', function(req, res, next) {
-    Song.find({}).populate('album artist genre').exec()
+    Song.find({}).deepPopulate([
+        'album',
+        'genre',
+        'artist',
+        'reviews',
+        'reviews.author'
+    ]).exec()
         .then(function(songs) {
             res.json(songs);
         })
