@@ -58,5 +58,41 @@ app.factory('AdminFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.deleteStore = (id) => {
+		return $http.delete('/api/stores/' + id)
+			.then(res => res.data);
+	};
+
+	fact.updateStore = (id, config) => {
+		return $http.put('/api/stores/' + id, config)
+			.then(res => res.data);
+	};
+
+	fact.deleteSong = (id) => {
+		return $http.delete('/api/songs/' + id)
+			.then(res => res.data);
+	};
+
+	fact.updateSong = (id, config) => {
+		return $http.put('/api/songs/' + id, config)
+			.then(res => res.data);
+	};
+
+	fact.deleteAlbum = (id) => {
+		return $http.delete('/api/albums/' + id)
+			.then(res => res.data);
+	};
+
+	fact.updateAlbum = (id, config) => {
+		return $http.put('/api/albums/' + id, config)
+			.then(res => res.data);
+	};
+
+	fact.deleteSongs = (songArr) => {
+		// easier to send array with put
+		return $http.put('/api/songs/multi', songArr)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

@@ -1,14 +1,19 @@
 .test{
 	// background-color:#252d30;
-  background-color:white;
-	color:#14191B;
+  background-color:#1D1E25;
+	color:white;
 	a {
-		color:#14191B;
+		color:white;
 	}
-  padding-top:50px;
+}
+#songInfo{
+  width:490px;
+  margin:none;
+  float:left;
 }
 .box{
-  border: 1px solid #14191B;
+  border: 3px solid #ECECEC;
+  padding:20px;
 }
 .Modal-holder {
   position: fixed;
@@ -21,20 +26,35 @@
   z-index: 2;
   padding: 30px 15px;
 }
-
+.songContainer{
+  text-align:center;
+}
+.songContent{
+  text-align:left;
+}
 .modal-content{
   // background-color: ;
 }
-
+.mycol12{
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width:850px;
+  // float: left;
+  margin: auto;
+  display: inline-block;
+  // height: 80vh;
+}
 
 .center-modal {
-    position: fixed;
-    top: 25%;
-    left: 18.5%;
-    z-index: 1050;
-    width: 80%;
-    height: 100%;
-    margin-left: -10%;
+  position: fixed;
+  top: 25%;
+  left: 18.5%;
+  z-index: 1050;
+  width: 80%;
+  height: 100%;
+  margin-left: -10%;
 }
 
 .buttons {
@@ -45,8 +65,14 @@
 	font-weight:bold;
 }
 .buyButton {
-  border: 1px solid #14191B;
-  background:#14191B;
-  color:white;
-  margin-top: 20px;
+  border: 1px solid white;
+  padding:5px;
+  background:white;
+  color:#1D1E25 ;
+  font-size:1.6em;
+  &:hover {
+    // background:gray;
+    // color:white;
+    // border: 1px solid white;
+  }
 }

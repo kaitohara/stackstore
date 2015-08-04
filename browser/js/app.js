@@ -4,18 +4,39 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 
 app.config(function($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
-    // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
-    $urlRouterProvider.otherwise('/');
-    // for oauth
-    $urlRouterProvider.when('/auth/:provider', function() {
-        window.location.reload();
-    });
+
+    $urlRouterProvider
+    // User router's redirect work around for signup/confirm route
+        .when('signup/confirmed/:id', function($state) {
+            $state.go('signup.confirmed');
+        })
+        // User router's redirect work around for already activated users
+        .when('login', function($state) {
+            $state.go('login');
+        })
+        //.when('reset', function($state){
+        //    $state.go('reset');
+        //})
+        //.when('reset/success', function($state){
+        //    $state.go('reset.success');
+        //})
+        .when('reset/confirmed/:id', function($state) {
+            $state.go('reset.confirmed');
+        }) // for oauth
+        .when('/auth/:provider', function() {
+            window.location.reload();
+        })
+        // redirect to our github page
+        .when('/github', function() {
+            window.location.href = "http://www.github.com/kaitohara/stackstore";
+        });
+
 });
 
 // This app.run is for controlling access to specific states.
 app.run(function($rootScope, AuthService, $state) {
 
-    // The given state requires an authenticated user.
+    // The given state requires an authenticated views.
     var destinationStateRequiresAuth = function(state) {
         return state.data && state.data.authenticate;
     };
@@ -31,7 +52,7 @@ app.run(function($rootScope, AuthService, $state) {
         }
 
         if (AuthService.isAuthenticated()) {
-            // The user is authenticated.
+            // The views is authenticated.
             // Short circuit with return.
             return;
         }
@@ -40,9 +61,9 @@ app.run(function($rootScope, AuthService, $state) {
         event.preventDefault();
 
         AuthService.getLoggedInUser().then(function(user) {
-            // If a user is retrieved, then renavigate to the destination
+            // If a views is retrieved, then renavigate to the destination
             // (the second time, AuthService.isAuthenticated() will work)
-            // otherwise, if no user is logged in, go to "login" state.
+            // otherwise, if no views is logged in, go to "login" state.
             if (user) {
                 $state.go(toState.name, toParams);
             } else {

@@ -1,10 +1,10 @@
-<h2>You're managing stores</h2>
+<br></br>
 <label>Filter</label>
 <input ng-model="storeFilter">
 <div>
 	<ul class="search-list-scroll">
 		<li class="search-item-scroll" ng-repeat="store in filteredStores = (stores | filter:storeFilter)">
-			<store-elem store="store" admin="true"></store-elem>
+			<store-elem store="store" admin="true" delete="deleteStore(store)" update="updateStore(store)"></store-elem>
 		</li>
 	</ul>
 </div>

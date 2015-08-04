@@ -35,7 +35,7 @@
         return {
             responseError: function(response) {
                 $rootScope.$broadcast(statusDict[response.status], response);
-                return $q.reject(response)
+                return $q.reject(response);
             }
         };
     });
@@ -51,18 +51,22 @@
 
     app.service('AuthService', function($http, Session, $rootScope, AUTH_EVENTS, $q) {
 
-        function onSuccessfulLogin(response) {
+        function onSuccessfulLogin(response, resetting) {
             var data = response.data;
+            // check for reset password - shortcircuit saving user to session
+            if (data.user.resetPassword && !resetting) {
+                return data.user;
+            }
             return $http.get('/api/orders/' + data.user.cart)
                 .then(function(res) {
                     Session.create(data.id, data.user, res.data);
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                     return data.user;
-                })
+                });
         }
 
         // Uses the session factory to see if an
-        // authenticated user is currently registered.
+        // authenticated views is currently registered.
         this.isAuthenticated = function() {
             return !!Session.user;
         };
@@ -76,7 +80,7 @@
         this.getLoggedInUser = function(fromServer) {
 
             // If an authenticated session exists, we
-            // return the user attached to that session
+            // return the views attached to that session
             // with a promise. This ensures that we can
             // always interface with this method asynchronously.
 
@@ -88,7 +92,7 @@
             }
 
             // Make request GET /session.
-            // If it returns a user, call onSuccessfulLogin with the response.
+            // If it returns a views, call onSuccessfulLogin with the response.
             // If it returns a 401 response, we catch it and instead resolve to null.
             return $http.get('/session').then(onSuccessfulLogin).catch(function() {
                 return null;
@@ -97,21 +101,23 @@
         };
 
         function onGettingCart(res) {
-            Session.createCart(res.data)
-            return res.data
+            Session.createCart(res.data);
+            return res.data;
         }
 
         this.getCart = function() {
-            if (Session.cart) return $q.when(Session.cart)
+            if (Session.cart) return $q.when(Session.cart);
             return $http.get('/api/cart').then(function(res) {
                 return $http.get('/api/orders/' + res.data)
-                    .then(onGettingCart)
-            })
-        }
+                    .then(onGettingCart);
+            });
+        };
 
-        this.login = function(credentials) {
+        this.login = function(credentials, resetting) {
             return $http.post('/login', credentials)
-                .then(onSuccessfulLogin)
+                .then(function(res) {
+                    return onSuccessfulLogin(res, resetting);
+                })
                 .catch(function() {
                     return $q.reject({
                         message: 'Invalid login credentials.'
@@ -155,22 +161,22 @@
 
         this.id = null;
         this.user = null;
-        this.cart = null
+        this.cart = null;
 
         this.create = function(sessionId, user, cart) {
             this.id = sessionId;
             this.user = user;
-            this.cart = cart
+            this.cart = cart;
         };
 
         this.createCart = function(cart) {
-            this.cart = cart
-        }
+            this.cart = cart;
+        };
 
         this.destroy = function() {
             this.id = null;
             this.user = null;
-            this.cart = null
+            this.cart = null;
         };
 
         this.updateUser = function(userData) {
@@ -178,8 +184,8 @@
         };
 
         this.updateCart = function(cartData) {
-            _.extend(this.cart, cartData)
-        }
+            _.extend(this.cart, cartData);
+        };
 
     });
 

@@ -5,7 +5,9 @@ app.directive('albumList', function(){
 		templateUrl: 'js/common/directives/lists/album-list/album-list.html',
 		scope: {
 			admin: '=',
-			albums: '='
+			albums: '=',
+			delete: '&',
+			update: '&'
 		}
 	};
 });

@@ -5,7 +5,9 @@ app.directive('albumElem', function() {
 		scope: {
 			album: '=',
 			admin: '=',
-			edit: '&'
+			edit: '&',
+			delete: '&',
+			update: '&'
 		}
 	};
 });

@@ -4,33 +4,34 @@
             <fullstack-logo></fullstack-logo>
         </div>
         <div class="flex-nav">
-            <div><ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-            <!-- hardcoded for now -->
-            <!-- <li>
-                <a ui-sref-active="active" ui-sref="discover.list">Discover</a>
-            </li> -->
-            <li ng-show="user.isSeller">
-                <a ui-sref-active="active" ui-sref="upload">Upload</a>
-            </li>
-
-            <!-- <li dropdown>
-                <a ui-sref-active="active" dropdown-toggle>{{searchCategory.label || 'Search'}}<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li ng-repeat="category in categories">
-                        <a ui-sref="{{ category.state }}" ng-click="setSearchCategory(category)">{{ category.label }}</a>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                        <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
                     </li>
+                    <!-- hardcoded for now -->
+                    <!-- <li>
+                        <a ui-sref-active="active" ui-sref="discover.list">Discover</a>
+                    </li> -->
+                    <li ng-show="user.isSeller">
+                        <a ui-sref-active="active" ui-sref="upload">Upload</a>
+                    </li>
+
+                    <!-- <li dropdown>
+                        <a ui-sref-active="active" dropdown-toggle>{{searchCategory.label || 'Search'}}<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="category in categories">
+                                <a ui-sref="{{ category.state }}" ng-click="setSearchCategory(category)">{{ category.label }}</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <!-- <li ng-show="searchCategory.label">
+                        <a class="glyphicon glyphicon-search">
+                            <input type="text" class="search-text" maxlength="120"
+                                   placeholder="Search for {{searchCategory.label}}">
+                        </a>
+                    </li> -->
                 </ul>
-            </li> -->
-            <!-- <li ng-show="searchCategory.label">
-                <a class="glyphicon glyphicon-search">
-                    <input type="text" class="search-text" maxlength="120"
-                           placeholder="Search for {{searchCategory.label}}">
-                </a>
-            </li> -->
-            </ul>
             </div>
             <div>
                 <form name="searchBar" ng-controller="navbarCtrl" class="search-bar" method="get" ng-submit="submitSearch()">
@@ -60,7 +61,6 @@
                             <li ng-if="isAdmin()"><a ui-sref="admin">Privileges</a></li>
                             <hr>
                             <li><a ng-click="logout()">Logout</a></li>
-                            
                         </ul>    
                     </li>
                 </ul>

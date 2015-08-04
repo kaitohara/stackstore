@@ -41,14 +41,14 @@ module.exports = function(app) {
         done(null, user.id);
     });
 
-    // When we receive a cookie from the browser, we use that id to set our req.user
-    // to a user found in the database.
+    // When we receive a cookie from the browser, we use that id to set our req.views
+    // to a views found in the database.
     passport.deserializeUser(function(id, done) {
         UserModel.findById(id, done);
     });
 
     // We provide a simple GET /session in orders to get session information directly.
-    // This is used by the browser application (Angular) to determine if a user is
+    // This is used by the browser application (Angular) to determine if a views is
     // logged in already.
     app.get('/session', function(req, res) {
         if (req.user) {
@@ -56,7 +56,7 @@ module.exports = function(app) {
                 user: _.omit(req.user.toJSON(), ['salt', 'password'])
             });
         } else {
-            res.status(401).send('No authenticated user.');
+            res.status(401).send('No authenticated views.');
         }
     });
 

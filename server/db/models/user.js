@@ -54,6 +54,10 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    active: {
+        type: Boolean,
+        default: false
+    },
     // -- multitenancy
     isSeller: {
         type: Boolean,
@@ -66,14 +70,23 @@ var schema = new mongoose.Schema({
     store: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Store'
+    },
+    resetPasswordCounter: {
+        type: Number,
+        default: 0
+    },
+    attemptedLogin: {
+        type: Number,
+        default: 0
     }
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
-var generateSalt = function() {
+var generateSalt = function () {
     return crypto.randomBytes(16).toString('base64');
 };
+
 
 var encryptPassword = function(plainText, salt) {
     var hash = crypto.createHash('sha1');
@@ -87,6 +100,7 @@ schema.pre('save', function(next) {
         this.salt = this.constructor.generateSalt();
         this.password = this.constructor.encryptPassword(this.password, this.salt);
     }
+
     var user = this;
     if (!this.cart) {
         Order.create().then(function(newOrder) {
@@ -99,9 +113,43 @@ schema.pre('save', function(next) {
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
 
+schema.method('tokenUrl', function(email){
+    return this.constructor.encryptPassword(email, this.salt);
+});
+
+schema.method('verifyTokenUrl', function(token){
+   return this.tokenUrl(this.email) === token;
+});
+
+schema.method('passwordResetUrl', function(){
+    return this.constructor.encryptPassword(this.password + this.resetPasswordCounter, this.salt)
+});
+
+schema.method('increasePasswordResetCounter', function(){
+    return this.resetPasswordCounter++;
+});
+
+schema.method('verifyPasswordResetToken', function(token){
+    return this.passwordResetUrl(this.password) === token;
+});
 schema.method('correctPassword', function(candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
+
+schema.method('logAttemptedLogin', function(){
+    return this.attemptedLogin++;
+});
+
+schema.method('validAttemptedLogin', function(){
+    if(this.attemptedLogin <=5){
+        return true;
+    }
+    else return false;
+});
+
+schema.method('resetAttemptedLogin', function(){
+    return this.attemptedLogin = 0;
+})
 
 schema.method.setAdmin = function(isAdmin) {
     this.isAdmin = isAdmin;

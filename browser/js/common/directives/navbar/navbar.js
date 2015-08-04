@@ -30,10 +30,12 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
-                    // }, {
-                    // label: 'Upload',
-                    // state: 'upload',
-                    // auth: false
+
+                // }, {
+                // label: 'Upload',
+                // state: 'upload',
+                // auth: false
+
             }];
 
 
@@ -48,7 +50,10 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             };
 
             scope.isAdmin = function() {
-                return AuthService.isAdmin();
+                if (scope.user) {
+                    return scope.user.isAdmin;
+                }
+                return false;
             };
 
             scope.logout = function() {

@@ -40,7 +40,7 @@ body {
   margin: 0 auto;
   padding-top: 60px;
   padding-bottom: 60px;
-  background: #14191B;
+  background: #1D1E25;
   color: white;
   min-height: calc(100% - 100px - 50px);
 }
@@ -85,26 +85,35 @@ textarea.form-control {
 
 .search-list-scroll {
   list-style: none;
-  color: black;
+  color:white;
+  white-space:nowrap;
+  overflow-x:scroll;
   a {
-    // color:white;
- 
+    color:white;
   }
-  white-space: nowrap;
-  overflow-x: auto;
 }
 
 .search-item-scroll {
-  // border:1px solid white;
-  width: 300px;
-  display: inline-block;
-  margin: 10px 10px 90px 10px;
-  background-color: #14191B;
-  border-radius: 1px;
-  color: black;
   li {
     overflow-x: scroll;
   }
+  white-space:normal;
+  vertical-align:top;
+  width:250px;
+  display:inline-block;
+  margin: 10px 10px 90px 10px;
+  background-color: #14191B;
+  border-radius:1px
+}
+
+.item-content-scroll {
+  padding: 25px;
+  height: 400px;
+}
+
+.item-content-scroll-song {
+  padding: 25px;
+  height: 450px;
 }
 
 .elem-thumb {
@@ -112,7 +121,6 @@ textarea.form-control {
   margin-left: auto;
   margin-right: auto;
   width: 200px;
-  // height: 200px;
 }
 
 .review {
@@ -126,6 +134,51 @@ textarea.form-control {
   margin-left: auto;
   margin-right: auto;
   vertical-align: middle;
+}
+
+.stackify-form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.elem {
+  border: 1px solid $stackify-green;
+  border-radius: 10px;
+}
+
+.elem-list {
+  li {
+    overflow-x: scroll;
+  }
+}
+
+.stack-hr {
+  color: $stackify-green;
+}
+
+.order-select {
+  width: 100px;
+  color: black;
+}
+
+.admin-btn {
+  margin-bottom: 15px;
+}
+
+.admin-nav {
+  color: white;
+}
+
+.discover-header {
+  margin-bottom: 24px;
+}
+
+.left {
+  margin-top: 5px;
+  float: left;
+}
+.right {
+  float: right;
 }
 
 @import "directives/main";

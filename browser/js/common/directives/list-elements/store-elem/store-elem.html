@@ -1,4 +1,4 @@
-<div ng-hide="deleted" class="panel panel-primary">
+<!-- <div ng-hide="deleted" class="panel panel-primary">
 	<div ng-if="admin">
 		<div class="btn-group">
 		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -6,10 +6,10 @@
 		  </button>
 		  <ul class="dropdown-menu">
 		    <li>
-				<a>Delete</a>
+				<a ng-click="delete({store:store})">Delete</a>
 		    </li>
 		    <li>
-				<a>Update</a>
+				<a ng-click="update({store:store})">Update</a>
 		    </li>
 		  </ul>
 		</div>
@@ -26,5 +26,41 @@
 			    <li >Owner: {{store.owner.name}}</li>
 			</a>
 	    </ul>
+	</div>
+</div>
+
+ -->
+
+ <div class="item-content-scroll elem" ng-click="edit({store:store})">
+	<div ng-if="admin">
+		<div class="btn-group">
+			<button type="button" class="btn btn-warning dropdown-toggle admin-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Admin Actions <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu">
+				<li>
+					<a ng-click="delete({store:store})">Delete</a>
+				</li>
+				<li>
+					<a ng-click="update({store:store})">Update</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<div>
+			<img class="search-photo" al="{{store.album.photo}}" width="200" src="http://lorempixel.com/200/200/abstract">
+		</div>
+		<div>
+			<ul class="list-group elem-list">
+				<li>
+					<a class="album-link" ui-sref="store({id:store._id})">{{store.name}}</a>
+				</li>
+				<li>
+					<a class="artist-link">{{store.owner.name}}</a> 
+				</li>
+			</ul>
+		</div>
+		<br><br>
 	</div>
 </div>

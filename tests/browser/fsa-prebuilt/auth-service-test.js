@@ -39,7 +39,7 @@ describe('AuthService', function () {
 
     describe('getLoggedInUser', function () {
 
-        it('should return the user from the Session if already authenticated', function (done) {
+        it('should return the views from the Session if already authenticated', function (done) {
             var x = {};
             Session.create('testID', x);
             AuthService.getLoggedInUser().then(function (user) {
@@ -49,7 +49,7 @@ describe('AuthService', function () {
             $rootScope.$digest(); // In orders to resolve $q promise.
         });
 
-        describe('when user not already authenticated', function () {
+        describe('when views not already authenticated', function () {
 
             afterEach(function () {
                 $httpBackend.verifyNoOutstandingExpectation();
@@ -79,7 +79,7 @@ describe('AuthService', function () {
                     $httpBackend.whenGET('/session').respond({user: potus});
                 });
 
-                it('should resolve to the responded user from /session', function (done) {
+                it('should resolve to the responded views from /session', function (done) {
 
                     AuthService.getLoggedInUser().then(function (user) {
                         expect(user).to.be.deep.equal(potus);
@@ -196,7 +196,7 @@ describe('AuthService', function () {
                 $httpBackend.whenPOST('/login').respond({user: user});
             });
 
-            it('should resolve to the responded user', function (done) {
+            it('should resolve to the responded views', function (done) {
 
                 AuthService.login(login).then(function (user) {
                     expect(user).to.be.deep.equal(user);

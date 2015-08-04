@@ -16,10 +16,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  <script src="/slick-carousel/slick/slick.js"></script>
   <script src="/socket.io-client/socket.io.js"></script>
   <script type="text/javascript">
-  
+
 
   (function() {
     var script = document.createElement('script');
@@ -44,19 +43,21 @@
      });
     });
   </script>
-  <script type="text/javascript">
-  $(document).ready(function(){
-    $('.MySlick').slick({
-      'setting-name': 'setting-value'
-    });
-  });
-  </script>
-  <script src="/main.js"></script>
+ 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.MySlick').slick({
+                'setting-name': 'setting-value'
+            });
+        });
+    </script>
+    <script src="/main.js"></script>
+
 </head>
 <body ng-app="FullstackGeneratedApp">
-  <navbar></navbar>
-  <live-search></live-search>
-  <div id="main" ui-view></div>
-  <footer></footer>
+<navbar></navbar>
+<live-search></live-search>
+<div id="main" ui-view></div>
+<footer></footer>
 </body>
 </html>

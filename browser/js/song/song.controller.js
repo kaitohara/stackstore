@@ -12,28 +12,32 @@ app.service('shareSongInfo', function() {
 
 app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSongInfo) {
 	$scope.song = song;
-	$scope.album = $scope.song.album
-	$scope.artist = $scope.song.artist
+	Album.getAlbum($scope.song.album).then(function(data){
+		console.log('in song ctrl')
+			$scope.album = data;
+		})
+	Artist.getArtist($scope.song.artist).then(function(data){
+			$scope.artist = data;
+		})
+	// $scope.album = $scope.song.album
+	// $scope.artist = $scope.song.artist
 		// console.log('here in ctrl')
 		// Album.getAlbum($scope.song.album).then(function(data){
-		// 	console.log('why the fuck doesnt this work anymore', data)
 		// 	$scope.album = data;
 		// })
 		// Artist.getArtist($scope.song.artist).then(function(data){
-		// 	console.log(data)
 		// 	$scope.artist = data;
 		// })
 		// (function() {
-		// 	console.log('wwooo')
 		// 	var script = document.createElement('script');
 
-	// 	script.type = 'text/javascript';
-	// 	script.async = true;
-	// 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
+    // 	script.type = 'text/javascript';
+    // 	script.async = true;
+    // 	script.src = 'http://sd.toneden.io/production/toneden.loader.js'
 
-	// 	var entry = document.getElementsByTagName('script')[0];
-	// 	entry.parentNode.insertBefore(script, entry);
-	// }());
+    // 	var entry = document.getElementsByTagName('script')[0];
+    // 	entry.parentNode.insertBefore(script, entry);
+    // }());
 
 	// var ToneDenReady = window.ToneDenReady || [];
 	// (function(){console.log('thiiiis')}())
@@ -68,9 +72,6 @@ app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSo
 		}
 	};
 
-	// console.log('ToneDenReady', ToneDenReady)
-	// console.log('toneden', ToneDen)
-
 	shareSongInfo.setProperty(song)
 
 	// console.log('ToneDen', ToneDen, ToneDen.player, {define:function(){}},ToneDenReady)
@@ -81,7 +82,6 @@ app.controller('SongCtrl', function($scope, song, Album, Artist, $modal, shareSo
 			animation: true,
 			templateUrl: 'js/purchase/modalSongView.html',
 			controller: 'ModalInstanceCtrl',
-			size: 'lg',
 			windowClass: 'center-modal'
 		})
 		modalInstance.result.then(function(selectedItem) {
