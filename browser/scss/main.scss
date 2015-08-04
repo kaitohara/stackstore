@@ -193,6 +193,10 @@ textarea.form-control {
   border-color: $stackify-green !important;
 }
 
+input {
+  color: black;
+}
+
 @import "directives/main";
 @import "home/main";
 @import "user/main";
