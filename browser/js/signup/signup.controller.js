@@ -25,4 +25,4 @@ app.controller('SignUpCtrl', function($scope, $state, SignUpFactory){
             });
         $scope.show=true;
     }
-});å
+});
