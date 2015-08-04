@@ -4,6 +4,8 @@ module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Order = mongoose.model('Order');
+
 var emailer = require('../../email');
 
 router.get('/activate/:email/:token', function(req, res, next) {
@@ -32,6 +34,8 @@ router.get('/activate/:email/:token', function(req, res, next) {
         });
 });
 
+
+
 router.get('/', function(req, res, next) {
     User.find(req.query).exec()
         .then(function(users) {
@@ -41,19 +45,28 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.create(req.body)
-        .then(function(user) {
-            if(user) {
-                var token = user.tokenUrl(user.email);
-                var root = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
-                emailer(user.email, user.email, root, 'Welcome to Stackify');
-                res.status(201).json(user);
-            }
-            else {
-                next();
-            }
-        })
-        .then(null, next);
+
+    Order.create({}).then(function(order) {
+        if (req.session.cart) {
+            req.body.cart = req.session.cart;
+        } else {
+            req.body.cart = order;
+        }
+        User.create(req.body)
+            .then(function(user) {
+                if(user) {
+                    var token = user.tokenUrl(user.email);
+                    var root = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
+                    emailer(user.email, user.email, root, 'Welcome to Stackify');
+                    res.status(201).json(user);
+                }
+                else {
+                    next();
+                }
+            })
+            .then(null, next);
+    })
+    .then(null, next);
 });
 
 router.param('id', function(req, res, next, id) {
