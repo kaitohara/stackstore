@@ -177,6 +177,10 @@
             _.extend(this.user, userData);
         };
 
+        this.updateCart = function(cartData) {
+            _.extend(this.cart, cartData)
+        }
+
     });
 
 })();

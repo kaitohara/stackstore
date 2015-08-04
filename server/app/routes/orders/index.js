@@ -76,7 +76,7 @@ router.put('/:orderId/removeAlbum', function(req, res, next) {
 })
 
 //add song to a user's cart
-router.put('/:orderId/addSong', function(req, res) {
+router.put('/:orderId/addSong', function(req, res, next) {
     req.orderItem.update({
             $push: {
                 'songs': {
@@ -94,7 +94,7 @@ router.put('/:orderId/addSong', function(req, res) {
 })
 
 //add album to a user's cart
-router.put('/:orderId/addAlbum', function(req, res) {
+router.put('/:orderId/addAlbum', function(req, res, next) {
     req.orderItem.update({
             $push: {
                 'albums': {

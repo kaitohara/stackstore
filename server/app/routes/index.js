@@ -15,13 +15,13 @@ router.use('/genres', require('./genres'));
 router.use('/stores', require('./stores'));
 
 router.get('/cart', function(req, res, next) {
-  if (req.session.cart) res.json(req.session.cart)
-  else if (req.user) {
+  if (req.user) {
     req.session.cart = req.user.cart
+    res.json(req.session.cart)
+  } else if (req.session.cart) {
     res.json(req.session.cart)
   } else {
     Order.create({}).then(function(newOrder) {
-      console.log("new order", newOrder)
       req.session.cart = newOrder._id
       res.json(req.session.cart)
     })

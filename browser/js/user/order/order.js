@@ -10,6 +10,7 @@ app.directive('order', function() {
 })
 
 app.controller('OrderController', function($scope, OrderFactory) {
+  OrderFactory.setCurrentOrderID($scope.order._id);
   console.log("order", $scope.order)
   $scope.removeSong = function(pullId) {
     OrderFactory.removeSong($scope.order._id, pullId).then(function(res) {
@@ -33,14 +34,25 @@ app.controller('OrderController', function($scope, OrderFactory) {
   }
 })
 
-app.factory('OrderFactory', function($http) {
+app.factory('OrderFactory', function($http, Session) {
+  var currentOrderID = 0
   return {
+    setCurrentOrderID: function(orderID) {
+      currentOrderID = orderID
+    },
+    getCurrentOrderID: function() {
+      return currentOrderID
+    },
     removeSong: function(orderId, pullId) {
       return $http.put('/api/orders/' + orderId + '/removeSong', {
           pullId: pullId
         })
         .then(function() {
           return $http.get('/api/orders/' + orderId)
+        })
+        .then(function(res) {
+          Session.updateCart(res.data)
+          return res
         })
     },
     removeAlbum: function(orderId, pullId) {
@@ -50,28 +62,40 @@ app.factory('OrderFactory', function($http) {
         .then(function() {
           return $http.get('/api/orders/' + orderId)
         })
+        .then(function(res) {
+          Session.updateCart(res.data)
+          return res
+        })
     },
     addSong2Cart: function(orderId, songId, qty, price) {
       console.log('song added ', orderId, songId)
       return $http.put('/api/orders/' + orderId + '/addSong', {
-        songId: songId,
-        price: price
-      }).then(function() {
-        return $http.get('/api/orders/' + orderId)
+          songId: songId,
+          price: price
+        }).then(function() {
+          return $http.get('/api/orders/' + orderId)
 
-        // return console.log('added succesfully?!')
-      })
+          // return console.log('added succesfully?!')
+        })
+        .then(function(res) {
+          Session.updateCart(res.data)
+          return res
+        })
     },
     addAlbum2Cart: function(orderId, albumId, qty, price) {
       console.log('album added ', orderId, albumId)
       return $http.put('/api/orders/' + orderId + '/addAlbum', {
-        albumId: albumId,
-        price: price
-      }).then(function() {
-        return $http.get('/api/orders/' + orderId)
+          albumId: albumId,
+          price: price
+        }).then(function() {
+          return $http.get('/api/orders/' + orderId)
 
-        // return console.log('added succesfully?!')
-      })
+          // return console.log('added succesfully?!')
+        })
+        .then(function(res) {
+          Session.updateCart(res.data)
+          return res
+        })
     }
   }
 })
