@@ -45,7 +45,7 @@ app.controller('AdminUserCtrl', ['$scope', 'users', 'AdminFactory', function($sc
 	$scope.resetPassword = function(user) {
 		console.log('reset password for: ', user.name);
 		AdminFactory.resetPassword(user._id)
-			.then(res => console.log('successful reset'));
+			.then(() => console.log('successful reset'));
 	};
 }]);
 

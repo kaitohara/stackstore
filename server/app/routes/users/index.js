@@ -46,7 +46,7 @@ router.get('/reset/:email/:token', function(req, res, next){
         .exec()
         .then(function(user){
             if(user && user.passwordResetUrl(req.params.token)) {
-                var stringUrl ='/reset/confirmed/' + user.email;
+                var stringUrl ='/reset/confirmed/' + user._id;
                     res.redirect(301,stringUrl);
             }
             else throw Error('Reset Token is Invalid');
@@ -108,8 +108,14 @@ router.post('/', function(req, res, next) {
             .then(function(user) {
                 if(user) {
                     var token = user.tokenUrl(user.email);
-                    var root = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
-                    emailer(user.email, user.email, root, 'Welcome to Stackify');
+                    var callbackUrl = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
+                    emailer(
+                        user.email
+                        , user.email
+                        , callbackUrl
+                        , 'Welcome to Stackify'
+                        , 'Thank you for signing up to Stackify'
+                        , 'Please click to activate your account');
                     res.status(201).json(user);
                 }
                 else {

@@ -6,6 +6,6 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('ViewDefaultCtrl', ['$scope', 'EditFactory', 'AuthService', function($scope, EditFactory, AuthService){
+app.controller('ViewDefaultCtrl', ['', function(){
 	console.log('ran view default crtl');
 }]);

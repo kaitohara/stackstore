@@ -22,12 +22,12 @@ app.controller('ResetCtrl', function ($scope, AuthService, $state,$stateParams, 
     $scope.show=false;
     $scope.login = {};
     $scope.error = null;
-console.log('what is the state params', $stateParams);
+    console.log('what is the state params', $stateParams);
     // show form if reset is valid
-    if($stateParams.email) {
+    if($stateParams.id) {
 
         SignUpFactory
-            .getUser($stateParams.email)
+            .getUserById($stateParams.id)
             .then(function(user){
                 if(user._id) {
                     return $scope.show=true;
@@ -43,11 +43,11 @@ console.log('what is the state params', $stateParams);
 
         $scope.error = null;
 
-        console.log(login, reset);
+        console.log('resetting stuff', login, reset);
 
-        AuthService.login(login).then(function (user) {
+        AuthService.login(login, true).then(function (user) {
             return AuthService.resetPassword(user._id, reset.password);
-        }).then(user => {
+        }).then(() => {
             console.log('all done');
             $state.go('home');
         }).catch(function () {

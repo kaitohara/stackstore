@@ -14,7 +14,22 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('AdminStoreCtrl', ['$scope', 'stores', 'AdminFactory', function($scope, stores, AdminFactory){
+app.controller('AdminStoreCtrl', ['$scope', 'AdminFactory', 'stores', function($scope, AdminFactory, stores){
 	$scope.stores = stores;
 	console.log('store ctrl ran');
+
+	$scope.deleteStore = function(store) {
+		AdminFactory.deleteStore(store._id)
+			.then(() => {
+				_.remove(stores, st => st._id === store._id);
+			});
+	};
+
+	$scope.updateStore = function(store, config) {
+		AdminFactory.updateStore(store._id, config)
+			.then(() => {
+				// update corresponding member of stores array
+			});
+	};
+
 }]);

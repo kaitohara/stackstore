@@ -50,12 +50,14 @@ router.param('id', function(req, res, next, id) {
 });
 
 // get album by artist
-router.get('/artist/:artistId', function(req, res, next){
-    Album.find({artist:req.params.artistId}).exec()
-    .then(function(albums){
-        res.json(albums);
-    })
-    .then(null, next);
+router.get('/artist/:artistId', function(req, res, next) {
+    Album.find({
+            artist: req.params.artistId
+        }).exec()
+        .then(function(albums) {
+            res.json(albums);
+        })
+        .then(null, next);
 });
 
 // get one album (by its id)
@@ -67,15 +69,17 @@ router.get('/:id', function(req, res) {
 router.put('/:id', function(req, res, next) {
     _.extend(req.album, req.body);
     req.album.save().then(function(album) {
-        res.json(album);
-    });
+            res.json(album);
+        })
+        .then(null, next);
 });
 
 // delete one album
 router.delete('/:id', function(req, res, next) {
     req.album.remove().then(function() {
-        res.status(204).end();
-    });
+            res.status(204).end();
+        })
+        .then(null, next);
 });
 
 module.exports = router;

@@ -7,17 +7,20 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider
         // User router's redirect work around for signup/confirm route
-        .when('signup/confirmed', function($state){
+        .when('signup/confirmed/:id', function($state){
             $state.go('signup.confirmed');
         })
         // User router's redirect work around for already activated users
         .when('login', function($state){
             $state.go('login');
         })
-        .when('reset', function($state){
-            $state.go('reset');
-        })
-        .when('reset.confirmed', function($state){
+        //.when('reset', function($state){
+        //    $state.go('reset');
+        //})
+        //.when('reset/success', function($state){
+        //    $state.go('reset.success');
+        //})
+        .when('reset/confirmed/:id', function($state){
             $state.go('reset.confirmed');
         })// for oauth
         .when('/auth/:provider', function() {

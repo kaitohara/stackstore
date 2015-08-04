@@ -10,7 +10,7 @@ app.factory('UploadFactory', ['$http', function($http){
 	};
 
 	fact.createSong = function(songData) {
-		return $http.post('/api/stores', storeData)
+		return $http.post('/api/songs', songData)
 			.then(res => res.data);
 	};
 

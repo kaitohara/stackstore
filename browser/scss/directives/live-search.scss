@@ -1,5 +1,5 @@
 #live-search{
-  background-color:#252d30;
+  background-color:$stackify-green;//#252d30;
   height:500px;
   width:100%;
   color:white;
@@ -20,22 +20,22 @@
 }
 
 .search-item {
-    // border:1px solid white;
-    white-space:normal;
-    vertical-align:top;
-    width:250px;
-    height:350px;
-    display:inline-block;
-    margin: 10px 10px 90px 10px;
-    background-color: #14191B;
-    border-radius:1px
-  }
+  // border:1px solid white;
+  white-space:normal;
+  vertical-align:top;
+  width:250px;
+  height:350px;
+  display:inline-block;
+  margin: 10px 10px 90px 10px;
+  background-color: #14191B;
+  border-radius:1px
+}
 
 
-  .item-content {
-    padding: 25px;
-    height: 340px;
-  }
-  .search-photo {
-    padding-bottom:10px;
-  }
+.item-content {
+  padding: 25px;
+  height: 340px;
+}
+.search-photo {
+  padding-bottom:10px;
+}

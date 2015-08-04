@@ -5,9 +5,6 @@ app.directive('storeList', function() {
 		scope: {
 			admin: '=',
 			stores: '='
-		},
-		link: function(scope, elem, attrs) {
-
 		}
 	};
 });

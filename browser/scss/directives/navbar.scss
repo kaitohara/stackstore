@@ -30,8 +30,10 @@ navbar {
       font-weight: bold;
       color: #FFFFFF;
       &:active {
-        color: white;
-        background: darken($stackify-green, 10%);
+        color: darken($stackify-green, 10%);
+        font-weight: bolder;
+        // color: white;
+        // background: darken($stackify-green, 10%);
       }
       &:hover {
         background: none;
@@ -39,6 +41,9 @@ navbar {
       }
       &:focus {
         background: none;
+        color: lighten($stackify-green, 10%);
+        font-weight: bolder;
+        // font-size: 16px;
       }
     }
   }
@@ -57,11 +62,10 @@ navbar {
     }
   }
   .glyphicon {
-    color: $stackify-green;
+    color: white;
     font-weight: bold;
     text-decoration: none;
     &:hover {
-      // background: none;
       color: $stackify-green;
     }
   }
@@ -71,8 +75,12 @@ navbar {
     font-size: 20px;
     // color: $stackify-green;
     // background: $stackify-green;
-    border: 2px solid $stackify-green;
+    border: 2px solid white;
     border-radius: 40px;
+    &:hover {
+      color: $stackify-green;
+      border: 2px solid $stackify-green;
+    }
   }
   .welcome {
     float: right;
@@ -127,7 +135,7 @@ navbar {
       a {
         padding: 10px 20px;
         display: block;
-        font-weight: normal;
+        font-weight: bold;
         color: white;
         &:hover {
           background: white;
