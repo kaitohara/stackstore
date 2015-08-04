@@ -4,6 +4,7 @@ module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Order = mongoose.model('Order');
 
 router.get('/', function(req, res, next) {
     User.find(req.query).exec()
@@ -14,11 +15,19 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    User.create(req.body)
-        .then(function(user) {
-            res.status(201).json(user)
-        })
-        .then(null, next);
+    Order.create({}).then(function(order) {
+        if (req.session.cart) {
+            req.body.cart = req.session.cart;
+        } else {
+            req.body.cart = order;
+        }
+        User.create(req.body)
+            .then(function(user) {
+                res.status(201).json(user);
+            })
+            .then(null, next);
+    })
+    .then(null, next);
 });
 
 router.param('id', function(req, res, next, id) {
@@ -47,7 +56,9 @@ router.get('/:id/profile', function(req, res, next) {
         'pastOrderList.albums.album.artist',
         'pastOrderList.songs.song.artist',
         'pastOrderList.albums.album.genre',
-        'pastOrderList.songs.song.genre'
+        'pastOrderList.songs.song.genre',
+        'pastOrderList.songs.song.album',
+        'pastOrderList.songs.song.album.genre'
     ], function(err, user) {
         if (err) next(err)
         res.json(user)
@@ -64,7 +75,9 @@ router.get('/:id/cart', function(req, res, next) {
         'cart.songs.song.artist',
         'cart.albums.album.genre',
         'cart.songs.song.genre',
-        'cart.songs.song.album'
+        'cart.songs.song.album',
+        'cart.songs.song.album.genre'
+
     ], function(err, user) {
         if (err) next(err)
         res.json(user.cart)

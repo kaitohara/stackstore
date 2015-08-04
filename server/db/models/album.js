@@ -35,8 +35,8 @@ var schema = new mongoose.Schema({
 		type: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Genre'
-		}],
-		required: true
+		}]
+		// required: true
 	},
 	songs: {
 		type: [{

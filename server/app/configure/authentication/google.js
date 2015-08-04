@@ -4,6 +4,9 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
+var OrderModel = mongoose.model('Order');
+
+var googleId;
 
 module.exports = function (app) {
 
@@ -17,17 +20,27 @@ module.exports = function (app) {
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
 
+        console.log('got this from google', profile);
+
+        googleId = profile.id;
+
         UserModel.findOne({ 'google.id': profile.id }).exec()
             .then(function (user) {
 
                 if (user) {
                     return user;
                 } else {
-                    return UserModel.create({
-                        google: {
-                            id: profile.id
-                        }
+                    return OrderModel.create({}).then(function(order) {
+                        return UserModel.create({
+                            google: {
+                                id: profile.id
+                            },
+                            email: profile.emails[0].value,
+                            name: profile.displayName,
+                            cart: order
+                        });
                     });
+
                 }
 
             }).then(function (userToLogin) {
@@ -51,7 +64,19 @@ module.exports = function (app) {
     app.get('/auth/google/callback',
         passport.authenticate('google', { failureRedirect: '/login' }),
         function (req, res) {
-            res.redirect('/');
+            console.log('have this on the req', req.session);
+            // attach cart to user
+            UserModel.findOne({'google.id': googleId})
+                .then(function(user) {
+                    if (req.session.cart) {
+                        user.cart = req.session.cart;
+                        user.save().then(function(){
+                            res.redirect('/');
+                        });
+                    } else {
+                        res.redirect('/');
+                    }
+                });
         });
 
 };

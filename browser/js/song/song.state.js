@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('song', {
@@ -7,11 +7,8 @@ app.config(function ($stateProvider) {
 		controller: 'SongCtrl',
 		resolve: {
 			song: function(Song, $stateParams) {
-				return Song.getSong($stateParams.id).then(function(data){
-					console.log('data', data)
-					return data;
-				})
+				return Song.getPopulatedSong($stateParams.id);
 			}
 		}
-	})
-})
+	});
+});

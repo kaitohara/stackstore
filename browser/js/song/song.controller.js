@@ -12,6 +12,17 @@ app.service('shareSongInfo', function(){
 
 app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareSongInfo){
 	$scope.song = song;
+	$scope.album = $scope.song.album
+	$scope.artist = $scope.song.artist
+	// console.log('here in ctrl')
+	// Album.getAlbum($scope.song.album).then(function(data){
+	// 	console.log('why the fuck doesnt this work anymore', data)
+	// 	$scope.album = data;
+	// })
+	// Artist.getArtist($scope.song.artist).then(function(data){
+	// 	console.log(data)
+	// 	$scope.artist = data;
+	// })
 	// (function() {
 	// 	console.log('wwooo')
 	// 	var script = document.createElement('script');
@@ -25,8 +36,8 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// }());
 
 	// var ToneDenReady = window.ToneDenReady || [];
-	(function(){console.log('thiiiis')}())
-	console.log(ToneDenReady, ToneDen)
+	// (function(){console.log('thiiiis')}())
+	// console.log(ToneDenReady, ToneDen)
 	// ToneDenReady.push(function() {
 	// 	// This is where all the action happens:
 	// 	ToneDen.player.create({
@@ -37,7 +48,8 @@ app.controller('SongCtrl', function ($scope, song, Album, Artist, $modal, shareS
 	// 		skin:'dark'
 	// 	});
 	// });
-console.log('toneden player', ToneDen.player)
+// console.log('toneden player', ToneDen.player)
+
 	function initToneden(){
 		var config = {
 			dom: "#player",
@@ -63,13 +75,7 @@ console.log('toneden player', ToneDen.player)
 	shareSongInfo.setProperty(song)
 	// console.log('ToneDen', ToneDen, ToneDen.player, {define:function(){}},ToneDenReady)
 	// ToneDen.player.getInstanceByDom("#player").addTracks('https://soundcloud.com/kryder/ltric-this-feeling-kryder-remix-1')
-	Album.getAlbum($scope.song.album).then(function(data){
-		$scope.album = data;
-	})
-	Artist.getArtist($scope.song.artist).then(function(data){
-		console.log(data)
-		$scope.artist = data;
-	})
+	
 	$scope.openModal = function(){
 		var modalInstance = $modal.open({
 			animation: true,
@@ -86,5 +92,4 @@ console.log('toneden player', ToneDen.player)
 	// loadPlayer();
 	initToneden()
 });
-
 

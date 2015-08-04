@@ -1,5 +1,6 @@
 $border-grey: #dddddd;
-$stackify-green: #00f482; 
+$stackify-green: #00f482;
+
 // #DF2B30
 
 * {
@@ -30,6 +31,7 @@ body {
 #main {
   width: 100%;
   margin: 0 auto;
+  padding-top: 60px;
 }
 
 .col-centered {
@@ -40,6 +42,18 @@ body {
 .sidebar {
   overflow-y: scroll;
   height: calc(100vh - 300px);
+  ul {
+    list-style: none;
+  }
+}
+
+.btn-stackify {
+  background-color: darken($stackify-green, 5%);
+  color: white;
+  border: 1px solid darken($stackify-green, 10%);
+  &:hover {
+    background: darken($stackify-green, 10%);
+  }
 }
 
 textarea.form-control {
@@ -54,30 +68,48 @@ textarea.form-control {
 // }
 
 .search-list-scroll {
-    list-style: none;
-    color:black;
-    a {
-      // color:white;
-    }
-    white-space: nowrap;
-    overflow-x: auto;
+  list-style: none;
+  color: black;
+  a {
+    // color:white;
+ 
   }
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
 .search-item-scroll {
   // border:1px solid white;
-  width:300px;
-  display:inline-block;
+  width: 300px;
+  display: inline-block;
   margin: 10px 10px 90px 10px;
   background-color: #14191B;
-  border-radius:1px;
+  border-radius: 1px;
   color: black;
   li {
     overflow-x: scroll;
   }
 }
+
 .elem-thumb {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 200px;
+  // height: 200px;
+}
+
+.review {
+  list-style: none;
+}
+
+.review-thumb {
+  width: 175px;
+  height: 175px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
 }
 
 @import "directives/main";
@@ -85,4 +117,6 @@ textarea.form-control {
 @import "user/main";
 @import "tutorial/main";
 @import "login/main";
+@import "signup/main";
 @import "products/song";
+@import "slick/slick";

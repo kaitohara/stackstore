@@ -1,12 +1,15 @@
 <div class="row">
 	<div class="col-lg-8 col-centered">
 		<div class="col-lg-8 box">
+			<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
 			<h1>{{album.title}}</h1>
-			<img class="pull-right" src="{{album.photo}}">
-			<h3>Artist: <a ui-sref="artist({name:artist.name, id:artist._id})">{{artist.name}}</a></h3>
+			<img class="pull-right" src="{{album.photo}}" width="300">
+			<h3>Artist: <a ui-sref="artist({name:album.artist.name, id:album.artist._id})">{{album.artist.name}}</a></h3>
 			<h3>Tracklist:</h3>
 			<ul>
-				<li ng-repeat="song in album.songs">{{song.title}}</li>
+				<a ui-sref="song({id:song._id})" ng-repeat="song in album.songs">
+					<li>{{song.title}}</li>
+				</a>
 			</ul>
 			<button class="buyButton" ng-click="openModal()">Buy Album</button>
 			<h3>Price: ${{album.price}}</h3>
