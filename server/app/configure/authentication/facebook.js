@@ -17,8 +17,6 @@ module.exports = function (app) {
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
 
-        console.log('facebook sent me this info', profile);
-
         UserModel.findOne({ 'facebook.id': profile.id }).exec()
             .then(function (user) {
 

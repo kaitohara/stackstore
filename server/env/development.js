@@ -4,9 +4,9 @@ module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/stack-store",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
-    "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
-    "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
-    "callbackUrl": "INSERT_TWITTER_CALLBACK_HERE"
+    "consumerKey": keys.oauth.twitter.consumerKey,
+    "consumerSecret": keys.oauth.twitter.consumerSecret,
+    "callbackUrl": keys.oauth.twitter.callbackURL
   },
   "FACEBOOK": {
     "clientID": keys.oauth.facebook.clientID,
