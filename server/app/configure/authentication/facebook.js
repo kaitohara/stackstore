@@ -11,7 +11,8 @@ module.exports = function (app) {
     var facebookCredentials = {
         clientID: facebookConfig.clientID,
         clientSecret: facebookConfig.clientSecret,
-        callbackURL: facebookConfig.callbackURL
+        callbackURL: facebookConfig.callbackURL,
+        profileFields: ['id', 'displayName', 'emails']
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
@@ -28,7 +29,8 @@ module.exports = function (app) {
                         facebook: {
                             id: profile.id
                         },
-                        name: profile.displayName,
+                        email: profile.emails[0].value,
+                        name: profile.displayName
                     });
                 }
 
