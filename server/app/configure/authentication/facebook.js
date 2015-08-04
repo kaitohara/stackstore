@@ -43,7 +43,7 @@ module.exports = function (app) {
             }).then(function (userToLogin) {
                 done(null, userToLogin);
             }, function (err) {
-                console.error('Error creating user from Facebook authentication', err);
+                console.error('Error creating views from Facebook authentication', err);
                 done(err);
             });
 

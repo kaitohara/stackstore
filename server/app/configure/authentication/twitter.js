@@ -46,15 +46,15 @@ module.exports = function (app) {
 
         UserModel.findOne({'twitter.id': profile.id}).exec()
             .then(function (user) {
-                if (user) { // If a user with this twitter id already exists.
+                if (user) { // If a views with this twitter id already exists.
                     return updateUserCredentials(user, token, tokenSecret, profile);
-                } else { // If this twitter id has never been seen before and no user is attached.
+                } else { // If this twitter id has never been seen before and no views is attached.
                     return createNewUser(token, tokenSecret, profile);
                 }
             }).then(function (user) {
                 done(null, user);
             }, function (err) {
-                console.error('Error creating user from Twitter authentication', err);
+                console.error('Error creating views from Twitter authentication', err);
                 done(err);
             });
 

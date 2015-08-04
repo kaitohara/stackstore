@@ -4,14 +4,40 @@ app.config(function ($stateProvider) {
         url: '/reset',
         templateUrl: 'js/login/resetPassword/resetPassword.html',
         controller: 'ResetCtrl'
-    });
-
+    })
+    .state('reset.success', {
+        url: '/success',
+        templateUrl: 'js/login/resetPassword/resetPassword.success.html',
+        controller: 'ResetSuccessCtrl'
+    })
+    .state('reset.confirmed', {
+        url: '/confirmed/:id',
+        templateUrl: 'js/login/resetPassword/resetPassword.html',
+        controller: 'ResetCtrl'
+    })
 });
 
-app.controller('ResetCtrl', function ($scope, AuthService, $state) {
+app.controller('ResetCtrl', function ($scope, AuthService, $state,$stateParams, SignUpFactory) {
 
+    $scope.show=false;
     $scope.login = {};
     $scope.error = null;
+    console.log('what is the state params', $stateParams);
+    // show form if reset is valid
+    if($stateParams.id) {
+
+        SignUpFactory
+            .getUserById($stateParams.id)
+            .then(function(user){
+                if(user._id) {
+                    return $scope.show=true;
+                }
+            })
+            .then(null, function(err){
+                return err;
+            })
+
+    }
 
     $scope.resetPassword = function(login, reset) {
 

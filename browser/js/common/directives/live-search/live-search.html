@@ -5,7 +5,7 @@
         <div class="row">
           <h2 class="pull-left">Search Results:</h2>
         </div>
-        
+
         <div>
           <!-- <button>'<'</button> -->
           <!-- SONGS SEARCH RESULT-->
@@ -15,10 +15,10 @@
               <div class='item-content'>
 
                <img class='search-photo' src="{{song.photo}}" width="200">
-              
+
               <a class="song-link" ui-sref="song({id:song._id})" ng-click="closeSlide()">{{song.title}}</a>
               <br><br>
-              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a> 
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a>
               </div>
             </li>
 
@@ -26,10 +26,10 @@
               <div class='item-content'>
                 A
               <img class='search-photo' src="{{album.album.photo}}" width="200">
-              
+
               <a class="album-link" ui-sref="album({id:album._id})" ng-click="closeSlide()">{{album.title}}</a>
               <br><br>
-              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a> 
+              <a class="artist-link" ui-sref="artist({name: song.artist.name, id: song.artist._id})" ng-click="closeSlide()">{{song.artist.name}}</a>
               </div>
             </li>
 
@@ -44,7 +44,7 @@
         </p>
           </ul>
           <!-- ARTISTS SEARCH RESULT-->
-          <!-- 
+          <!--
           <ul ng-show="!!search" class="search-list">
             <li class='search-item' ng-repeat="artist in filteredArtists = (artists | searchFilter:search | limitTo:4)">
               Artist: <a ui-sref="artist({name: artist.name, id: artist._id})">{{artist.name}}</a>
@@ -52,7 +52,7 @@
           </ul>-->
 
           <!-- ALBUMS SEARCH RESULT-->
-          <!-- 
+          <!--
           <ul ng-show="!!search" class="search-list">
             <li class='search-item' ng-repeat="album in filteredAlbums = (albums | searchFilter:search | limitTo:4)">
               <img src="{{album.photo}}">
@@ -62,17 +62,18 @@
           </ul>
         </div>-->
 
-        
+
 
     <!-- <a ng-repeat="artist in artists | filter:artistSearch"
       ui-sref="artist({id: artist._id})"
       ui-sref-active="active"
       class="list-group-item min-content"
       ng-if="!artist.isDestroyed">
-      <user-item model="artist"></user-item>
+      <views-item model="artist"></views-item>
     </a> -->
   </div>
 
 </div>
 </div>
   </div>
+

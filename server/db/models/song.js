@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate');
 
 var schema = new mongoose.Schema({
 	title: {
@@ -48,5 +49,7 @@ var schema = new mongoose.Schema({
 		default: false
 	}
 });
+
+schema.plugin(deepPopulate);
 
 mongoose.model('Song', schema);

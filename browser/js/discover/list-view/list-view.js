@@ -21,4 +21,8 @@ app.controller('DiscoverListCtrl', ['$scope', 'stores', 'songs', 'albums', funct
 	$scope.stores = stores;
 	$scope.songs = songs;
 	$scope.albums = albums;
+	console.log('stores', stores);
+	console.log('songs', songs);
+	console.log('albums', albums);
+
 }]);

@@ -12,7 +12,7 @@ module.exports = function (app) {
     var strategyFn = function (email, password, done) {
         User.findOne({ email: email })
             .then(function (user) {
-                // user.correctPassword is a method from the User schema.
+                // views.correctPassword is a method from the User schema.
                 if (!user || !user.correctPassword(password)) {
                     done(null, false);
                 } else {
@@ -42,7 +42,7 @@ module.exports = function (app) {
             // req.logIn will establish our session.
             req.logIn(user, function (loginErr) {
                 if (loginErr) return next(loginErr);
-                // We respond with a response object that has user with _id and email.
+                // We respond with a response object that has views with _id and email.
                 res.status(200).send({
                     user: _.omit(user.toJSON(), ['password', 'salt'])
                 });
