@@ -1,4 +1,4 @@
-<div ng-hide="deleted" class="panel panel-primary">
+<!-- <div ng-hide="deleted" class="panel panel-primary">
 	<div ng-if="admin">
 		<div class="btn-group">
 		  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,5 +36,57 @@
 				<span ng-hide="user.isSeller">Regular customer</span>
 			</li>
 	    </ul>
+	</div>
+</div> -->
+
+<div class="item-content-scroll elem" ng-click="edit({album:album})">
+	<div ng-if="admin">
+		<div class="btn-group">
+		  <button type="button" class="btn btn-warning dropdown-toggle admin-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    Admin Actions <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li>
+				<a ng-click="change({user: user, status: !user.isAdmin})">Toggle Admin</a>
+		    </li>
+		    <li>
+				<a ng-click="seller({user: user, status: !user.isSeller})">Toggle Seller</a>
+		    </li>
+		    <li>
+				<a ng-click="reset({user: user})">Reset Password</a>
+		    </li>
+		    <li role="separator" class="divider"></li>
+		    <li>
+				<a ng-click="delete({user: user}); deleted = true">Delete User</a>
+		    </li>
+		  </ul>
+		</div>
+	</div>
+	<div>
+		<div>
+			<img class="search-photo" src="{{user.photo}}" width="200">
+		</div>
+		<div>
+			<ul class="list-group elem-list">
+				<li>
+					<a class="album-link">Email: {{user.email}}</a>
+				</li>
+				<li ng-show="user.isAdmin">
+					<a class="album-link" ui-sref="album({id:album._id})">This user is an admin</a>
+				</li>
+				<li ng-hide="user.isAdmin">
+					<a class="album-link" ui-sref="album({id:album._id})">Regular privileges</a>
+					
+				</li>
+				<li ng-show="user.isSeller">
+					<a class="artist-link" ui-sref="artist({name: album.artist.name, id: album.artist._id})">This user is a seller</a>
+					
+				</li>
+				<li ng-hide="user.isSeller">
+					<a class="artist-link" ui-sref="artist({name: album.artist.name, id: album.artist._id})">Regular customer</a>
+				</li>
+			</ul>
+		</div>
+		<br><br>
 	</div>
 </div>
