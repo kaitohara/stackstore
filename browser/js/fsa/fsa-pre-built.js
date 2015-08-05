@@ -145,6 +145,22 @@
                 .then(res => res.data);
         };
 
+        this.updateUser = (userId, info) => {
+            if (info.isSeller) {
+                // make artist profile
+                return $http.post('/api/artists', {name: info.artistName})
+                    .then(res => res.data)
+                    .then(artist => {
+                        info.artistName = undefined;
+                        info.artistProfile = artist._id;
+                        return $http.put('/api/users/' + userId, info)
+                            .then(res => res.data);
+                    });
+            } else {
+                return null;
+            }
+        };
+
     });
 
     app.service('Session', function($rootScope, AUTH_EVENTS) {
