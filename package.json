@@ -1,5 +1,5 @@
 {
-    "name": "FullstackGeneratedApp",
+    "name": "Stackify",
     "version": "1.0.0",
     "description": "A generated project at Fullstack Academy",
     "main": "server/start.js",
@@ -83,5 +83,8 @@
         "lodash": "^3.10.0",
         "mocha": "^2.2.5",
         "supertest": "^0.15.0"
+    },
+    "engines": {
+        "node": "0.10.x"
     }
 }
