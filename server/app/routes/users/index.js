@@ -23,15 +23,15 @@ router.put('/reset/:email', function(req, res, next){
         .then(function(savedUser){
             if(savedUser) {
                 var callbackUrl = 'http://localhost:1337/api/users/reset/' + savedUser.email + '/' + savedUser.passwordResetUrl();
-                console.log('callbackur', callbackUrl);
-                emailer(
+                var params = [
                     savedUser.email
                     , savedUser.email
                     , callbackUrl
                     , 'Reset Password Request'
                     , 'Hi, we received a request to reset your password'
                     , 'Click here to reset your password'
-                );
+                ];
+                emailer('reset',params);
                 res.status(201).json(savedUser);
             }
             else next();
@@ -109,13 +109,15 @@ router.post('/', function(req, res, next) {
                 if(user) {
                     var token = user.tokenUrl(user.email);
                     var callbackUrl = 'http://localhost:1337/api/users/activate/' + user.email + '/' + token;
-                    emailer(
+                    var params = [
                         user.email
                         , user.email
                         , callbackUrl
                         , 'Welcome to Stackify'
                         , 'Thank you for signing up to Stackify'
-                        , 'Please click to activate your account');
+                        , 'Please click to activate your account'
+                    ];
+                    emailer('signup', params);
                     res.status(201).json(user);
                 }
                 else {
