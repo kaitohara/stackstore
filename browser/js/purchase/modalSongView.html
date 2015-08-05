@@ -1,15 +1,18 @@
 <div class="modal-header">
-    <h3 class="modal-title">Song</h3>
+    <h3 class="modal-title">Digital Download: Single Track</h3>
 </div>
 
 <div class="modal-body">
-    <p>{{item.title}}</p>
-    <p>$  {{item.price}}</p>
-    High-quality download of MP3, WAV + more
+
+    <h2>{{item.title}}</h2>
+    <br>
+    <h1>{{item.price | currency}} USD</h1>
+    <h3>High-quality download of MP3, WAV + more</h3>
     <!-- {{song}} -->
     <alert type="danger" ng-show="error">
       {{ error }}
     </alert>
+
 </div>
 <div class="modal-footer">
     <button class="btn buttons" ng-click="ok()">Purchase Now</button>
