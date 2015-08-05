@@ -1,10 +1,11 @@
 app.controller('SignUpConfirmedCtrl', function($scope, $state, $stateParams, $timeout, SignUpFactory){
-    $scope.show=false;
+
     $scope.counter = 6;
 
     $scope.onTimeout = function(){
-        console.log('timeout function running?');
+        $scope.show=false;
         if($scope.counter===0){
+            $scope.show=true;
             $state.go('login');
         }
         else {
@@ -19,6 +20,7 @@ app.controller('SignUpConfirmedCtrl', function($scope, $state, $stateParams, $ti
     SignUpFactory
         .getUserById($stateParams.id)
         .then(function(user){
+            $scope.show=false;
             console.log('this is the found user', user);
             if(user._id){
                 $scope.signup=user;
