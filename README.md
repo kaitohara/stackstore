@@ -19,12 +19,12 @@ Stack Store
 Similar to Amazon, your site should support browsing its products without having to create an account. All users who visit your site should be able to perform the following activities:
 
 ### View products
-- [ ] Refine listing by category
+- [x] Refine listing by category
 - [x] Search product listing
-- [ ] View a product's details
+- [x] View a product's details
   - [x] Product information
   - [x] Photo(s)
-  - [ ] View reviews left by authenticated users
+  - [x] View reviews left by authenticated users
 
 ### Manage their cart
 - [x] Add an item to the cart from product listing or product detail pages
@@ -34,8 +34,8 @@ Similar to Amazon, your site should support browsing its products without having
 - [ ] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
 
 ### Account Management
-- [ ] Create an account
-- [ ] Login with Facebook and/or Google
+- [x] Create an account
+- [x] Login with Facebook and/or Google
 
 ### Checkout
 - [ ] Purchase items from cart
