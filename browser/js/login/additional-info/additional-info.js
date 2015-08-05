@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state) {
+app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state, Session) {
 
     $scope.info = {};
     $scope.error = null;
@@ -25,6 +25,7 @@ app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state) {
                 return AuthService.updateUser(user._id, additionalInfo);
             }).then((user) => {
                 console.log('new seller', user);
+                // Session.updateUser(user);
                 $state.go('home');
             }).catch(function () {
                 $scope.error = 'Invalid signup credentials.';

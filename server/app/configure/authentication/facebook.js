@@ -62,10 +62,10 @@ module.exports = function (app) {
                     if (req.session.cart) {
                         user.cart = req.session.cart;
                         user.save().then(function(){
-                            res.redirect('/');
+                            res.redirect('/additional');
                         });
                     } else {
-                        res.redirect('/');
+                        res.redirect('/additional');
                     }
                 });
         });
