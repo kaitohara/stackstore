@@ -1,7 +1,7 @@
 'use strict';
 
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_key = require('../../../keys/index.js').mandrill_key;
+var mandrill_key = 'XQQVNAJwFEXrRQNklfmoxQ';
 var mandrill_client = new mandrill.Mandrill(mandrill_key);
 
 var logo = 'http://localhost:1337/stackify-logo.png';
@@ -111,3 +111,4 @@ function sendEmail(emailType, params){
 
 
 module.exports = sendEmail;
+

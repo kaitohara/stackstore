@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-sm-12">
-        <form id="login-form" name="infoForm" ng-submit="infoForm.$valid && sendInfo(info)">
+        <form id="login-form" class="stackify-form" name="infoForm" ng-submit="infoForm.$valid && sendInfo(info)">
             
             <h2>Additional Info</h2>
             
@@ -10,11 +10,12 @@
 
             <div class="form-group">
                 <label for="email">Are you a musician?</label>
-                <input type="text" ng-model="info.isSeller" class="form-control" id="isSeller" placeholder="Yes or no">
+                <a ng-class="{'btn-success': info.isSeller}" class="btn btn-default" ng-click="info.isSeller = true">Yes</a>
+                <a ng-class="{'btn-success': !info.isSeller}" class="btn btn-default" ng-click="info.isSeller = false">No</a>
             </div>
             <div class="form-group">
                 <label for="info-password">If so, what is your stage / band name?</label>
-                <input type="text" ng-model="info.artistName" class="form-control" id="artistName" placeholder="You know what I mean">
+                <input type="text" ng-model="info.artistName" class="form-control" id="artistName" placeholder="">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>

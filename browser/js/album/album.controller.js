@@ -26,7 +26,6 @@ app.controller('AlbumCtrl', function ($scope, album, Artist, Review, Song, $moda
 			animation: true,
 			templateUrl: 'js/purchase/modalAlbumView.html',
 			controller: 'ModalInstanceCtrl',
-			size: 'lg',
 			windowClass: 'center-modal'
 		})
 		modalInstance.result.then(function(){

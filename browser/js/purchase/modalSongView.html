@@ -3,10 +3,13 @@
 </div>
 
 <div class="modal-body">
-    <p>{{song.title}}</p>
-    <p>$  {{song.price}}</p>
+    <p>{{item.title}}</p>
+    <p>$  {{item.price}}</p>
     High-quality download of MP3, WAV + more
-    {{song}}
+    <!-- {{song}} -->
+    <alert type="danger" ng-show="error">
+      {{ error }}
+    </alert>
 </div>
 <div class="modal-footer">
     <button class="btn buttons" ng-click="ok()">Purchase Now</button>

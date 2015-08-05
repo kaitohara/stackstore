@@ -16,15 +16,15 @@ app.controller('SignUpCtrl', function ($scope, AuthService, $state) {
 
             //$state.go('additional');
             if(user._id){
-                $state.signup=user;
+                $state.signup = user;
                 $state.go('signup.success');
-                $scope.show=true;
+                $scope.show = true;
             } else {
                 return "User Validation Failed";
             }
         }).catch(function () {
             $scope.error = 'Invalid signup credentials.';
-            $scope.show=true;
+            $scope.show = true;
         });
     };
 

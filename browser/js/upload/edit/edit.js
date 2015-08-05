@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('upload.edit', {
-        url: '/edit/',
+        url: '/edit',
         templateUrl: 'js/upload/edit/edit.html',
         controller: 'EditCtrl',
         resolve: {
@@ -16,7 +16,7 @@ app.config(function ($stateProvider) {
     
 });
 
-app.controller('EditCtrl', function ($scope, $state, user, EditFactory) {
+app.controller('EditCtrl', function ($scope, $state, user, EditFactory, AuthService) {
     $scope.user = user;
     $scope.store = EditFactory.currentStore;
     $scope.show = 'albums';
@@ -39,10 +39,35 @@ app.controller('EditCtrl', function ($scope, $state, user, EditFactory) {
     };
 
     $scope.defaultEdit = function() {
-        $state.go('upload.edit.default');
+        $state.go('upload.edit');
     };
 
-    $state.go('upload.edit.default');
+    /// the logged in user has to be the artist
+    $scope.submitAlbum = function(albumData) {
+        albumData.storeExclusive = true;
+        albumData.songs = [];
+        // attach logged in seller as the artist
+        AuthService.getLoggedInUser()
+            .then(user => {
+                // attach seller's artist to album
+                albumData.artist = user.artistProfile;
+                console.log(albumData);
+                return EditFactory.getGenreByName(albumData.genre);
+            })
+            .then(genre => {
+                // attach genre id to album
+                albumData.genre = genre._id;
+                console.log('updated album data', albumData);
+                return EditFactory.createAlbum(albumData);
+            })
+            .then(alb => {
+                // add album to store
+                EditFactory.currentStore.albums.push(alb);
+                return EditFactory.saveToStore(alb._id, EditFactory.currentStore);
+            })
+            .then(() => console.log('done'));
+    };
+
 });
 
 // can make albums, can only add songs to albums

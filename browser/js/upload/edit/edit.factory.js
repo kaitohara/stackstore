@@ -90,5 +90,11 @@ app.factory('EditFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.deleteSongs = (songArr) => {
+		// easier to send array with put
+		return $http.put('/api/songs/multi', songArr)
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

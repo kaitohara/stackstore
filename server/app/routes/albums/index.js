@@ -8,7 +8,9 @@ var Album = mongoose.model('Album');
 
 // get all albums (optionally sort by parameters)
 router.get('/', function(req, res, next) {
-    Album.find(req.query).exec()
+    Album.find({
+        storeExclusive: {$ne: true}
+        }).exec()
         .then(function(albums) {
             res.json(albums);
         })
@@ -26,7 +28,9 @@ router.post('/', function(req, res, next) {
 
 // get all albums populated with artists and genre
 router.get('/populated', function(req, res, next) {
-    Album.find(req.query).populate('artist genre').exec()
+    Album.find({
+        storeExclusive: {$ne: true}
+    }).populate('artist genre').exec()
         .then(function(albums) {
             res.json(albums);
         })

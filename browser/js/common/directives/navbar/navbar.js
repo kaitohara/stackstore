@@ -5,30 +5,41 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
         scope: {},
         templateUrl: 'js/common/directives/navbar/navbar.html',
 
-        link: function (scope) {
-            scope.categories = [
-                { label: 'Albums', state: 'albums' },
-                { label: 'Artists', state: 'albums' },
-                { label: 'Genres', state: 'genres' },
-                { label: 'Orders', state: 'orders' },
-                { label: 'Users', state: 'reviews' }
-            ];
+        link: function(scope) {
+            scope.categories = [{
+                label: 'Albums',
+                state: 'albums'
+            }, {
+                label: 'Artists',
+                state: 'albums'
+            }, {
+                label: 'Genres',
+                state: 'genres'
+            }, {
+                label: 'Orders',
+                state: 'orders'
+            }, {
+                label: 'Users',
+                state: 'reviews'
+            }];
 
             scope.items = [{
-            //     label: 'Discover',
-            //     state: 'discover'
-            // }, {
+                label: 'Discover',
+                state: 'discover.list'
+            }, {
                 label: 'Collection',
                 state: 'collection',
                 auth: true
+
                 // }, {
                 // label: 'Upload',
                 // state: 'upload',
                 // auth: false
+
             }];
 
 
-            scope.setSearchCategory = function(category){
+            scope.setSearchCategory = function(category) {
                 scope.searchCategory = category;
             };
             scope.showSearchBar = true;

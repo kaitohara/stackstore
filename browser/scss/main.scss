@@ -40,9 +40,14 @@ body {
   margin: 0 auto;
   padding-top: 60px;
   padding-bottom: 60px;
-  background: #14191B;
+  background: #1D1E25;
   color: white;
   min-height: calc(100% - 100px - 50px);
+}
+
+.flex-nav {
+  display: flex;
+  justify-content: space-around;
 }
 
 .col-centered {
@@ -79,14 +84,6 @@ textarea.form-control {
 // }
 
 .search-list-scroll {
-  // list-style: none;
-  // color: black;
-  // a {
-  //   // color:white;
-
-  // }
-  // white-space: nowrap;
-  // overflow-x: auto;
   list-style: none;
   color:white;
   white-space:nowrap;
@@ -97,20 +94,12 @@ textarea.form-control {
 }
 
 .search-item-scroll {
-  // border:1px solid white;
-  // width: 300px;
-  // display: inline-block;
-  // margin: 10px 10px 90px 10px;
-  // background-color: #14191B;
-  // border-radius: 1px;
-  // color: black;
   li {
     overflow-x: scroll;
   }
   white-space:normal;
   vertical-align:top;
   width:250px;
-  // height:350px;
   display:inline-block;
   margin: 10px 10px 90px 10px;
   background-color: #14191B;
@@ -124,7 +113,7 @@ textarea.form-control {
 
 .item-content-scroll-song {
   padding: 25px;
-  height: 500px;
+  height: 450px;
 }
 
 .elem-thumb {
@@ -132,7 +121,6 @@ textarea.form-control {
   margin-left: auto;
   margin-right: auto;
   width: 200px;
-  // height: 200px;
 }
 
 .review {
@@ -146,11 +134,11 @@ textarea.form-control {
   margin-left: auto;
   margin-right: auto;
   vertical-align: middle;
+}
 
 .stackify-form {
   width: 60%;
   margin: 0 auto;
-
 }
 
 .elem {
@@ -166,6 +154,7 @@ textarea.form-control {
 
 .stack-hr {
   color: $stackify-green;
+  border-color: $stackify-green;
 }
 
 .order-select {
@@ -183,6 +172,29 @@ textarea.form-control {
 
 .discover-header {
   margin-bottom: 24px;
+}
+
+.left {
+  margin-top: 5px;
+  float: left;
+}
+.right {
+  float: right;
+}
+
+.album-song-list {
+  list-style-type: none;
+  a {
+    color: white;
+  }
+}
+
+.store-header {
+  border-color: $stackify-green !important;
+}
+
+input {
+  color: black;
 }
 
 @import "directives/main";

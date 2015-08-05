@@ -59,69 +59,80 @@ router.get('/:orderId', function(req, res, next) {
 })
 
 router.put('/:orderId/removeSong', function(req, res, next) {
-    req.orderItem.update({
-            $pull: {
-                'songs': {
-                    '_id': req.body.pullId
-                }
-            }
-        })
-        .exec()
-        .then(function() {
-            res.status(201).end()
+    var removeIndex = null;
+    req.orderItem.songs.forEach(function(song, index) {
+        if (song.id === req.body.pullId)
+            removeIndex = index
+    })
+    if (removeIndex !== null)
+        req.orderItem.songs.splice(removeIndex, 1)
+    else throw Error()
+    req.orderItem.save()
+        .then(function(orderItem) {
+            res.json(orderItem)
         })
         .then(null, next);
 })
 
 router.put('/:orderId/removeAlbum', function(req, res, next) {
-    req.orderItem.update({
-            $pull: {
-                'albums': {
-                    '_id': req.body.pullId
-                }
-            }
-        })
-        .exec()
-        .then(function() {
-            res.status(201).end()
+    var removeIndex = null;
+    req.orderItem.albums.forEach(function(album, index) {
+        if (album.id === req.body.pullId)
+            removeIndex = index
+    })
+    if (removeIndex !== null)
+        req.orderItem.albums.splice(removeIndex, 1)
+    else throw Error()
+    req.orderItem.save()
+        .then(function(orderItem) {
+            res.json(orderItem)
         })
         .then(null, next);
 })
 
 //add song to a user's cart
 router.put('/:orderId/addSong', function(req, res, next) {
-    req.orderItem.update({
-            $push: {
-                'songs': {
-                    'song': req.body.songId,
-                    'price': req.body.price,
-                    'quantity': 1
-                }
-            }
+    var duplicated = req.orderItem.songs.some(function(song) {
+        return song.song.equals(req.body.songId)
+    })
+
+    if (duplicated)
+        res.status(304).send("duplicate item")
+    else {
+        req.orderItem.songs.push({
+            'song': req.body.songId,
+            'price': req.body.price,
+            'quantity': 1
         })
-        .exec()
-        .then(function() {
-            res.status(200).end()
-        })
-        .then(null, next);
+        req.orderItem.save()
+            .then(function(orderItem) {
+                res.json(orderItem);
+            })
+            .then(null, next);
+    }
 })
 
 //add album to a user's cart
 router.put('/:orderId/addAlbum', function(req, res, next) {
-    req.orderItem.update({
-            $push: {
-                'albums': {
-                    'album': req.body.albumId,
-                    'price': req.body.price,
-                    'quantity': 1
-                }
-            }
+    var duplicated = req.orderItem.albums.some(function(album) {
+        return album.album.equals(req.body.albumId)
+    })
+
+    if (duplicated)
+        res.status(304).json("duplicate item")
+    else {
+        req.orderItem.albums.push({
+            'album': req.body.albumId,
+            'price': req.body.price,
+            'quantity': 1
         })
-        .exec()
-        .then(function() {
-            res.status(200).end()
-        })
-        .then(null, next);
+        req.orderItem.save()
+            .then(function(orderItem) {
+                console.log(orderItem.totalPrice)
+                res.json(orderItem);
+            })
+            .then(null, next);
+    }
 })
 
 router.put('/:orderId', function(req, res, next) {

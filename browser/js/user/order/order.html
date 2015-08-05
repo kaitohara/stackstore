@@ -1,7 +1,7 @@
 <ul>
   <li class="panel panel-default" >
     <div class="panel-heading">
-      <div class="panel-title order-details">
+      <div class="panel-title flex-nav">
         <b><span ng-class="{'text-danger':order.orderStatus=='created','text-warning':order.orderStatus=='processing','text-success':order.orderStatus=='completed','text-default':order.orderStatus=='cancelled'}">{{order.orderStatus}}</span></b>
         <span><small>ID# {{order._id}}</small></span>
         <span><small>{{order.date.created}}</small></span>

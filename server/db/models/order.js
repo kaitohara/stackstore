@@ -55,6 +55,15 @@ schema.pre('save', function(next) {
       this.date.finished = Date.now();
     }
   }
+
+  var subTotal = this.songs.reduce(function(sum, song) {
+    return sum + song.price
+  }, 0)
+
+  this.totalPrice = this.albums.reduce(function(sum, album) {
+    return sum + album.price
+  }, subTotal)
+
   next();
 });
 
