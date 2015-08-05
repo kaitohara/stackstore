@@ -1,11 +1,13 @@
 # Stackify
-Stack Store
+by Bryan, Joanna, Jack & Kaito @ Fullstack Academy
+
+LIVE @ https://stackify.herokuapp.com/
 
 [![Stories in Ready](https://badge.waffle.io/kaitohara/stackstore.png?label=ready&title=Ready)](http://waffle.io/kaitohara/stackstore)
 
-- [ ] For its final evaluation, your project must be deployed (e.g. via Heroku)
-- [ ] Your README should have a link to the live site
-- [ ] Your live site should have a path at /github that redirects to your Github repo (e.g. stackstore.herokuapp.com/github -> github.com/davidyang/stackstore)
+- [x] For its final evaluation, your project must be deployed (e.g. via Heroku)
+- [x] Your README should have a link to the live site
+- [x] Your live site should have a path at /github that redirects to your Github repo (e.g. stackstore.herokuapp.com/github -> github.com/davidyang/stackstore)
 
 ## Your project will be evaluated based on the following criteria:
 - Code quality and adherence to best practices
@@ -29,7 +31,7 @@ Similar to Amazon, your site should support browsing its products without having
 ### Manage their cart
 - [x] Add an item to the cart from product listing or product detail pages
 - [x] Remove an item from the cart
-- [ ] Edit/update quantities of items in the cart
+- [-] Edit/update quantities of items in the cart
 - [ ] Log in and continue editing the cart
 - [ ] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
 
