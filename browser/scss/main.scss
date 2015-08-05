@@ -198,8 +198,16 @@ textarea.form-control {
   border-color: $stackify-green !important;
 }
 
-input {
-  color: black !important;
+#admin input {
+  color: black;
+}
+
+#discover input {
+  color: black;
+}
+
+#upload input {
+  color: black;
 }
 
 @import "directives/main";
