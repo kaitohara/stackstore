@@ -1,11 +1,13 @@
 # Stackify
-Stack Store
+by Bryan, Joanna, Jack & Kaito @ Fullstack Academy
+
+LIVE @ https://stackify.herokuapp.com/
 
 [![Stories in Ready](https://badge.waffle.io/kaitohara/stackstore.png?label=ready&title=Ready)](http://waffle.io/kaitohara/stackstore)
 
-- [ ] For its final evaluation, your project must be deployed (e.g. via Heroku)
-- [ ] Your README should have a link to the live site
-- [ ] Your live site should have a path at /github that redirects to your Github repo (e.g. stackstore.herokuapp.com/github -> github.com/davidyang/stackstore)
+- [x] For its final evaluation, your project must be deployed (e.g. via Heroku)
+- [x] Your README should have a link to the live site
+- [x] Your live site should have a path at /github that redirects to your Github repo (e.g. stackstore.herokuapp.com/github -> github.com/davidyang/stackstore)
 
 ## Your project will be evaluated based on the following criteria:
 - Code quality and adherence to best practices
@@ -31,15 +33,15 @@ Similar to Amazon, your site should support browsing its products without having
 - [x] Remove an item from the cart
 - [ ] Edit/update quantities of items in the cart
 - [ ] Log in and continue editing the cart
-- [ ] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
+- [x] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
 
 ### Account Management
 - [x] Create an account
 - [x] Login with Facebook and/or Google
 
 ### Checkout
-- [ ] Purchase items from cart
-- [ ] Specify shipping address and email address
+- [x] Purchase items from cart
+- [x] Specify shipping address and email address
 - [ ] Receive confirmation email
 - [ ] Receive notification emails upon order shipping, then order delivery
 

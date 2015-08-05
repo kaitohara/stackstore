@@ -23,7 +23,9 @@ router.get('/multiple', function(req, res, next){
 
 // get all songs (optionally sort by parameters)
 router.get('/', function(req, res, next) {
-    Song.find(req.query).exec()
+    Song.find({
+        storeExclusive: {$ne: true}
+    }).exec()
         .then(function(songs) {
             res.json(songs);
         })
@@ -49,7 +51,9 @@ router.put('/multi', function(req, res, next) {
 
 // return songs populated with albums
 router.get('/populated', function(req, res, next) {
-    Song.find({}).deepPopulate([
+    Song.find({
+        storeExclusive: {$ne: true}
+        }).deepPopulate([
         'album',
         'genre',
         'artist',
