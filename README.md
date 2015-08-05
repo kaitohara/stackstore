@@ -1,7 +1,7 @@
 # Stackify
 by Bryan, Joanna, Jack & Kaito @ Fullstack Academy
 
-LIVE @ https://stackify.herokuapp.com/
+LIVE @ http://stackify.herokuapp.com/
 
 [![Stories in Ready](https://badge.waffle.io/kaitohara/stackstore.png?label=ready&title=Ready)](http://waffle.io/kaitohara/stackstore)
 
