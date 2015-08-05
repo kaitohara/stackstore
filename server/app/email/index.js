@@ -1,5 +1,5 @@
 var mandrill = require('mandrill-api/mandrill');
-var mandrill_key = require('../../../keys').mandrill_key;
+var mandrill_key = 'XQQVNAJwFEXrRQNklfmoxQ';
 var mandrill_client = new mandrill.Mandrill(mandrill_key);
 
 var path = require('path');
@@ -9,20 +9,18 @@ var swig = require('swig');
 var logo = 'http://localhost:1337/stackify-logo.png';
 
 function sendEmail(to_name, to_email, tokenUrl, subject, topic, message //, from_name, from_email, subject, message
-){
-console.log('what is this token url?', tokenUrl);
-var renderedEmail =  swig.renderFile(emailPath,
-    {
-        username : to_email,
+) {
+    console.log('what is this token url?', tokenUrl);
+    var renderedEmail = swig.renderFile(emailPath, {
+        username: to_email,
         logo: logo,
         callbackUrl: tokenUrl,
         topic: topic,
         message: message
-    }
-);
+    });
 
     var message = {
-        "html":  renderedEmail,
+        "html": renderedEmail,
         "subject": subject,
         "from_email": 'chufinity@gmail.com',
         "from_name": 'admin',
@@ -34,14 +32,13 @@ var renderedEmail =  swig.renderFile(emailPath,
     var async = false;
     var ip_pool = "Main Pool";
 
-    mandrill_client.messages.send(
-    {
+    mandrill_client.messages.send({
         "message": message,
         "async": async,
         "ip_pool": ip_pool
     }, function(result) {
-         console.log(message);
-         console.log(result);
+        console.log(message);
+        console.log(result);
     }, function(e) {
         // Mandrill returns the error as an object with name and message keys
         console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
