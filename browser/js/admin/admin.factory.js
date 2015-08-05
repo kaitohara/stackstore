@@ -94,5 +94,29 @@ app.factory('AdminFactory', ['$http', function($http){
 			.then(res => res.data);
 	};
 
+	fact.getArtistByName = (name) => {
+		return $http.get('/api/artists/name/' + name)
+			.then(res => res.data);
+	};
+
+	fact.getAlbumByName = (name) => {
+		return $http.get('/api/albums/name/' + name)
+			.then(res => res.data);
+	};
+
+	fact.getGenreByName = function(name) {
+		return $http.get('/api/genres/' + name)
+			.then(res => res.data);
+	};
+
+	fact.getPopulatedSong = function(id) {
+		return $http.get('/api/songs/' + id + '/populated')
+			.then(res => res.data);
+	};
+	fact.getPopulatedAlbum = function(id) {
+		return $http.get('/api/albums/' + id + '/populated')
+			.then(res => res.data);
+	};
+
 	return fact;
 }]);

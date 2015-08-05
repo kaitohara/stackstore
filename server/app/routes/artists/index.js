@@ -22,6 +22,16 @@ router.post('/', function(req, res, next) {
         .then(null, next);
 });
 
+// get artist by name
+router.get('/name/:name', function(req, res, next) {
+    Artist.findOne({name: req.params.name}).exec()
+        .then(function(data) {
+            if (!data) res.send('not found');
+            else res.json(data);
+        })
+        .then(null, next);
+});
+
 router.param('id', function(req, res, next, id) {
     Artist.findById(id).exec()
         .then(function(artist) {

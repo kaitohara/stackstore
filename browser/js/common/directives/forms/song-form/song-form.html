@@ -5,15 +5,21 @@
 		<input name="title" type="text" class="form-control" ng-model="newSong.title" placeholder="What should it be called">
 	</div>
 	<div class="row">
+		<div class="col-xs-12 form-group" ng-if="admin">
+			<label>Attach to existing album</label>
+			<select ng-model="newSong.album" class="form-control">
+				<option ng-repeat="alb in albums">{{alb.title}}</option>
+			</select>
+		</div>
 		<div class="col-sm-6 col-xs-6 form-group">
 			<label for="page_title">Url</label>
 			<input name="page_title" type="text" class="form-control" ng-model="newSong.url" placeholder="Link to song" required>
 		</div>
-		<div class="col-sm-3 col-xs-3 form-group">
+		<div class="col-sm-2 col-xs-2 form-group">
 			<label for="page_title">Cap</label>
-			<input name="year" type="text" class="form-control" ng-model="newSong.cap" placeholder="max downloads">
+			<input name="year" type="text" class="form-control" ng-model="newSong.cap" placeholder="">
 		</div>
-		<div class="col-sm-3 col-xs-3 form-group">
+		<div class="col-sm-4 col-xs-4 form-group">
 			<label for="page_title">Price</label>
 		    <div class="input-group">
 		      <div class="input-group-addon">$</div>

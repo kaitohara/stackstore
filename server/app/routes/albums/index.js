@@ -26,6 +26,25 @@ router.post('/', function(req, res, next) {
     });
 });
 
+// get album by name
+router.get('/name/:name', function(req, res, next) {
+    var name = req.params.name.split('%20').join('');
+    Album.findOne({title: name}).exec()
+        .then(function(data) {
+            if (!data) res.send('not found');
+            else res.json(data);
+        })
+        .then(null, next);
+});
+
+router.get('/:id/populated', function(req, res, next) {
+    Album.findById(req.params.id).populate('artist genre').exec()
+        .then(function(alb) {
+            res.json(alb);
+        })
+        .then(null, next);
+});
+
 // get all albums populated with artists and genre
 router.get('/populated', function(req, res, next) {
     Album.find({

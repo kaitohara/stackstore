@@ -1,40 +1,3 @@
-<!-- <div class="panel panel-primary" ng-click="edit({album:album})">
-	<div ng-if="admin">
-		<div class="btn-group">
-			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				Admin Actions <span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu">
-				<li>
-					<a ng-click="delete({album:album})">Delete</a>
-				</li>
-				<li>
-					<a ng-click="update({album:album})">Update</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class="panel-body">
-		<img class="elem-thumb" ng-src="{{album.photo}}">
-	</div>
-	<div class="panel-footer">
-		<ul class="list-group">
-			<a class="list-group-item" ui-sref="album({id:album._id})">
-				<li>Title: {{album.title}}</li>
-			</a>
-			<a class="list-group-item" ui-sref="artist({name: album.artist.name, id: album.artist._id})">
-				<li>Artist: {{album.artist.name}}</li>
-			</a>
-			<a class="list-group-item">
-				<li>Number of Songs: {{album.songs.length}}</li>
-			</a>
-			<a class="list-group-item">
-				<li>Year: {{album.year}}</li>
-			</a>
-		</ul>
-	</div>
-</div> -->
-
 <div class="item-content-scroll elem" ng-click="edit({album:album})">
 	<div ng-if="admin">
 		<div class="btn-group">
@@ -58,10 +21,13 @@
 		<div>
 			<ul class="list-group elem-list">
 				<li>
-					<a class="album-link" ui-sref="album({id:album._id})">{{album.title}}</a>
+					<a class="album-link" ui-sref="album({id:album._id})">Title: {{album.title}}</a>
 				</li>
 				<li>
-					<a class="artist-link" ui-sref="artist({name: album.artist.name, id: album.artist._id})">{{album.artist.name}}</a> 
+					<a class="artist-link" ui-sref="artist({name: album.artist.name, id: album.artist._id})">Artist: {{album.artist.name}}</a> 
+				</li>
+				<li>
+					<a class="artist-link">Genre: {{album.genre[0].name}}</a> 
 				</li>
 			</ul>
 		</div>
