@@ -16,7 +16,7 @@ app.config(function ($stateProvider) {
     
 });
 
-app.controller('EditCtrl', function ($scope, $state, user, EditFactory) {
+app.controller('EditCtrl', function ($scope, $state, user, EditFactory, AuthService) {
     $scope.user = user;
     $scope.store = EditFactory.currentStore;
     $scope.show = 'albums';
