@@ -77,6 +77,15 @@
 						</div>
 						
 					</li>
+					<li ng-repeat="album in cart.albums" class="preview-cart">
+						<img width="100" class="pull-left" src="{{album.album.photo}}">
+						<div class="previewText">
+							<a ui-sref="artist({name: album.album.artist.name, id: album.album.artist._id})"><p>{{album.album.artist.name}}</p></a>
+							<a ui-sref="album({id:album.album._id})"><p>{{album.album.title}}</p></a>
+							<p>{{album.album.price | currency}}</p>
+						</div>
+						
+					</li>
 				</ul>	
 				</div>
 
