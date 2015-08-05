@@ -55,10 +55,11 @@
 				<input class="white-input" type="text" value="United States" required>
 				<input class="white-input" type="text" placeholder="State">
 				<input name="emailForm" ng-model="email" class="white-input long-input" type="email" placeholder="Email" required>
-				<p ng-model="custEmail" ng-show="submitted && !emailForm.$valid && !goodToGo" class="warning">Invalid email</p>
+				<p ng-show="submitted && !emailForm.$valid && !goodToGo" class="warning">Invalid email</p>
 				
 				<br><br><br>
-				<button ng-click="submit()" type="submit" class="order-submit pull-left"><h4>Submit Order ></h4></button>
+				<button type="submit" class="order-submit pull-left"><h4>Submit Order ></h4></button>
+				<p></p>
 				<div ng-show="submitSuccess" class="pull-left">
 					<img src="loader.gif" width="100px"> Processing your order...
 				</div>
