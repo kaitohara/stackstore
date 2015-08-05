@@ -11,9 +11,10 @@ app.config(['$stateProvider',function($stateProvider) {
 	});
 }]);
 
-app.controller('StoreCtrl', ['$scope', 'store', '$state', function($scope, store, $state){
+app.controller('StoreCtrl', ['$scope', 'store', '$state', 'StoresFactory', function($scope, store, $state, StoresFactory){
 	$scope.store = store;
     $scope.show = 'albums';
+    StoresFactory.currentStore = store;
 
 	$scope.albumView = function(album) {
         $state.go('discover.stores.album', {albumId: album._id});
@@ -24,6 +25,6 @@ app.controller('StoreCtrl', ['$scope', 'store', '$state', function($scope, store
     };
 
     $scope.defaultView = function() {
-        $state.go('discover.stores.default');
+        $state.go('discover.stores', {storeUrl:store.url});
     };
 }]);

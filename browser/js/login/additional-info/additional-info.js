@@ -8,9 +8,9 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('AdditionalInfoCtrl', function ($scope, AuthService) {
+app.controller('AdditionalInfoCtrl', function ($scope, AuthService, $state, Session) {
 
-    $scope.additional = {};
+    $scope.info = {};
     $scope.error = null;
 
     $scope.sendInfo = function (additionalInfo) {
@@ -20,15 +20,16 @@ app.controller('AdditionalInfoCtrl', function ($scope, AuthService) {
         console.log('signing up');
         console.log('info', additionalInfo);
 
-        AuthService.submit(additionalInfo)
-            .then(function (user) {
-                console.log(additionalInfo);
-                console.log(user);
-                // $state.go('home');
+        AuthService.getLoggedInUser()
+            .then(user => {
+                return AuthService.updateUser(user._id, additionalInfo);
+            }).then((user) => {
+                console.log('new seller', user);
+                // Session.updateUser(user);
+                $state.go('home');
             }).catch(function () {
                 $scope.error = 'Invalid signup credentials.';
             });
-
     };
 
 });

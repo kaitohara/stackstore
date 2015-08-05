@@ -45,6 +45,11 @@ body {
   min-height: calc(100% - 100px - 50px);
 }
 
+.flex-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
 .col-centered {
   float: none;
   margin: 0 auto;
@@ -149,6 +154,7 @@ textarea.form-control {
 
 .stack-hr {
   color: $stackify-green;
+  border-color: $stackify-green;
 }
 
 .order-select {
@@ -174,6 +180,21 @@ textarea.form-control {
 }
 .right {
   float: right;
+}
+
+.album-song-list {
+  list-style-type: none;
+  a {
+    color: white;
+  }
+}
+
+.store-header {
+  border-color: $stackify-green !important;
+}
+
+input {
+  color: black;
 }
 
 @import "directives/main";

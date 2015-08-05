@@ -2,7 +2,6 @@
 	<div class="row checkoutRow">
 		<div class="col-lg-10 col-centered">
 			<div class="col-lg-8">
-				<!-- {{cart.songs[0]}} -->
 				<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
 				Your Account / <a ui-sref="cart">Cart</a> / Checkout 
 
@@ -56,7 +55,7 @@
 				<input class="white-input" type="text" value="United States" required>
 				<input class="white-input" type="text" placeholder="State">
 				<input name="emailForm" ng-model="email" class="white-input long-input" type="email" placeholder="Email" required>
-				<p ng-show="submitted && !emailForm.$valid && !goodToGo" class="warning">Invalid email</p>
+				<p ng-model="custEmail" ng-show="submitted && !emailForm.$valid && !goodToGo" class="warning">Invalid email</p>
 				
 				<br><br><br>
 				<button ng-click="submit()" type="submit" class="order-submit pull-left"><h4>Submit Order ></h4></button>

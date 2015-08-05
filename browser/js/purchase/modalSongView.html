@@ -8,6 +8,11 @@
     <br>
     <h1>{{item.price | currency}} USD</h1>
     <h3>High-quality download of MP3, WAV + more</h3>
+    <!-- {{song}} -->
+    <alert type="danger" ng-show="error">
+      {{ error }}
+    </alert>
+
 </div>
 <div class="modal-footer">
     <button class="btn buttons" ng-click="ok()">Purchase Now</button>

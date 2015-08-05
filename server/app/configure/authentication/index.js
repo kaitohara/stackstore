@@ -9,7 +9,7 @@ var UserModel = mongoose.model('User');
 
 var ENABLED_AUTH_STRATEGIES = [
     'local',
-    'twitter',
+    // 'twitter',
     'facebook',
     'google'
 ];
@@ -26,9 +26,9 @@ module.exports = function(app) {
         }),
         resave: false,
         saveUninitialized: false,
-        cookie: {
-            maxAge: 6000
-        }
+        // cookie: {
+        //     maxAge: 6000
+        // }
     }));
 
     // Initialize passport and also allow it to read

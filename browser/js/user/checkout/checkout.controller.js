@@ -14,11 +14,13 @@ app.controller('CheckoutCtrl', function ($scope, cart, $state){
 	}
 	$scope.submitForm = function(isValid) {
 
+	$scope.custEmail
     // check to make sure the form is completely valid
    $scope.submitted = true;
     if (isValid) {
       $scope.submitSuccess = true;
       $scope.goodToGo = true;
+      	
 		setTimeout(function(){
 			$state.go('complete')
 		}, 5000)
