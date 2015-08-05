@@ -3,14 +3,17 @@ app.controller('SignUpCtrl', function ($scope, AuthService, $state) {
 
     $scope.signup = {};
     $scope.show=true;
+
     $scope.sendLogin = function (signupInfo) {
 
+        $scope.show=false;
         $scope.error = null;
+
         console.log('signing up');
 
         AuthService.signup(signupInfo).then(function (user) {
             console.log(user);
-            $scope.show=false;
+
             //$state.go('additional');
             if(user._id){
                 $state.signup=user;
