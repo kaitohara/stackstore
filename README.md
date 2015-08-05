@@ -31,17 +31,17 @@ Similar to Amazon, your site should support browsing its products without having
 ### Manage their cart
 - [x] Add an item to the cart from product listing or product detail pages
 - [x] Remove an item from the cart
-- [-] Edit/update quantities of items in the cart
+- [ ] Edit/update quantities of items in the cart
 - [ ] Log in and continue editing the cart
-- [ ] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
+- [x] Refresh the page without being logged in and have the cart persist (you may use sessionStorage, localStorage, Cookies or JWT for this)
 
 ### Account Management
 - [x] Create an account
 - [x] Login with Facebook and/or Google
 
 ### Checkout
-- [ ] Purchase items from cart
-- [ ] Specify shipping address and email address
+- [x] Purchase items from cart
+- [x] Specify shipping address and email address
 - [ ] Receive confirmation email
 - [ ] Receive notification emails upon order shipping, then order delivery
 
