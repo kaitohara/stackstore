@@ -1,10 +1,16 @@
 .white-input{
 	background:none;
 	border: 1px solid gray;
-	padding: 3px;
+	padding: 5px;
 	margin:5px;
-}
+	width: 200px
 
+}
+.checkoutRow{
+	border: 2px solid white;
+	padding-top: 50px;
+	padding-bottom:20px;
+}
 .preview-cart{
 	display:block;
 	height:100px;
@@ -36,4 +42,29 @@
 		color: white;
 	}
 	
+}
+.dropdown{
+	background: none;
+	border:1px solid gray;
+
+}
+h3{
+.stackify-green {
+	color: $stackify-green; 
+}
+}
+
+
+.long-input {
+	width:413px;
+}
+#cvv{
+	width:80px;
+}
+.warning{
+	padding-left:5px;
+	color:#E9376D;
+	letter-spacing: 1px;
+	margin: 0;
+	margin-bottom:-10px;
 }

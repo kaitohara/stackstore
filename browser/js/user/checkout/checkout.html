@@ -1,17 +1,20 @@
 <div class="container checkout">
-	<div class="row">
+	<div class="row checkoutRow">
 		<div class="col-lg-10 col-centered">
 			<div class="col-lg-8">
+				<!-- {{cart.songs[0]}} -->
+				<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
 				Your Account / <a ui-sref="cart">Cart</a> / Checkout 
+
 				<h1>Check Out</h1>
-				<p>Customer Information</p>
-				<input type="text">
+				<hr>
+				<br>
 				<p>Payment Method</p>
-				<br><br>
-				<p>Billing Info</p>
-				<input type="text">
-				<input type="text" placeholder="Card #">
-				<select>
+				
+				<input name="cardInput" type="text" placeholder="Card #" class="white-input long-input" required>
+				<p ng-show="submitted && !cardInput.$valid && !goodToGo" class="warning" >Invalid card</p>
+				<br>
+				<select class="dropdown">
 					<option>01 - January</option>
 					<option>02 - February</option>
 					<option>03 - March</option>
@@ -26,7 +29,7 @@
 					<option>12 - December</option>
 				</select>
 
-				<select>
+				<select class="dropdown">
 					<option>2015</option>
 					<option>2016</option>
 					<option>2017</option>
@@ -40,20 +43,27 @@
 					<option>2025</option>
 				</select>
 				
-				<input type="text" placeholder="CVV">
-
+				<input type="text" placeholder="CVV" class="white-input" id="cvv">
+				<br>
 				Billing Information
-				<input class="white-input" type="text" placeholder="First Name">
-				<input class="white-input" type="text" placeholder="Last Name">
-				<input class="white-input" type="text" placeholder="Address 1">
-				<input class="white-input" type="text" placeholder="Address 2">
-				<input class="white-input" type="text" placeholder="ZIP">
-				<input class="white-input" type="text" placeholder="City">
-				<input class="white-input" type="text" value="United States">
+				<br>
+				<input class="white-input" type="text" placeholder="First Name" required>
+				<input class="white-input" type="text" placeholder="Last Name" required>
+				<input class="white-input long-input" type="text" placeholder="Address 1" required>
+				<input class="white-input long-input" type="text" placeholder="Address 2">
+				<input class="white-input" type="text" placeholder="ZIP" required>
+				<input class="white-input" type="text" placeholder="City" required>
+				<input class="white-input" type="text" value="United States" required>
 				<input class="white-input" type="text" placeholder="State">
-				<input class="white-input" type="text" placeholder="Email">
+				<input name="emailForm" ng-model="email" class="white-input long-input" type="email" placeholder="Email" required>
+				<p ng-show="submitted && !emailForm.$valid && !goodToGo" class="warning">Invalid email</p>
+				
 				<br><br><br>
-				<button class="order-submit"><h4>Submit Order ></h4></button>
+				<button ng-click="submit()" type="submit" class="order-submit pull-left"><h4>Submit Order ></h4></button>
+				<div ng-show="submitSuccess" class="pull-left">
+					<img src="loader.gif" width="100px"> Processing your order...
+				</div>
+			</form>
 			</div>
 			<div class="col-lg-4">
 				Cart
@@ -75,6 +85,7 @@
 
 				<br>
 				<div>
+					<hr>
 					<h2><p>Total: {{cart.totalPrice | currency}}</p></h2>
 				</div>
 			</div>
