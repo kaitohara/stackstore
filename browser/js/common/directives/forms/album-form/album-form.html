@@ -1,7 +1,9 @@
 <form role="form" name="albumForm" ng-submit="submit({album:newAlbum})">
 	<h3>New Album
-		<a ng-hide="newArtist" class="btn btn-default" ng-click="toggleNewArtist()">New Artist</a>
-		<a ng-hide="oldArtist" class="btn btn-default" ng-click="toggleOldArtist()">Existing Artist</a>
+		<span ng-if="admin">
+			<a ng-hide="newArtist" class="btn btn-default" ng-click="toggleNewArtist()">New Artist</a>
+			<a ng-hide="oldArtist" class="btn btn-default" ng-click="toggleOldArtist()">Existing Artist</a>
+		</span>
 	</h3>
 	<div class="form-group">
 		<label>Album Title</label>
