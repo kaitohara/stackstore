@@ -7,13 +7,13 @@ var _ = require('lodash');
 var Order = mongoose.model('Order');
 var emailer = require('../../email');
 
-router.post('/checkout/:email/:cart', function(req, res, next){
+router.post('/checkout', function(req, res, next){
     var params = [
-        req.params.email
-        , req.params.email
+        req.body.email
+        , req.body.email
         , 'Order Confirmation'
         , 'Thank you for ordering from Stackify'
-        , req.params.cart
+        , req.body.cart
     ];
     emailer('order', params);
     res.status(200).end();
