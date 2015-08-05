@@ -43,24 +43,63 @@ app.controller('AdminProductCtrl', ['$scope', 'songs', 'albums', 'AdminFactory',
 	$scope.submitCategory = function(data) {
 		console.log('making category', data);
 		AdminFactory.createCategory(data)
-			.then(cat => console.log('successful', cat));
+			.then(cat => $scope.creatingCategory = false);
 	};
 
 	$scope.submitSong = function(data) {
-		AdminFactory.createSong(data)
+		console.log('making this song', data);
+
+		var photo;
+		var albumId;
+
+		// find the album
+		AdminFactory.getAlbumByName(data.album)
+			.then(alb => {
+				if (!alb) {
+					// throw an error
+				}
+				data.album = alb._id;
+				data.genre = alb.genre[0];
+				photo = alb.photo;
+				albumId = alb._id;
+				return AdminFactory.createSong(data);
+			})
 			.then(song => {
-				console.log('success', song);
-				$scope.songs.push(song);
+				// add song to album
+				// _.find($scope.albums, function(al) {return al._id === albumId});
+				return AdminFactory.getPopulatedSong(song._id);
+			})
+			.then(ps => {
+				console.log('made this song', ps);
+				$scope.songs.push(ps);
+				$scope.creatingProduct = false;
 			});
 	};
 
 	$scope.submitAlbum = function(data) {
-		console.log('submitting album', data);
-		AdminFactory.createAlbum(data)
-			.then(res => {
-				$scope.albums.push({title: 'jack made this', artist: 'jack', year: '1994', songs: [1]});
+
+		// find the artists
+		AdminFactory.getArtistByName(data.artist)
+			.then(art => {
+				if (art === 'not found') {
+					// make a new artist and attach it
+				}
+				data.artist = art._id;
+				// get genre
+				return AdminFactory.getGenreByName(data.genre);
+			})
+			.then(gen => {
+				data.genre = gen._id;
+				// submit the album
+				return AdminFactory.createAlbum(data);
+			})
+			.then(alb => {
+				return AdminFactory.getPopulatedAlbum(alb._id);
+			})
+			.then(pa => {
+				$scope.albums.push(pa);
 				$scope.newAlbum = {};
-				return res.data;
+				$scope.creatingProduct = false;
 			});
 	};
 

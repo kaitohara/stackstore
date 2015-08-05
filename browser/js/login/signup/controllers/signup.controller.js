@@ -18,7 +18,7 @@ app.controller('SignUpCtrl', function ($scope, AuthService, $state) {
             if(user._id){
                 $state.signup = user;
                 $state.go('signup.success');
-                $scope.show = true;
+                //$scope.show = true;
             } else {
                 return "User Validation Failed";
             }
