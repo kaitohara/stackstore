@@ -71,10 +71,10 @@ module.exports = function (app) {
                     if (req.session.cart) {
                         user.cart = req.session.cart;
                         user.save().then(function(){
-                            res.redirect('/additional');
+                            res.redirect('/');
                         });
                     } else {
-                        res.redirect('/additional');
+                        res.redirect('/');
                     }
                 });
         });
