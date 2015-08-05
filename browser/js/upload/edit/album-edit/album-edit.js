@@ -24,10 +24,8 @@ app.controller('EditAlbumCtrl', ['$scope', 'EditFactory', 'album', '$state', fun
 		songData.artist = $scope.album.artist;
 		songData.album = $scope.album._id;
 
-		console.log(songData);
 		EditFactory.createSong(songData)
 			.then(song => {
-				console.log('got this back', song);
 				// add to local album
 				EditFactory.currentAlbum.songs.push(song);
 				// add to album in db
@@ -41,7 +39,14 @@ app.controller('EditAlbumCtrl', ['$scope', 'EditFactory', 'album', '$state', fun
 	$scope.deleteAlbum = function() {
 		EditFactory.deleteAlbum($scope.album._id)
 			.then(() => {
-				$state.go('upload.edit.default');
+				// delete all songs from that album too
+				var albumSongIds = $scope.album.songs.map(s => s._id);
+				_.remove(EditFactory.currentStore.songs, s => _.includes(albumSongIds, s._id));
+				console.log('songs', EditFactory.currentStore.songs);
+				console.log('album', $scope.album);
+				return EditFactory.deleteSongs($scope.album.songs);
+			}).then(() => {
+				$state.go('upload.edit');
 			});
     };
 	$scope.defaultAlbum = function() {
