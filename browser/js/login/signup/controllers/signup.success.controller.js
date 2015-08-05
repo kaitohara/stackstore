@@ -1,6 +1,6 @@
 app.controller('SignUpSuccessCtrl', function($scope, $state, $timeout){
     $scope.counter = 6;
-
+    $scope.show = false
     $scope.onTimeout = function(){
         if($scope.counter===0){
             $state.go('login');

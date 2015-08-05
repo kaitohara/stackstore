@@ -141,6 +141,11 @@ textarea.form-control {
   margin: 0 auto;
 }
 
+.stackify-confirmed {
+  background-color: #1D1E25;
+  color:$stackify-green;
+}
+
 .elem {
   border: 1px solid $stackify-green;
   border-radius: 10px;

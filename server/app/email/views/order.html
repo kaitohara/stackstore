@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" style="padding: px 0 30px 0;">
+            <img src={{ logo }} alt="Order Confirmation" width="300" height="230" style="display: block;" />
+        </td>
+    <tr>
+        <td align="center" style="font-size: 24px; color:#2ED465">
+           {{ message }}
+        </td>
+    </tr>
+    <tr>
+    <table align="center" border="1" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse; color:#2ED465">
+        {% for album in order.albums %}
+            <tr align="center">
+                <td align="center" style="font-size: 16px; color:#2ED465">Album ID:{{ album.id}}</td>
+                <td align="center" style="font-size: 16px; color:#2ED465">Album Price:{{ album.price }}</td>
+                <td align="center" style="font-size: 16px; color:#2ED465">Album Quantity:{{ album.quantity }}</td>
+            </tr>
+        {% endfor %}
+
+        {% for song in order.songs %}
+        <tr align="center">
+            <td align="center" style="font-size: 16px; color:#2ED465">Song ID:{{ song.id }}</td>
+            <td align="center" style="font-size: 16px; color:#2ED465">Song Price:{{ song.price }}</td>
+            <td align="center" style="font-size: 16px; color:#2ED465">Song Quantity:{{ song.quantity }}</td>
+        </tr>
+        {% endfor %}
+
+        <tr align="center">
+            <td align="center" style="font-size: 16px; color:#2ED465">Total Order Price:{{ order.totalPrice }}</td>
+            <td align="center" style="font-size: 16px; color:#2ED465">Order Date: {{ order.orderDate }}</td>
+            <td align="center" style="font-size: 16px; color:#2ED465">Order Status:{{ order.orderStatus }}</td>
+        </tr>
+    </table>
+    </tr>
+</table>
+{% endblock %}
