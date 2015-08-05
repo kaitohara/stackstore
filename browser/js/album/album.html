@@ -1,33 +1,43 @@
-<div class="row">
-	<div class="col-lg-8 col-centered">
-		<div class="col-lg-8 box">
-			<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
-			<h1>{{album.title}}</h1>
-			<img class="pull-right" src="{{album.photo}}" width="300">
-			<h3>Artist: <a ui-sref="artist({name:album.artist.name, id:album.artist._id})">{{album.artist.name}}</a></h3>
-			<h3>Tracklist:</h3>
-			<ul>
-				<a ui-sref="song({id:song._id})" ng-repeat="song in album.songs">
-					<li>{{song.title}}</li>
-				</a>
-			</ul>
-			<button class="buyButton" ng-click="openModal()">Buy Album</button>
-			<h3>Price: ${{album.price}}</h3>
-			<h3>Year: {{album.year}}</h3>
-			<h3>Downloads: {{album.downloads}}</h3>
-			<h3>Reviews:</h3>
-			<div ng-repeat="review in album.reviews">
-				<p>{{review.title}}</p>
-				<p>{{review.rating}}/5</p>
-				<p>{{review.content}}</p>
+<div class="row test">
+	<div class="col-lg-12 songContainer">
+		<div class="mycol12 box col-centered ">
+			<div class="col-lg-12 songContent">
+				<h1>{{album.title}} (Album)</h1>
+				<hr>
+				<div id="songInfo">
+					<h3>Artist: <a ui-sref="artist({name:album.artist.name, id:album.artist._id})">{{album.artist.name}}</a></h3>
+					<h3>Year: {{album.year}}</h3>
+					<br><br>
+					<ul>
+					<h4>Tracklist:</h4>
+					<a ui-sref="song({id:song._id})" ng-repeat="song in album.songs">
+						<li>{{song.title}}</li>
+					</a>
+					<h3>{{album.price | currency}}</h3>
+					<button class="buyButton" ng-click="openModal()">Buy Album</button>
+				</ul>
+				</div>
+				<div > 
+					<img src="{{album.photo}}" width="270">
+				</div>
+				
+
+				<br>
+				
+				<h3>Downloads: {{album.downloads}}</h3>
+
+				<button class="btn btn-primary" ui-sref="discover.list">Return to List View</button>
 			</div>
-		</div>
-		<div class="col-lg-2">
-			<p>{{artist.name}}</p>
-			Discography
-			<ul>
-				<li ng-repeat="album in artist.albums">{{album.title}}</li>
-			</ul>
+
+			<div class="col-sm-12">
+				<hr>
+				<h2>Reviews</h2>
+				<div ng-repeat="review in album.reviews">
+					<p>{{review.title}}</p>
+					<p>{{review.rating}}/5</p>
+					<p>{{review.content}}</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
