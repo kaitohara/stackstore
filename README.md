@@ -3,6 +3,8 @@ by Bryan, Joanna, Jack & Kaito @ Fullstack Academy
 
 LIVE @ http://stackify.herokuapp.com/
 
+![gif](https://github.com/kaitohara/stackstore/blob/master/browser/stackify.gif)
+
 [![Stories in Ready](https://badge.waffle.io/kaitohara/stackstore.png?label=ready&title=Ready)](http://waffle.io/kaitohara/stackstore)
 
 - [x] For its final evaluation, your project must be deployed (e.g. via Heroku)
